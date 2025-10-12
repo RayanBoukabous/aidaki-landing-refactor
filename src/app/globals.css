@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-green: #10b981;
+  --primary-green-dark: #059669;
+  --primary-green-light: #6ee7b7;
+  --secondary-green: #d1fae5;
+}
+
+/* Font family variables */
+.font-inter {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+}
+
+.font-cairo {
+  font-family: var(--font-cairo), "Times New Roman", serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Enhanced RTL Support with automatic direction detection */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="ltr"] {
+  direction: ltr;
+}
+
+/* Ensure direction changes are applied immediately */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+}
+
+/* Body direction classes for JavaScript updates */
+body.rtl {
+  direction: rtl !important;
+}
+
+body.ltr {
+  direction: ltr !important;
+}
+
+/* RTL-specific utilities */
+@layer utilities {
+  /* Direction-aware margin and padding */
+  .ms-4 {
+    margin-inline-start: 1rem;
+  }
+
+  .me-4 {
+    margin-inline-end: 1rem;
+  }
+
+  .ps-4 {
+    padding-inline-start: 1rem;
+  }
+
+  .pe-4 {
+    padding-inline-end: 1rem;
+  }
+
+  /* Direction-aware flex */
+  .flex-start {
+    justify-content: flex-start;
+  }
+
+  .flex-end {
+    justify-content: flex-end;
+  }
+
+  /* RTL-aware text alignment */
+  .text-start {
+    text-align: start;
+  }
+
+  .text-end {
+    text-align: end;
+  }
+
+  /* Direction-aware borders */
+  .border-s {
+    border-inline-start-width: 1px;
+  }
+
+  .border-e {
+    border-inline-end-width: 1px;
+  }
+
+  /* Button styles with RTL support */
+  .btn-primary {
+    @apply bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-green-100 hover:bg-green-200 text-green-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer;
+  }
+
+  /* Fun animations for student engagement */
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .bg-gradient-green-light {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  }
+
+  .primary-bg-gradient {
+    background-image: linear-gradient(
+      90deg,
+      #010d06 0%,
+      #13793d 50%,
+      #1bac56 100%
+    );
+  }
+  
+  /* Enhanced RTL-specific overrides - Only for specific cases */
+  .rtl .ml-auto {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .rtl .mr-auto {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  /* Only override text alignment for navigation and specific components */
+  .rtl .nav-text-left {
+    text-align: right;
+  }
+
+  .rtl .nav-text-right {
+    text-align: left;
+  }
+
+  /* Force direction for specific elements */
+  .rtl .flex-row {
+    flex-direction: row-reverse;
+  }
+
+  .rtl .space-x-reverse > * + * {
+    margin-right: var(--tw-space-x-reverse);
+    margin-left: calc(var(--tw-space-x-reverse) * -1);
+  }
+
+  /* Language switcher positioning */
+  .lang-switcher {
+    @apply flex items-center space-x-2 rtl:space-x-reverse;
+  }
+
+  /* Form inputs with RTL support */
+  .form-input {
+    @apply w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors;
+  }
+
+  [dir="rtl"] .form-input {
+    text-align: right;
+  }
+
+  [dir="ltr"] .form-input {
+    text-align: left;
+  }
+
+  /* Enhanced dropdown positioning for RTL */
+  [dir="rtl"] .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+
+  [dir="ltr"] .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+
+  /* Navigation improvements - Only for specific navigation elements */
+  [dir="rtl"] .nav-item {
+    text-align: right;
+  }
+
+  [dir="ltr"] .nav-item {
+    text-align: left;
+  }
+
+  /* Icon positioning for RTL */
+  [dir="rtl"] .icon-start {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+
+  [dir="rtl"] .icon-end {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+
+  /* Ensure proper transition during direction changes */
+  .direction-transition {
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Fix for flex layouts in RTL */
+  [dir="rtl"] .justify-start {
+    justify-content: flex-end;
+  }
+
+  [dir="rtl"] .justify-end {
+    justify-content: flex-start;
+  }
+
+  [dir="rtl"] .items-start {
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .items-end {
+    align-items: flex-start;
+  }
+
+  /* Preserve center alignment in all directions */
+  .text-center {
+    text-align: center !important;
+  }
+
+  .justify-center {
+    justify-content: center !important;
+  }
+
+  .items-center {
+    align-items: center !important;
+  }
+
+  .mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@keyframes bounce-gentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Arabic text styling */
+[lang="ar"] {
+  font-feature-settings: "liga" 1, "kern" 1;
+  line-height: 1.6 !important;
+}
+
+/* Better Arabic typography */
+.arabic-text {
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* Prevent scrolling when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+.text-5xl{
+  line-height:1.6 !important;
+}
+/* Enhanced RTL/LTR switching animations */
+.direction-change-animation {
+  transition: transform 0.3s ease-in-out, text-align 0.2s ease-in-out;
+}
+
+/* Force immediate direction updates */
+[data-direction="rtl"] {
+  direction: rtl !important;
+}
+
+[data-direction="ltr"] {
+  direction: ltr !important;
+}
+
+/* Fix for common layout issues during direction changes */
+.layout-container {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Removed the overly aggressive text alignment rules that were breaking center alignment */
+/* Only apply specific text alignment to elements that need RTL/LTR handling */
+
+/* Specific RTL text alignment for paragraphs and headings - but preserve explicit classes */
+[dir="rtl"] p:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h1:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h2:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h3:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h4:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h5:not(.text-center):not(.text-left):not(.text-right),
+[dir="rtl"] h6:not(.text-center):not(.text-left):not(.text-right) {
+  text-align: right;
+}
+
+[dir="ltr"] p:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h1:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h2:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h3:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h4:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h5:not(.text-center):not(.text-left):not(.text-right),
+[dir="ltr"] h6:not(.text-center):not(.text-left):not(.text-right) {
+  text-align: left;
+}

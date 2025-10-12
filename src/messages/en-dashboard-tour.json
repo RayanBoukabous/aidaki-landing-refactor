@@ -1,0 +1,83 @@
+{
+  "dashboardTour": {
+    "stepCounter": "Step {current} of {total}",
+    "progress": "Progress",
+    "previous": "Previous",
+    "next": "Next",
+    "skip": "Skip Tour",
+    "finish": "Finish Tour",
+    "helpText": "Click anywhere or press ESC to exit",
+
+    "steps": {
+      "welcome": {
+        "title": "Welcome to Your Dashboard!",
+        "content": "This is your learning command center. Here you can see your progress, access courses, and track your achievements. Let's take a quick tour!"
+      },
+      "sidebar": {
+        "title": "Navigation Menu",
+        "content": "This is your navigation sidebar. It contains all the sections you need to manage your learning journey. Let's explore each section!"
+      },
+      "navigation": {
+        "home": {
+          "title": "Dashboard Home",
+          "content": "This is your main dashboard page where you can see an overview of your learning progress, recent activities, and quick access to important features."
+        },
+        "learning": {
+          "title": "My Learning",
+          "content": "Access all your study modules, courses, and learning materials here. This is where you'll spend most of your time studying and practicing."
+        },
+        "progress": {
+          "title": "My Progress",
+          "content": "Track your learning journey with detailed analytics, study time statistics, achievement progress, and performance insights across all subjects."
+        },
+        "quiz": {
+          "title": "Quick Quiz",
+          "content": "Test your knowledge with interactive quizzes and practice exercises. Perfect for reviewing what you've learned and preparing for exams."
+        },
+        "assistant": {
+          "title": "AI Assistant",
+          "content": "Get help from our intelligent AI assistant. Ask questions, get explanations, and receive personalized learning recommendations."
+        },
+        "tips": {
+          "title": "Tips & Tricks",
+          "content": "Discover study techniques, learning strategies, and helpful tips to improve your academic performance and study efficiency."
+        }
+      },
+      "stats": {
+        "title": "Your Learning Stats",
+        "content": "These cards show your key learning metrics at a glance. Track your study time, completed lessons, and overall progress."
+      },
+      "studyTime": {
+        "title": "Study Time Tracking",
+        "content": "This shows how much time you've spent studying today. Consistent daily practice is key to success!"
+      },
+      "lessons": {
+        "title": "Lessons Completed",
+        "content": "Keep track of how many lessons you've finished. Each completed lesson brings you closer to your goals."
+      },
+      "progress": {
+        "title": "Overall Progress",
+        "content": "Your overall learning progress across all subjects. Click to view detailed progress analytics."
+      },
+      "modules": {
+        "title": "Study Modules",
+        "content": "These are your available study modules. Click on any module to start learning or continue where you left off."
+      }
+    },
+
+    "welcome": {
+      "title": "Welcome to AIDAKI, {name}!",
+      "defaultName": "Student",
+      "description": "Let's take a quick tour to help you get started with your learning journey.",
+      "startTour": "Start Tour",
+      "dismiss": "Maybe Later"
+    },
+
+    "button": {
+      "start": "Start Dashboard Tour",
+      "restart": "Restart Tour",
+      "startTooltip": "Take a guided tour of your dashboard",
+      "restartTooltip": "Restart the dashboard tour"
+    }
+  }
+}

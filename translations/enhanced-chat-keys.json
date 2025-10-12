@@ -1,0 +1,25 @@
+{
+  "lesson": {
+    "chat": {
+      "chatMode": "Chat Mode",
+      "lessonSpecific": "Lesson-Specific",
+      "general": "General",
+      "generalModeDesc": "Ask anything you want",
+      "lessonModeDesc": "Ask about this lesson",
+      "placeholderGeneral": "Ask me anything...",
+      "placeholder": "Ask about this lesson...",
+      "title": "AIDAKI Assistant",
+      "chatHistory": "Chat History",
+      "newChat": "New Chat",
+      "noHistory": "No chat history yet",
+      "startConversation": "Start a conversation with AIDAKI",
+      "loadingMessages": "Loading messages...",
+      "send": "Send",
+      "hide": "Hide",
+      "error": "Error",
+      "upgradeRequired": "Upgrade Required",
+      "upgradeDescription": "Access to the AIDAKI Assistant requires a premium subscription. Upgrade now to unlock unlimited conversations!",
+      "upgradeNow": "Upgrade Now"
+    }
+  }
+}

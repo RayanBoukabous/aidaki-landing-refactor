@@ -1,0 +1,2291 @@
+{
+  "app": {
+    "title": "AIDAKI – Plateforme d'apprentissage pour élèves",
+    "description": "Une plateforme éducative interactive pour les élèves du primaire au lycée",
+    "name": "AIDAKI"
+  },
+  "faqPage": {
+    "title": "Foire Aux Questions",
+    "subtitle": "Trouvez des réponses à vos questions sur AIDAKI",
+    "searchPlaceholder": "Rechercher une question...",
+    "noResults": "Aucun résultat trouvé pour votre recherche",
+
+    "contact": {
+      "title": "Vous n'avez pas trouvé votre réponse ?",
+      "description": "Notre équipe de support est là pour vous aider",
+      "email": "Envoyer un Email",
+      "phone": "Appeler le Support"
+    },
+
+    "items": {
+      "whatIsAidaki": {
+        "question": "Qu'est-ce que AIDAKI ?",
+        "answer": "AIDAKI est une plateforme e-learning spécialisée pour les élèves du baccalauréat algérien. Elle propose des cours complets, vidéos interactives, résumés, quiz, et un suivi personnalisé grâce à l'intelligence artificielle."
+      },
+      "whoCanUse": {
+        "question": "Qui peut utiliser AIDAKI ?",
+        "answer": "Les élèves de terminale, toutes spécialités confondues, et leurs parents souhaitant suivre leurs progrès.\n\nℹ️ Nous travaillons actuellement sur l'intégration d'autres niveaux : 2ᵉ année secondaire (2AS), 1ʳᵉ année secondaire (1AS) et Brevet (BEM). Ils seront bientôt disponibles."
+      },
+      "howAiHelps": {
+        "question": "Comment l'intelligence artificielle m'aide-t-elle à apprendre ?",
+        "answer": "L'IA d'AIDAKI analyse vos résultats, détecte vos forces et faiblesses, et vous recommande les cours et exercices les plus adaptés à votre profil. Elle vous guide pour rendre votre parcours d'apprentissage structuré et personnalisé."
+      },
+      "whatContains": {
+        "question": "Que contient la plateforme AIDAKI ?",
+        "answer": "AIDAKI propose :\n• Des cours complets conformes au programme national algérien\n• Des résumés clairs et téléchargeables\n• Des vidéos pédagogiques dynamiques\n• Un chatbot intelligent capable de répondre aux questions en temps réel\n• Des quiz interactifs pour évaluer vos connaissances\n• Un tableau de bord d'analyse qui identifie vos points forts et faibles\n• Des sessions de tutorat et visioconférences avec des professeurs\n• Une section Dernières nouvelles en éducation\n• Un accès parent pour suivre la progression des élèves"
+      },
+      "nationalProgram": {
+        "question": "Est-ce que la plateforme est conforme au programme national algérien ?",
+        "answer": "Oui, tous nos contenus suivent fidèlement le programme officiel du ministère de l'Éducation nationale."
+      },
+      "freeTrial": {
+        "question": "Y a-t-il un essai gratuit ?",
+        "answer": "Oui. Nous proposons un plan gratuit de 72H permettant de tester la plateforme avant de passer à un abonnement payant pour accéder à toutes les fonctionnalités."
+      },
+      "installSoftware": {
+        "question": "Faut-il installer un logiciel pour utiliser AIDAKI ?",
+        "answer": "Non. AIDAKI fonctionne directement depuis un navigateur sur ordinateur, tablette ou smartphone.\n\n➡️ Nous avons également une application mobile. Cliquez ici pour la télécharger : Télécharger l'application"
+      },
+      "pricing": {
+        "question": "Quels sont les tarifs et méthodes de paiement ?",
+        "answer": "Nous proposons plusieurs plans, gratuits et payants, selon vos besoins.\n\nVous pouvez régler votre abonnement de deux manières :\n• Carte à gratter disponible dans nos magasins partenaires. Cliquez ici pour voir la liste des points de vente : Voir les magasins\n• Paiement en ligne sécurisé via carte CIB.\n\nCliquez ici pour voir nos plans et choisir le vôtre : Voir les plans"
+      },
+      "mobileUse": {
+        "question": "Puis-je utiliser AIDAKI depuis mon téléphone ?",
+        "answer": "Oui, la plateforme est 100% compatible mobile et tablette."
+      },
+      "coursesAvailable": {
+        "question": "Les cours sont-ils disponibles en continu ?",
+        "answer": "Oui. Vous pouvez accéder aux cours à tout moment, 24h/24 et 7j/7."
+      },
+      "progressTracking": {
+        "question": "Comment fonctionne le suivi des progrès ?",
+        "answer": "Notre tableau de bord analyse vos résultats et vous indique vos points forts et vos points à améliorer, avec des recommandations personnalisées."
+      },
+      "support": {
+        "question": "Est-ce que l'assistance est disponible si j'ai un problème ?",
+        "answer": "Oui. Vous pouvez contacter notre support technique directement depuis votre compte ou par e-mail."
+      }
+    }
+  },
+  "profAvatars": {
+    "maths": {
+      "title": "Professeur de mathématiques"
+    },
+    "sciences": {
+      "title": "Professeur de sciences naturelles"
+    },
+    "arab": {
+      "title": "Professeur d'arabe"
+    },
+    "droit": {
+      "title": "Professeur de droit"
+    },
+    "economy": {
+      "title": "Professeur d'économie"
+    },
+    "english": {
+      "title": "Professeur d'anglais"
+    },
+    "geography": {
+      "title": "Professeur de géographie"
+    },
+    "german": {
+      "title": "Professeur d'allemend"
+    },
+    "gp": {
+      "title": "Professeur de génie des procédés"
+    },
+    "philo": {
+      "title": "Professeur de philosophie"
+    },
+    "physics": {
+      "title": "Professeur de physique"
+    },
+    "compta": {
+      "title": "Professeur de comptabilité"
+    },
+    "french": {
+      "title": "Français"
+    },
+    "history": {
+      "title": "Histoire"
+    }
+  },
+  "videoShowcase": {
+    "sectionTitle": "Aperçu rapide",
+    "sectionDescription": "Découvrez nos professeurs en une minute",
+    "duration": "1 min"
+  },
+  "ComingSoon": {
+    "title": "Bientôt Disponible",
+    "description": "Nous travaillons dur pour vous apporter quelque chose d'incroyable. Restez à l'écoute pour le lancement!",
+    "centerText": "Notre plateforme éducative alimentée par l'intelligence artificielle sera bientôt à votre portée !",
+    "days": "Jours",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "launchDate": "Date de Lancement",
+    "october1st": "15 Octobre 2025",
+    "getReady": "Préparez-vous pour une expérience d'apprentissage incroyable!",
+    "notifyMe": "Me Notifier",
+    "learnMore": "En Savoir Plus"
+  },
+  "monthlySubscription": "Abonnement mensuel",
+  "yearlySubscription": "Abonnement annuel",
+  "appDownload": {
+    "badge": "Application Mobile Disponible",
+    "comingSoon": "Le téléchargement de l'application sera bientôt disponible",
+    "title": {
+      "part1": "Apprenez",
+      "highlight": "partout",
+      "part2": "avec notre application mobile"
+    },
+
+    "description": "Emportez votre parcours d'apprentissage avec vous. Téléchargez l'application mobile AIDAKI et accédez à vos cours, suivez vos progrès et continuez d'apprendre n'importe quand, n'importe où.",
+    "features": {
+      "feature1": "Accès aux cours hors ligne",
+      "feature2": "Synchronisation des progrès en temps réel",
+      "feature3": "Assistant IA interactif",
+      "feature4": "Notifications push pour les rappels"
+    },
+    "downloadNow": "Télécharger Maintenant",
+    "downloadOn": "Télécharger sur",
+    "getItOn": "Disponible sur",
+    "secureDownload": "Téléchargement sécurisé et vérifié",
+    "freeDownload": "Téléchargement gratuit",
+    "imageAlt": "Aperçu de l'application mobile AIDAKI",
+    "mobileApp": "Application d'Apprentissage"
+  },
+  "aboutUs": {
+    "nav": {
+      "aboutUs": "À Propos de Nous",
+      "ourVision": "Notre vision",
+      "newApproach": "Une Nouvelle Approche Pédagogique",
+      "effectOfAvatars": "L'impact des avatars sur le cerveau humain"
+    },
+    "title": "À Propos de Nous",
+    "subtitle": "Découvrez notre vision et notre innovation en technologie éducative",
+    "pageTitle": "À Propos de Nous",
+
+    "vision": {
+      "title": "Notre Vision",
+      "subtitle": "L'avenir de l'éducation commence maintenant",
+      "intro": "Nous ne nous contentons pas d'enseigner : nous apportons une nouvelle approche de l'éducation de demain en transformant radicalement la façon dont chaque individu apprend et progresse.",
+      "personalizedLearning": "Chaque apprenant mérite une éducation taillée sur mesure. Notre IA analyse, anticipe et adapte l'apprentissage en temps réel, créant des parcours qui s'ajustent instantanément aux besoins uniques de chaque élève. Fini l'apprentissage uniforme : notre écosystème intelligent libère le potentiel unique de chaque apprenant.",
+      "predictiveAnalysis": "Imaginez un monde où l'IA comprend parfaitement comment vous apprenez, anticipe vos difficultés et booste vos forces. Grâce à l'analyse prédictive de pointe, nous multiplions les performances, démocratisons l'accès et transformons des vies, une par une. Où chaque parcours est unique, chaque succès devient prévisible.",
+      "personalizedReality": "L'éducation personnalisée n'est plus un rêve, c'est notre réalité. Nous ne réinventons pas l'école : nous créons l'écosystème éducatif de demain, où chaque apprenant bénéficie d'une expérience sur mesure qui maximise son potentiel dans un monde en constante évolution."
+    },
+    "aboutUs": {
+      "paragrah1": "La plateforme AIDAKI est une innovation 100% algérienne, développée par une entreprise algérienne par de jeunes ingénieurs algériens avec passion et une vision claire pour développer le secteur éducatif dans notre pays. Nous visons à travers cette plateforme à offrir une solution moderne qui accompagne les ambitions de la nouvelle génération et combine technologie et intelligence artificielle au service des étudiants et élèves.",
+      "paragrah2br": "Notre plateforme éducative intelligente de nouvelle génération, soutenue par l'intelligence artificielle, s'appuie sur un système de recommandations avancé pour créer des parcours d'apprentissage personnalisés qui s'alignent sur les besoins éducatifs uniques de chaque étudiant.",
+      "paragrah2": "Ce système garantit le développement des compétences et concepts nécessaires pour atteindre une croissance maximale, où les parcours contiennent des listes de lecture intelligentes comprenant des ressources éducatives de haute qualité, conçues avec des algorithmes d'intelligence artificielle pour relever les défis individuels.",
+      "paragrah3": "Notre plateforme offre également des opportunités de pratique ciblée, des instructions spécialisées, des commentaires immédiats, ainsi qu'un soutien progressif intelligent qui aide chaque étudiant à réaliser des progrès remarquables et efficaces."
+    },
+    "avatarTechnology": {
+      "title": "L'impact des avatars sur le cerveau humain",
+      "intro": "L'impact d'un avatar enseignant sur notre cerveau représente un domaine émergent fascinant qui combine neurosciences cognitives et technologies éducatives.",
+      "neuralNetworks": "Lorsque nous interagissons avec un avatar enseignant, notre cerveau active les mêmes réseaux neuronaux que lors d'interactions sociales réelles. Le cortex temporal supérieur et les régions impliquées dans la théorie de l'esprit s'activent, permettant d'attribuer des intentions pédagogiques à l'avatar.",
+      "engagement": "70 % des apprenants affirment que l'interaction avec des technologies d'IA rend leurs cours plus engageants. L'avatar enseignant peut s'adapter au rythme cognitif de chaque apprenant, optimisant ainsi la neuroplasticité.",
+      "stressReduction": "Contrairement à un enseignant humain, l'avatar ne génère pas de stress social, permettant au cortex préfrontal de se consacrer pleinement aux processus cognitifs d'apprentissage plutôt qu'à la gestion de l'anxiété. Cette réduction du stress favorise un état mental optimal pour l'acquisition de nouvelles connaissances.",
+      "rewardSystem": "Les avatars enseignants peuvent déclencher la libération de dopamine dans le circuit de récompense du cerveau grâce à des feedbacks immédiats et positifs. Cette stimulation du striatum ventral renforce la motivation intrinsèque et facilite l'encodage des informations dans la mémoire à long terme.",
+      "multimodalIntegration": "Un avatar enseignant combine stimuli visuels, auditifs et parfois gestuels, activant simultanément plusieurs aires corticales. Cette intégration multimodale au niveau du cortex pariétal supérieur enrichit les traces mnésiques et améliore la rétention d'information.",
+      "adaptiveTeaching": "L'avatar peut adapter ses stratégies pédagogiques en temps réel selon les réactions neurologiques de l'apprenant, optimisant ainsi l'efficacité de l'enseignement. Cette technologie révolutionne potentiellement l'éducation en créant des environnements d'apprentissage adaptatifs qui respectent les contraintes et opportunités de notre architecture cérébrale."
+    },
+
+    "platform": {
+      "title": "Plateforme Éducative Intelligente de Nouvelle Génération",
+      "intro": "Notre plateforme éducative de dernière génération, boostée par l'intelligence artificielle, s'appuie sur un système de recommandations intelligent pour créer des parcours d'apprentissage personnalisés qui s'alignent sur les besoins éducatifs uniques de chaque étudiant.",
+      "systemAdvanced": "Ce système avancé garantit le développement des compétences et concepts nécessaires pour atteindre une croissance maximale. Les parcours contiennent des playlists intelligentes comprenant des ressources éducatives de haute qualité, conçues spécifiquement grâce aux algorithmes d'IA avancés pour répondre aux défis individuels.",
+      "features": "Notre plateforme innovante offre également des opportunités de pratique ciblée, des instructions spécialisées, des retours immédiats et un soutien progressif intelligent qui aide chaque étudiant à réaliser des progrès remarquables et efficaces."
+    },
+
+    "leadership": {
+      "title": "Notre Vision dans le Leadership Éducatif",
+      "commitment": "Nous sommes animés par notre engagement profond envers le développement global des capacités humaines, nous positionnant à l'avant-garde de la révolution éducative contemporaine.",
+      "redesigning": "Nous repensons les environnements d'apprentissage en intégrant les technologies d'intelligence artificielle de pointe et les solutions technologiques avancées pour créer des expériences éducatives transformatrices et impactantes.",
+      "research": "Nos recherches pionnières se concentrent sur la résolution des défis éducatifs fondamentaux en utilisant des méthodologies scientifiques rigoureuses et fondées sur des preuves. Nous construisons des ponts solides entre les dernières découvertes en sciences de l'apprentissage et de la cognition et le développement de plateformes et d'outils révolutionnaires qui redéfinissent le concept d'apprentissage efficace.",
+      "measurement": "Nous mesurons également avec une précision minutieuse l'impact de nos innovations sur tous les acteurs de l'écosystème éducatif, des apprenants aux éducateurs en passant par les institutions.",
+      "thoughtLeadership": "Cette approche de recherche intégrée consolide notre position de leaders d'opinion dans la construction de l'avenir de l'éducation, où nous menons le changement positif et influençons radicalement le développement des systèmes éducatifs et de l'industrie de l'intelligence artificielle éducative."
+    },
+
+    "coursesDevelopment": {
+      "title": "Une Nouvelle Approche Pédagogique : Nos Cours de Mathématiques et Physique Développés avec Python",
+      "intro": "À l'heure où l'innovation technologique redéfinit les codes de l'éducation, notre plateforme propose une approche inédite de l'enseignement des sciences.",
+      "qualityContent": "Chaque cours est le résultat de plusieurs semaines de développement rigoureux, alliant expertise pédagogique et innovation technologique. Notre objectif : rendre chaque concept clair, accessible et engageant, même les plus complexes.",
+      "pythonAdvantage": "Grâce à Python, nous avons créé des visualisations dynamiques, des simulations interactives et des démonstrations concrètes qui donnent vie aux théories mathématiques et physiques. Les étudiants peuvent manipuler les paramètres, observer les résultats en temps réel, et ainsi développer une compréhension plus intuitive et durable.",
+      "intelligentAvatars": "Nos avatars présentateurs vont bien au-delà d'un simple support visuel. Ils instaurent une relation pédagogique personnalisée, rendant l'apprentissage plus humain et motivant. Présents à chaque étape, ils s'adaptent au rythme de chacun, reformulent les explications si nécessaire, et encouragent l'élève à progresser sereinement.",
+      "uniqueOffering": "Très peu de plateformes combinent autant de technologies avancées et de rigueur pédagogique. Notre approche repose sur une vision claire : rendre l'éducation scientifique de haut niveau accessible à tous, partout dans le monde.",
+      "realImpact": "Les retours sont sans appel : nos utilisateurs constatent une amélioration notable de leur compréhension et de leur engagement. Ce qui paraissait abstrait devient concret. Ce qui semblait difficile devient abordable.",
+      "futureEducation": "Cette nouvelle dynamique pédagogique ouvre des perspectives passionnantes pour l'avenir de l'éducation scientifique, où la technologie ne remplace pas l'enseignant, mais en devient un véritable partenaire."
+    }
+  },
+  "subscription": {
+    "dashboard": {
+      "title": "Tableau de Bord Abonnement",
+      "subtitle": "Gérez votre abonnement et consultez l'historique de facturation",
+      "currentPlan": "Plan Actuel",
+      "noPlan": "Aucun Plan",
+      "daysRemaining": "Jours Restants",
+      "expires": "Expire le",
+      "tokenLimit": "Limite de Tokens",
+      "availableTokens": "tokens disponibles",
+      "unlimited": "Illimité",
+      "amountPaid": "Montant Payé",
+      "forCurrentSubscription": "Pour l'abonnement actuel",
+      "subscriptionDetails": "Détails de l'Abonnement",
+      "planName": "Nom du Plan",
+      "billingCycle": "Cycle de Facturation",
+      "planTier": "Niveau du Plan",
+      "tier": "Niveau",
+      "planPrice": "Prix du Plan",
+      "myInvoices": "Mes factures",
+      "startDate": "Date de Début",
+      "endDate": "Date de Fin",
+      "duration": "Durée",
+      "status": "Statut",
+      "financialSummary": "Résumé Financier",
+      "totalSpent": "Total Dépensé",
+      "totalTransactions": "Total des Transactions",
+      "planChanges": "Changements de Plan",
+      "firstSubscription": "Premier Abonnement",
+      "days": "days",
+      "lastTransaction": "Dernière Transaction",
+      "cardRedemptions": "Rachats de Cartes",
+      "cardNumber": "Carte n°",
+      "redeemedOn": "Racheté le",
+      "upgradePlan": "Améliorer le Plan",
+      "viewBillingHistory": "Voir l'Historique de Facturation",
+      "contactSupport": "Contacter le Support",
+      "errorLoadingData": "Erreur lors du chargement des données d'abonnement"
+    }
+  },
+  "scratchCard": {
+    "title": "Vérifier une carte à gratter",
+    "redeemCard": "Racheter une carte",
+    "redeemButton": "Racheter la carte",
+    "redeeming": "Rachat en cours...",
+    "redeemSuccess": "Carte rachetée avec succès !",
+    "redeemError": "Erreur lors du rachat de la carte",
+    "description": "Entrez vos clés publique et privée pour vérifier le statut de votre carte à gratter et accéder aux détails de votre compte",
+    "scratchCardPlaceholder": "Carte AIDAKI",
+    "formTitle": "Vérification de carte",
+    "formDescription": "Entrez vos identifiants de carte ci-dessous pour accéder à votre compte",
+    "publicKeyLabel": "Clé publique",
+    "publicKeyPlaceholder": "Entrez votre clé publique (ex: abcdef123456)",
+    "privateKeyLabel": "Clé privée",
+    "privateKeyPlaceholder": "Entrez votre clé privée (ex: 123456abcdef)",
+    "validationErrors": "Erreurs de validation",
+    "error": "Erreur",
+    "verifying": "Vérification en cours...",
+    "verifyButton": "Vérifier la carte",
+    "successTitle": "Carte vérifiée avec succès",
+    "successDescription": "Voici les détails complets de votre carte à gratter et les informations de votre compte",
+    "cardInformation": "Informations de la carte",
+    "cardId": "ID de la carte :",
+    "publicKey": "Clé publique :",
+    "status": "Statut :",
+    "duration": "Durée :",
+    "days": "jours",
+    "lengthRequirement": "Exigence de longueur",
+    "publicKeyLength": "Longueur clé publique",
+    "privateKeyLength": "Longueur clé privée",
+    "maxRedemptions": "Rachats maximum :",
+    "currentRedemptions": "Rachats actuels :",
+    "importantDates": "Dates importantes",
+    "createdOn": "Créée le :",
+    "activatedOn": "Activée le :",
+    "expiresOn": "Expire le :",
+    "planId": "ID du plan :",
+    "batchId": "ID du lot :",
+    "verifyAnother": "Vérifier une autre carte"
+  },
+  "plans": {
+    "pageTitle": "Plans d'Abonnement et Cartes à Gratter",
+    "pageSubtitle": "Réactivez votre abonnement",
+    "pageDescription": "Votre abonnement AIDAKI a expiré. Choisissez un nouveau plan ou utilisez une carte à gratter pour continuer à profiter de nos services éducatifs.",
+    "backToDashboard": "Retour au tableau de bord",
+    "subscriptionExpired": "Votre abonnement a expiré",
+    "reactivateSubscription": "Réactivez votre Abonnement",
+    "chooseDescription": "Choisissez le plan qui correspond le mieux à vos besoins d'apprentissage",
+    "importantNoticeTitle": "Information importante",
+    "importantNoticeText": "Pour souscrire à un plan, veuillez utiliser une carte à gratter ou contactez notre support. Les paiements en ligne ne sont pas encore disponibles.",
+    "needHelpTitle": "Besoin d'aide ?",
+    "needHelpDescription": "Notre équipe de support est là pour vous aider à choisir le meilleur plan ou à utiliser vos cartes à gratter.",
+    "sendEmail": "Envoyer un Email",
+    "callSupport": "Appeler le Support",
+    "redeemDescription": "Rachetez votre carte à gratter pour activer immédiatement votre abonnement",
+    "title": "Nos Tarifs",
+    "description": "Choisissez le plan qui vous convient le mieux",
+    "monthly": "MENSUEL",
+    "annual": "ANNUEL (12 MOIS)",
+    "save": "Économisez",
+    "popular": "POPULAIRE",
+    "skip": "Ignorer pour le moment",
+    "continue": "Continuer avec ce plan",
+    "selectPlan": "Sélectionnez un plan",
+    "select": "Sélectionner",
+    "criteria": "CRITÈRES / ABONNEMENTS",
+    "users": "UTILISATEURS",
+    "content": "CONTENU",
+    "advantages": "AVANTAGES IA",
+    "supportTitle": "Besoin d'aide pour choisir ?",
+    "supportDescription": "Notre équipe est là pour vous aider à choisir le plan parfait pour votre réussite.",
+    "freemium": {
+      "name": "FREEMIUM",
+      "subtitle": "(72 heures)",
+      "price": "Gratuit",
+      "monthlyPrice": "Gratuit",
+      "annualPrice": "Gratuit",
+      "users": "Gratuit",
+      "firstLesson": "Première leçon complète pour les bacheliers",
+      "quickSummaries": "Résumés pour une révision rapide du premier cours",
+      "educationalVideos": "Vidéos éducatives avec des avatars de professeurs (premier cours)",
+      "intelligentDashboard": "Dashboard intelligent pour analyser les performances",
+      "interactiveQuiz": "Quiz interactifs et évaluations (Quiz du cours)",
+      "virtualAssistant": "Assistant virtuel (Chatbot) pour répondre aux questions (10 questions)",
+      "completeCourses": "Cours complets pour les bacheliers",
+      "unlimitedAccess": "Accès illimité aux contenus",
+      "premiumSupport": "Support premium 24/7",
+      "features": [
+        {
+          "included": true,
+          "text": "plans.freemium.firstLesson"
+        },
+        {
+          "included": true,
+          "text": "plans.freemium.quickSummaries"
+        },
+        {
+          "included": true,
+          "text": "plans.freemium.educationalVideos"
+        },
+        {
+          "included": false,
+          "text": "plans.freemium.intelligentDashboard"
+        },
+        {
+          "included": false,
+          "text": "plans.freemium.interactiveQuiz"
+        },
+        {
+          "included": false,
+          "text": "plans.freemium.virtualAssistant"
+        }
+      ]
+    },
+    "basicium": {
+      "name": "BASICIUM",
+      "price": "1500 DA",
+      "monthlyPrice": "1500 DA",
+      "annualPrice": "15000 DA",
+      "users": "1500 DA",
+      "completeCourses": "Cours complets pour les bacheliers",
+      "quickSummaries": "Résumés pour une révision rapide",
+      "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
+      "intelligentDashboard": "Dashboard intelligent pour analyser les performances et orienter",
+      "interactiveQuiz": "Quiz interactifs et évaluations",
+      "virtualAssistant": "Assistant virtuel (Chatbot limité) pour répondre aux questions à tout moment",
+      "unlimitedAccess": "Accès illimité aux contenus",
+      "premiumSupport": "Support premium 24/7",
+      "features": [
+        {
+          "included": true,
+          "text": "plans.basicium.completeCourses"
+        },
+        {
+          "included": true,
+          "text": "plans.basicium.quickSummaries"
+        },
+        {
+          "included": true,
+          "text": "plans.basicium.educationalVideos"
+        },
+        {
+          "included": true,
+          "text": "plans.basicium.intelligentDashboard"
+        },
+        {
+          "included": true,
+          "text": "plans.basicium.interactiveQuiz"
+        },
+        {
+          "included": true,
+          "text": "plans.basicium.virtualAssistant"
+        }
+      ]
+    },
+    "airium": {
+      "name": "AIRIUM",
+      "price": "2400 DA",
+      "monthlyPrice": "2400 DA",
+      "annualPrice": "24000 DA",
+      "users": "2400 DA",
+      "popular": true,
+      "completeCourses": "Cours complets pour les bacheliers",
+      "quickSummaries": "Résumés pour une révision rapide",
+      "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
+      "intelligentDashboard": "Dashboard intelligent pour analyser les performances et orienter",
+      "interactiveQuiz": "Quiz interactifs et évaluations",
+      "virtualAssistant": "Assistant virtuel (Chatbot limité) pour répondre aux questions à tout moment",
+      "unlimitedAccess": "Accès illimité aux contenus",
+      "premiumSupport": "Support premium 24/7",
+      "features": [
+        {
+          "included": true,
+          "text": "plans.airium.completeCourses"
+        },
+        {
+          "included": true,
+          "text": "plans.airium.quickSummaries"
+        },
+        {
+          "included": true,
+          "text": "plans.airium.educationalVideos"
+        },
+        {
+          "included": true,
+          "text": "plans.airium.intelligentDashboard"
+        },
+        {
+          "included": true,
+          "text": "plans.airium.interactiveQuiz"
+        },
+        {
+          "included": true,
+          "text": "plans.airium.virtualAssistant"
+        }
+      ]
+    },
+    "airiumGold": {
+      "name": "AIRIUM Silver",
+      "price": "3200 DA",
+      "monthlyPrice": "3200 DA",
+      "annualPrice": "32000 DA",
+      "users": "3200 DA",
+      "completeCourses": "Cours complets pour les bacheliers",
+      "quickSummaries": "Résumés pour une révision rapide",
+      "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
+      "intelligentDashboard": "Dashboard intelligent pour analyser les performances et orienter",
+      "interactiveQuiz": "Quiz interactifs et évaluations",
+      "virtualAssistant": "Assistant virtuel (Chatbot PLUS) pour répondre aux questions à tout moment",
+      "unlimitedAccess": "Accès illimité aux contenus",
+      "premiumSupport": "Support premium 24/7",
+      "features": [
+        {
+          "included": true,
+          "text": "plans.airiumGold.completeCourses"
+        },
+        {
+          "included": true,
+          "text": "plans.airiumGold.quickSummaries"
+        },
+        {
+          "included": true,
+          "text": "plans.airiumGold.educationalVideos"
+        },
+        {
+          "included": true,
+          "text": "plans.airiumGold.intelligentDashboard"
+        },
+        {
+          "included": true,
+          "text": "plans.airiumGold.interactiveQuiz"
+        },
+        {
+          "included": true,
+          "text": "plans.airiumGold.virtualAssistant"
+        }
+      ]
+    },
+    "bacculum": {
+      "name": "BACCULUM",
+      "price": "22000 DA",
+      "monthlyPrice": "22000 DA",
+      "annualPrice": "220000 DA",
+      "users": "22000 DA",
+      "completeCourses": "Cours complets pour les bacheliers",
+      "quickSummaries": "Résumés pour une révision rapide",
+      "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
+      "intelligentDashboard": "Dashboard intelligent pour analyser les performances et orienter",
+      "interactiveQuiz": "Quiz interactifs et évaluations",
+      "virtualAssistant": "Assistant virtuel (Chatbot illimité) pour répondre aux questions à tout moment",
+      "unlimitedAccess": "Accès illimité aux contenus",
+      "premiumSupport": "Support premium 24/7",
+      "features": [
+        {
+          "included": true,
+          "text": "plans.bacculum.completeCourses"
+        },
+        {
+          "included": true,
+          "text": "plans.bacculum.quickSummaries"
+        },
+        {
+          "included": true,
+          "text": "plans.bacculum.educationalVideos"
+        },
+        {
+          "included": true,
+          "text": "plans.bacculum.intelligentDashboard"
+        },
+        {
+          "included": true,
+          "text": "plans.bacculum.interactiveQuiz"
+        },
+        {
+          "included": true,
+          "text": "plans.bacculum.virtualAssistant"
+        }
+      ]
+    }
+  },
+  "pricing": {
+    "subscribe": "S'abonner",
+    "processing": "Traitement...",
+    "freePlan": "Plan Gratuit"
+  },
+  "billing": {
+    "title": "Historique de facturation",
+    "description": "Consultez l'historique de vos paiements et factures",
+    "backToPlans": "Retour aux plans",
+    "loading": "Chargement des factures...",
+    "error": "Erreur",
+    "noInvoices": "Aucune facture",
+    "noInvoicesDescription": "Vous n'avez pas encore de factures.",
+    "subscribeToPlan": "S'abonner à un plan",
+    "payNow": "Payer maintenant",
+    "paidOn": "Payé le",
+    "infoTitle": "Information",
+    "infoDescription": "Les factures en attente peuvent être payées en cliquant sur 'Payer maintenant'. Si vous avez des questions concernant vos factures, n'hésitez pas à contacter notre support.",
+    "needHelp": "Besoin d'aide ?",
+    "needHelpDescription": "Notre équipe est là pour vous aider avec vos questions de facturation.",
+    "sendEmail": "Envoyer un email",
+    "callSupport": "Appeler le support",
+    "status": {
+      "paid": "Payé",
+      "pending": "En attente",
+      "failed": "Échoué",
+      "cancelled": "Annulé"
+    },
+    "paymentMethod": {
+      "card": "Carte bancaire",
+      "bankTransfer": "Virement bancaire",
+      "cib": "CIB"
+    },
+    "table": {
+      "id": "ID",
+      "date": "Date",
+      "amount": "Montant",
+      "method": "Méthode",
+      "status": "Statut",
+      "actions": "Actions"
+    }
+  },
+  "onboarding": {
+    "subtitle": {
+      "step1": "Configurons votre profil d'apprentissage",
+      "step2": "Choisissez votre spécialisation",
+      "step3": "Bienvenue dans votre parcours d'apprentissage !"
+    },
+    "step1": {
+      "title": "Sélectionnez votre année d'étude",
+      "description": "Choisissez votre année académique actuelle pour obtenir du contenu personnalisé"
+    },
+    "step2": {
+      "title": "Choisissez votre spécialisation",
+      "description": "Sélectionnez votre domaine de spécialisation pour accéder aux cours pertinents"
+    },
+    "continue": "Continuer",
+    "redirecting": "Redirection en cours...",
+    "complete": {
+      "title": "Configuration terminée !",
+      "description": "Votre profil d'apprentissage est prêt. Redirection vers votre tableau de bord..."
+    },
+    "errors": {
+      "loadingError": "Erreur lors du chargement des données. Veuillez réessayer.",
+      "selectYear": "Veuillez sélectionner votre année d'étude",
+      "selectSpecialization": "Veuillez sélectionner votre spécialisation",
+      "updateError": "Erreur lors de la mise à jour de vos informations. Veuillez réessayer."
+    }
+  },
+  "dashboardTour": {
+    "stepCounter": "Étape {current} sur {total}",
+    "progress": "Progression",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "skip": "Ignorer la visite",
+    "finish": "Terminer la visite",
+    "helpText": "Cliquez n'importe où ou appuyez sur ÉCHAP pour quitter",
+
+    "steps": {
+      "welcome": {
+        "title": "Bienvenue sur votre tableau de bord !",
+        "content": "Voici votre centre de commande d'apprentissage. Vous pouvez voir vos progrès, accéder aux cours et suivre vos réalisations. Faisons une visite rapide !"
+      },
+      "sidebar": {
+        "title": "Menu de navigation",
+        "content": "Voici votre barre latérale de navigation. Elle contient toutes les sections dont vous avez besoin pour gérer votre parcours d'apprentissage. Explorons chaque section !"
+      },
+      "navigation": {
+        "home": {
+          "title": "Accueil du tableau de bord",
+          "content": "Voici votre page principale du tableau de bord où vous pouvez voir un aperçu de vos progrès d'apprentissage, activités récentes, et accès rapide aux fonctionnalités importantes."
+        },
+        "learning": {
+          "title": "Mes cours",
+          "content": "Accédez à tous vos matières, cours et matériels d'apprentissage ici. C'est là que vous passerez la plupart de votre temps à étudier et pratiquer."
+        },
+        "progress": {
+          "title": "Mon Progrès",
+          "content": "Suivez votre parcours d'apprentissage avec des analyses détaillées, statistiques de temps d'étude, progrès des réalisations et aperçus de performance dans toutes les matières."
+        },
+        "quiz": {
+          "title": "Quiz Rapide",
+          "content": "Testez vos connaissances avec des quiz interactifs et des exercices pratiques. Parfait pour réviser ce que vous avez appris et vous préparer aux examens."
+        },
+        "assistant": {
+          "title": "Assistant IA",
+          "content": "Obtenez de l'aide de notre assistant IA intelligent. Posez des questions, obtenez des explications et recevez des recommandations d'apprentissage personnalisées."
+        },
+        "tips": {
+          "title": "Conseils et Astuces",
+          "content": "Découvrez des techniques d'étude, stratégies d'apprentissage et conseils utiles pour améliorer votre performance académique et efficacité d'étude."
+        }
+      },
+      "stats": {
+        "title": "Vos statistiques d'apprentissage",
+        "content": "Ces cartes montrent vos métriques d'apprentissage clés en un coup d'œil. Suivez votre temps d'étude, leçons terminées et progrès globaux."
+      },
+      "studyTime": {
+        "title": "Suivi du temps d'étude",
+        "content": "Ceci montre combien de temps vous avez passé à étudier aujourd'hui. Une pratique quotidienne constante est la clé du succès !"
+      },
+      "lessons": {
+        "title": "Leçons terminées",
+        "content": "Gardez une trace du nombre de leçons que vous avez terminées. Chaque leçon terminée vous rapproche de vos objectifs."
+      },
+      "progress": {
+        "title": "Progrès global",
+        "content": "Vos progrès d'apprentissage globaux dans toutes les matières. Cliquez pour voir les analyses de progrès détaillées."
+      },
+      "modules": {
+        "title": "Modules d'étude",
+        "content": "Voici vos matières disponibles. Cliquez sur n'importe quel module pour commencer à apprendre ou continuer là où vous vous êtes arrêté."
+      }
+    },
+
+    "welcome": {
+      "title": "Bienvenue sur AIDAKI, {name} !",
+      "defaultName": "Étudiant",
+      "description": "Faisons une visite rapide pour vous aider à commencer votre parcours d'apprentissage.",
+      "startTour": "Commencer la visite",
+      "dismiss": "Plus tard"
+    },
+
+    "button": {
+      "start": "Commencer la visite du tableau de bord",
+      "restart": "Redémarrer la visite",
+      "startTooltip": "Faire une visite guidée de votre tableau de bord",
+      "restartTooltip": "Redémarrer la visite du tableau de bord"
+    }
+  },
+  "studyModuleProgram": {
+    "studyProgram": "Programme d'Étude",
+    "loadingProgram": "Chargement du programme...",
+    "moduleNotFound": "Module introuvable",
+    "loadingError": "Erreur lors du chargement du programme",
+    "moduleNotFoundTitle": "Programme Introuvable",
+    "moduleNotFoundDescription": "Le programme d'étude n'a pas pu être trouvé.",
+    "backToModules": "Retour aux Modules d'Étude",
+    "backToOverview": "Retour à l'Aperçu",
+    "back": "Retour",
+    "retry": "Réessayer",
+    "totalChapters": "Total des Chapitres",
+    "duration": "Durée",
+    "weeks": "semaines",
+    "objectives": "Objectifs",
+    "chapters": "Chapitres",
+    "curriculumChapters": "Chapitres du Programme",
+    "chapter": "Chapitre",
+    "order": "Ordre",
+    "viewDetails": "Voir Détails",
+    "learningObjectives": "Objectifs d'Apprentissage",
+    "viewAllObjectives": "Voir Tous les Objectifs",
+    "keySkills": "Compétences Clés",
+    "assessmentMethods": "Méthodes d'Évaluation",
+    "quickActions": "Actions Rapides",
+    "viewCourses": "Voir les Cours",
+    "viewExams": "Voir les Examens",
+    "downloadProgram": "Télécharger le Programme"
+  },
+  "studyModuleExams": {
+    "examsAndCorrections": "Examens et Corrections",
+    "loadingExams": "Chargement des examens...",
+    "moduleNotFound": "Module introuvable",
+    "loadingError": "Erreur lors du chargement des examens",
+    "moduleNotFoundTitle": "Examens Introuvables",
+    "moduleNotFoundDescription": "La liste des examens n'a pas pu être trouvée.",
+    "backToModules": "Retour aux Modules d'Étude",
+    "backToOverview": "Retour à l'Aperçu",
+    "back": "Retour",
+    "retry": "Réessayer",
+    "totalExams": "Total des Examens",
+    "withCorrections": "Avec Corrections",
+    "totalDownloads": "Total des Téléchargements",
+    "searchPlaceholder": "Rechercher des examens...",
+    "filters": "Filtres",
+    "allYears": "Toutes les Années",
+    "allTypes": "Tous les Types",
+    "year": "Année",
+    "withCorrection": "Avec Correction",
+    "downloads": "téléchargements",
+    "downloadExam": "Télécharger l'Examen",
+    "viewCorrection": "Voir la Correction",
+    "showingResults": "Affichage de {count} sur {total} examens",
+    "noExamsFound": "Aucun examen trouvé",
+    "noExamsFoundDescription": "Aucun examen ne correspond à vos critères de recherche. Essayez d'ajuster vos filtres.",
+    "noExamsAvailable": "Aucun examen disponible",
+    "noExamsAvailableDescription": "Les examens pour ce module seront bientôt disponibles.",
+    "clearFilters": "Effacer les Filtres",
+    "refresh": "Actualiser",
+    "examTypes": {
+      "final_exam": "Examen Final",
+      "mid_term": "Examen Partiel",
+      "practice": "Pratique",
+      "quiz": "Quiz",
+      "mock": "Examen Blanc",
+      "placement": "Test de Placement"
+    },
+    "difficulty": {
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile"
+    },
+    "examTips": {
+      "title": "Conseils de Réussite aux Examens",
+      "timeManagement": "Gestion du Temps",
+      "timeManagementDesc": "Pratiquez dans des conditions chronométrées pour améliorer vos performances.",
+      "practiceRegularly": "Pratiquez Régulièrement",
+      "practiceRegularlyDesc": "Résolvez régulièrement les sujets passés pour vous familiariser avec les formats.",
+      "reviewCorrections": "Révisez les Corrections",
+      "reviewCorrectionsDesc": "Étudiez les corrections détaillées pour comprendre les erreurs communes."
+    }
+  },
+  "navigation": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "dashboard": "Tableau de bord",
+    "courses": "Cours",
+    "users": "Utilisateurs"
+  },
+  "navbar": {
+    "title": "Mon Espace d'Apprentissage",
+    "searchPlaceholder": "Rechercher cours, leçons...",
+    "noNotifications": "Aucune notification récente",
+    "viewAllNotifications": "Voir toutes les notifications",
+    "userInitial": "E",
+    "student": "Élève",
+    "subscription": "Abonnement",
+    "myAccount": "Mon compte",
+    "manageInfo": "Gérer mes informations",
+    "myProfile": "Mon Profil",
+    "mySettings": "Mes Paramètres",
+    "helpSupport": "Aide & Support",
+    "logout": "Déconnexion",
+    "logoutError": "Une erreur s'est produite lors de la déconnexion. Veuillez réessayer.",
+
+    "notifications": {
+      "newAssignment": "Nouveau devoir disponible en Mathématiques",
+      "quizReminder": "Quiz de Français à terminer avant demain",
+      "moduleCompleted": "Félicitations ! Module de Sciences complété",
+      "classReminder": "Rappel : Cours d'Histoire à 14h",
+      "time15min": "Il y a 15 min",
+      "time2hours": "Il y a 2 heures",
+      "timeYesterday": "Hier"
+    },
+    "learningSpace": "Mon Espace d'Apprentissage",
+    "recentNotifications": "Notifications récentes"
+  },
+  "sidebar": {
+    "home": "Accueil",
+    "myLearning": "Mes cours",
+    "paths": "Parcours",
+    "specializations": "Les filières",
+    "specializationsDesc": "Parcourir par matière/spécialisation",
+    "studyModules": "Modules d'Étude",
+    "studyModulesDesc": "Modules organisés par thème",
+    "myProgress": "Mon Progrès",
+    "achievements": "Mes Récompenses",
+    "quiz": "Ma minute quiz",
+    "assistant": "Mon Assistant",
+    "student": "Étudiant",
+    "tips": "Conseils et astuces",
+    "learningMode": "Mode apprentissage",
+    "settings": "Paramètres",
+    "expand": "Développer le menu",
+    "collapse": "Réduire le menu"
+  },
+  "faq": {
+    "title": "Aide et support",
+    "subtitle": "Page Aide & Support – AIDAKI",
+    "welcome": "Bienvenue sur la plateforme AIDAKI, votre espace d'apprentissage intelligent.",
+    "description": "Voici un guide complet pour naviguer facilement dans la plateforme et profiter pleinement de toutes ses fonctionnalités.",
+    "helpTitle": "Bienvenue dans votre espace d'aide !",
+    "helpDescription": "Voici un guide simple pour vous aider à utiliser chaque section de la plateforme AIDAKI efficacement.",
+    "faqTitle": "Aide & Assistance – Questions fréquentes (Élève)",
+    "contactTitle": "Besoin d'aide supplémentaire ?",
+    "contactDescription": "Contactez-nous par email : education@aiunivers.ai ou appelez le XXXX-XXX-XXX",
+    "faqs": [
+      {
+        "question": "Je ne trouve pas mes cours, que dois-je faire ?",
+        "answer": "Assurez-vous d'être bien connecté à votre compte. Puis cliquez sur \"Mon Apprentissage\" dans le menu à gauche. Tous les modules de votre spécialité de cours s'y trouvent, classés par matière. Vous pouvez aussi utiliser la barre de recherche en haut de la page pour taper le nom du cours."
+      },
+      {
+        "question": "Comment voir mes leçons déjà commencées ?",
+        "answer": "Lorsque vous êtes dans \"Mon Apprentissage\", regardez le pourcentage de progression sur chaque carte de module. Cliquez sur le module (ex : Mathématiques) puis appuyez sur \"Continuer\" pour reprendre la dernière leçon là où vous vous êtes arrêté."
+      },
+      {
+        "question": "Où est l'historique de mes discussions avec le chatbot ?",
+        "answer": "Pour voir vos échanges précédents avec l'assistant intelligent, allez dans la section \"Mon Assistant\". Vous y trouverez une liste de vos conversations précédentes classés par matière avec possibilité de les relire ou de continuer la discussion."
+      },
+      {
+        "question": "Comment savoir si j'ai terminé un module ?",
+        "answer": "Dans la section \"Mon Apprentissage\", chaque module affiche un pourcentage de progression. Quand celui-ci atteint 100 %, cela signifie que vous avez complété toutes les leçons et quiz du module. Vous pouvez revoir les contenus à tout moment si vous souhaitez réviser."
+      },
+      {
+        "question": "Où puis-je suivre ma progression globale ?",
+        "answer": "Rendez-vous dans \"Mon Progrès\" qui représente un espace de suivi personnalisé. Il te permet de voir en un coup d'œil : Ta progression dans chaque matière, Les quiz réussis et ceux à refaire, Le temps que tu passes à étudier, Tes points forts et les notions à retravailler."
+      },
+      {
+        "question": "C'est quoi une vidéo avec avatar ?",
+        "answer": "Une vidéo avec avatar est une leçon où un personnage animé (avatar) représente votre professeur et vous explique le cours d'une manière claire et interactive. La plupart des ces avatars sont conçus à partir de vos vrais enseignants, pour vous offrir une expérience plus proche du réel, mais avec la flexibilité du numérique."
+      },
+      {
+        "question": "Comment poser une question à un professeur ?",
+        "answer": "Dans chaque leçon, un bouton \"Notes\" est disponible. Écrivez clairement votre question, et vous recevrez une réponse dans les plus brefs délais."
+      },
+      {
+        "question": "Je ne reçois pas de notifications ou de rappels, que faire ?",
+        "answer": "Cliquez sur votre prénom (en haut à gauche). Assurez-vous que les notifications sont activées, et que votre adresse email est correcte."
+      },
+      {
+        "question": "Comment changer la langue de la plateforme ?",
+        "answer": "Cliquez en haut à droite sur le bouton de langue pour changer la langue de l'interface. Vous pouvez choisir l'arabe, le français ou l'anglais, selon votre préférence."
+      },
+      {
+        "question": "Que faire si je rencontre un bug ou une erreur ?",
+        "answer": "Essayez d'actualiser la page ou de vous déconnecter/reconnecter si ça ne marche pas contactez-nous par mail : education@aiunivers.ai ou appelez le XXXX-XXX-XXX"
+      }
+    ]
+  },
+  "learning": {
+    "completeTitle": "Complétez votre profil",
+    "completeDescription": "Sélectionnez votre année d'étude et votre spécialisation pour accéder aux modules d'étude.",
+    "completeButton": "Compléter le profil",
+    "saving": "Chargement…",
+    "title": "Mes cours",
+    "subtitle": "Continuez votre parcours d'apprentissage et découvrez de nouvelles connaissances",
+    "greeting": "Bonjour",
+    "level": "Niveau",
+    "yearSuffix": "ème année",
+    "continueMessage": "Continuons votre apprentissage!",
+    "selectYear": "Choisissez votre année d'étude",
+    "selectSpecializtion": "Choisissez votre filière",
+    "selectYearDescription": "Sélectionnez l'année qui correspond à votre niveau actuel pour accéder à vos matières d'apprentissage.",
+    "retry": "Réessayer",
+    "inProgress": "En Cours",
+    "recommended": "Recommandé",
+    "quickReview": "Révision Rapide",
+    "progress": "Progrès",
+    "continue": "Continuer l'Apprentissage",
+    "startCourse": "Commencer le Cours",
+    "startReview": "Commencer la Révision",
+    "duration": "Durée",
+    "topics": "Sujets",
+
+    "currentCourse": {
+      "title": "Mathématiques - Algèbre Avancée",
+      "description": "Maîtrisez les équations quadratiques, les polynômes et les concepts mathématiques avancés"
+    },
+    "recommendedCourse": {
+      "title": "Physique - Mécanique",
+      "description": "Explorez les principes fondamentaux du mouvement, des forces et de l'énergie"
+    },
+    "reviewSession": {
+      "title": "Révision de Chimie",
+      "description": "Révision rapide de la structure atomique et des liaisons chimiques"
+    },
+    "statistics": {
+      "title": "Statistiques d'Apprentissage",
+      "lessonsCompleted": "Leçons Terminées",
+      "studyTime": "Temps d'Étude",
+      "averageScore": "Score Moyen",
+      "streak": "Série de Jours"
+    },
+    "recentActivity": {
+      "title": "Activité Récente",
+      "activity1": "Leçon terminée : Équations Linéaires",
+      "time1": "Il y a 2 heures",
+      "activity2": "Nouveau chapitre commencé : Bases de la Géométrie",
+      "time2": "Hier",
+      "activity3": "Récompense obtenue : Maître des Maths",
+      "time3": "Il y a 2 jours"
+    },
+    "errors": {
+      "loadingError": "Une erreur est survenue lors du chargement de vos données d'apprentissage.",
+      "updateError": "Erreur lors de la mise à jour de votre année d'étude."
+    }
+  },
+  "btn": {
+    "accessCourses": "Accéder aux cours"
+  },
+  "email": "Email",
+  "lessons": "Cours",
+  "login": "Connexion",
+  "navPrices": "Prix",
+  "navHome": "Accueil",
+  "more": "Plus",
+  "enterCodePageMessage": "Plus qu'une étape avant d'acceder à tes cours.",
+  "enterCodePageTitle": "Une dernière étape",
+  "or": "Ou",
+  "password": "Mot de passe",
+  "passwordForgotten": "Mot de passe oublié ?",
+  "requiredField": "Ce champ est obligatoire",
+  "serialNumber": "Numéro de série",
+  "signin": "Connexion",
+  "signInGoogle": "S'inscrire avec Google",
+  "signinMessage": "Nous sommes heureux de te revoir",
+  "signup": "Inscription",
+  "signUpMessage": "Prêt(e) apprendre ?",
+  "singinFacebook": "Se connecter avec Facebook",
+  "singupGoogle": "S'inscrire avec Google",
+  "welcome": "Bienvenue",
+  "texterify_timestamp": "2024-10-09T14:29:12Z",
+  "features": {
+    "header": {
+      "title": "Change ta façon d'apprendre maintenant",
+      "description": "AIDAKI est une plateforme e-learning qui regroupe tous les cours du programme national algérien. Elle offre des résumés clairs, des vidéos animées par avatars, des quiz interactifs, un chatbot d’assistance et un tableau de bord intelligent pour suivre et améliorer les performances.",
+      "cta": "Découvre ce que nous offrons",
+      "speechBubble1": "Bonjour, je suis ton assistant personnel",
+      "speechBubble2": "Tous les cours sont disponibles avec audio et vidéo",
+      "speechBubble3": "Contacte-moi à tout moment"
+    },
+    "feature1": {
+      "title": "Vidéos récapitulatives du contenu",
+      "description": "Nous vous proposons des vidéos récapitulatives du contenu, ce qui vous permet de comprendre plus rapidement les idées principales et de mieux assimiler les matières grâce à l'apprentissage visuel."
+    },
+    "feature2": {
+      "title": "Résumés écrits",
+      "description": "Nous vous proposons des résumés écrits détaillant les éléments principaux, fournissant une ressource éducative et vous aidant à vous concentrer sur le contenu essentiel sans avoir à tout revoir."
+    },
+    "feature3": {
+      "title": "Cours complets avec explication",
+      "description": "Nous vous proposons des cours complets avec explication, ce qui vous permet de mieux assimiler le contenu en combinant apprentissage visuel et explicatif, et permet aux étudiants et enseignants d'interagir avec le matériel éducatif de manière optimale."
+    },
+    "feature4": {
+      "title": "Système de quiz",
+      "description": "Nous vous proposons un système de quiz dédié, ce qui vous permet d'évaluer votre niveau et de suivre vos progrès régulièrement, tout en évaluant l'apprentissage de chaque leçon."
+    },
+    "feature5": {
+      "title": "Système de discussion interactif",
+      "description": "Nous vous proposons un système de discussion et de débat interactif, ce qui vous permet de communiquer, poser des questions, discuter et obtenir des réponses directes, améliorant ainsi votre expérience éducative et vous aidant à mieux comprendre le contenu."
+    },
+    "feature6": {
+      "title": "Tableau de bord avec statut de progression",
+      "description": "Nous vous proposons un tableau de bord complet affichant le statut de progression, vous permettant de suivre vos réalisations et de surveiller votre développement de manière claire et organisée pour atteindre vos objectifs efficacement"
+    },
+    "featureSectionTitle": "Ce qui nous rend unique"
+  },
+  "courses": {
+    "title": "Les spécialités",
+    "description": "Choisissez votre spécialité et commencez à apprendre vos cours de la manière que vous aimez et de manière plus efficace grâce à nos plateformes interactives exceptionnelles, avec un contenu fluide et facile à comprendre, adapté à votre âge.",
+    "cta": "Découvrez toutes les matières et spécialités disponibles ici",
+    "module": "Matière",
+    "totalLessons": "Leçons totales",
+    "activeLessons": "Leçons actives",
+    "videos": "Vidéos",
+    "documents": "Documents",
+    "courseLessons": "Leçons du cours",
+    "video": "Vidéo",
+    "continue": "Continuer",
+    "back": "Retour",
+    "loadingCourse": "Chargement du cours",
+    "specialization1": "Filière",
+    "specialization": {
+      "literature": "Littérature et Philosophie",
+      "science": "Sciences expérimentales",
+      "mathematics": "Mathématiques",
+      "technology": "Technologie",
+      "management": "Gestion et Économie",
+      "languages": "Langues Étrangères",
+      "title": "Mes cours",
+      "allCourses": "Tous les cours",
+      "enrolledCourses": "Cours suivis",
+      "completedCourses": "Cours terminés",
+      "enroll": "S'inscrire",
+      "continue": "Continuer",
+      "completed": "Terminé"
+    },
+    "naturalScience": "Sciences naturelles",
+    "physicalScience": "Sciences physiques",
+    "mathematics": "Mathématiques",
+    "arabic": "Langue arabe",
+    "french": "Langue française",
+    "english": "Langue anglaise",
+    "islamicStudies": "Sciences islamiques",
+    "historyGeography": "Histoire et géographie",
+    "philosophy": "Philosophie",
+    "civilEngineering": "Génie civil",
+    "electricalEngineering": "Génie électrique",
+    "mechanicalEngineering": "Génie mécanique",
+    "processEngineering": "Génie des procédés",
+    "spanish": "Langue espagnole",
+    "german": "Langue allemande",
+    "italian": "Langue italienne",
+    "accounting": "Gestion comptable",
+    "economicsManagement": "Économie et management",
+    "law": "Droit"
+  },
+  "specializations": {
+    "literature": {
+      "name": "Littérature et Philosophie"
+    },
+    "science": {
+      "name": "Sciences expérimentales"
+    },
+    "mathematics": {
+      "name": "Mathématiques"
+    },
+    "technology": {
+      "name": "Technologie"
+    },
+    "management": {
+      "name": "Gestion et Économie"
+    },
+    "languages": {
+      "name": "Langues Étrangères"
+    }
+  },
+  "pricingHeader": {
+    "title": "Votre voyage vers le succès commence avec AIDAKI intelligent!",
+    "lessons": "Cours dans toutes les matières. Découvrez les dernières technologies en éducation",
+    "technology": ""
+  },
+  "prices": {
+    "compare": "Comparez les prix et services",
+    "choosePlan": "Sélectionnez le forfait qui vous convient le mieux",
+    "choosePlanButton": "Choisir ce forfait",
+    "oneTime": "Une seule fois",
+    "monthly": "Mensuel",
+    "free": "Gratuit",
+    "usageCount": "Nombre d'utilisations",
+    "usersCount": "Nombre d'utilisateurs (Élèves)",
+    "perDay": "Par jour",
+    "unlimited": "Illimité",
+    "accessToLessons": "Accès aux cours",
+    "chatbot": "Chatbot d'intelligence artificielle",
+    "feature1": "Fonctionnalité 1",
+    "feature2": "Fonctionnalité 2",
+    "feature3": "Fonctionnalité 3",
+    "feature4": "Fonctionnalité 4",
+    "feature5": "Fonctionnalité 5"
+  },
+  "pointsOfSale": {
+    "title": "Points de Vente",
+    "imageAlt": "Personne tenant une carte",
+    "description": "Vous pouvez trouver nos cartes rechargeables aux emplacements suivants :",
+    "locations": ["Techno", "Emplacement 1", "Emplacement 2"],
+    "more": "Plus"
+  },
+  "emailPlaceholder": "Entrez votre email",
+  "passwordPlaceholder": "Entrez votre mot de passe",
+  "confirmPassword": "Confirmez le mot de passe",
+  "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+  "termsAndConditions": "J'accepte les termes et conditions",
+  "signInFacebook": "Se connecter avec Facebook",
+  "rememberMe": "Se souvenir de moi",
+  "signIn": "Se connecter",
+  "signUp": "S'inscrire",
+  "educationResources": {
+    "title": "Actualités",
+    "trends": {
+      "title": "Tendances Éducatives Modernes",
+      "description": "Résultats des nouvelles recherches qui influencent le domaine de l'éducation et comment les appliquer dans l'environnement éducatif."
+    },
+    "initiatives": {
+      "title": "Initiatives et Programmes",
+      "description": "Changements dans les programmes, nouvelles méthodes d'enseignement et innovations technologiques."
+    },
+    "research": {
+      "title": "Recherches et Études",
+      "description": "Détails sur les activités éducatives et les ateliers qui offrent aux étudiants et aux enseignants l'opportunité d'apprendre et de communiquer."
+    },
+    "events": {
+      "title": "Événements et Séminaires",
+      "description": "Informations sur les initiatives gouvernementales et les programmes éducatifs qui améliorent la qualité de l'éducation."
+    },
+    "exploreButton": "Explorer Plus"
+  },
+  "support": {
+    "title": "Soutien et assistance",
+    "subtitle": "Système de soutien intégré",
+    "paragraph1": "Nous proposons un système complet de soutien et d'assistance visant à améliorer l'expérience d'apprentissage de l'étudiant. L'étudiant peut poser des questions à des enseignants qualifiés, ce qui leur permet d'obtenir des réponses immédiates et claires à toute ambiguïté qu'ils pourraient rencontrer dans les matières scolaires.",
+    "paragraph2": "De plus, nous organisons des sessions interactives via l'application Zoom, où les étudiants peuvent rejoindre des cours en direct avec des enseignants académiques. Ces sessions leur permettent d'interagir directement, de poser des questions et de discuter des sujets complexes en profondeur.",
+    "paragraph3": "Nous croyons que l'interaction directe avec les enseignants contribue à améliorer la compréhension et renforce la confiance des étudiants, les aidant ainsi à atteindre efficacement leurs objectifs académiques.",
+    "complaint_title": "Réclamation",
+    "complaint_description": "Déposez une réclamation officielle concernant un service ou une situation",
+    "report_title": "Signalement",
+    "report_description": "Signalez un problème, un incident ou une situation préoccupante"
+  },
+  "home": {
+    "hero": {
+      "title": "Apprenez à votre",
+      "titleHighlight": "rythme",
+      "description": "Découvrez une plateforme d'apprentissage moderne conçue pour les élèves du primaire au lycée. Explorez vos cours, suivez vos progrès et atteignez vos objectifs scolaires.",
+      "startNow": "Commencer maintenant",
+      "createAccount": "Créer un compte"
+    },
+    "features": {
+      "interactiveCourses": {
+        "title": "Cours interactifs",
+        "description": "Accédez à un contenu pédagogique adapté à votre niveau avec des leçons interactives et engageantes."
+      },
+      "videoLearning": {
+        "title": "Apprentissage vidéo",
+        "description": "Regardez des vidéos éducatives de qualité pour mieux comprendre les concepts complexes."
+      },
+      "progressTracking": {
+        "title": "Suivi des progrès",
+        "description": "Suivez vos progrès, gagnez des récompenses et restez motivé dans votre parcours d'apprentissage."
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer votre aventure d'apprentissage ?",
+      "description": "Rejoignez des milliers d'élèves qui utilisent déjà AIDAKI pour améliorer leurs résultats scolaires.",
+      "button": "Créer mon compte gratuit"
+    },
+    "footer": {
+      "description": "Votre plateforme moderne pour réussir à l'école."
+    }
+  },
+  "auth": {
+    "verifyEmail": {
+      "checkInboxTitle": "Vérifiez votre adresse email",
+      "checkInboxDescription": "Nous avons envoyé un email de vérification à :",
+      "clickLinkDescription": "Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification pour terminer votre inscription.",
+      "instructionsTitle": "Que faire ensuite :",
+      "instruction1": "Vérifiez votre boîte de réception (y compris le dossier spam/courrier indésirable)",
+      "instruction2": "Recherchez un email de AIDAKI",
+      "instruction3": "Cliquez sur le lien de vérification dans l'email",
+      "instruction4": "Vous serez redirigé vers la page de connexion",
+      "didntReceiveTitle": "Vous n'avez pas reçu l'email ?",
+      "didntReceiveDescription": "Si vous ne voyez pas l'email dans votre boîte de réception, vous pouvez en demander un nouveau.",
+      "redirectingToLogin": "Redirection vers la connexion...",
+      "title": "Vérification de l'email",
+      "subtitle": "Vérifiez votre adresse email",
+      "verifyingTitle": "Vérification de votre email",
+      "verifyingDescription": "Veuillez patienter pendant que nous vérifions votre adresse email...",
+      "successTitle": "Email vérifié avec succès !",
+      "successDescription": "Votre adresse email a été vérifiée. Vous pouvez maintenant accéder à toutes les fonctionnalités de votre compte.",
+      "errorTitle": "Échec de la vérification",
+      "error": "Impossible de vérifier l'email. Veuillez réessayer.",
+      "invalidToken": "Token de vérification invalide ou manquant.",
+      "invalidRequest": "Demande de vérification invalide.",
+      "tokenExpired": "Le token de vérification est invalide ou expiré.",
+      "alreadyVerified": "Cet email est déjà vérifié.",
+      "needNewLink": "Besoin d'un nouveau lien de vérification ?",
+      "resendDescription": "Si votre lien de vérification a expiré ou est invalide, vous pouvez en demander un nouveau.",
+      "resendButton": "Envoyer un nouveau lien de vérification",
+      "resending": "Envoi en cours...",
+      "resendSuccess": "Nouvel email de vérification envoyé ! Vérifiez votre boîte de réception.",
+      "resendError": "Impossible d'envoyer l'email de vérification. Veuillez réessayer.",
+      "emailRequired": "L'adresse email est requise pour renvoyer la vérification.",
+      "goToDashboard": "Aller au tableau de bord",
+      "goToLogin": "Se connecter à votre compte",
+      "backToLogin": "Retour à la connexion",
+      "redirectingToDashboard": "Redirection vers votre tableau de bord...",
+      "needHelp": "Besoin d'aide ?",
+      "contactSupport": "Contacter le support"
+    },
+    "validation": {
+      "invalidEmail": "Veuillez entrer une adresse email valide.",
+      "passwordTooShort": "Au moins 8 caractères",
+      "passwordNeedLowercase": "Une lettre minuscule",
+      "passwordNeedUppercase": "Une lettre majuscule",
+      "passwordNeedNumber": "Un chiffre"
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié ?",
+      "subtitle": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre adresse e-mail et nous vous enverrons les instructions pour réinitialiser votre mot de passe.",
+      "email": "Adresse e-mail",
+      "submit": "Envoyer les instructions",
+      "success": "Les instructions de réinitialisation du mot de passe ont été envoyées à votre adresse e-mail.",
+      "error": "Impossible d'envoyer l'e-mail de réinitialisation. Veuillez réessayer ou contacter le support.",
+      "checkEmailTitle": "Vérifiez votre e-mail",
+      "checkEmailDescription": "Nous avons envoyé les instructions de réinitialisation du mot de passe à votre adresse e-mail.",
+      "emailSentTo": "E-mail envoyé à :",
+      "checkSpam": "Si vous ne voyez pas l'e-mail, vérifiez votre dossier spam.",
+      "resend": "Renvoyer l'e-mail",
+      "rememberPassword": "Vous vous souvenez de votre mot de passe ?",
+      "backToLogin": "Retour à la connexion",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "createAccount": "Créer un compte",
+      "emailNotFound": "Aucun compte trouvé avec cette adresse email.",
+      "tooManyRequests": "Trop de demandes. Veuillez réessayer plus tard."
+    },
+    "resetPassword": {
+      "title": "Réinitialiser votre mot de passe",
+      "subtitle": "Créez votre nouveau mot de passe",
+      "description": "Entrez votre email et choisissez un nouveau mot de passe sécurisé.",
+      "email": "Adresse email",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le nouveau mot de passe",
+      "submit": "Réinitialiser le mot de passe",
+      "success": "Votre mot de passe a été réinitialisé avec succès. Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.",
+      "error": "Impossible de réinitialiser le mot de passe. Veuillez réessayer.",
+      "invalidToken": "Token de réinitialisation invalide ou manquant.",
+      "passwordsNotMatch": "Les mots de passe ne correspondent pas.",
+      "passwordsMatch": "Les mots de passe correspondent",
+      "passwordRequirements": "Exigences du mot de passe :",
+      "successTitle": "Réinitialisation terminée",
+      "successDescription": "Vous allez être redirigé vers la connexion sous peu.",
+      "redirectingToLogin": "Redirection vers la page de connexion...",
+      "goToLogin": "Aller à la connexion",
+      "invalidRequest": "Demande invalide. Veuillez vérifier vos informations.",
+      "tokenExpired": "Le token de réinitialisation est invalide ou expiré. Veuillez demander une nouvelle réinitialisation de mot de passe.",
+      "rememberPassword": "Vous vous souvenez de votre mot de passe ?",
+      "backToLogin": "Retour à la connexion",
+      "needHelp": "Besoin d'aide ?",
+      "contactSupport": "Contacter le support"
+    },
+    "login": {
+      "mobileTitle": "Bon retour !",
+      "mobileSubtitle": "Connectez-vous pour continuer votre parcours d'apprentissage",
+      "title": "Connexion",
+      "subtitle": "Connectez-vous à votre espace d'apprentissage",
+      "description": "Accédez à vos cours et au suivi de vos progrès",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submit": "Connexion",
+      "forgotPassword": "Mot de passe oublié ?",
+      "noAccount": "Nouveau sur AIDAKI ?",
+      "createAccount": "Inscription",
+      "error": "Identifiants invalides. Veuillez réessayer."
+    },
+    "register": {
+      "mobileTitle": "Rejoignez-nous aujourd'hui",
+      "mobileSubtitle": "Commencez votre parcours d'apprentissage",
+      "age": "Âge",
+      "commune": "Commune",
+      "phoneNumber": "Numéro de téléphone",
+      "state": "Wilaya",
+      "invalidPhone": "Numéro de téléphone invalide.",
+      "agePlaceholder": "Votre âge",
+      "phoneNumberPlaceholder": "Votre numéro de téléphone",
+      "statePlaceholder": "Sélectionnez votre wilaya",
+      "communePlaceholder": "Sélectionnez votre commune",
+      "selectStateFirst": "Vous devez d'abord selectionner une wilaya",
+      "loadingStates": "Chargement des wilayas...",
+      "passwordLength": "Le mot de passe doit contenir au moins 8 charactéres",
+      "passwordUppercase": "Le mot de passe doit contenir au moins une majuscule",
+      "passwordLowercase": "Le mot de passe doit contenir au moins une minuscule",
+      "passwordNumber": "Le mot de passe doit contenir au moins un chiffre",
+      "passwordRequirements": "Exigences du mot de passe",
+      "errorLoadingStates": "Erreur lors du chargement des wilayas",
+      "title": "Inscription",
+      "subtitle": "Créez votre compte d'apprentissage",
+      "description": "Rejoignez des milliers d'élèves utilisant AIDAKI",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe sécurisé",
+      "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+      "submit": "Inscription",
+      "alreadyAccount": "Vous avez déjà un compte ?",
+      "login": "Connexion",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "error": "Échec de l'inscription. Veuillez réessayer.",
+      "firstName": "Prénom (Latin)",
+      "firstNamePlaceholder": "Votre prénom en lettres latines",
+      "lastName": "Nom (Latin)",
+      "lastNamePlaceholder": "Votre nom en lettres latines",
+
+      "firstNameAr": "Prénom (Arabe)",
+      "firstNameArPlaceholder": "الاسم ",
+      "lastNameAr": "Nom (Arabe)",
+      "lastNameArPlaceholder": "اللقب",
+
+      "invalidLatinName": "Le nom doit contenir uniquement des lettres latines (A-Z, a-z)",
+      "invalidArabicName": "Le nom doit contenir uniquement des lettres arabes"
+    },
+    "securityNotice": "Plateforme éducative sécurisée",
+    "allRightsReserved": "Tous droits réservés"
+  },
+  "dashboard": {
+    "welcome": "Bienvenue",
+    "defaultStudentName": "Étudiant",
+    "subtitle": "Poursuivons ensemble votre parcours d'apprentissage !",
+
+    "sessionActive": {
+      "title": "Session d'étude active",
+      "lesson": "Leçon"
+    },
+
+    "stats": {
+      "minutesToday": "minutes aujourd'hui",
+      "totalStudyTime": "Temps total d'étude",
+      "averageSessionLength": "Durée moyenne des sessions",
+      "completedCourses": "Cours terminés",
+      "outOfCourses": "sur {total} cours",
+      "studyTime": "Temps d'étude",
+      "thisWeek": "cette semaine",
+      "currentStreak": "Série actuelle",
+      "consecutiveDays": "jours consécutifs",
+      "weeklyGoal": "Objectif semaine",
+      "coursesThisWeek": "cours cette semaine",
+      "studyStreak": {
+        "title": "Série d'étude",
+        "subtitle": "{{count}} {{days}} consécutif{{count, plural, one {} other {s}}}"
+      },
+      "todayStudyTime": {
+        "title": "Temps d'étude aujourd'hui",
+        "subtitle": "minutes étudiées"
+      },
+      "lessonsCompleted": {
+        "title": "Leçons terminées",
+        "subtitle": "leçons au total"
+      },
+      "overallProgress": {
+        "title": "Progrès global",
+        "subtitle": "achèvement du cours"
+      }
+    },
+
+    "studyModules": {
+      "title": "Vos matières",
+      "subtitle": "Continuez votre parcours d'apprentissage",
+      "viewAll": "Tout voir",
+      "noModulesTitle": "Aucun module disponible",
+      "noModulesDescription": "Aucun module d'étude trouvé pour votre spécialisation actuelle."
+    },
+
+    "profile": {
+      "completeTitle": "Complétez votre profil",
+      "completeDescription": "Sélectionnez votre année d'étude et votre spécialisation pour accéder aux modules d'étude.",
+      "completeButton": "Compléter le profil",
+      "saving": "Chargement…"
+    },
+
+    "quickActions": {
+      "browseModules": {
+        "title": "Parcourir les modules",
+        "description": "Explorez tous les modules d'étude disponibles"
+      },
+      "viewProgress": {
+        "title": "Voir les progrès",
+        "description": "Suivez votre progression d'apprentissage"
+      },
+      "studyCalendar": {
+        "title": "Calendrier d'étude",
+        "description": "Planifiez votre emploi du temps d'étude"
+      }
+    },
+
+    "time": {
+      "day": "jour",
+      "days": "jours",
+      "hoursShort": "h",
+      "minutesShort": "m"
+    },
+
+    "errors": {
+      "loadingError": "Erreur lors du chargement des données du tableau de bord"
+    },
+    "overview": "Aperçu",
+    "recentCourses": "Cours récents",
+    "progress": "Progrès",
+    "achievements": "Réalisations",
+    "greeting": "Bonjour"
+  },
+  "common": {
+    "loading": "Chargement…",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "viewAll": "Tout voir",
+    "showMore": "Afficher plus",
+    "showLess": "Afficher moins"
+  },
+  "studyModules": {
+    "noModulesTitle": "Aucun module disponible",
+    "noModulesDescription": "Les matières pour cette filière seront bientôt disponibles. Revenez plus tard pour découvrir vos cours.",
+
+    "difficulty": {
+      "beginner": "Débutant"
+    },
+    "studyTips": {
+      "title": "Conseils d'étude",
+      "setGoals": "Fixez des objectifs clairs",
+      "setGoalsDesc": "Divisez vos études en objectifs atteignables pour rester motivé.",
+      "planTime": "Planifiez votre temps",
+      "planTimeDesc": "Allouez des plages horaires pour chaque module.",
+      "reviewRegularly": "Révisez régulièrement",
+      "reviewRegularlyDesc": "Revoir les leçons passées pour renforcer votre mémoire."
+    },
+    "allSubjects": "Toutes les matières",
+    "students": "étudiants",
+    "title": "Vos matières",
+    "descriptionWithSpecialization": "Découvrez vos matières spécialisées ci-dessous.",
+    "descriptionWithoutSpecialization": "Voici vos matières disponibles selon votre année.",
+    "searchPlaceholder": "Rechercher des modules...",
+    "progress": "Progression",
+    "lessons": "Leçons",
+    "courses": "Cours",
+    "completed": "Terminé",
+    "start": "Commencer",
+    "continue": "Continuer",
+    "modules": "modules",
+    "modulesOf": "Modules de",
+    "modulesFor": "Modules pour",
+    "yourSpecialization": "votre spécialisation",
+    "yourYear": "votre année",
+    "changeSpecialization": "Changer de spécialisation",
+    "changeSpecializationShort": "Spécialisation",
+    "changeYear": "Changer d'année",
+    "changeYearShort": "Année",
+    "noModulesFound": "Aucun module trouvé",
+    "noModulesFoundDescription": "Aucun module ne correspond à '{{searchTerm}}'. Essayez autre chose.",
+    "noModulesAvailable": "Aucun module disponible",
+    "noModulesForSpecialization": "Il n'y a actuellement aucun module pour votre spécialisation.",
+    "noModulesForYear": "Il n'y a actuellement aucun module pour votre année d'études.",
+    "clearSearch": "Effacer la recherche",
+    "refresh": "Rafraîchir",
+    "selectYear": "Sélectionnez votre année",
+    "selectSpecialization": "Sélectionnez votre spécialisation",
+    "studyTips.title": "Conseils d'étude",
+    "studyTips.setGoals": "Fixez des objectifs clairs",
+    "studyTips.setGoalsDesc": "Divisez vos études en objectifs atteignables pour rester motivé.",
+    "studyTips.planTime": "Planifiez votre temps",
+    "studyTips.planTimeDesc": "Allouez des plages horaires pour chaque module.",
+    "studyTips.reviewRegularly": "Révisez régulièrement",
+    "studyTips.reviewRegularlyDesc": "Revoir les leçons passées pour renforcer votre mémoire.",
+    "difficulty.beginner": "Débutant",
+    "difficulty.intermediate": "Intermédiaire",
+    "difficulty.advanced": "Avancé",
+    "errors.loadingError": "Échec du chargement des modules. Réessayez plus tard.",
+    "errors.updateYearError": "Échec de la mise à jour de l'année d'études.",
+    "errors.updateSpecializationError": "Échec de la mise à jour de la spécialisation."
+  },
+  "lesson": {
+    "loading": "Chargement de la leçon...",
+    "loadError": "Erreur lors du chargement de la leçon",
+    "back": "Retour",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "markComplete": "Marquer comme terminé",
+    "completed": "Lesson terminée",
+    "titleNotDefined": "Titre non défini",
+    "notFound": "Leçon introuvable",
+    "notFoundDescription": "La leçon demandée n'existe pas ou a été supprimée.",
+    "completion": {
+      "congratulations": "Félicitations !",
+      "performance": {
+        "completed": "Vous avez terminé cette leçon avec succès"
+      },
+      "close": "Fermer"
+    },
+    "quizStats": {
+      "loading": "Chargement des statistiques...",
+      "noData": "Aucune donnée de quiz disponible",
+      "noDataDescription": "Vous n'avez pas encore fait de tentative de quiz. Commencez votre premier quiz pour voir les statistiques.",
+      "attempts": "Tentatives",
+      "completed": "complétées",
+      "bestScore": "Meilleur score",
+
+      "avgTime": "Temps moy",
+      "best": "Meilleur",
+      "consistency": "Cohérence",
+      "reliability": "Fiabilité",
+      "performanceTrend": "Tendance de performance",
+      "gradeDistribution": "Répartition des notes",
+      "completionRate": "Taux d'achèvement",
+      "attemptsCompleted": "tentatives complétées",
+      "totalTime": "Temps total",
+      "timeSpent": "Temps passé",
+      "scoreRange": "Fourchette de scores",
+      "range": "Écart",
+      "excellent": "Excellent",
+      "good": "Bon",
+      "average": "Moyen",
+      "needsImprovement": "À améliorer"
+    },
+    "tabs": {
+      "video": "Vidéo",
+      "document": "Document",
+      "quiz": "Quiz",
+      "summary": "Résumé",
+      "chat": "Chat",
+      "notes": "Notes"
+    },
+    "summary": {
+      "title": "Résumé de la leçon",
+      "loading": "Chargement du résumé de la leçon...",
+      "loadError": "Échec du chargement du résumé de la leçon",
+      "notAvailable": "Le résumé de la leçon n'est pas disponible"
+    },
+    "script": {
+      "title": "Script de la vidéo",
+      "description": "Transcription du contenu de la vidéo pour faciliter la compréhension et la révision",
+      "notAvailable": "Aucun script disponible pour cette leçon"
+    },
+    "notes": {
+      "loading": "Chargement…",
+      "title": "Mes Notes",
+      "addNote": "Ajouter une note",
+      "titlePlaceholder": "Titre de la note...",
+      "contentPlaceholder": "Contenu de la note...",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "noNotes": "Aucune note pour le moment",
+      "addFirstNote": "Ajoutez votre première note pour ce cours !",
+      "videoTime": "Temps vidéo",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "created": "Crée le",
+      "updated": "Dernière mise-à-jour"
+    },
+
+    "video": {
+      "title": "Vidéo du cours",
+      "loading": "Chargement de la vidéo...",
+      "playbackError": "Erreur de lecture vidéo",
+      "loadError": "Erreur de chargement vidéo",
+      "notSupported": "Votre navigateur ne prend pas en charge la lecture HLS",
+      "initError": "Erreur d'initialisation du lecteur vidéo",
+      "quality": "Qualité vidéo",
+      "auto": "Auto",
+      "file": "Fichier",
+      "defaultFileName": "Vidéo du cours",
+      "notSupportedMessage": "Votre navigateur ne prend pas en charge la lecture vidéo."
+    },
+
+    "document": {
+      "title": "Document de cours",
+      "loading": "Chargement du document...",
+      "loadError": "Erreur lors du chargement du document"
+    },
+
+    "chat": {
+      "tokenUsage": "Utilisation des tokens",
+      "tokensUsed": "Tokens utilisés",
+      "of": "de",
+      "plan": "Plan",
+      "period": "Période",
+      "to": "à",
+      "loadingUsage": "Chargement de l'utilisation...",
+      "errorLoadingUsage": "Erreur de chargement",
+      "retry": "Réessayer",
+      "chatMode": "Mode de Chat",
+      "lessonSpecific": "Spécifique à la Leçon",
+      "general": "Général",
+      "generalModeDesc": "Demandez-moi n'importe quoi",
+      "lessonModeDesc": "Posez des questions sur cette leçon",
+      "placeholderGeneral": "Demandez-moi n'importe quoi...",
+      "noHistory": "Aucun historique de conversation pour le moment",
+      "dismiss": "Fermer",
+      "title": "Discussion",
+      "chatHistory": "Historique",
+      "newChat": "Nouvelle Discussion",
+      "send": "Envoyer",
+      "session": "Session",
+      "loadingMessages": "Chargement des messages...",
+      "noMessages": "Aucun message pour le moment",
+      "startConversation": "Commencez la discussion !",
+      "error": "Erreur",
+      "aiAssistant": "Assistant IA",
+      "hide": "Masquer",
+      "placeholder": "Écrire un message...",
+      "openChat": "Ouvrir le chat",
+      "upgradeRequired": "Mise à niveau requise",
+      "upgradeDescription": "Améliorez votre abonnement pour accéder au chat AIDAKI et débloquer toutes les fonctionnalités d'apprentissage avancées.",
+      "upgradeNow": "Mettre à niveau maintenant",
+      "insufficientPermissions": "Permissions insuffisantes",
+      "accessDenied": "Accès refusé",
+      "planUpgradeRequired": "Mise à niveau de votre forfait requise"
+    },
+
+    "quizHistory": {
+      "title": "Historique des quiz",
+      "loading": "Chargement...",
+      "startNewAttempt": "Commencer une nouvelle tentative",
+      "bestScore": "Meilleur score",
+      "averageScore": "Score moyen",
+      "totalAttempts": "Tentatives totales",
+      "completed": "Complété",
+      "recentAttempts": "Tentatives récentes",
+      "attempt": "Tentative",
+      "score": "Score",
+      "duration": "Durée",
+      "status": {
+        "completed": "Complété",
+        "in_progress": "En cours",
+        "[other_status]": "[Statut]"
+      },
+      "startedAt": "Commencé à",
+      "completedAt": "Terminé à",
+      "questionsAnswered": "Questions répondues",
+      "accuracy": "Précision",
+      "noHistory": "Aucun historique",
+      "noHistoryDescription": "Vous n'avez pas encore fait de tentative de quiz. Commencez votre première tentative!",
+      "startFirstAttempt": "Commencer votre première tentative"
+    },
+
+    "quiz": {
+      "correctAnswerIs": "La bonne réponse est",
+      "incorrectAnswer": "Réponse incorrecte",
+      "matchingInstructions": "Associez chaque élément de gauche à sa réponse correspondante à droite",
+      "matchingDescription": "Sélectionnez la bonne correspondance pour chaque élément dans le menu déroulant.",
+      "selectMatch": "Sélectionner une correspondance...",
+      "matchingProgress": "Progression",
+      "backToQuiz": "Retour au quiz",
+      "reviewAnswers": "Réviser les réponses",
+      "takingQuiz": "Début du quiz",
+      "starting": "Démarrage...",
+      "loading": "Chargement du quiz...",
+      "errorTitle": "Erreur de quiz",
+      "noDataAvailable": "Aucune donnée de quiz disponible",
+      "noQuizAvailable": "Aucun quiz disponible pour cette leçon",
+      "loadError": "Échec du chargement des données du quiz",
+      "hideStats": "Masquer les statistiques",
+      "showStats": "Afficher les statistiques",
+      "hideHistory": "Masquer l'historique",
+      "showHistory": "Afficher l'historique",
+      "startingQuiz": "Début du quiz...",
+      "pleaseWait": "Veuillez patienter",
+      "initializing": "Initialisation en cours...",
+      "true": "Vrai",
+      "false": "Faux",
+      "fillInPlaceholder": "Entrez votre réponse ici...",
+      "unsupportedType": "Type de question non supporté",
+      "question": "Question",
+      "progress": "Progression",
+      "answered": "Répondu",
+      "confirmSubmit": "Confirmer l'envoi",
+      "confirmSubmitDescription": "Êtes-vous sûr de vouloir terminer le quiz? Vous ne pourrez plus revenir en arrière après l'envoi.",
+      "cancel": "Annuler",
+      "submit": "Envoyer",
+      "completedDescription": "Félicitations! Vous avez terminé le quiz avec succès.",
+      "yourScore": "Votre score",
+      "close": "Fermer",
+      "retake": "Refaire le quiz",
+      "title": "Quiz de compréhension",
+      "description": "Testez vos connaissances avec ce quiz interactif",
+      "interactiveQuiz": "Quiz interactif",
+      "minutes": "Minutes",
+      "startQuiz": "Commencer le quiz",
+      "timeRemaining": "Temps restant",
+      "questionNumber": "Question {current} sur {total}",
+      "score": "Score",
+      "correct": "Correct !",
+      "incorrect": "Incorrect",
+      "validate": "Valider",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "finish": "Terminer",
+      "completed": "Quiz terminé !",
+      "outOf": "sur",
+      "success": "Réussite",
+      "results": "Résultats du quiz",
+      "answerDetails": "Détail des réponses",
+      "yourAnswer": "Votre réponse",
+      "correctAnswer": "Bonne réponse",
+      "notAnswered": "Non répondu",
+      "restart": "Recommencer le quiz",
+
+      "grades": {
+        "excellent": "Excellent",
+        "veryGood": "Très bien",
+        "good": "Bien",
+        "needsImprovement": "À améliorer"
+      },
+
+      "questions": {
+        "title": "Questions",
+        "1": {
+          "question": "Quelle est la meilleure méthode pour retenir efficacement les informations d'un cours ?",
+          "options": {
+            "0": "Lire une seule fois",
+            "1": "Répéter et pratiquer régulièrement",
+            "2": "Mémoriser par cœur",
+            "3": "Écouter sans prendre de notes"
+          },
+          "explanation": "La répétition espacée et la pratique régulière sont les méthodes les plus efficaces pour la mémorisation à long terme."
+        },
+        "2": {
+          "question": "Il est recommandé de faire des pauses régulières pendant l'étude pour maintenir la concentration.",
+          "options": {
+            "0": "Vrai",
+            "1": "Faux"
+          },
+          "explanation": "Les pauses régulières aident à maintenir la concentration et à éviter la fatigue mentale."
+        },
+        "3": {
+          "question": "Parmi ces techniques d'apprentissage, laquelle est la plus active ?",
+          "options": {
+            "0": "Lire passivement",
+            "1": "Surligner des textes",
+            "2": "Expliquer à quelqu'un d'autre",
+            "3": "Recopier des notes"
+          },
+          "explanation": "Expliquer à quelqu'un d'autre active plusieurs processus cognitifs et renforce la compréhension."
+        },
+        "4": {
+          "question": "Quel environnement est le plus favorable à l'apprentissage ?",
+          "options": {
+            "0": "Un endroit bruyant et animé",
+            "1": "Un espace calme et organisé",
+            "2": "Devant la télévision",
+            "3": "Dans son lit"
+          },
+          "explanation": "Un environnement calme et organisé permet une meilleure concentration et réduit les distractions."
+        },
+        "5": {
+          "question": "Il est préférable d'étudier plusieurs matières différentes en même temps dans une même session.",
+          "options": {
+            "0": "Vrai",
+            "1": "Faux"
+          },
+          "explanation": "Il est généralement plus efficace de se concentrer sur une matière à la fois pour éviter la confusion."
+        }
+      }
+    }
+  },
+  "achievements": {
+    "title": "Mes Récompenses",
+    "subtitle": "Célébrez vos accomplissements et débloquez de nouveaux défis",
+    "categoriesTitle": "Catégories",
+    "pointsShort": "pts",
+    "progress": "Progression",
+    "unlocked": "Débloqué",
+    "notUnlocked": "Non débloqué",
+
+    "stats": {
+      "rewards": "Récompenses",
+      "outOf": "sur {total}",
+      "totalPoints": "Points totaux",
+      "pointsEarned": "points gagnés",
+      "successRate": "Taux de réussite",
+      "unlocked": "débloqué",
+      "currentRank": "Rang actuel",
+      "ranking": "classement"
+    },
+
+    "categories": {
+      "all": "Toutes",
+      "beginner": "Débutant",
+      "streak": "Séries",
+      "subject": "Matières",
+      "performance": "Performance",
+      "time": "Temps"
+    },
+
+    "rarity": {
+      "common": "Commun",
+      "rare": "Rare",
+      "epic": "Épique",
+      "legendary": "Légendaire"
+    },
+
+    "firstSteps": "Premier pas",
+    "firstStepsDesc": "Terminez votre premier cours",
+    "fireStreak": "Série de feu",
+    "fireStreakDesc": "Étudiez 7 jours consécutifs",
+    "mathExpert": "Expert en mathématiques",
+    "mathExpertDesc": "Terminez tous les cours de mathématiques",
+    "marathoner": "Marathonien",
+    "marathonerDesc": "Étudiez plus de 10 heures en une semaine",
+    "perfectionist": "Perfectionniste",
+    "perfectionistDesc": "Obtenez 100% dans 5 cours différents",
+    "monthlyChampion": "Champion mensuel",
+    "monthlyChampionDesc": "Terminez 20 cours en un mois",
+    "scienceMaster": "Maître des sciences",
+    "scienceMasterDesc": "Terminez tous les cours de sciences",
+    "legend": "Légende",
+    "legendDesc": "Étudiez 365 jours consécutifs",
+
+    "motivation": {
+      "title": "Continue comme ça !",
+      "description": "Vous avez débloqué {unlocked} récompenses sur {total}. Chaque accomplissement vous rapproche de vos objectifs d'apprentissage.",
+      "continueBtn": "Continuer à apprendre"
+    }
+  },
+  "upgradeBanner": {
+    "dismiss": "Fermer",
+    "title": "Débloquez Votre Plein Potentiel, {name}!",
+    "description": "Passez à la version premium pour accéder à tous les cours, au chat IA illimité et aux fonctionnalités d'apprentissage exclusives.",
+    "ctaButton": "Mettre à Niveau",
+    "feature1": "Accès Illimité à l'Assistant IA",
+    "feature2": "Tous les Cours Premium Débloqués",
+    "feature3": "Support Prioritaire et Ressources"
+  },
+  "profile": {
+    "loadingProfile": "Chargement du profil...",
+    "unableToLoad": "Impossible de charger le profil",
+    "edit": "Modifier",
+    "student": "Étudiant",
+    "updateOnce": "Ce champ ne peut être modifié qu'une seule fois",
+    "level": "Niveau",
+    "ageYears": "{age} ans",
+    "emailNotVerified": "Email non vérifié",
+    "resendVerification": "Renvoyer l'email de vérification",
+    "memberSince": "Membre depuis le {date}",
+    "memberSinceShort": "Membre depuis",
+    "verificationSent": "Email de vérification envoyé avec succès !",
+
+    "personalInfo": "Informations personnelles",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "age": "Âge",
+    "state": "Wilaya",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "notProvided": "Non renseigné",
+
+    "statistics": "Statistiques",
+    "enrolledCourses": "Cours inscrits",
+    "verificationStatus": "Statut de vérification",
+    "verified": "Vérifié",
+    "notVerified": "Non vérifié",
+
+    "academicInfo": "Informations académiques",
+    "role": "Rôle",
+    "yearOfStudy": "Année d'étude",
+    "specialization": "Spécialisation",
+    "notDefined": "Non défini",
+
+    "courseEnrollments": "Inscriptions aux cours ({count})",
+    "courseNumber": "Cours #{number}",
+    "courseDefault": "Cours {number}",
+    "courseDescription": "Description du cours",
+    "enrolledOn": "Inscrit le {date}",
+    "andMoreCourses": "Et {count} autres cours...",
+
+    "quickActions": "Actions rapides",
+    "editProfile": "Modifier profil",
+    "updateInfo": "Mettre à jour vos infos",
+    "verifyEmail": "Vérifier email",
+    "confirmAddress": "Confirmer votre adresse",
+    "myCourses": "Mes cours",
+    "viewAllCourses": "Voir tous les cours",
+    "settings": "Paramètres",
+    "manageAccount": "Gérer le compte",
+
+    "lastUpdated": "Dernière mise à jour le {date}"
+  },
+  "specializations": {
+    "chooseSpecialization": "Choisissez votre filière",
+    "selectSpecializationDescription": "Sélectionnez la filière qui vous intéresse le plus pour {year}",
+    "changeYear": "Changer année",
+    "modules": "Modules",
+    "yearNotSpecified": "Année non spécifiée",
+    "moduleCount": "{count} modules",
+    "studyTime": "~12h d'étude",
+    "specialization": "Filière",
+    "select": "Sélectionner",
+    "backToYears": "Retour aux années d'étude",
+    "availableSpecializations": "Filières disponibles",
+    "chooseDescription": "Choisissez la filière qui correspond à vos intérêts et objectifs d'apprentissage pour l'année {year}.",
+    "loadingError": "Une erreur est survenue lors du chargement des filières.",
+    "updateError": "Erreur lors de la mise à jour de votre filière.",
+    "resetYearError": "Erreur lors de la réinitialisation de l'année d'étude.",
+    "loading": "Chargement des filières...",
+    "noSpecializationsTitle": "Aucune filière disponible",
+    "noSpecializationsDescription": "Les filières pour votre année d'étude seront bientôt disponibles."
+  },
+
+  "specializationDetail": {
+    "exploreSubject": "Explorer la matière",
+    "notFound": "Filière introuvable",
+    "loadingError": "Erreur lors du chargement de la filière",
+    "loadingSpecialization": "Chargement de la filière...",
+    "back": "Retour",
+    "notFoundTitle": "Filière introuvable",
+    "notFoundDescription": "La filière demandée n'existe pas ou a été supprimée.",
+    "myCourses": "Mes Cours",
+    "studyProgram": "Programme d'études",
+    "specialization": "Filière",
+    "yearOfStudy": "Année d'études",
+    "notDefined": "Non définie",
+    "availableModules": "Modules disponibles",
+    "progress": "Progression",
+    "inProgress": "En cours",
+    "level": "Niveau",
+    "subjects": "Matières",
+    "moduleCount": "{count} module{count, plural, one {} other {s}}",
+    "noModulesTitle": "Aucun module disponible",
+    "noModulesDescription": "Les matières pour cette filière seront bientôt disponibles. Revenez plus tard pour découvrir vos cours.",
+    "inPreparation": "En préparation"
+  },
+  "progress": {
+    "todaysStudyTime": "Temps d'étude d'aujourd'hui",
+    "dailyGoal": "Objectif quotidien",
+    "dailyGoalMinutes": "Objectif quotidien : {minutes}min",
+    "averageProgress": "Progression moyenne",
+    "acrossAllCourses": "Dans tous les cours",
+    "longestStreak": "Plus longue série : {days} jours",
+    "calendar": {
+      "title": "Calendrier d'étude",
+      "navigation": "Navigation du calendrier"
+    },
+
+    "notifications": {
+      "dailyGoalProgress": "Progression de l'objectif quotidien",
+      "minutesRemaining": "{minutes} minutes restantes",
+      "goalCompleted": "Objectif quotidien atteint !",
+      "keepGoing": "Continuez !",
+      "showRemaining": "Montrer le temps restant"
+    },
+    "title": "Mon Progrès",
+    "subtitle": "Suivez votre évolution et restez motivé dans votre parcours d'apprentissage",
+    "periods": {
+      "thisWeek": "Cette semaine",
+      "thisMonth": "Ce mois",
+      "thisYear": "Cette année"
+    },
+    "stats": {
+      "minutesToday": "minutes aujourd'hui",
+      "totalStudyTime": "Temps total d'étude",
+      "averageSessionLength": "Durée moyenne des sessions",
+      "completedCourses": "Cours terminés",
+      "outOfCourses": "sur {total} cours",
+      "studyTime": "Temps d'étude",
+      "thisWeek": "cette semaine",
+      "currentStreak": "Série actuelle",
+      "consecutiveDays": "jours consécutifs",
+      "weeklyGoal": "Objectif semaine",
+      "coursesThisWeek": "cours cette semaine"
+    },
+    "weeklyActivity": {
+      "title": "Activité de la semaine"
+    },
+    "subjectProgress": {
+      "title": "Progrès par matière",
+      "coursesCompleted": "{completed}/{total} cours"
+    },
+    "subjects": {
+      "mathematics": "Mathématiques",
+      "french": "Français",
+      "sciences": "Sciences",
+      "history": "Histoire",
+      "geography": "Géographie"
+    },
+    "days": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday": "Sam",
+      "sunday": "Dim"
+    },
+    "dayAbbreviations": {
+      "monday": "L",
+      "tuesday": "M",
+      "wednesday": "M",
+      "thursday": "J",
+      "friday": "V",
+      "saturday": "S",
+      "sunday": "D"
+    },
+    "recentAchievements": {
+      "title": "Récompenses récentes",
+      "viewAll": "Voir toutes les récompenses"
+    },
+    "achievements": {
+      "tenDayStreak": "Série de 10 jours",
+      "scienceExpert": "Expert en Sciences",
+      "twentyFiveCourses": "25 cours terminés"
+    },
+    "timeframes": {
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "threeDaysAgo": "Il y a 3 jours"
+    },
+    "studyGoals": {
+      "title": "Objectifs d'étude",
+      "dailyGoal": "Objectif quotidien",
+      "weeklyGoal": "Objectif hebdomadaire",
+      "courses": "cours"
+    },
+    "studyStreak": {
+      "title": "Série d'étude",
+      "currentStreak": "{days} jours",
+      "longestStreak": "Votre plus longue série : {days} jours",
+      "subtitle": "{{count}} {{days}} consécutif{{count, plural, one {} other {s}}}"
+    },
+    "motivationalQuote": {
+      "text": "\"Le succès, c'est d'aller d'échec en échec sans perdre son enthousiasme.\"",
+      "author": "- Winston Churchill"
+    }
+  },
+  "assistant": {
+    "title": "Assistant IA d'Apprentissage",
+    "subtitle": "Votre compagnon intelligent pour un apprentissage personnalisé et un soutien académique",
+    "subtitleGeneral": "Mode général activé - Posez-moi n'importe quoi sur tous les sujets",
+
+    "sessions": {
+      "title": "Sessions de Discussion",
+      "generalChat": "Discussion Générale",
+      "noSessionsFound": "Aucune session trouvée",
+      "noSessionsYet": "Pas encore de sessions de discussion",
+      "tryDifferentSearch": "Essayez un autre terme de recherche",
+      "selectLessonToStart": "Sélectionnez une leçon pour commencer à discuter avec l'assistant IA",
+      "untitledLesson": "Leçon sans titre",
+      "noCourse": "Aucun cours",
+      "messages": "messages"
+    },
+
+    "chat": {
+      "chatMode": "Mode de Chat",
+      "lessonSpecific": "Spécifique à la Leçon",
+      "general": "Général",
+      "generalModeDesc": "Demandez-moi n'importe quoi",
+      "lessonModeDesc": "Posez des questions sur cette leçon",
+      "placeholderGeneral": "Demandez-moi n'importe quoi...",
+      "aiAssistant": "Assistant IA",
+      "generalAssistant": "Assistant IA Général",
+      "aiLearningAssistant": "Assistant IA d'Apprentissage",
+      "intelligentCompanion": "Votre compagnon d'étude intelligent",
+      "loadingMessages": "Chargement des messages...",
+      "noMessages": "Pas encore de messages",
+      "startConversation": "Commencez la conversation en tapant un message ci-dessous",
+      "placeholder": "Tapez votre message...",
+      "send": "Envoyer",
+      "error": "Erreur"
+    },
+
+    "welcome": {
+      "title": "Bienvenue dans l'Assistant IA",
+      "description": "Votre compagnon d'apprentissage intelligent est là pour vous aider dans vos études. Sélectionnez une leçon dans la barre latérale pour commencer ou continuer une conversation.",
+      "generalDescription": "Mode général activé ! Vous pouvez maintenant me poser des questions sur n'importe quel sujet, pas seulement sur les leçons spécifiques.",
+      "tip": "Sélectionnez une session à gauche pour voir l'historique des conversations ou commencer à discuter de leçons spécifiques.",
+      "generalTip": "En mode général, vous pouvez discuter de tous les sujets qui vous intéressent !"
+    },
+
+    "error": {
+      "dismiss": "Ignorer"
+    },
+    "footer": {
+      "tip": "Astuce : Appuyez sur Entrée pour envoyer des messages rapidement"
+    }
+  },
+  "studyModuleDetail": {
+    "quickActions": "Actions Rapides",
+    "exploreAll": "Tout Explorer",
+    "items": "éléments",
+    "programOverview": "Aperçu du programme",
+    "weeks": "Semaines",
+    "objectives": "Objectifs",
+    "chapters": "Chapitres",
+    "upgradeNow": "Mettre à niveau maintenant",
+    "upgradeRequired": "Mise à niveau requise",
+    "upgradeDescription": "Améliorez votre abonnement pour accéder au chat AIDAKI et débloquer toutes les fonctionnalités d'apprentissage avancées.",
+    "noProgramAvailable": "Le programme n'est pas disponible",
+    "programInPreparation": "Le programme est en cours de préparation",
+    "noExamsAvailable": "Aucun examen disponible",
+    "sections": {
+      "exams": "Sujets & Corrections",
+      "program": "Programme d'Étude",
+      "courses": "Cours"
+    },
+
+    "sectionDescriptions": {
+      "exams": "Entraînez-vous avec les sujets d'examens et consultez les corrections détaillées",
+      "program": "Curriculum officiel et objectifs d'apprentissage",
+      "courses": "Leçons interactives et exercices pratiques"
+    },
+
+    "quickActionLinks": {
+      "downloadExams": "Télécharger les Sujets",
+      "downloadExamsDesc": "Accéder aux annales",
+      "viewProgram": "Voir le Programme",
+      "viewProgramDesc": "Étudier le curriculum",
+      "startLearning": "Commencer l'Apprentissage",
+      "startLearningDesc": "Parcourir les cours",
+      "trackProgress": "Suivre les Progrès",
+      "trackProgressDesc": "Voir les analyses"
+    },
+
+    "previews": {
+      "recentExams": "Examens Récents",
+      "curriculumOverview": "Aperçu du Curriculum",
+      "availableCourses": "Cours Disponibles",
+      "withCorrection": "Avec correction",
+      "moreExams": "+{count} autres examens",
+      "moreChapters": "+{count} autres chapitres",
+      "moreCourses": "+{count} autres cours"
+    },
+    "moduleNotFound": "Module d'étude introuvable",
+    "loadingError": "Erreur lors du chargement du module d'étude",
+    "loadingModule": "Chargement du module d'étude...",
+    "back": "Retour",
+    "retry": "Réessayer",
+    "moduleNotFoundTitle": "Module Introuvable",
+    "moduleNotFoundDescription": "Le module d'étude demandé n'a pas pu être trouvé.",
+    "backToModules": "Retour aux Modules d'Étude",
+    "course": "Cours",
+    "courseDescriptionDefault": "Découvrez un contenu engageant et développez vos compétences grâce à ce cours complet.",
+    "students": "étudiants",
+    "enrolled": "Inscrit",
+    "available": "Disponible",
+    "enrolledOn": "Inscrit le",
+    "accessCourse": "Accéder au Cours",
+    "enrollingInProgress": "Inscription en cours...",
+    "enrollInCourse": "Commencer le Cours",
+    "coursePreview": "Aperçu du Cours",
+    "studyModule": "Module d'Étude",
+    "subject": "Matière",
+    "availableCourses": "Cours Disponibles",
+    "totalCourses": "Total des Cours",
+    "myEnrollments": "Mes Inscriptions",
+    "progress": "Progression",
+    "enrollmentError": "Erreur d'Inscription",
+    "availableCoursesTitle": "Cours Disponibles",
+    "courses": "cours",
+    "noCoursesAvailable": "Aucun Cours Disponible",
+    "noCoursesDescription": "Il n'y a actuellement aucun cours disponible pour ce module d'étude. Revenez plus tard pour du nouveau contenu.",
+    "coursesInPreparation": "Cours en préparation",
+    "successTips": "Conseils pour Réussir",
+    "enrollProgressively": "Inscription Progressive",
+    "enrollProgressivelyDesc": "Commencez par un cours et terminez-le avant de passer au suivant",
+    "planYourTime": "Planifiez Votre Temps",
+    "planYourTimeDesc": "Consacrez des sessions d'étude régulières pour un progrès constant",
+    "setGoals": "Fixez des Objectifs",
+    "setGoalsDesc": "Définissez des objectifs clairs pour chaque cours que vous suivez"
+  },
+  "verification": {
+    "notVerified": "Vous n'êtes pas vérifié",
+    "pleaseVerify": "Veuillez vérifier votre adresse email",
+    "emailLabel": "Adresse email",
+    "emailPlaceholder": "Entrez votre adresse email",
+    "sendVerification": "Envoyer le lien de vérification",
+    "sending": "Envoi en cours...",
+    "success": "Lien de vérification envoyé avec succès!",
+    "error": "Erreur lors de l'envoi du lien de vérification",
+    "checking": "Vérification en cours...",
+    "checkingMessage": "Veuillez patienter pendant que nous vérifions votre statut",
+    "resendSuccess": "Nouveau lien de vérification envoyé!",
+    "resendError": "Impossible d'envoyer le lien de vérification",
+    "emailRequired": "L'adresse email est requise",
+    "invalidEmail": "Adresse email invalide",
+    "useDifferentEmail": "Utiliser une adresse email différente",
+    "backToOriginal": "Revenir à l'email original"
+  },
+
+  "footer": {
+    "brand": {
+      "tagline": "Plateforme d'apprentissage",
+      "description": "AIDAKI est la plateforme éducative moderne qui aide les élèves du primaire au lycée à réussir leur parcours académique avec des outils innovants et des expériences d'apprentissage personnalisées."
+    },
+    "navigation": {
+      "platform": "Plateforme",
+      "support": "Support",
+      "account": "Compte"
+    },
+    "links": {
+      "home": "Accueil",
+      "courses": "Cours",
+      "pricing": "Tarifs",
+      "news": "Actualités",
+      "support": "Support et assistance",
+      "contact": "Nous contacter",
+      "faq": "FAQ",
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "dashboard": "Espace étudiant"
+    },
+    "social": {
+      "title": "Suivez-nous",
+      "follow": "Suivez-nous sur"
+    },
+    "newsletter": {
+      "title": "Restez informé",
+      "description": "Abonnez-vous à notre newsletter pour recevoir les dernières ressources éducatives et mises à jour de la plateforme.",
+      "placeholder": "Entrez votre adresse email",
+      "subscribe": "S'abonner"
+    },
+    "legal": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "cookies": "Politique des cookies"
+    },
+    "copyright": "Tous droits réservés.",
+    "backToTop": "Retour en haut"
+  },
+  "pricing": {
+    "title": "Nos Tarifs",
+    "subscribe": "S'abonner",
+    "description": "Choisissez le plan qui vous convient le mieux",
+    "monthly": "MENSUEL",
+    "annual": "ANNUEL (12 MOIS)",
+    "offers": "Offres",
+    "details": "Détails",
+    "freePlan": "Plan Gratuit",
+    "popular": "POPULAIRE",
+    "features": "Fonctionnalités:",
+    "chooseplan": "Choisir ce plan"
+  },
+  "notifications": {
+    "achievement": {
+      "awesome": "Formidable !"
+    },
+    "streak": {
+      "atRisk": "Votre série de {days} jours est en danger !",
+      "readyToStart": "Prêt à commencer votre série d'étude ?",
+      "studyToKeep": "Étudiez au moins 10 minutes aujourd'hui pour maintenir votre série.",
+      "studyToStart": "Étudiez plus de 10 minutes pour commencer à construire votre série.",
+      "startStudying": "Commencer à Étudier"
+    },
+    "dailyGoal": {
+      "title": "Objectif Quotidien",
+      "percentComplete": "{percent}% terminé",
+      "remaining": "{time} restant",
+      "goalAchieved": "✓ Objectif atteint !"
+    },
+    "time": {
+      "minutes": "{count, plural, one {# minute} other {# minutes}}",
+      "hours": "{count, plural, one {# heure} other {# heures}}",
+      "hoursAndMinutes": "{hours}h {minutes}min"
+    },
+    "center": {
+      "title": "Notifications",
+      "noNotifications": "Aucune notification pour le moment"
+    },
+    "types": {
+      "achievement": "Récompenses",
+      "streak": "Séries",
+      "success": "Succès",
+      "info": "Informations",
+      "warning": "Avertissements",
+      "error": "Erreurs"
+    },
+    "common": {
+      "dismiss": "Ignorer"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+    "verification": {
+      "title": "Verify Your Email Address",
+      "subtitle": "Verify your email address",
+      "description": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
+      "sentTo": "Email sent to:",
+      "checkSpam": "If you don't see the email, check your spam folder.",
+      "checkAgain": "I've verified my email",
+      "resendButton": "Resend verification email",
+      "resending": "Sending...",
+      "resendSuccess": "New verification email sent! Check your inbox.",
+      "instructionsTitle": "Next steps:",
+      "step1": "Check your email inbox",
+      "step2": "Click the verification link in the email",
+      "step3": "Return here and click 'I've verified my email'",
+      "step4": "Complete your profile setup",
+      "errors": {
+        "checkFailed": "Unable to check verification status",
+        "resendFailed": "Unable to resend verification email. Please try again."
+      }
+    },
+    "auth": {
+      "verifyEmail": {
+        "subtitle": "Verify your email address",
+        "verifyingTitle": "Verifying Your Email",
+        "verifyingDescription": "Please wait while we verify your email address...",
+        "successTitle": "Email Verified Successfully!",
+        "successDescription": "Your email address has been verified. You can now proceed with setting up your profile.",
+        "redirectingToOnboarding": "Redirecting to profile setup...",
+        "goToOnboarding": "Continue to Profile Setup",
+        "goToLogin": "Sign In to Your Account",
+        "errorTitle": "Verification Failed",
+        "error": "Unable to verify email. Please try again.",
+        "invalidToken": "Invalid or missing verification token.",
+        "invalidRequest": "Invalid verification request.",
+        "tokenExpired": "Verification token is invalid or expired.",
+        "alreadyVerified": "This email is already verified.",
+        "needNewLink": "Need a new verification link?",
+        "resendDescription": "If your verification link has expired or is invalid, you can request a new one.",
+        "resendButton": "Send New Verification Email",
+        "resending": "Sending...",
+        "resendSuccess": "New verification email sent! Check your inbox.",
+        "resendError": "Unable to resend verification email. Please try again.",
+        "backToVerification": "Go to verification page",
+        "needHelp": "Need help?",
+        "contactSupport": "Contact support"
+      },
+      "register": {
+        "phoneRequired": "Phone number is required"
+      },
+      "securityNotice": "Secure educational platform",
+      "allRightsReserved": "All rights reserved"
+    },
+    "app": {
+      "name": "AIDAKI"
+    },
+    "common": {
+      "loading": "Loading…",
+      "error": "Error",
+      "retry": "Retry"
+    }
+  }
+  

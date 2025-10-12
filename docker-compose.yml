@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio
+    container_name: aidaki-minio
+    ports:
+      - "9000:9000"  # API
+      - "9001:9001"  # Web UI
+    volumes:
+      - minio-data:/data
+    environment:
+      MINIO_ROOT_USER: aidakiminio2025
+      MINIO_ROOT_PASSWORD: aidakiminio2025
+    command: server /data --console-address ":9001"
+    networks:
+      - aidaki-net
+
+volumes:
+  minio-data:
+
+networks:
+  aidaki-net:

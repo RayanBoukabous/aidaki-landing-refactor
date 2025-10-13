@@ -24,7 +24,7 @@ export default function VisualsTopbar() {
       link: "/",
     },
     {
-      name: "aboutUs.nav.aboutUs", 
+      name: "aboutUs.nav.aboutUs",
       hasDropdown: true,
       link: "/about",
       dropdownItems: [
@@ -33,7 +33,7 @@ export default function VisualsTopbar() {
           link: "/about",
         },
         {
-          name: "aboutUs.nav.ourVision", 
+          name: "aboutUs.nav.ourVision",
           link: "/about#vision",
         },
         {
@@ -133,11 +133,11 @@ export default function VisualsTopbar() {
     const handleClickOutside = () => {
       setAboutDropdownOpen(false);
     };
-    
+
     if (aboutDropdownOpen) {
       document.addEventListener("click", handleClickOutside);
     }
-    
+
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -149,7 +149,11 @@ export default function VisualsTopbar() {
         {/* Decorative top border */}
         <div className="h-1 bg-gradient-to-r from-green-300 via-green-300 to-green-300"></div>
 
-        <div className={`mx-auto relative px-4 py-3 flex justify-between items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <div
+          className={`mx-auto relative px-4 py-3 flex justify-between items-center ${
+            isRTL ? "flex-row-reverse" : ""
+          }`}
+        >
           {/* Logo */}
           <Link href={`/${locale}/`} className="group relative">
             <div className="absolute inset-0 bg-green-200/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -163,7 +167,6 @@ export default function VisualsTopbar() {
           {/* Mobile Right Side - Language Selector + Menu Button */}
           <div className="md:hidden flex items-center gap-3">
             {/* Mobile Language Selector - Always Visible */}
-            
 
             {/* Mobile Menu Button */}
             <button
@@ -195,14 +198,14 @@ export default function VisualsTopbar() {
             </button>
 
             <select
-                className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
-                value={currentLocale}
-                onChange={(e) => setLocale(e.target.value)}
-              >
-                <option value="en">EN</option>
-                <option value="fr">FR</option>
-                <option value="ar">AR</option>
-              </select>
+              className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
+              value={currentLocale}
+              onChange={(e) => setLocale(e.target.value)}
+            >
+              <option value="ar">AR</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+            </select>
           </div>
 
           {/* Desktop Navigation */}
@@ -240,7 +243,7 @@ export default function VisualsTopbar() {
 
                       {/* Dropdown Menu */}
                       {aboutDropdownOpen && (
-                        <div 
+                        <div
                           className={`absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 ${
                             isRTL ? "right-0" : "left-0"
                           }`}
@@ -273,14 +276,14 @@ export default function VisualsTopbar() {
             </ul>
 
             <select
-                className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
-                value={currentLocale}
-                onChange={(e) => setLocale(e.target.value)}
-              >
-                <option value="en">EN</option>
-                <option value="fr">FR</option>
-                <option value="ar">AR</option>
-              </select>
+              className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
+              value={currentLocale}
+              onChange={(e) => setLocale(e.target.value)}
+            >
+              <option value="ar">AR</option>
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+            </select>
           </div>
 
           {/* Desktop Right Side */}
@@ -308,8 +311,6 @@ export default function VisualsTopbar() {
                 </a>
               ))}
             </div>
-
-           
 
             {/* Login Button 
             <Link

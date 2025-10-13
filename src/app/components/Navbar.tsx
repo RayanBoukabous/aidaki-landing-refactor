@@ -31,9 +31,7 @@ const MobileNavItem = ({ item, isActive, onItemClick }) => {
       <div className="relative">
         <span
           className={`${
-            isActive
-              ? "text-white"
-              : "text-gray-500 group-hover:text-green-600"
+            isActive ? "text-white" : "text-gray-500 group-hover:text-green-600"
           } transition-colors`}
         >
           {item.icon}
@@ -68,7 +66,10 @@ const MobileMenu = ({ isOpen, onClose, locale, t }) => {
       return activePaths.some((activePath) => {
         const normalizedPathname = pathname.replace(/\/$/, "");
         const normalizedPath = activePath.replace(/\/$/, "");
-        return normalizedPathname === normalizedPath || normalizedPathname.startsWith(normalizedPath + "/");
+        return (
+          normalizedPathname === normalizedPath ||
+          normalizedPathname.startsWith(normalizedPath + "/")
+        );
       });
     }
 
@@ -91,32 +92,32 @@ const MobileMenu = ({ isOpen, onClose, locale, t }) => {
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
   // Handle escape key
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
 
@@ -135,7 +136,7 @@ const MobileMenu = ({ isOpen, onClose, locale, t }) => {
         ref={menuRef}
         className="fixed top-0 left-0 right-0 bg-gradient-to-b from-green-50 via-blue-50 to-purple-50 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out"
         style={{
-          transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+          transform: isOpen ? "translateY(0)" : "translateY(-100%)",
         }}
       >
         {/* Header with Logo and Close Button */}
@@ -184,9 +185,9 @@ export default function Navbar({ params }: NavbarProps) {
 
   // Language options
   const languages = [
-    { code: "fr", name: "Français" },
-    { code: "en", name: "English" },
     { code: "ar", name: "العربية" },
+    { code: "en", name: "English" },
+    { code: "fr", name: "Français" },
   ];
 
   const currentLanguage =
@@ -196,7 +197,7 @@ export default function Navbar({ params }: NavbarProps) {
   const switchLanguage = (newLocale: string) => {
     const currentPath = window.location.pathname;
     const newPath = currentPath.replace(`/${locale}`, `/${newLocale}`);
-    
+
     // Force a full page reload to ensure proper RTL/LTR switching
     window.location.href = newPath;
   };
@@ -212,9 +213,9 @@ export default function Navbar({ params }: NavbarProps) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -507,7 +508,7 @@ export default function Navbar({ params }: NavbarProps) {
                     </svg>
                     {t("navbar.myProfile")}
                   </Link>
-                  
+
                   {/* New Subscription Dashboard Link */}
                   <Link
                     href={`/${locale}/dashboard/subscription`}

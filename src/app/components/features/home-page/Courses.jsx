@@ -11,7 +11,7 @@ const FeaturesHomePageCourses = () => {
   return (
     <section
       id="courses"
-      className="relative w-full overflow-hidden bg-gradient-to-br from-green-50 via-white to-blue-50"
+      className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50"
     >
       {/* Main content */}
       <div className="relative z-10 py-16 md:py-24 px-4 md:px-8">
@@ -40,7 +40,7 @@ const FeaturesHomePageCourses = () => {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-green-200/30 rounded-full"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-blue-200/30 rounded-full"
             style={{
               width: "500px",
               height: "500px",
@@ -85,7 +85,7 @@ const FeaturesHomePageCourses = () => {
             delay={0.3}
             onHover={setHoveredCard}
             isHovered={hoveredCard === "literature"}
-            color="from-green-400 to-green-500"
+            color="from-blue-400 to-blue-500"
             icon="📚"
           />
 
@@ -115,7 +115,7 @@ const FeaturesHomePageCourses = () => {
             delay={0.6}
             onHover={setHoveredCard}
             isHovered={hoveredCard === "mathematics"}
-            color="from-green-600 to-green-700"
+            color="from-blue-600 to-blue-700"
             icon="🔢"
           />
 
@@ -125,7 +125,7 @@ const FeaturesHomePageCourses = () => {
             delay={0.7}
             onHover={setHoveredCard}
             isHovered={hoveredCard === "science"}
-            color="from-green-500 to-green-600"
+            color="from-blue-500 to-blue-600"
             icon="🔬"
           />
 
@@ -167,7 +167,7 @@ const FeaturesHomePageCourses = () => {
             <MobileCard
               label={t("specialization.literature")}
               icon="📚"
-              color="from-green-400 to-green-500"
+              color="from-blue-400 to-blue-500"
               delay={0.2}
             />
             <MobileCard
@@ -185,13 +185,13 @@ const FeaturesHomePageCourses = () => {
             <MobileCard
               label={t("specialization.mathematics")}
               icon="🔢"
-              color="from-green-600 to-green-700"
+              color="from-blue-600 to-blue-700"
               delay={0.5}
             />
             <MobileCard
               label={t("specialization.science")}
               icon="🔬"
-              color="from-green-500 to-green-600"
+              color="from-blue-500 to-blue-600"
               delay={0.6}
             />
             <MobileCard

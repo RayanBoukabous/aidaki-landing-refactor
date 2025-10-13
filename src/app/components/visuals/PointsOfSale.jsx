@@ -85,16 +85,27 @@ const VisualsPointsOfSale = () => {
             {/* Enhanced Location Buttons */}
             <div className="space-y-4 max-w-md mx-auto lg:mr-0 lg:ml-auto mb-8">
               {locations.map((location, index) => (
-                <a  href='https://technostationery.com/nos-points-de-vente'  className="w-80 inline-flex justify-center gap-2 items-center bg-gradient-to-r  from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-2xl py-4 px-6 text-white text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-green-200 group">
+                <a
+                  target="_blank"
+                  href="https://technostationery.com/nos-points-de-vente"
+                  className="w-80 inline-flex justify-center gap-2 items-center bg-gradient-to-r  from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-2xl py-4 px-6 text-white text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-green-200 group"
+                >
                   <span>{location}</span>
-                  <svg 
-                      className={`w-5 h-5  transition-transform duration-300 ${hoveredLocation === index ? 'translate-x-1' : ''}`} 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                  <svg
+                    className={`w-5 h-5  transition-transform duration-300 ${
+                      hoveredLocation === index ? "translate-x-1" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
                 </a>
               ))}
             </div>

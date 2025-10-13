@@ -758,7 +758,7 @@ export default function Register() {
                     htmlFor="age"
                     className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2"
                   >
-                    {t("auth.register.age")}
+                    {t("auth.register.age")}   <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="age"
@@ -824,7 +824,7 @@ export default function Register() {
                     htmlFor="commune"
                     className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2"
                   >
-                    {t("auth.register.commune") || "Commune"}
+                    {t("auth.register.commune") || "Commune"}    <span className="text-red-500">*</span>
                   </label>
                   <select
                     id="commune"

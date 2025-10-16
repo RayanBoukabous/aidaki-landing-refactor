@@ -313,12 +313,13 @@ export default function VisualsTopbar() {
             </div>
 
             {/* Login Button */}
-            <Link
-              href={`/${locale}${loginRoute.link}`}
+            <a
+              href="https://elearning.aidaki.ai/login"
+              target="_blank"
               className="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               {t(loginRoute.name)}
-            </Link>
+            </a>
           </div>
         </div>
       </nav>

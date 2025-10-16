@@ -75,6 +75,20 @@ const VideoShowcase = () => {
       videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+histoir.mp4",
       gradient: "from-emerald-600/80 to-green-700/80",
     },
+    {
+      id:8,
+      key:"english",
+      thumbnail: "/images/english-thumbnail.png",
+      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+english.mp4",
+      gradient: "from-emerald-600/80 to-green-700/80",
+    },
+    {
+      id:9,
+      key:"",
+      thumbnail: "/images/philo-thumbnail.png",
+      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+philo.mp4",
+      gradient: "from-emerald-600/80 to-green-700/80",
+    }
   ];
 
   const handleVideoClick = (video) => {

@@ -84,7 +84,7 @@ const VideoShowcase = () => {
     },
     {
       id:9,
-      key:"",
+      key:"philo",
       thumbnail: "/images/philo-thumbnail.png",
       videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+philo.mp4",
       gradient: "from-emerald-600/80 to-green-700/80",

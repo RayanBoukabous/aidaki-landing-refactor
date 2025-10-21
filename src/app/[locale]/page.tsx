@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "../../navigation";
+import { useRouter } from "../../navigation";
 import { useParams } from "next/navigation";
 import { getDirection } from "../../i18n";
 
@@ -33,19 +33,7 @@ export default function HomePage() {
   const params = useParams();
   const currentLocale = params.locale as string;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const direction = getDirection(currentLocale);
-
-  useEffect(() => {
-    // Check if user has a token (equivalent to authStore.isLoggedIn from original)
-    const token = document.cookie
-      .split(";")
-      .find((c) => c.trim().startsWith("token="));
-    if (token) {
-      setIsAuthenticated(true);
-      router.push("/dashboard");
-    }
-  }, [router]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -71,44 +59,40 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Show VisualsTopbar for non-authenticated users */}
-      {!isAuthenticated && (
-        <div>
-          <CountDown />
-          <VisualsTopbar />
-        </div>
-      )}
+      {/* Show VisualsTopbar and CountDown */}
+      <div>
+        <CountDown />
+        <VisualsTopbar />
+      </div>
 
-      {/* Language Switcher Header - only show if not authenticated (to avoid conflict with navbar) */}
-      {!isAuthenticated && (
-        <div className="absolute top-4 right-4 z-50">
-          <div className="relative">
-            {isDropdownOpen && (
-              <div
-                className={`absolute top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[150px] ${
-                  direction === "rtl" ? "left-0" : "right-0"
-                }`}
-              >
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => switchLanguage(lang.code)}
-                    className={`w-full px-4 py-2 text-start hover:bg-gray-50 flex items-center space-x-3 ${
-                      direction === "rtl" ? "space-x-reverse" : ""
-                    } ${
-                      lang.code === currentLocale
-                        ? "bg-green-50 text-green-600"
-                        : "text-gray-700"
-                    } first:rounded-t-lg last:rounded-b-lg`}
-                  >
-                    <span>{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+      {/* Language Switcher Header */}
+      <div className="absolute top-4 right-4 z-50">
+        <div className="relative">
+          {isDropdownOpen && (
+            <div
+              className={`absolute top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[150px] ${
+                direction === "rtl" ? "left-0" : "right-0"
+              }`}
+            >
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => switchLanguage(lang.code)}
+                  className={`w-full px-4 py-2 text-start hover:bg-gray-50 flex items-center space-x-3 ${
+                    direction === "rtl" ? "space-x-reverse" : ""
+                  } ${
+                    lang.code === currentLocale
+                      ? "bg-green-50 text-green-600"
+                      : "text-gray-700"
+                  } first:rounded-t-lg last:rounded-b-lg`}
+                >
+                  <span>{lang.name}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Main Home Page Components - Following the exact structure from the original index.vue */}
       <FeaturesHomePageHeader />

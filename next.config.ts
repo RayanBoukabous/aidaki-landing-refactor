@@ -29,30 +29,8 @@ const nextConfig: NextConfig = {
         return [
             {
                 source: '/Signup',
-                destination: '/register',
+                destination: '/ar/register',
                 permanent: true,
-            },
-            {
-                source: '/',
-                destination: '/ar',
-                permanent: true,
-            },
-        ];
-    },
-    async rewrites() {
-        const apiUrl =
-            process.env.NEXT_PUBLIC_API_URL || 'http://ec2-54-226-40-236.compute-1.amazonaws.com/api';
-        const chatbotUrl =
-            process.env.NEXT_PUBLIC_CHATBOT_URL || 'http://ec2-54-226-40-236.compute-1.amazonaws.com/chatbot';
-
-        return [
-            {
-                source: '/api/:path*',
-                destination: `${apiUrl}/:path*`,
-            },
-            {
-                source: '/chatbot/:path*',
-                destination: `${chatbotUrl}/:path*`,
             },
         ];
     },

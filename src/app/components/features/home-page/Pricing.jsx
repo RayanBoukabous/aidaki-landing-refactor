@@ -52,7 +52,7 @@ export default function EnhancedPricingComponent() {
   const handleSubscribe = async (planId, e) => {
     e.stopPropagation();
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-    if (!token) { router.push('/login?redirect=/'); return; }
+   // if (!token) { router.push('/login?redirect=/'); return; }
     if (!planId) { router.push('/register'); return; }
     try {
       setProcessingPlanId(planId);

@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { getDirection } from "@/i18n";
 
 const VideoShowcase = () => {
-  const t = useTranslations("profAvatars");
+  const t = useTranslations("videoSubjects");
   const tVideos = useTranslations("videoShowcase");
   const locale = useLocale();
   const direction = getDirection(locale);

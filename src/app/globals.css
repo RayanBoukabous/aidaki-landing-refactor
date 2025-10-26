@@ -345,3 +345,46 @@ body.mobile-menu-open {
 [dir="ltr"] h6:not(.text-center):not(.text-left):not(.text-right) {
   text-align: left;
 }
+
+/* Enhanced smooth scrolling with custom easing */
+html {
+  scroll-behavior: auto; /* Disable default smooth scroll to use our custom implementation */
+  scroll-padding-top: 80px; /* Offset for fixed header */
+}
+
+/* Custom smooth scroll for better control */
+.smooth-scroll {
+  scroll-behavior: auto;
+  transition: scroll-behavior 0.3s ease-in-out;
+}
+
+/* Override default smooth scroll with custom easing */
+* {
+  scroll-behavior: auto; /* Use our custom smooth scroll instead */
+}
+
+/* Prevent jarring scroll jumps */
+html, body {
+  scroll-behavior: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Custom scrollbar styling for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

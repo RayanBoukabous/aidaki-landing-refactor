@@ -243,7 +243,7 @@ const ConnectorLines = () => (
         transition={{ duration: 2, delay: 1.5, ease: "easeInOut" }}
         viewport={{ once: true }}
       />
-      
+
       <motion.path
         d="M 130 140 Q 200 90 300 80"
         stroke="url(#gradient2)"
@@ -255,7 +255,7 @@ const ConnectorLines = () => (
         transition={{ duration: 2.2, delay: 1.7, ease: "easeInOut" }}
         viewport={{ once: true }}
       />
-      
+
       <motion.path
         d="M 300 80 Q 400 85 500 90"
         stroke="url(#gradient3)"
@@ -267,7 +267,7 @@ const ConnectorLines = () => (
         transition={{ duration: 2.4, delay: 1.9, ease: "easeInOut" }}
         viewport={{ once: true }}
       />
-      
+
       <motion.path
         d="M 500 90 Q 600 120 680 140"
         stroke="url(#gradient4)"
@@ -279,7 +279,7 @@ const ConnectorLines = () => (
         transition={{ duration: 2.6, delay: 2.1, ease: "easeInOut" }}
         viewport={{ once: true }}
       />
-      
+
       <motion.path
         d="M 680 140 Q 740 180 780 240"
         stroke="url(#gradient5)"
@@ -334,7 +334,7 @@ const MobileConnectorLines = () => (
         transition={{ duration: 1.5, delay: 0.8 }}
         viewport={{ once: true }}
       />
-      
+
       <motion.line
         x1="75" y1="200" x2="225" y2="200"
         stroke="url(#mobileGradient2)"
@@ -345,7 +345,7 @@ const MobileConnectorLines = () => (
         transition={{ duration: 1.7, delay: 1.0 }}
         viewport={{ once: true }}
       />
-      
+
       <motion.line
         x1="75" y1="300" x2="225" y2="300"
         stroke="url(#mobileGradient3)"
@@ -356,7 +356,7 @@ const MobileConnectorLines = () => (
         transition={{ duration: 1.9, delay: 1.2 }}
         viewport={{ once: true }}
       />
-      
+
       <motion.line
         x1="150" y1="50" x2="150" y2="350"
         stroke="url(#mobileGradient4)"

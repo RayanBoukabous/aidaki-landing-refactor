@@ -62,7 +62,7 @@ const ProfAvatars = () => {
     },
     gp: {
       key: "gp",
-      subject: "هندسة العمليات",
+      subject: "هندسة الطرائق",
       avatar: "/images/avatar-gp.png",
       video:
         "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/avatar+with+logo/GP.mp4",

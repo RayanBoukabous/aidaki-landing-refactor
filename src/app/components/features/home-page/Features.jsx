@@ -28,8 +28,8 @@ const FeaturesHomePageFeatures = () => {
 
       setIsRTL(
         htmlDir === "rtl" ||
-          computedDir === "rtl" ||
-          rtlLocales.some((rtlLang) => locale.startsWith(rtlLang))
+        computedDir === "rtl" ||
+        rtlLocales.some((rtlLang) => locale.startsWith(rtlLang))
       );
     };
 
@@ -114,9 +114,9 @@ const FeaturesHomePageFeatures = () => {
   };
 
   return (
-    <section className="relative text-center py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden">
+    <section className="relative text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden">
       <div className="flex justify-center items-center">
-        <h3 className="text-4xl text-center mx-auto mb-12">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4">
           {t("features.featureSectionTitle")}
         </h3>
       </div>
@@ -199,11 +199,10 @@ const FeaturesHomePageFeatures = () => {
                   whileHover={{ scale: 1.3 }}
                   whileTap={{ scale: 0.8 }}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
                       ? "bg-green-500 shadow-md scale-125"
                       : "bg-gray-300 hover:bg-green-300"
-                  }`}
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
@@ -227,14 +226,14 @@ const FeaturesHomePageFeatures = () => {
         </div>
       ) : (
         /* Desktop Grid Layout */
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 relative z-10">
           {/* Top Row - 3 features */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, staggerChildren: 0.15 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16"
           >
             {features.slice(0, 3).map((feature, index) => (
               <motion.div
@@ -265,7 +264,7 @@ const FeaturesHomePageFeatures = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, staggerChildren: 0.2, delay: 0.3 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
           >
             {features.slice(3, 6).map((feature, index) => (
               <motion.div

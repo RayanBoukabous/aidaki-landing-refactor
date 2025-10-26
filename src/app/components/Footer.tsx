@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { getDirection } from "../../i18n";
+import { smoothScrollToTop } from "../../utils/smoothScroll";
 
 export default function Footer() {
   const t = useTranslations();
@@ -152,7 +153,7 @@ export default function Footer() {
 
             {/* Back to Top */}
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              onClick={() => smoothScrollToTop()}
               className="group p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300 hover:scale-110"
               aria-label={t("footer.backToTop")}
             >

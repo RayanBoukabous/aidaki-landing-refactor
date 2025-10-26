@@ -2,11 +2,19 @@
 import { OpenAI } from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "dummy-key-for-build",
 });
 
 export async function POST(req) {
   try {
+    // Check if API key is available
+    if (!process.env.OPENAI_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: "OpenAI API key not configured" }),
+        { status: 503, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     const { prompt } = await req.json();
 
     const chat = await openai.chat.completions.create({

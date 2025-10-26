@@ -13,7 +13,7 @@ export default function EnhancedPricingComponent() {
   const [processingPlanId, setProcessingPlanId] = useState(null);
   const t = useTranslations();
   const router = useRouter();
-  
+
   const { loading: paymentLoading, error: paymentError, initiatePayment, clearError } = usePayment();
   const { plans: apiPlans, loading: plansLoading, error: plansError } = usePlans();
 
@@ -52,7 +52,7 @@ export default function EnhancedPricingComponent() {
   const handleSubscribe = async (planId, e) => {
     e.stopPropagation();
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-   // if (!token) { router.push('/login?redirect=/'); return; }
+    // if (!token) { router.push('/login?redirect=/'); return; }
     if (!planId) { router.push('/register'); return; }
     try {
       setProcessingPlanId(planId);
@@ -86,7 +86,7 @@ export default function EnhancedPricingComponent() {
         id: `plan-${plan.id}`, planId: plan.id, name: plan.name || 'Unknown',
         subtitle: plan.billingCycle === 'Monthly' ? (t('monthlySubscription') || 'Mensuel')
           : plan.billingCycle === 'Yearly' ? (t('yearlySubscription') || 'Annuel')
-          : (t('weeklySubscription') || '72 heures'),
+            : (t('weeklySubscription') || '72 heures'),
         price: plan.price > 0 ? `${plan.price.toFixed(2)} DA` : (t('plans.freemium.price') || 'Gratuit'),
         icon: getIcon(plan.name), img: imageUrl, color: getPlanColor(plan.planTier || 0),
         popular: plan.planTier === 3 || plan.planTier === 4,
@@ -266,7 +266,7 @@ export default function EnhancedPricingComponent() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div id="prices" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <style jsx global>{`.perspective-1000{perspective:1000px}.transform-style-3d{transform-style:preserve-3d}.backface-hidden{backface-visibility:hidden}.rotate-y-180{transform:rotateY(180deg)}`}</style>
       <div className="text-center mb-12">
         <h2 className="text-3xl text-center font-bold text-slate-900 mb-4">{t("pricing.title") || "Nos Tarifs"}</h2>

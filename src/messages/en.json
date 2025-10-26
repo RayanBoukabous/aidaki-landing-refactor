@@ -9,14 +9,12 @@
     "subtitle": "Find answers to your questions about AIDAKI",
     "searchPlaceholder": "Search for a question...",
     "noResults": "No results found for your search",
-
     "contact": {
       "title": "Didn't find your answer?",
       "description": "Our support team is here to help you",
       "email": "Send an Email",
       "phone": "Call Support"
     },
-
     "items": {
       "whatIsAidaki": {
         "question": "What is AIDAKI?",
@@ -77,7 +75,9 @@
     "french": {
       "title": "French"
     },
-    "history": { "title": "History" },
+    "history": {
+      "title": "History"
+    },
     "maths": {
       "title": "Mathematics Professor"
     },
@@ -94,16 +94,16 @@
       "title": "Economics Professor"
     },
     "english": {
-      "title": "English Professor"
+      "title": "English Professor (Female)"
     },
     "geography": {
-      "title": "Geography Professor"
+      "title": "Geography Professor (Female)"
     },
     "german": {
-      "title": "German Professor"
+      "title": "German Professor (Female)"
     },
     "gp": {
-      "title": "Process Engineering Professor"
+      "title": "Process Engineering Professor (Female)"
     },
     "philo": {
       "title": "Philosophy Professor"
@@ -113,6 +113,35 @@
     },
     "compta": {
       "title": "Accounting Professor"
+    }
+  },
+  "videoSubjects": {
+    "compta": {
+      "title": "Accounting Subject"
+    },
+    "droit": {
+      "title": "Law Subject"
+    },
+    "economy": {
+      "title": "Economics Subject"
+    },
+    "french": {
+      "title": "French"
+    },
+    "gp": {
+      "title": "Process Engineering Subject"
+    },
+    "geography": {
+      "title": "Geography Subject"
+    },
+    "history": {
+      "title": "History"
+    },
+    "english": {
+      "title": "English Subject"
+    },
+    "philo": {
+      "title": "Philosophy Subject"
     }
   },
   "ComingSoon": {
@@ -181,7 +210,10 @@
     "popular": "POPULAR",
     "features": "Features:",
     "freePlan": "Free Plan",
-    "chooseplan": "Choose This Plan"
+    "chooseplan": "Choose This Plan",
+    "monthlySubscription": "Monthly",
+    "yearlySubscription": "Annual",
+    "weeklySubscription": "72 hours"
   },
   "appDownload": {
     "badge": "Mobile App Available",
@@ -201,10 +233,15 @@
     "downloadNow": "Download Now",
     "downloadOn": "Download on the",
     "getItOn": "Get it on",
+    "availableOnGooglePlay": "Available on Google Play",
     "secureDownload": "Secure & verified download",
     "freeDownload": "Free to download",
     "imageAlt": "AIDAKI mobile app preview",
-    "mobileApp": "Learning App"
+    "mobileApp": "Learning App",
+    "secureDescription": "100% secure",
+    "freeDescription": "Free for life",
+    "updates": "Updates",
+    "updatesDescription": "Regular updates"
   },
   "aboutUs": {
     "title": "About Us",
@@ -214,7 +251,8 @@
       "aboutUs": "About Us",
       "ourVision": "Our vision",
       "newApproach": "Next-Generation AI-Powered Educational Platform",
-      "effectOfAvatars": "The Impact of Avatars on the Human Brain"
+      "effectOfAvatars": "The Impact of Avatars on the Human Brain",
+      "newEducationalApproach": "A New Educational Approach: Our Math and Physics Courses Developed with Python"
     },
     "vision": {
       "title": "Our Vision",
@@ -224,14 +262,12 @@
       "predictiveAnalysis": "Imagine a world where AI perfectly understands how you learn, anticipates your challenges, and boosts your strengths. Through cutting-edge predictive analysis, we multiply performance, democratize access, and transform lives, one by one. Where every pathway is unique, every success becomes predictable.",
       "personalizedReality": "Personalized education is no longer a dream, it's our reality. We're not reinventing school: we're creating tomorrow's educational ecosystem, where every learner benefits from a customized experience that maximizes their potential in an ever-evolving world."
     },
-
     "aboutUs": {
       "paragrah1": "The AIDAKI platform is a 100% Algerian innovation, developed by an Algerian company by young Algerian engineers with passion and a clear vision to advance the education sector in our country. Through this platform, we aim to provide a modern solution that meets the aspirations of the new generation, combining cutting-edge technology and artificial intelligence to serve students at all levels.",
       "paragrah2br": "Our next-generation intelligent educational platform, powered by artificial intelligence, utilizes an advanced recommendation system to create personalized learning pathways tailored to each student's unique educational needs.",
       "paragrah2": "This system ensures the development of essential skills and concepts to achieve optimal growth. The pathways feature intelligent playlists containing high-quality educational resources, meticulously designed using AI algorithms to address individual learning challenges.",
       "paragrah3": "Additionally, our platform provides targeted practice opportunities, specialized guidance, instant feedback, and intelligent progressive support that empowers every student to achieve significant and meaningful progress."
     },
-
     "avatarTechnology": {
       "title": "The Impact of Avatars on the Human Brain",
       "intro": "The impact of avatar teachers on the human brain represents an emerging and fascinating research field that combines cognitive neuroscience and educational technologies.",
@@ -242,14 +278,12 @@
       "multimodalIntegration": "An avatar teacher combines visual, auditory, and sometimes gestural stimuli, simultaneously activating multiple cortical areas. This multimodal integration at the superior parietal cortex level enriches memory traces and improves information retention.",
       "adaptiveTeaching": "The avatar can adapt its pedagogical strategies in real-time according to the learner's neurological reactions, thus optimizing teaching effectiveness. This technology potentially revolutionizes education by creating adaptive learning environments that respect the constraints and opportunities of our brain architecture."
     },
-
     "platform": {
       "title": "Next-Generation AI-Powered Educational Platform",
       "intro": "Our cutting-edge educational platform, powered by artificial intelligence, relies on an intelligent recommendation system to create personalized learning pathways that align with each student's unique educational needs.",
       "systemAdvanced": "This advanced system ensures the development of skills and concepts necessary to achieve maximum growth. The pathways contain smart playlists featuring high-quality educational resources, specifically designed using advanced AI algorithms to address individual challenges.",
       "features": "Our pioneering platform also provides opportunities for targeted practice, specialized instruction, immediate feedback, and intelligent progressive support that helps each student achieve remarkable and effective progress."
     },
-
     "leadership": {
       "title": "Our Vision in Educational Leadership",
       "commitment": "We are driven by our deep commitment to comprehensive human capacity development, positioning ourselves at the forefront of the contemporary educational revolution.",
@@ -258,7 +292,6 @@
       "measurement": "We also meticulously measure the impact of our innovations on all stakeholders in the educational ecosystem, from learners and educators to institutions.",
       "thoughtLeadership": "This integrated research approach solidifies our position as thought leaders in shaping the future of education, where we lead positive change and radically influence the development of educational systems and the educational artificial intelligence industry."
     },
-
     "coursesDevelopment": {
       "title": "A New Educational Approach: Our Math and Physics Courses Developed with Python",
       "intro": "In a world where technology is constantly reshaping education, our platform offers a groundbreaking way to teach exact sciences.",
@@ -269,6 +302,60 @@
       "realImpact": "Feedback from our users confirms the effectiveness of our approach: abstract concepts become concrete, understanding improves, and engagement increases. What once felt difficult now feels doable.",
       "futureEducation": "This new educational dynamic opens exciting possibilities for 21st-century learning, where technology becomes a true partner in academic success."
     }
+  },
+  "complaintForm": {
+    "title": "Complaint Form - AIDAKI",
+    "subtitle": "We're here to help you. Fill out the form below and we'll get back to you as soon as possible.",
+    "fields": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "category": "Problem Type",
+      "subcategory": "Details",
+      "message": "Problem Description"
+    },
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "example@email.com",
+      "phone": "+213 123 456 789",
+      "message": "Describe your problem in detail..."
+    },
+    "categories": {
+      "technical": {
+        "label": "Technical Issues",
+        "subcategories": {
+          "login": "I can't log into my account despite several attempts",
+          "chatbot": "The assistance chatbot doesn't understand my question correctly",
+          "videos": "Some course videos don't load or stop mid-playback",
+          "quiz": "The quiz doesn't save my answers",
+          "other": "Other"
+        }
+      },
+      "content": {
+        "label": "Educational Content",
+        "subcategories": {
+          "math_errors": "The mathematics course summary contains calculation errors",
+          "ai_explanations": "Some explanations given by the AI avatar in sciences are not clear",
+          "missing_courses": "Courses are missing for my specialization (Math-Technical, Management, etc.)",
+          "curriculum": "The program doesn't exactly follow the chapters of the Algerian school textbook",
+          "other": "Other"
+        }
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Email address is not valid",
+      "categoryRequired": "Problem type is required",
+      "subcategoryRequired": "Details are required",
+      "messageRequired": "Problem description is required",
+      "messageTooShort": "Description is too short (minimum 10 characters)"
+    },
+    "messageHint": "Please describe your problem in detail to help us resolve it quickly",
+    "submit": "Submit Complaint",
+    "submitting": "Submitting...",
+    "successMessage": "Your complaint has been submitted successfully! We'll get back to you as soon as possible.",
+    "errorMessage": "An error occurred while submitting. Please try again."
   },
   "footer": {
     "brand": {
@@ -696,7 +783,6 @@
     "skip": "Skip Tour",
     "finish": "Finish Tour",
     "helpText": "Click anywhere or press ESC to exit",
-
     "steps": {
       "welcome": {
         "title": "Welcome to Your Dashboard!",
@@ -753,7 +839,6 @@
         "content": "These are your available study modules. Click on any module to start learning or continue where you left off."
       }
     },
-
     "welcome": {
       "title": "Welcome to AIDAKI, {name}!",
       "defaultName": "Student",
@@ -761,7 +846,6 @@
       "startTour": "Start Tour",
       "dismiss": "Maybe Later"
     },
-
     "button": {
       "start": "Start Dashboard Tour",
       "restart": "Restart Tour",
@@ -857,7 +941,6 @@
       "reviewCorrectionsDesc": "Study detailed corrections to understand common mistakes and improve."
     }
   },
-
   "navigation": {
     "login": "Login",
     "register": "Register",
@@ -880,7 +963,6 @@
     "helpSupport": "Help & Support",
     "logout": "Logout",
     "logoutError": "An error occurred during logout. Please try again.",
-
     "notifications": {
       "newAssignment": "New assignment available in Mathematics",
       "quizReminder": "French quiz to complete by tomorrow",
@@ -989,7 +1071,6 @@
     "startReview": "Start Review",
     "duration": "Duration",
     "topics": "Topics",
-
     "currentCourse": {
       "title": "Mathematics - Advanced Algebra",
       "description": "Master quadratic equations, polynomials and advanced mathematical concepts"
@@ -1081,7 +1162,6 @@
       "title": "Dashboard with Progress Status",
       "description": "We provide you with a comprehensive dashboard displaying progress status, enabling you to track your achievements and monitor your development in a clear and organized manner to reach your goals effectively"
     },
-
     "featureSectionTitle": "What makes us different"
   },
   "footer": {
@@ -1197,7 +1277,8 @@
   "pricingHeader": {
     "title": "Your journey to success starts with smart AIDAKI!",
     "lessons": "Courses in all subjects. Discover the latest technologies in education",
-    "technology": ""
+    "technology": "",
+    "videoThumbnail": "AIDAKI video preview"
   },
   "prices": {
     "compare": "Compare prices and services",
@@ -1222,7 +1303,11 @@
     "title": "Points of Sale",
     "imageAlt": "Person holding a card",
     "description": "You can find our reloadable cards at the following locations:",
-    "locations": ["Techno", "Location 1", "Location 2"],
+    "locations": [
+      "Techno",
+      "Location 1",
+      "Location 2"
+    ],
     "more": "More"
   },
   "emailPlaceholder": "Enter your email",
@@ -1344,7 +1429,6 @@
       "passwordNeedUppercase": "One uppercase letter",
       "passwordNeedNumber": "One number"
     },
-
     "forgotPassword": {
       "emailNotFound": "No account found with this email address.",
       "tooManyRequests": "Too many requests. Please try again later.",
@@ -1427,7 +1511,6 @@
       "firstNamePlaceholder": "Your first name in Latin letters",
       "lastName": "Last Name (Latin)",
       "lastNamePlaceholder": "Your last name in Latin letters",
-
       "firstNameAr": "First Name (Arabic)",
       "firstNameArPlaceholder": "الاسم ",
       "lastNameAr": "Last Name (Arabic)",
@@ -1462,12 +1545,10 @@
     "greeting": "Hello",
     "defaultStudentName": "Student",
     "subtitle": "Let's continue your learning journey together!",
-
     "sessionActive": {
       "title": "Study Session Active",
       "lesson": "Lesson"
     },
-
     "stats": {
       "minutesToday": "minutes today",
       "totalStudyTime": "Total Study Time",
@@ -1497,7 +1578,6 @@
         "subtitle": "course completion"
       }
     },
-
     "studyModules": {
       "title": "Your Study Modules",
       "subtitle": "Continue your learning journey",
@@ -1505,14 +1585,12 @@
       "noModulesTitle": "No modules available",
       "noModulesDescription": "No study modules found for your current specialization."
     },
-
     "profile": {
       "completeTitle": "Complete your profile",
       "completeDescription": "Select your year of study and specialization to access study modules.",
       "completeButton": "Complete Profile",
       "saving": "Saving..."
     },
-
     "quickActions": {
       "browseModules": {
         "title": "Browse Modules",
@@ -1527,14 +1605,12 @@
         "description": "Plan your study schedule"
       }
     },
-
     "time": {
       "day": "day",
       "days": "days",
       "hoursShort": "h",
       "minutesShort": "m"
     },
-
     "errors": {
       "loadingError": "Error loading dashboard data"
     }
@@ -1617,7 +1693,6 @@
     "errors.updateYearError": "Failed to update year of study.",
     "errors.updateSpecializationError": "Failed to update specialization."
   },
-
   "lesson": {
     "loading": "Loading lesson...",
     "loadError": "Error loading lesson",
@@ -1643,7 +1718,6 @@
       "attempts": "Attempts",
       "completed": "completed",
       "bestScore": "Best score",
-
       "avgTime": "Avg time",
       "best": "Best",
       "consistency": "Consistency",
@@ -1661,7 +1735,6 @@
       "average": "Average",
       "needsImprovement": "Needs improvement"
     },
-
     "tabs": {
       "video": "Video",
       "document": "Document",
@@ -1681,7 +1754,6 @@
       "description": "Transcription of video content to aid understanding and review",
       "notAvailable": "No script available for this lesson"
     },
-
     "notes": {
       "loading": "Loading...",
       "title": "My Notes",
@@ -1698,7 +1770,6 @@
       "created": "Created",
       "updated": "Last updated"
     },
-
     "video": {
       "title": "Course Video",
       "loading": "Loading video...",
@@ -1712,13 +1783,11 @@
       "defaultFileName": "Course video",
       "notSupportedMessage": "Your browser does not support video playback."
     },
-
     "document": {
       "title": "Course Document",
       "loading": "Loading document...",
       "loadError": "Error loading document"
     },
-
     "chat": {
       "tokenUsage": "Token Usage",
       "tokensUsed": "Tokens Used",
@@ -1755,7 +1824,6 @@
       "accessDenied": "Access Denied",
       "planUpgradeRequired": "Plan Upgrade Required"
     },
-
     "quizHistory": {
       "title": "Quiz History",
       "loading": "Loading...",
@@ -1781,7 +1849,6 @@
       "noHistoryDescription": "You haven't attempted any quizzes yet. Start your first attempt!",
       "startFirstAttempt": "Start your first attempt"
     },
-
     "quiz": {
       "correctAnswerIs": "The correct answer is",
       "incorrectAnswer": "Incorrect answer",
@@ -1843,14 +1910,12 @@
       "correctAnswer": "Correct answer",
       "notAnswered": "Not answered",
       "restart": "Restart quiz",
-
       "grades": {
         "excellent": "Excellent",
         "veryGood": "Very good",
         "good": "Good",
         "needsImprovement": "Needs improvement"
       },
-
       "questions": {
         "title": "Questions",
         "1": {
@@ -1902,12 +1967,10 @@
       }
     }
   },
-
   "assistant": {
     "title": "AI Learning Assistant",
     "subtitle": "Your intelligent companion for personalized learning and academic support",
     "subtitleGeneral": "General mode activated - Ask me anything about any topic",
-
     "sessions": {
       "title": "Discussion Sessions",
       "generalChat": "General Chat",
@@ -1919,7 +1982,6 @@
       "noCourse": "No Course",
       "messages": "messages"
     },
-
     "chat": {
       "chatMode": "Chat Mode",
       "lessonSpecific": "Lesson Specific",
@@ -1938,7 +2000,6 @@
       "send": "Send",
       "error": "Error"
     },
-
     "welcome": {
       "title": "Welcome to AI Assistant",
       "description": "Your intelligent learning companion is here to help you with your studies. Select a lesson from the sidebar to start or continue a conversation.",
@@ -1946,11 +2007,9 @@
       "tip": "Select a session on the left to see conversation history or start discussing specific lessons.",
       "generalTip": "In general mode, you can discuss any topics that interest you!"
     },
-
     "error": {
       "dismiss": "Dismiss"
     },
-
     "footer": {
       "tip": "Tip: Press Enter to send messages quickly"
     }
@@ -1963,7 +2022,6 @@
     "progress": "Progress",
     "unlocked": "Unlocked",
     "notUnlocked": "Not unlocked",
-
     "stats": {
       "rewards": "Rewards",
       "outOf": "out of {total}",
@@ -1974,7 +2032,6 @@
       "currentRank": "Current rank",
       "ranking": "ranking"
     },
-
     "categories": {
       "all": "All",
       "beginner": "Beginner",
@@ -1983,14 +2040,12 @@
       "performance": "Performance",
       "time": "Time"
     },
-
     "rarity": {
       "common": "Common",
       "rare": "Rare",
       "epic": "Epic",
       "legendary": "Legendary"
     },
-
     "firstSteps": "First steps",
     "firstStepsDesc": "Complete your first course",
     "fireStreak": "Fire streak",
@@ -2007,7 +2062,6 @@
     "scienceMasterDesc": "Complete all science courses",
     "legend": "Legend",
     "legendDesc": "Study 365 consecutive days",
-
     "motivation": {
       "title": "Keep it up!",
       "description": "You have unlocked {unlocked} achievements out of {total}. Each accomplishment brings you closer to your learning goals.",
@@ -2036,7 +2090,6 @@
     "memberSince": "Member since {date}",
     "memberSinceShort": "Member since",
     "verificationSent": "Verification email sent successfully!",
-
     "personalInfo": "Personal information",
     "firstName": "First name",
     "lastName": "Last name",
@@ -2047,26 +2100,22 @@
     "cancel": "Cancel",
     "save": "Save",
     "notProvided": "Not provided",
-
     "statistics": "Statistics",
     "enrolledCourses": "Enrolled courses",
     "verificationStatus": "Verification status",
     "verified": "Verified",
     "notVerified": "Not verified",
-
     "academicInfo": "Academic information",
     "role": "Role",
     "yearOfStudy": "Year of study",
     "specialization": "Specialization",
     "notDefined": "Not defined",
-
     "courseEnrollments": "Course enrollments ({count})",
     "courseNumber": "Course #{number}",
     "courseDefault": "Course {number}",
     "courseDescription": "Course description",
     "enrolledOn": "Enrolled on {date}",
     "andMoreCourses": "And {count} more courses...",
-
     "quickActions": "Quick actions",
     "editProfile": "Edit profile",
     "updateInfo": "Update your info",
@@ -2076,7 +2125,6 @@
     "viewAllCourses": "View all courses",
     "settings": "Settings",
     "manageAccount": "Manage account",
-
     "lastUpdated": "Last updated on {date}"
   },
   "specializations": {
@@ -2099,7 +2147,6 @@
     "noSpecializationsTitle": "No specializations available",
     "noSpecializationsDescription": "Specializations for your year of study will be available soon."
   },
-
   "specializationDetail": {
     "exploreSubject": "Explore subject",
     "notFound": "Specialization not found",
@@ -2242,7 +2289,6 @@
       "program": "Official curriculum and learning objectives",
       "courses": "Interactive lessons and practical exercises"
     },
-
     "quickActionLinks": {
       "downloadExams": "Download Exams",
       "downloadExamsDesc": "Access past papers",

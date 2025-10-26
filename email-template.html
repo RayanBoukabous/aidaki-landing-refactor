@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Nouvelle Réclamation AIDAKI</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center; margin-bottom: 20px;">
+            <h1 style="margin: 0; font-size: 24px;">🚨 Nouvelle Réclamation AIDAKI</h1>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h2 style="color: #667eea; margin-top: 0;">📋 Informations du Client</h2>
+            <p><strong>Nom :</strong> {{from_name}}</p>
+            <p><strong>Email :</strong> {{from_email}}</p>
+            <p><strong>Téléphone :</strong> {{phone}}</p>
+            <p><strong>Langue :</strong> {{language}}</p>
+            <p><strong>Date :</strong> {{timestamp}}</p>
+        </div>
+        
+        <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h2 style="color: #856404; margin-top: 0;">⚠️ Détails de la Réclamation</h2>
+            <p><strong>Type de problème :</strong> {{category}}</p>
+            <p><strong>Détails :</strong> {{subcategory}}</p>
+        </div>
+        
+        <div style="background: #d1ecf1; padding: 20px; border-radius: 10px;">
+            <h2 style="color: #0c5460; margin-top: 0;">💬 Message du Client</h2>
+            <div style="background: white; padding: 15px; border-radius: 5px; border-left: 4px solid #17a2b8;">
+                {{message}}
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #e9ecef; border-radius: 10px;">
+            <p style="margin: 0; color: #6c757d;">
+                <strong>AIDAKI Support Team</strong><br>
+                Réponse requise dans les 24h
+            </p>
+        </div>
+    </div>
+</body>
+</html>

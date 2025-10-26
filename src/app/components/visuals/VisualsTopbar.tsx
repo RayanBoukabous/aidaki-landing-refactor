@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { getDirection } from "../../../i18n";
+import { smoothScrollTo } from "../../../utils/smoothScroll";
 
 export default function VisualsTopbar() {
   const { locale } = useParams();
@@ -16,6 +17,7 @@ export default function VisualsTopbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [currentLocale, setCurrentLocale] = useState(locale as string);
+
 
   // Navigation routes with the new structure
   const mainRoutes = [
@@ -35,6 +37,10 @@ export default function VisualsTopbar() {
         {
           name: "aboutUs.nav.ourVision",
           link: "/about#vision",
+        },
+        {
+          name: "aboutUs.nav.newEducationalApproach",
+          link: "/about#new-approach",
         },
         {
           name: "aboutUs.nav.effectOfAvatars",
@@ -150,7 +156,7 @@ export default function VisualsTopbar() {
         <div className="h-1 bg-gradient-to-r from-green-300 via-green-300 to-green-300"></div>
 
         <div
-          className={`mx-auto relative px-4 py-3 flex justify-between items-center ${
+          className={`mx-auto relative px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center ${
             isRTL ? "flex-row-reverse" : ""
           }`}
         >
@@ -159,18 +165,18 @@ export default function VisualsTopbar() {
             <div className="absolute inset-0 bg-green-200/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <img
               src="/images/logo-black.png"
-              className="w-12 md:w-16 h-auto relative z-10 transition-transform duration-300 group-hover:scale-110"
+              className="w-10 sm:w-12 md:w-16 h-auto relative z-10 transition-transform duration-300 group-hover:scale-110"
               alt="Logo"
             />
           </Link>
 
           {/* Mobile Right Side - Language Selector + Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-2 sm:gap-3">
             {/* Mobile Language Selector - Always Visible */}
 
             {/* Mobile Menu Button */}
             <button
-              className={`bg-green-700 z-50 p-3 rounded-xl focus:outline-none transition-all duration-300 ${
+              className={`bg-green-700 z-50 p-2 sm:p-3 rounded-xl focus:outline-none transition-all duration-300 ${
                 mobileMenuOpen
                   ? "bg-white/20 backdrop-blur-sm scale-110"
                   : "hover:bg-green-400/30"
@@ -255,7 +261,34 @@ export default function VisualsTopbar() {
                               key={item.name}
                               href={`/${locale}${item.link}`}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 transition-colors duration-200"
-                              onClick={() => setAboutDropdownOpen(false)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setAboutDropdownOpen(false);
+                                
+                                // If it's a hash link, navigate to about page first then scroll
+                                if (item.link.includes('#')) {
+                                  const hash = item.link.split('#')[1];
+                                  // Navigate to about page first
+                                  router.push(`/${locale}/about`);
+                                  // Wait for page to load, then scroll to the section
+                                  setTimeout(() => {
+                                    // Try multiple times to ensure the element exists
+                                    const scrollToSection = () => {
+                                      const element = document.getElementById(hash);
+                                      if (element) {
+                                        smoothScrollTo(`#${hash}`);
+                                      } else {
+                                        // If element not found, try again after 200ms
+                                        setTimeout(scrollToSection, 200);
+                                      }
+                                    };
+                                    scrollToSection();
+                                  }, 300);
+                                } else {
+                                  // Regular navigation
+                                  router.push(`/${locale}${item.link}`);
+                                }
+                              }}
                             >
                               {t(item.name)}
                             </Link>
@@ -267,6 +300,15 @@ export default function VisualsTopbar() {
                     <Link
                       href={`/${locale}${route.link}`}
                       className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-green-600 transition-colors duration-300 rounded-lg"
+                      onClick={(e) => {
+                        // If it's a hash link, use smooth scroll
+                        if (route.link.includes('#')) {
+                          e.preventDefault();
+                          const hash = route.link.split('#')[1];
+                          smoothScrollTo(`#${hash}`);
+                        }
+                        // For regular links, let the default behavior handle it
+                      }}
                     >
                       {t(route.name)}
                     </Link>
@@ -354,7 +396,7 @@ export default function VisualsTopbar() {
           ></div>
 
           {/* Navigation Links */}
-          <ul className="flex flex-col items-center gap-6 text-xl mb-8">
+          <ul className="flex flex-col items-center gap-4 sm:gap-6 text-lg sm:text-xl mb-6 sm:mb-8 px-4">
             {mainRoutes.map((route, index) => (
               <li
                 key={route.name}
@@ -381,7 +423,34 @@ export default function VisualsTopbar() {
                           key={item.name}
                           className="text-green-200 hover:text-white transition-colors duration-300 px-4 py-2 text-base block"
                           href={`/${locale}${item.link}`}
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setMobileMenuOpen(false);
+                            
+                            // If it's a hash link, navigate to about page first then scroll
+                            if (item.link.includes('#')) {
+                              const hash = item.link.split('#')[1];
+                              // Navigate to about page first
+                              router.push(`/${locale}/about`);
+                              // Wait for page to load, then scroll to the section
+                              setTimeout(() => {
+                                // Try multiple times to ensure the element exists
+                                const scrollToSection = () => {
+                                  const element = document.getElementById(hash);
+                                  if (element) {
+                                    smoothScrollTo(`#${hash}`);
+                                  } else {
+                                    // If element not found, try again after 200ms
+                                    setTimeout(scrollToSection, 200);
+                                  }
+                                };
+                                scrollToSection();
+                              }, 300);
+                            } else {
+                              // Regular navigation
+                              router.push(`/${locale}${item.link}`);
+                            }
+                          }}
                         >
                           {t(item.name)}
                         </Link>

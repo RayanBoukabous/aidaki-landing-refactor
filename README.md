@@ -1,1 +1,116 @@
-# AIDAKI - Educational Platform\n\nAn interactive educational platform for elementary to high school students with comprehensive internationalization and RTL support.\n\n## Features\n\n- 🌍 **Internationalization**: Full support for French (fr), English (en), and Arabic (ar)\n- 🔄 **RTL/LTR Support**: Automatic right-to-left layout for Arabic\n- 🎓 **Educational Platform**: Interactive courses and learning materials\n- 📱 **Responsive Design**: Works on all devices\n- 🔐 **Authentication**: Secure  and registration\n- 📊 **Progress Tracking**: Monitor learning progress\n- 🏆 **Achievements**: Reward system for students\n- 🎨 **Arabic Typography**: Optimized fonts and text rendering\n\n## Internationalization (i18n) & RTL Support\n\nThis application supports multiple languages with full RTL (Right-to-Left) support for Arabic.\n\n### Supported Languages\n\n- **French (fr)** - Default language, LTR\n- **English (en)** - LTR\n- **Arabic (ar)** - RTL with Arabic typography\n\n### Language Features\n\n- **Automatic Direction Detection**: Layout automatically flips for RTL languages\n- **Arabic Font Support**: Cairo font for beautiful Arabic typography\n- **RTL-Aware Components**: All UI elements adapt to text direction\n- **Direction-Aware Icons**: Icons and arrows flip appropriately\n- **Form Layouts**: Input fields align correctly for each direction\n\n### URL Structure\n\nThe application uses locale-prefixed routes with proper RTL support:\n\n- French: `/fr/...` (LTR)\n- English: `/en/...` (LTR)\n- Arabic: `/ar/...` (RTL)\n\nExamples:\n- Home: `/fr/`, `/en/`, `/ar/`\n- : `/fr/`, `/en/`, `/ar/`\n- Dashboard: `/fr/dashboard`, `/en/dashboard`, `/ar/dashboard`\n\n### RTL Implementation Details\n\n#### CSS & Styling\n- **Direction Classes**: `.rtl` and `.ltr` for explicit direction control\n- **Logical Properties**: Uses `margin-inline-start`, `padding-inline-end`, etc.\n- **Flexbox Direction**: Automatic reversal for RTL languages\n- **Text Alignment**: Smart alignment based on language direction\n\n#### Font Configuration\n- **Inter Font**: For Latin scripts (French, English)\n- **Cairo Font**: For Arabic script with proper ligatures and kerning\n- **Font Features**: Optimized typography with liga, kern, and calt features\n\n#### Component RTL Features\n- **Language Switcher**: Dropdown adapts position for RTL\n- **Forms**: Input icons and validation messages position correctly\n- **Navigation**: Menu items and breadcrumbs reverse for RTL\n- **Cards & Layouts**: Flex direction and spacing adapt automatically\n\n### Adding New RTL Languages\n\n1. **Add the locale** to `src/i18n.ts`:\n   ```typescript\n   export const locales = ['en', 'fr', 'ar', 'he'] as const; // Add Hebrew\n   export const rtlLocales = ['ar', 'he'] as const; // Add to RTL list\n   ```\n\n2. **Create translation file** in `src/messages/`:\n   ```bash\n   touch src/messages/he.json\n   ```\n\n3. **Add Hebrew font** (if needed) to layout:\n   ```typescript\n   const hebrewFont = Alef({ \n     subsets: ['hebrew', 'latin'],\n     variable: '--font-hebrew'\n   });\n   ```\n\n## Getting Started\n\n### Prerequisites\n\n- Node.js 18+ \n- npm or yarn\n\n### Installation\n\n1. **Clone the repository**:\n   ```bash\n   git clone https://github.com/nezlicodes/educ-nuxt-client.git\n   cd educ-nuxt-client\n   ```\n\n2. **Install dependencies**:\n   ```bash\n   npm install\n   ```\n\n3. **Run the development server**:\n   ```bash\n   npm run dev\n   ```\n\n4. **Open your browser** and navigate to `http://localhost:3000`\n\nThe app will automatically redirect to the default locale (`/fr`).\n\n### Testing RTL Support\n\n1. Navigate to `http://localhost:3000/ar` to see Arabic RTL layout\n2. Use the language switcher (🌐) to switch between languages\n3. Notice how the layout flips and text aligns correctly\n\n## Environment Variables\n\nCreate a `.env.local` file in the root directory:\n\n```env\nNEXT_PUBLIC_API_URL=your_api_url\nNEXT_PUBLIC_CHATBOT_URL=your_chatbot_url\nNEXT_PUBLIC_MINIO_URL=your_minio_url\n```\n\n## Project Structure\n\n```\nsrc/\n├── app/\n│   ├── [locale]/              # Locale-based routing\n│   │   ├── dashboard/         # Dashboard pages\n│   │   ├── /            #  page\n│   │   ├── register/         # Registration page\n│   │   ├── layout.tsx        # Locale layout with font support\n│   │   └── page.tsx          # Home page\n│   ├── components/           # Shared components\n│   ├── services/            # API services\n│   └── globals.css          # Global styles with RTL support\n├── messages/                # Translation files\n│   ├── en.json             # English translations\n│   ├── fr.json             # French translations\n│   └── ar.json             # Arabic translations\n├── i18n.ts                 # i18n config with RTL utilities\n├── navigation.ts           # Locale-aware navigation\n└── middleware.ts           # Middleware for auth + i18n\n```\n\n## Key Technologies\n\n- **Next.js 15** - React framework with App Router\n- **next-intl** - Internationalization library\n- **TypeScript** - Type safety\n- **Tailwind CSS** - Styling with RTL support\n- **Cairo Font** - Arabic typography\n- **Inter Font** - Latin typography\n- **Lucide React** - Icons\n\n## Development Notes\n\n### RTL Development Guidelines\n\n1. **Use Direction-Aware Classes**:\n   ```tsx\n   // ✅ Good - adapts to direction\n   <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>\n   \n   // ❌ Avoid - hardcoded direction\n   <div className=\"flex items-center\">\n   ```\n\n2. **Use Logical Properties**:\n   ```css\n   /* ✅ Good - direction agnostic */\n   .element {\n     margin-inline-start: 1rem;\n     padding-inline-end: 0.5rem;\n   }\n   \n   /* ❌ Avoid - direction specific */\n   .element {\n     margin-left: 1rem;\n     padding-right: 0.5rem;\n   }\n   ```\n\n3. **Icon Direction**:\n   ```tsx\n   // ✅ Good - flips for RTL\n   <ArrowRight className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`} />\n   ```\n\n4. **Text Alignment**:\n   ```tsx\n   // ✅ Good - uses text direction\n   <p className={`${isRTL ? 'text-right' : 'text-left'}`}>\n   ```\n\n### Authentication Flow\n\n- Authentication middleware works with i18n middleware\n- Redirects maintain locale context\n- Protected routes work with locale prefixes\n- /register forms adapt to RTL layout\n\n### Best Practices\n\n1. **Always use locale-aware navigation**:\n   ```tsx\n   import { Link } from '../../navigation';\n   // Not: import Link from 'next/link';\n   ```\n\n2. **Use translation keys for all user-facing text**:\n   ```tsx\n   const t = useTranslations();\n   return <button>{t('common.save')}</button>;\n   ```\n\n3. **Test in all supported languages**:\n   ```bash\n   # Test different locales\n   http://localhost:3000/fr\n   http://localhost:3000/en\n   http://localhost:3000/ar  # Check RTL layout\n   ```\n\n4. **Handle text length differences**:\n   ```tsx\n   // Arabic text can be longer/shorter than English\n   <div className=\"min-h-[40px] flex items-center\">\n     {t('navigation.dashboard')}\n   </div>\n   ```\n\n## Deployment\n\n### Build\n\n```bash\nnpm run build\n```\n\n### Docker\n\n```bash\ndocker build -t aidaki-client .\ndocker run -p 3000:3000 aidaki-client\n```\n\n## Contributing\n\nWhen adding new features:\n\n1. **Add translations** for all supported languages (fr, en, ar)\n2. **Use locale-aware navigation** components\n3. **Test RTL layout** with Arabic locale\n4. **Use direction-aware styling** for new components\n5. **Test language switching** between all locales\n6. **Update documentation** if needed\n\n### Adding New Languages\n\n1. Update `src/i18n.ts` with new locale\n2. Add to RTL list if applicable\n3. Create translation file in `src/messages/`\n4. Add font support if needed\n5. Test thoroughly in new language\n\n### RTL Testing Checklist\n\n- [ ] Layout flips correctly\n- [ ] Text aligns to the right\n- [ ] Icons face correct direction\n- [ ] Forms work properly\n- [ ] Navigation flows correctly\n- [ ] Language switcher positions correctly\n- [ ] All content is translated\n\n## License\n\n© 2025 AIDAKI - All rights reserved\n\n---\n\n## Language Examples\n\n**French (Default)**: Plateforme d'apprentissage moderne\n**English**: Modern learning platform\n**Arabic**: منصة التعلم الحديثة\n\nThe platform automatically adapts layout, fonts, and text direction based on the selected language, providing a native experience for users of all supported languages.\n
+# AIDAKI Landing Page - Refactored
+
+Une landing page moderne et ultra-responsive pour AIDAKI, développée avec Next.js 15, TypeScript, et Tailwind CSS.
+
+## 🚀 Fonctionnalités
+
+- **Ultra-responsive** : Optimisé pour tous les écrans (mobile, tablette, desktop)
+- **Multilingue** : Support complet pour Français, Anglais, et Arabe (RTL)
+- **Formulaire de réclamations** : Intégration EmailJS pour l'envoi automatique d'emails
+- **Animations fluides** : Framer Motion pour des transitions élégantes
+- **Design moderne** : Interface utilisateur professionnelle et attractive
+
+## 🛠️ Technologies
+
+- **Next.js 15** avec App Router
+- **TypeScript** pour la sécurité des types
+- **Tailwind CSS** pour le styling responsive
+- **next-intl** pour l'internationalisation
+- **Framer Motion** pour les animations
+- **EmailJS** pour l'envoi d'emails
+- **Lucide React** pour les icônes
+
+## 📦 Installation
+
+```bash
+# Cloner le repository
+git clone https://github.com/RayanBoukabous/aidaki-landing-refactor.git
+cd aidaki-landing-refactor
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
+npm run dev
+```
+
+## 🌐 Déploiement sur Vercel
+
+1. **Connecter le repo** à Vercel
+2. **Configurer les variables d'environnement** :
+   - `EMAILJS_SERVICE_ID=service_95qbhek`
+   - `EMAILJS_TEMPLATE_ID=template_complaint`
+   - `EMAILJS_PUBLIC_KEY=wrwKmIvDZ_vJ7h4TN`
+   - `NEXT_PUBLIC_API_URL=https://aidaki.ai/api`
+   - `NEXT_PUBLIC_API_BASE_URL=https://aidaki.ai/api`
+
+3. **Déployer** : Vercel détectera automatiquement Next.js et déploiera
+
+## 📱 Responsivité
+
+Le projet est optimisé pour tous les breakpoints :
+- **xs (320px+)** : Très petits écrans
+- **sm (640px+)** : Mobiles
+- **md (768px+)** : Tablettes  
+- **lg (1024px+)** : Desktop
+- **xl (1280px+)** : Grands écrans
+
+## 🌍 Internationalisation
+
+Support complet pour :
+- **Français** (fr) - Langue par défaut
+- **Anglais** (en) - Traduction complète
+- **Arabe** (ar) - Support RTL complet
+
+## 📧 Formulaire de Réclamations
+
+Le formulaire de réclamations utilise EmailJS pour envoyer automatiquement les emails à `rayanboukabous74@gmail.com` avec :
+- Design professionnel et responsive
+- Validation en temps réel
+- Support multilingue
+- Gestion des erreurs
+
+## 🎨 Design System
+
+- **Couleurs principales** : Vert (#10B981) et dégradés
+- **Typographie** : Hiérarchie claire et lisible
+- **Espacement** : Système cohérent et responsive
+- **Animations** : Transitions fluides et naturelles
+
+## 📂 Structure du Projet
+
+```
+src/
+├── app/
+│   ├── [locale]/          # Pages internationalisées
+│   ├── api/               # Routes API
+│   ├── components/        # Composants réutilisables
+│   └── globals.css        # Styles globaux
+├── messages/              # Fichiers de traduction
+├── hooks/                 # Hooks personnalisés
+├── services/              # Services API
+└── utils/                 # Utilitaires
+```
+
+## 🔧 Scripts Disponibles
+
+```bash
+npm run dev          # Serveur de développement
+npm run build        # Build de production
+npm run start        # Serveur de production
+npm run lint         # Vérification du code
+```
+
+## 📄 Licence
+
+Ce projet est propriétaire d'AIDAKI.
+
+## 👨‍💻 Développeur
+
+**Rayan Boukabous** - Développeur Frontend Senior
+- Email: rayanboukabous74@gmail.com
+- GitHub: @RayanBoukabous
+
+---
+
+*Développé avec ❤️ pour AIDAKI*

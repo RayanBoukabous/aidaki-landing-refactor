@@ -7,11 +7,13 @@ import VisualsTopbar from "../../components/visuals/VisualsTopbar";
 import CountDown from "../../components/visuals/CountDown";
 import { useTranslations } from "next-intl";
 import Footer from "../../components/Footer";
+import ComplaintForm from "../../components/ComplaintForm";
 
 export default function SupportAndAssistancePage() {
   const t = useTranslations();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showComplaintForm, setShowComplaintForm] = useState(false);
 
   useEffect(() => {
     // Check if user has a token (equivalent to authStore.isLoggedIn from original)
@@ -33,6 +35,7 @@ export default function SupportAndAssistancePage() {
           <VisualsTopbar />
         </div>
       )}
+
       {/* Main content section */}
       <section className="relative py-16 md:py-24 bg-green-50">
         {/* Decorative elements */}
@@ -74,9 +77,8 @@ export default function SupportAndAssistancePage() {
           {/* Links Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Réclamation Link */}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeyO0ueHJTNqxsSTQ-0uXZAizIDvO4xHYe-fMbiCCbaUHR5JQ/viewform"
-              target="_blank"
+            <button
+              onClick={() => setShowComplaintForm(true)}
               className="group bg-gradient-to-br from-red-500 to-orange-500 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
             >
               <div className="flex justify-center mb-4">
@@ -103,7 +105,7 @@ export default function SupportAndAssistancePage() {
               <p className="text-white text-opacity-90">
                 {t("support.complaint_description")}
               </p>
-            </a>
+            </button>
 
             {/* Signalement Link */}
             <a
@@ -139,6 +141,30 @@ export default function SupportAndAssistancePage() {
           </div>
         </div>
       </section>
+
+      {/* Complaint Form Modal */}
+      {showComplaintForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-800">
+                {t("complaintForm.title")}
+              </h2>
+              <button
+                onClick={() => setShowComplaintForm(false)}
+                className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6">
+              <ComplaintForm />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Bottom wavy separator */}
       <div className="wavy-separator-bottom">

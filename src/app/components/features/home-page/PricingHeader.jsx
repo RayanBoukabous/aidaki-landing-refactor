@@ -19,7 +19,8 @@ const FeaturesHomePagePricingHeader = () => {
   }
 
   return (
-    <section 
+    <section
+      id="pricing-header"
       className={`
         relative py-16 md:py-24 overflow-hidden 
         bg-gradient-to-br from-green-500 via-green-600 to-blue-600
@@ -53,7 +54,7 @@ const FeaturesHomePagePricingHeader = () => {
         </motion.div>
 
         {/* Enhanced Video Container */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.02 }}
@@ -62,7 +63,7 @@ const FeaturesHomePagePricingHeader = () => {
           className="relative max-w-5xl mx-auto"
         >
 
-        
+
 
           {/* Main video container with enhanced styling */}
           <div className="bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-sm rounded-3xl p-4 md:p-6 shadow-2xl border border-white/20">
@@ -71,14 +72,14 @@ const FeaturesHomePagePricingHeader = () => {
               {/* Video player or thumbnail */}
               {isPlaying ? (
                 <div className="aspect-video relative">
-               {   <video
+                  {<video
                     className="absolute inset-0 w-full h-full rounded-2xl"
                     controls
                     autoPlay
                   >
                     <source src="https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/Chatbot/chatbot+arab.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
-                  </video> }
+                  </video>}
 
                   {/* Enhanced close button - RTL aware */}
                   <motion.button
@@ -114,7 +115,7 @@ const FeaturesHomePagePricingHeader = () => {
                   className="aspect-video relative cursor-pointer group"
                   onClick={playVideo}
                 >
-                  { <img
+                  {<img
                     src="/images/demo-thumbnail.jpeg"
                     alt={t('pricingHeader.videoThumbnail')}
                     className="w-full h-full object-cover rounded-2xl"
@@ -125,14 +126,14 @@ const FeaturesHomePagePricingHeader = () => {
                     <motion.div
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.05, 1],
                         opacity: [0.9, 1, 0.9]
                       }}
-                      transition={{ 
-                        duration: 2, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
                       }}
                       className="relative"
                     >
@@ -156,7 +157,7 @@ const FeaturesHomePagePricingHeader = () => {
                     </motion.div>
                   </div>
 
-          
+
                 </motion.div>
               )}
             </div>
@@ -175,7 +176,7 @@ const FeaturesHomePagePricingHeader = () => {
                 </p>
               </div>
             </div>
-         
+
           </div>
         </motion.div>
       </div>

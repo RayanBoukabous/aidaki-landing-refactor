@@ -1,8 +1,8 @@
-import { 
-  Course, 
-  Lesson, 
-  Specialization, 
-  StudyModule, 
+import {
+  Course,
+  Lesson,
+  Specialization,
+  StudyModule,
   YearOfStudy,
   CoursesResponse,
   LessonResponse,
@@ -13,12 +13,12 @@ import {
 } from '@/types/api';
 
 // Base API configuration
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://aidaki.ai/api';
 
 class ApiService {
   private async fetchWithHeaders<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint}`;
-    
+
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ class ApiService {
   }): Promise<Course[]> {
     const params = new URLSearchParams();
     params.append('q', query);
-    
+
     if (filters?.specializationId) {
       params.append('specializationId', filters.specializationId.toString());
     }
@@ -153,7 +153,7 @@ export const apiUtils = {
     return [...items].sort((a, b) => {
       const titleA = a.titleTranslations?.[locale] || a.title || '';
       const titleB = b.titleTranslations?.[locale] || b.title || '';
-      
+
       const comparison = titleA.localeCompare(titleB);
       return direction === 'desc' ? -comparison : comparison;
     });
@@ -172,7 +172,7 @@ export const apiUtils = {
   /**
    * Group items by translation status
    */
-  groupByTranslationStatus<T extends { 
+  groupByTranslationStatus<T extends {
     titleTranslations?: Record<Locale, string> | null;
     supportedLocales: Locale[];
   }>(
@@ -203,7 +203,7 @@ export const apiUtils = {
   /**
    * Get translation statistics for a collection
    */
-  getTranslationStats<T extends { 
+  getTranslationStats<T extends {
     titleTranslations?: Record<Locale, string> | null;
     descriptionTranslations?: Record<Locale, string> | null;
     supportedLocales: Locale[];

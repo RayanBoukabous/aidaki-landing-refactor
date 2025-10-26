@@ -5,11 +5,11 @@ import { motion } from 'framer-motion'
 
 const FeatureCard = ({ title, description, image }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5, scale: 1.02 }}
-      transition={{ 
+      transition={{
         duration: 0.5,
         hover: { duration: 0.3, type: "spring", stiffness: 300 }
       }}
@@ -30,7 +30,7 @@ const FeatureCard = ({ title, description, image }) => {
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-green-400 via-green-500 to-blue-500 flex items-center justify-center">
-            <motion.div 
+            <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.8 }}
               className="text-white w-16 h-16"
@@ -55,7 +55,7 @@ const FeatureCard = ({ title, description, image }) => {
 
       {/* Gentle gradient overlay */}
       <div className="absolute inset-4 rounded-2xl bg-gradient-to-t from-black/40 via-transparent to-transparent z-20"></div>
-      
+
       {/* Title Section - Always visible */}
       <div className="absolute bottom-4 left-4 right-4 z-30">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-green-100">
@@ -67,15 +67,15 @@ const FeatureCard = ({ title, description, image }) => {
       </div>
 
       {/* Interactive Hover Overlay */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileHover={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
         className="hover-overlay absolute inset-0 bg-gradient-to-br from-green-500/95 via-green-600/95 to-blue-600/95 rounded-3xl flex flex-col justify-center items-center p-6 text-white z-40 opacity-0 group-hover:opacity-100"
       >
         {/* Fun icon with bounce animation */}
-        <motion.div 
-          whileHover={{ 
+        <motion.div
+          whileHover={{
             scale: 1.2,
             rotate: [0, -10, 10, -10, 0],
             transition: { duration: 0.5 }
@@ -97,35 +97,20 @@ const FeatureCard = ({ title, description, image }) => {
             />
           </svg>
         </motion.div>
-        
+
         {/* Title with fun styling */}
         <h3 className="text-xl md:text-2xl font-bold text-center mb-4 ">
           {title}
         </h3>
-        
+
         {/* Colorful divider */}
         <div className="w-16 h-1 bg-gradient-to-r from-green-300 to-black rounded-full mb-6"></div>
-        
+
         {/* Description */}
         <p className="text-white/90 text-center leading-relaxed text-sm md:text-base max-w-xs font-medium">
           {description}
         </p>
 
-        {/* Call-to-action indicator */}
-        <motion.div 
-          animate={{ 
-            y: [0, -4, 0],
-            opacity: [0.7, 1, 0.7]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="mt-6 text-green-300 text-sm font-semibold"
-        >
-          Learn More ✨
-        </motion.div>
       </motion.div>
 
       <style jsx>{`

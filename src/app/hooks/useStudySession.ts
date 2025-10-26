@@ -62,9 +62,9 @@ export const useActivityTracker = (options = {}) => {
     intervalRef.current = setInterval(() => {
       const now = Date.now();
       const timeSinceLastActivity = now - lastActivityRef.current;
-      
+
       setIdleTime(timeSinceLastActivity);
-      
+
       if (timeSinceLastActivity > idleThreshold && isActive) {
         handleActivityChange(false);
       }
@@ -117,7 +117,7 @@ export const useStudySession = (options = {}) => {
   const heartbeatIntervalRef = useRef(null);
   const pauseTimeRef = useRef(0);
   const lastHeartbeatRef = useRef(0);
-  
+
   // Request throttling
   const heartbeatQueueRef = useRef(new Map());
   const isProcessingHeartbeatsRef = useRef(false);
@@ -202,7 +202,7 @@ export const useStudySession = (options = {}) => {
    */
   const queueHeartbeat = useCallback((heartbeatData) => {
     const now = Date.now();
-    
+
     // Don't send heartbeats too frequently (minimum 30 seconds)
     if (now - lastHeartbeatRef.current < 30000) {
       return;
@@ -210,7 +210,7 @@ export const useStudySession = (options = {}) => {
 
     // Add to queue
     heartbeatQueueRef.current.set(heartbeatData.sessionId, heartbeatData);
-    
+
     // Process queue if not already processing
     if (!isProcessingHeartbeatsRef.current) {
       processHeartbeatQueue();
@@ -286,7 +286,7 @@ export const useStudySession = (options = {}) => {
 
       // Start session via API
       const response = await studyTimeService.startSession(sessionData);
-      
+
       if (!response.session || !response.session.sessionId) {
         throw new Error('Invalid session response from server');
       }
@@ -451,7 +451,7 @@ export const useStudySession = (options = {}) => {
    */
   const updateActivity = useCallback((metadata = {}) => {
     activityTracker.resetActivity();
-    
+
     // Send immediate heartbeat if enough time has passed
     const timeSinceLastHeartbeat = Date.now() - lastHeartbeatRef.current;
     if (timeSinceLastHeartbeat > 30000 && state.sessionData) {
@@ -476,8 +476,8 @@ export const useStudySession = (options = {}) => {
   const getSessionStats = useCallback(() => {
     const sessions = JSON.parse(localStorage.getItem('study_sessions') || '[]');
     const today = new Date().toDateString();
-    
-    const todaysSessions = sessions.filter(session => 
+
+    const todaysSessions = sessions.filter(session =>
       new Date(session.startTime).toDateString() === today
     );
 
@@ -507,7 +507,7 @@ export const useStudySession = (options = {}) => {
         // Use a fire-and-forget approach for cleanup
         endSession().catch(console.error);
       }
-      
+
       // Always cleanup timers
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -528,9 +528,9 @@ export const useStudySession = (options = {}) => {
             timestamp: Date.now(),
             metadata: { finalHeartbeat: true }
           };
-          
+
           navigator.sendBeacon(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api'}/study-time/heartbeat`,
+            `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://aidaki.ai/api'}/study-time/heartbeat`,
             JSON.stringify(heartbeatData)
           );
         }
@@ -588,21 +588,21 @@ export const useStudySession = (options = {}) => {
     isPaused: state.isPaused,
     error: state.error,
     loading: state.loading,
-    
+
     // Activity tracking
     isActive: activityTracker.isActive,
     idleTime: activityTracker.idleTime,
-    
+
     // Actions
     startSession,
     endSession,
     pauseSession,
     resumeSession,
     updateActivity,
-    
+
     // Utilities
     getSessionStats,
-    
+
     // Debug info (only in development)
     ...(process.env.NODE_ENV === 'development' && {
       _debug: {

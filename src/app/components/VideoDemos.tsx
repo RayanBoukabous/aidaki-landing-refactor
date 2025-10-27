@@ -64,7 +64,7 @@ const VideoShowcase = () => {
       videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+franc%CC%A7ais.mp4",
       gradient: "from-emerald-600 via-green-600 to-cyan-600",
       accentColor: "emerald",
-      icon: "🇫🇷",
+      icon: "📚",
       pattern: "circles"
     },
     {
@@ -246,13 +246,13 @@ const VideoShowcase = () => {
           <div className="relative z-10 p-6">
             
             {/* HEADER WITH ICON AND TITLE */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center justify-center mb-4">
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 bg-gradient-to-br ${video.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
                   <span className="text-2xl">{video.icon}</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                  <h3 className="font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300 text-center font-cairo" lang="ar">
                     {t(`${video.key}.title`)}
                   </h3>
                 </div>
@@ -316,7 +316,7 @@ const VideoShowcase = () => {
   };
 
   return (
-    <div className="relative w-full py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30" dir={direction}>
+    <div id="video-demos" className="relative w-full py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30" dir={direction}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         
         {/* ULTRA PROFESSIONAL HEADER */}
@@ -327,11 +327,11 @@ const VideoShowcase = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-poppins">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center" lang="ar">
             {tVideos("sectionTitle")}
           </h2>
           
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-poppins">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo text-center" lang="ar">
             {tVideos("sectionDescription")}
           </p>
           
@@ -368,17 +368,30 @@ const VideoShowcase = () => {
           <div className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl">
             <div className="max-w-2xl mx-auto">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                Prêt à découvrir plus de contenu ?
+                Commence ton aventure avec AIDAKI !
               </h3>
               <p className="text-emerald-100 text-lg mb-6">
-                Rejoignez des milliers d'étudiants qui apprennent avec AIDAKI
+                Rejoins des milliers d'étudiants qui transforment leur apprentissage
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <a 
+                  href="https://elearning.aidaki.ai/en/login" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
+                >
                   Commencer maintenant
-                </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-emerald-600 transition-all duration-300 hover:scale-105">
-                  Voir tous les cours
+                </a>
+                <button 
+                  onClick={() => {
+                    const element = document.getElementById('video-demos');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-emerald-600 transition-all duration-300 hover:scale-105"
+                >
+                  Voir un aperçu des cours
                 </button>
               </div>
             </div>
@@ -414,7 +427,7 @@ const VideoShowcase = () => {
                       <span className="text-2xl">{selectedVideo.icon}</span>
                     </div>
                     <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                      <h2 className="text-2xl sm:text-3xl font-bold text-white font-cairo" lang="ar">
                         {t(`${selectedVideo.key}.title`)}
                       </h2>
                     </div>

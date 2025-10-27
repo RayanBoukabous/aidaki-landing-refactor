@@ -27,6 +27,9 @@ import AppDownloadSection from "../components/AppDownloadSection";
 // Import Footer component
 import Footer from "../components/Footer";
 
+// Import BackToTop component
+import BackToTop from "../components/BackToTop";
+
 export default function HomePage() {
   const router = useRouter();
   const t = useTranslations();
@@ -121,6 +124,9 @@ export default function HomePage() {
 
       {/* Add Footer */}
       <Footer />
+
+      {/* Back to Top Button */}
+      <BackToTop />
 
       {/* Dropdown backdrop */}
       {isDropdownOpen && (

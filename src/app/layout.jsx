@@ -12,12 +12,13 @@ const cairo = Cairo({
   subsets: ['arabic', 'latin'],
   variable: '--font-cairo',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 })
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`${poppins.variable} ${cairo.variable} font-poppins antialiased`}>
+    <html>
+      <body className={`${poppins.variable} ${cairo.variable} antialiased`}>
         {children}
       </body>
     </html>

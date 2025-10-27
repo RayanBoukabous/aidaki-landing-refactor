@@ -52,20 +52,20 @@ const FeaturesHomePageCourses = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-poppins"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center" lang="ar"
           >
-              {t("title")}
+            {t("title")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo" lang="ar"
           >
             {t("description")}
           </motion.p>
-          </motion.div>
+        </motion.div>
 
         {/* DESIGN RÉVOLUTIONNAIRE RESPONSIVE - LAYOUT OPTIMISÉ SANS SUPERPOSITION */}
         <div className="relative max-w-7xl mx-auto py-12 sm:py-16 hidden sm:block">
@@ -73,70 +73,10 @@ const FeaturesHomePageCourses = () => {
           {/* CONTAINER PRINCIPAL AVEC ESPACEMENT OPTIMAL RESPONSIVE */}
           <div className="grid grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center">
 
-            {/* MODULES À GAUCHE - RESPONSIVE */}
-            <div className="col-span-12 lg:col-span-7">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-
-                {/* Ligne 1 */}
-                <RevolutionaryModuleCard
-                  label={t("specialization.mathematics")}
-                  gradient="from-emerald-800 via-green-700 to-teal-800"
-            delay={0.3}
-                  icon="🔢"
-                  pattern="geometric"
-                  onCardClick={handleCardClick}
-                />
-                <RevolutionaryModuleCard
-                  label={t("specialization.technology")}
-                  gradient="from-green-600 via-emerald-600 to-green-800"
-            delay={0.4}
-                  icon="💻"
-                  pattern="circuit"
-                  onCardClick={handleCardClick}
-                />
-
-                {/* Ligne 2 */}
-                <RevolutionaryModuleCard
-                  label={t("specialization.languages")}
-                  gradient="from-teal-500 via-green-500 to-emerald-600"
-            delay={0.5}
-                  icon="🌐"
-                  pattern="waves"
-                  onCardClick={handleCardClick}
-                />
-                <RevolutionaryModuleCard
-                  label={t("specialization.science")}
-                  gradient="from-green-700 via-teal-700 to-emerald-800"
-            delay={0.6}
-                  icon="🔬"
-                  pattern="molecular"
-                  onCardClick={handleCardClick}
-                />
-
-                {/* Ligne 3 */}
-                <RevolutionaryModuleCard
-                  label={t("specialization.literature")}
-                  gradient="from-lime-600 via-green-500 to-emerald-600"
-            delay={0.7}
-                  icon="📚"
-                  pattern="texture"
-                  onCardClick={handleCardClick}
-                />
-                <RevolutionaryModuleCard
-                  label={t("specialization.management")}
-                  gradient="from-emerald-600 via-green-500 to-teal-600"
-            delay={0.8}
-                  icon="💼"
-                  pattern="network"
-                  onCardClick={handleCardClick}
-                />
-              </div>
-            </div>
-
-            {/* ROBOT À DROITE - RESPONSIVE */}
-            <div className="col-span-12 lg:col-span-5 flex justify-center lg:justify-end mt-8 lg:mt-0">
+            {/* ROBOT À GAUCHE POUR FR/EN, À DROITE POUR AR - RESPONSIVE */}
+            <div className={`col-span-12 lg:col-span-5 flex justify-center ${locale === 'ar' ? 'lg:order-2' : 'lg:order-1'} mt-8 lg:mt-0`}>
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: locale === 'ar' ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1.2, delay: 0.2, type: "spring", stiffness: 100 }}
                 viewport={{ once: true }}
@@ -150,6 +90,66 @@ const FeaturesHomePageCourses = () => {
                   />
                 </div>
               </motion.div>
+            </div>
+
+            {/* MODULES À DROITE POUR FR/EN, À GAUCHE POUR AR - RESPONSIVE */}
+            <div className={`col-span-12 lg:col-span-7 ${locale === 'ar' ? 'lg:order-1' : 'lg:order-2'}`}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+
+                {/* Ligne 1 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.mathematics")}
+                  gradient="from-emerald-800 via-green-700 to-teal-800"
+                  delay={0.3}
+                  icon="🔢"
+                  pattern="geometric"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.technology")}
+                  gradient="from-green-600 via-emerald-600 to-green-800"
+                  delay={0.4}
+                  icon="💻"
+                  pattern="circuit"
+                  onCardClick={handleCardClick}
+                />
+
+                {/* Ligne 2 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.languages")}
+                  gradient="from-teal-500 via-green-500 to-emerald-600"
+                  delay={0.5}
+                  icon="🌐"
+                  pattern="waves"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.science")}
+                  gradient="from-green-700 via-teal-700 to-emerald-800"
+                  delay={0.6}
+                  icon="🔬"
+                  pattern="molecular"
+                  onCardClick={handleCardClick}
+                />
+
+                {/* Ligne 3 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.literature")}
+                  gradient="from-lime-600 via-green-500 to-emerald-600"
+                  delay={0.7}
+                  icon="📚"
+                  pattern="texture"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.management")}
+                  gradient="from-emerald-600 via-green-500 to-teal-600"
+                  delay={0.8}
+                  icon="💼"
+                  pattern="network"
+                  onCardClick={handleCardClick}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -167,11 +167,11 @@ const FeaturesHomePageCourses = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-green-500/20 rounded-full blur-lg scale-110 sm:scale-125" />
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-white via-emerald-50 to-green-100 flex items-center justify-center shadow-xl border-3 border-emerald-200/50">
-              <img
-                src="/images/logo-black.png"
-                alt="AIDAKI Logo"
+                <img
+                  src="/images/logo-black.png"
+                  alt="AIDAKI Logo"
                   className="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md"
-              />
+                />
               </div>
             </div>
           </motion.div>
@@ -214,11 +214,11 @@ const FeaturesHomePageCourses = () => {
               delay={0.7}
               onCardClick={handleCardClick}
             />
+          </div>
         </div>
-      </div>
 
         {/* STYLES CSS POUR ANIMATIONS AVANCÉES */}
-      <style jsx>{`
+        <style jsx>{`
         @keyframes float {
             0%, 100% {
               transform: translateY(0px);
@@ -302,10 +302,10 @@ const FeaturesHomePageCourses = () => {
                     <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full animate-pulse shadow-lg" />
                   </div>
                   <div>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent font-poppins">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent font-cairo" lang="ar">
                       {expandedCard}
                     </h3>
-                    <p className="text-sm sm:text-base text-emerald-600 font-medium font-poppins">{tSpecialization("programDetails")}</p>
+                    <p className="text-sm sm:text-base text-emerald-600 font-medium font-cairo" lang="ar">{tSpecialization("programDetails")}</p>
                   </div>
                 </div>
                 <button
@@ -328,7 +328,7 @@ const FeaturesHomePageCourses = () => {
                       className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-lg"
                     />
                   </div>
-                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 font-poppins">{tSpecialization("includedSubjects")}</h4>
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 font-cairo" lang="ar">{tSpecialization("includedSubjects")}</h4>
                   <div className="flex-1 h-px bg-gradient-to-r from-emerald-300 to-green-300" />
                 </div>
 
@@ -341,17 +341,17 @@ const FeaturesHomePageCourses = () => {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="font-bold text-gray-800 text-sm sm:text-base mb-1 font-poppins">
+                          <div className="font-bold text-gray-800 text-sm sm:text-base mb-1 font-cairo" lang="ar">
                             {locale === 'ar' ? subject.arabic : subject.french}
                           </div>
-                          <div className="text-emerald-600 text-xs sm:text-sm font-medium font-poppins">
+                          <div className="text-emerald-600 text-xs sm:text-sm font-medium font-cairo" lang="ar">
                             {locale === 'ar' ? subject.french : subject.arabic}
                           </div>
                         </div>
                       </div>
                       <div className="mt-2 sm:mt-3 flex items-center gap-2">
                         <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full animate-pulse" />
-                        <span className="text-xs text-emerald-600 font-medium font-poppins">{tSpecialization("subjectAvailable")}</span>
+                        <span className="text-xs text-emerald-600 font-medium font-cairo" lang="ar">{tSpecialization("subjectAvailable")}</span>
                       </div>
                     </div>
                   ))}
@@ -367,7 +367,7 @@ const FeaturesHomePageCourses = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <span className="text-sm sm:text-base text-emerald-700 font-semibold font-poppins">
+                    <span className="text-sm sm:text-base text-emerald-700 font-semibold font-cairo" lang="ar">
                       {tSpecialization("totalSubjects").replace("{count}", getModuleDetailsForCard(expandedCard).length)}
                     </span>
                   </div>
@@ -486,7 +486,7 @@ const RevolutionaryModuleCard = ({
           <div className="flex items-center justify-between mb-3 relative z-10">
             {/* Icône */}
             <div className="text-3xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
-            {icon}
+              {icon}
             </div>
 
             {/* Flèche */}
@@ -499,8 +499,8 @@ const RevolutionaryModuleCard = ({
 
           {/* TITRE */}
           <div className="relative z-10">
-            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-white/90 transition-colors duration-300">
-            {label}
+            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-white/90 transition-colors duration-300 text-center font-cairo" lang="ar">
+              {label}
             </h3>
           </div>
 
@@ -635,16 +635,16 @@ const SimpleMobileCard = ({
   onCardClick,
 }) => {
   return (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       whileTap={{ scale: 0.98 }}
       transition={{
         duration: 0.6,
         delay,
         ease: "easeOut"
       }}
-    viewport={{ once: true }}
+      viewport={{ once: true }}
       className="group cursor-pointer"
       onClick={() => onCardClick(label)}
     >
@@ -659,7 +659,7 @@ const SimpleMobileCard = ({
           <div className="flex items-center justify-between">
             {/* Text Content */}
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-white group-hover:text-emerald-100 transition-colors duration-300">
+              <h3 className="text-lg font-bold text-white group-hover:text-emerald-100 transition-colors duration-300 text-center font-cairo" lang="ar">
                 {label}
               </h3>
             </div>
@@ -670,15 +670,15 @@ const SimpleMobileCard = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-        </div>
+          </div>
 
           {/* Decorative Elements */}
           <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-white/30 rounded-full" />
           <div className="absolute bottom-3 left-3 w-1 h-1 bg-white/20 rounded-full" />
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
 };
 
 export default FeaturesHomePageCourses;

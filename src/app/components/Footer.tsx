@@ -20,6 +20,7 @@ export default function Footer() {
       title: "footer.navigation.platform",
       links: [
         { name: "footer.links.home", href: "/" },
+        { name: "footer.links.about", href: "/about" },
         { name: "footer.links.courses", href: "/#courses" },
         { name: "footer.links.pricing", href: "/#prices" },
         { name: "footer.links.news", href: "/news" },

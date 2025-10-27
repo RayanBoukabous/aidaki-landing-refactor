@@ -25,16 +25,16 @@ export default function DirectionManager() {
     const body = document.body;
     
     // Remove existing direction and language classes
-    body.classList.remove('rtl', 'ltr', 'font-cairo', 'font-inter');
+    body.classList.remove('rtl', 'ltr', 'font-cairo', 'font-poppins');
     
     // Add new direction class
     body.classList.add(direction);
     
-    // Add appropriate font class
+    // Add appropriate font class based on language
     if (isArabic) {
       body.classList.add('font-cairo');
     } else {
-      body.classList.add('font-inter');
+      body.classList.add('font-poppins');
     }
 
     // Set text direction CSS property as backup

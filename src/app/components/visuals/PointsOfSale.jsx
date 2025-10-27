@@ -39,11 +39,11 @@ const VisualsPointsOfSale = () => {
             <Star className="w-4 h-4" />
           </div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 text-center font-cairo" lang="ar">
             {t("title")}
           </h2>
 
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo" lang="ar">
             {t("description")}
           </p>
 
@@ -86,12 +86,12 @@ const VisualsPointsOfSale = () => {
               </div>
 
               {/* FLOATING STATS CARDS */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-xl font-bold shadow-xl flex items-center gap-2">
+              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-xl font-bold shadow-xl flex items-center gap-2 text-center">
                 <MapPin className="w-4 h-4" />
                 <span>📍 Techno Store</span>
               </div>
 
-              <div className="absolute -bottom-6 -left-6 bg-white text-emerald-600 px-4 py-2 rounded-xl font-bold shadow-xl border border-emerald-200 flex items-center gap-2">
+              <div className="absolute -bottom-6 -left-6 bg-white text-emerald-600 px-4 py-2 rounded-xl font-bold shadow-xl border border-emerald-200 flex items-center gap-2 text-center">
                 <Users className="w-4 h-4" />
                 <span>+1000 Clients</span>
               </div>
@@ -114,9 +114,9 @@ const VisualsPointsOfSale = () => {
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
                     <Clock className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800">Horaires Techno</h3>
+                  <h3 className="font-bold text-gray-800 text-center">Horaires Techno</h3>
                 </div>
-                <p className="text-sm text-gray-600">Ouvert 7j/7 pour votre confort</p>
+                <p className="text-sm text-gray-600 text-center">Ouvert 7j/7 pour votre confort</p>
               </div>
 
               <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
@@ -124,9 +124,9 @@ const VisualsPointsOfSale = () => {
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
                     <Shield className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800">Garantie Techno</h3>
+                  <h3 className="font-bold text-gray-800 text-center">Garantie Techno</h3>
                 </div>
-                <p className="text-sm text-gray-600">Produits certifiés et testés</p>
+                <p className="text-sm text-gray-600 text-center">Produits certifiés et testés</p>
               </div>
 
               <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
@@ -134,9 +134,9 @@ const VisualsPointsOfSale = () => {
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
                     <Award className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800">Expertise Techno</h3>
+                  <h3 className="font-bold text-gray-800 text-center">Expertise Techno</h3>
                 </div>
-                <p className="text-sm text-gray-600">Conseils spécialisés</p>
+                <p className="text-sm text-gray-600 text-center">Conseils spécialisés</p>
               </div>
 
               <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
@@ -144,9 +144,9 @@ const VisualsPointsOfSale = () => {
                   <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
                     <Users className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800">Service Techno</h3>
+                  <h3 className="font-bold text-gray-800 text-center">Service Techno</h3>
                 </div>
-                <p className="text-sm text-gray-600">Support personnalisé</p>
+                <p className="text-sm text-gray-600 text-center">Support personnalisé</p>
               </div>
             </div>
 
@@ -169,12 +169,12 @@ const VisualsPointsOfSale = () => {
                         <MapPin className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold mb-1">Visitez Techno Store</h3>
-                        <p className="text-emerald-100">Notre magasin spécialisé près de chez vous</p>
+                        <h3 className="text-xl font-bold mb-1 text-center">Visitez Techno Store</h3>
+                        <p className="text-emerald-100 text-center">Notre magasin spécialisé près de chez vous</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium">Voir la carte</span>
+                      <span className="text-sm font-medium text-center">Voir la carte</span>
                       <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
@@ -195,7 +195,7 @@ const VisualsPointsOfSale = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white border-2 border-emerald-200 hover:border-emerald-300 rounded-xl px-8 py-4 text-emerald-700 hover:text-emerald-800 font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 group"
               >
-                <span>{t("more")}</span>
+                <span className="font-cairo" lang="ar">{t("more")}</span>
                 <svg
                   className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"

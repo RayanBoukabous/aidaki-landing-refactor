@@ -1,20 +1,22 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Inter, Cairo } from 'next/font/google';
+import { Poppins, Cairo } from 'next/font/google';
 import '../globals.css';
 import { Locale, getDirection } from '../../i18n';
 import DirectionManager from '../../components/DirectionManager';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-poppins',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const cairo = Cairo({
   subsets: ['arabic', 'latin'],
   variable: '--font-cairo',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 type Props = {
@@ -53,7 +55,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} dir={direction}>
       <body
         className={`${
-          isArabic ? cairo.variable + ' font-cairo' : inter.variable + ' font-inter'
+          isArabic ? cairo.variable + ' font-cairo' : poppins.variable + ' font-poppins'
         } ${direction === 'rtl' ? 'rtl' : 'ltr'}`}
       >
         <DirectionManager />

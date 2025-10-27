@@ -116,7 +116,7 @@ const FeaturesHomePageFeatures = () => {
   return (
     <section className="relative text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden">
       <div className="flex justify-center items-center">
-        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4 font-bold font-poppins bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4 font-bold font-cairo bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent" lang="ar">
           {t("features.featureSectionTitle")}
         </h3>
       </div>
@@ -130,7 +130,7 @@ const FeaturesHomePageFeatures = () => {
         className="max-w-4xl mx-auto text-center mb-20 px-4 relative z-10"
       >
         <div className="">
-          <p className="text-gray-700 text-center leading-relaxed text-xl mb-6 font-medium font-poppins">
+          <p className="text-gray-700 text-center leading-relaxed text-xl mb-6 font-medium font-cairo" lang="ar">
             {t("features.header.description")}
           </p>
         </div>

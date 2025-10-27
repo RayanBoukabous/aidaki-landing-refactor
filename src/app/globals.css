@@ -11,7 +11,7 @@
   --secondary-green: #d1fae5;
 }
 
-/* UNIFIED FONT SYSTEM - POPPINS COOL & PRO */
+/* UNIFIED FONT SYSTEM - POPPINS + CAIRO */
 .font-poppins {
   font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -21,15 +21,36 @@
   font-family: var(--font-cairo), "Times New Roman", Georgia, serif;
 }
 
-/* DEFAULT FONT FOR ALL ELEMENTS - POPPINS */
+/* DEFAULT FONT FOR ALL ELEMENTS - POPPINS (fallback only) */
 body, html {
   font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ARABIC TEXT USES CAIRO */
+/* FORCE FONT CLASSES - IMMEDIATE APPLICATION */
+.font-poppins {
+  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.font-cairo {
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif !important;
+}
+
+/* ARABIC TEXT USES CAIRO - HIGHEST PRIORITY */
 [lang="ar"], .arabic-text {
-  font-family: var(--font-cairo), "Times New Roman", Georgia, serif;
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif !important;
+}
+
+/* FORCE CAIRO FOR ARABIC LANGUAGE */
+body.font-cairo {
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif !important;
+}
+
+/* FORCE POPPINS FOR NON-ARABIC LANGUAGES */
+body.font-poppins {
+  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 /* UNIFIED TYPOGRAPHY SCALE */
@@ -123,7 +144,7 @@ body.ltr {
     border-inline-end-width: 1px;
   }
 
-  /* UNIFIED TYPOGRAPHY CLASSES - POPPINS COOL & PRO */
+  /* UNIFIED TYPOGRAPHY CLASSES - POPPINS + CAIRO */
   .font-unified {
     font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
@@ -333,17 +354,45 @@ body.ltr {
   }
 }
 
-/* Arabic text styling */
+/* Arabic text styling - Using Cairo */
 [lang="ar"] {
   font-feature-settings: "liga" 1, "kern" 1;
   line-height: 1.6 !important;
 }
 
-/* Better Arabic typography */
-.arabic-text {
+/* Better Arabic typography - Using Cairo */
+.arabic-text, [lang="ar"] {
   font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
   letter-spacing: normal;
   word-spacing: normal;
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif !important;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Optimized French and English typography - Using Poppins */
+.font-poppins, [lang="fr"], [lang="en"] {
+  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  letter-spacing: -0.01em; /* Réduire l'espacement des lettres */
+  word-spacing: normal;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+}
+
+/* Optimized spacing for headings in French/English */
+.font-poppins h1, .font-poppins h2, .font-poppins h3, 
+.font-poppins h4, .font-poppins h5, .font-poppins h6,
+[lang="fr"] h1, [lang="fr"] h2, [lang="fr"] h3,
+[lang="fr"] h4, [lang="fr"] h5, [lang="fr"] h6,
+[lang="en"] h1, [lang="en"] h2, [lang="en"] h3,
+[lang="en"] h4, [lang="en"] h5, [lang="en"] h6 {
+  letter-spacing: -0.02em; /* Espacement encore plus serré pour les titres */
+  line-height: 1.2;
+}
+
+/* Optimized spacing for paragraphs in French/English */
+.font-poppins p, [lang="fr"] p, [lang="en"] p {
+  letter-spacing: -0.005em; /* Espacement légèrement réduit pour les paragraphes */
+  line-height: 1.6;
 }
 
 /* Prevent scrolling when mobile menu is open */

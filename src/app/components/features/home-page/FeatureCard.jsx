@@ -59,7 +59,7 @@ const FeatureCard = ({ title, description, image }) => {
       {/* Title Section - Always visible */}
       <div className="absolute bottom-4 left-4 right-4 z-30">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-green-100">
-          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 ">
+          <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 text-center font-cairo" lang="ar">
             {title}
           </h3>
           <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-full"></div>
@@ -99,7 +99,7 @@ const FeatureCard = ({ title, description, image }) => {
         </motion.div>
 
         {/* Title with fun styling */}
-        <h3 className="text-xl md:text-2xl font-bold text-center mb-4 ">
+        <h3 className="text-xl md:text-2xl font-bold text-center mb-4 font-cairo" lang="ar">
           {title}
         </h3>
 
@@ -107,7 +107,7 @@ const FeatureCard = ({ title, description, image }) => {
         <div className="w-16 h-1 bg-gradient-to-r from-green-300 to-black rounded-full mb-6"></div>
 
         {/* Description */}
-        <p className="text-white/90 text-center leading-relaxed text-sm md:text-base max-w-xs font-medium">
+        <p className="text-white/90 text-center leading-relaxed text-sm md:text-base max-w-xs font-medium font-cairo" lang="ar">
           {description}
         </p>
 

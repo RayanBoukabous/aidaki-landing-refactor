@@ -76,8 +76,8 @@ export default function AppDownloadSection() {
           {/* Content Section */}
           <div className={`${isRTL ? 'lg:order-2' : 'lg:order-1'} space-y-8`}>
             {/* Header */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full">
+            <div className="space-y-6 text-center">
+              <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mx-auto">
                 <svg className="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zM13 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1V4zM13 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-3z" clipRule="evenodd" />
                 </svg>
@@ -86,7 +86,7 @@ export default function AppDownloadSection() {
                 </span>
               </div>
 
-              <h2 className="text-4xl  font-bold text-gray-900 leading-normal">
+              <h2 className="text-4xl font-bold text-gray-900 leading-normal text-center">
                 {t("appDownload.title.part1")}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-700">
                   {t("appDownload.title.highlight")}
@@ -94,7 +94,7 @@ export default function AppDownloadSection() {
                 {t("appDownload.title.part2")}
               </h2>
 
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-gray-600 leading-relaxed text-center">
                 {t("appDownload.description")}
               </p>
             </div>

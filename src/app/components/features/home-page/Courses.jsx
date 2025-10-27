@@ -1,474 +1,684 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FeaturesHomePageCourses = () => {
   const t = useTranslations("courses");
+  const tSpecialization = useTranslations("courses.specialization");
+  const locale = useLocale();
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
+
+  const handleCardClick = (label) => {
+    setExpandedCard(expandedCard === label ? null : label);
+  };
+
+  const handleCloseExpansion = () => {
+    setExpandedCard(null);
+  };
+
+  // BLOQUER LE SCROLL QUAND LE MODAL EST OUVERT
+  useEffect(() => {
+    if (expandedCard) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function pour réactiver le scroll quand le composant se démonte
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [expandedCard]);
 
   return (
     <section
       id="courses"
-      className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50"
+      className="relative w-full overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-green-50"
     >
-      {/* Main content */}
-      <div className="relative z-10 py-16 md:py-24 px-4 md:px-8">
-        {/* Header Section */}
+      {/* HEADER SECTION */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="grid items-center justify-center">
-            <h2 className="flex justify-center items-center text-3xl sm:text-4xl md:text-5xl mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-poppins"
+          >
               {t("title")}
-            </h2>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            {t("description")}
+          </motion.p>
+          </motion.div>
 
-            <p className="text-gray-700 text-center max-w-3xl mx-auto mb-6 leading-relaxed text-lg font-medium">
-              {t("description")}
-            </p>
+        {/* DESIGN RÉVOLUTIONNAIRE RESPONSIVE - LAYOUT OPTIMISÉ SANS SUPERPOSITION */}
+        <div className="relative max-w-7xl mx-auto py-12 sm:py-16 hidden sm:block">
+
+          {/* CONTAINER PRINCIPAL AVEC ESPACEMENT OPTIMAL RESPONSIVE */}
+          <div className="grid grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-center">
+
+            {/* MODULES À GAUCHE - RESPONSIVE */}
+            <div className="col-span-12 lg:col-span-7">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+
+                {/* Ligne 1 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.mathematics")}
+                  gradient="from-emerald-800 via-green-700 to-teal-800"
+            delay={0.3}
+                  icon="🔢"
+                  pattern="geometric"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.technology")}
+                  gradient="from-green-600 via-emerald-600 to-green-800"
+            delay={0.4}
+                  icon="💻"
+                  pattern="circuit"
+                  onCardClick={handleCardClick}
+                />
+
+                {/* Ligne 2 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.languages")}
+                  gradient="from-teal-500 via-green-500 to-emerald-600"
+            delay={0.5}
+                  icon="🌐"
+                  pattern="waves"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.science")}
+                  gradient="from-green-700 via-teal-700 to-emerald-800"
+            delay={0.6}
+                  icon="🔬"
+                  pattern="molecular"
+                  onCardClick={handleCardClick}
+                />
+
+                {/* Ligne 3 */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.literature")}
+                  gradient="from-lime-600 via-green-500 to-emerald-600"
+            delay={0.7}
+                  icon="📚"
+                  pattern="texture"
+                  onCardClick={handleCardClick}
+                />
+                <RevolutionaryModuleCard
+                  label={t("specialization.management")}
+                  gradient="from-emerald-600 via-green-500 to-teal-600"
+            delay={0.8}
+                  icon="💼"
+                  pattern="network"
+                  onCardClick={handleCardClick}
+                />
+              </div>
+            </div>
+
+            {/* ROBOT À DROITE - RESPONSIVE */}
+            <div className="col-span-12 lg:col-span-5 flex justify-center lg:justify-end mt-8 lg:mt-0">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.2, delay: 0.2, type: "spring", stiffness: 100 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
+                  <img
+                    src="/images/module_avatar.png"
+                    alt="AIDAKI Robot"
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Desktop/Tablet: Arc layout */}
-        <div className="relative max-w-6xl mx-auto h-[400px] sm:h-[450px] lg:h-[500px] xl:h-[550px] hidden sm:block">
-          {/* Animated background arcs */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-blue-200/30 rounded-full"
-            style={{
-              width: "500px",
-              height: "500px",
-              clipPath: "polygon(0 0, 100% 0, 100% 65%, 0 65%)",
-            }}
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border border-blue-200/20 rounded-full"
-            style={{
-              width: "600px",
-              height: "600px",
-              clipPath: "polygon(0 0, 100% 0, 100% 65%, 0 65%)",
-            }}
-          />
-
-          {/* Connector Lines */}
-          <ConnectorLines />
-
-          {/* Center logo */}
+        {/* Mobile Design Responsive - Ultra Professional */}
+        <div className="sm:hidden px-4">
+          {/* Mobile Logo Responsive */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 200 }}
             viewport={{ once: true }}
-            className="absolute left-[48%] bottom-[15%] -translate-x-1/2 z-20"
+            className="flex justify-center mb-8 sm:mb-12"
           >
-            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full flex items-center justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-green-500/20 rounded-full blur-lg scale-110 sm:scale-125" />
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-white via-emerald-50 to-green-100 flex items-center justify-center shadow-xl border-3 border-emerald-200/50">
               <img
                 src="/images/logo-black.png"
                 alt="AIDAKI Logo"
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 xl:w-28 xl:h-28 object-contain"
+                  className="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md"
               />
+              </div>
             </div>
           </motion.div>
 
-          {/* Subject cards positioned in arc formation */}
-          <SubjectCard
-            label={t("specialization.literature")}
-            position="arc-left"
-            delay={0.3}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "literature"}
-            color="from-blue-400 to-blue-500"
-            icon="📚"
-          />
-
-          <SubjectCard
-            label={t("specialization.management")}
-            position="arc-left-center"
-            delay={0.4}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "management"}
-            color="from-blue-500 to-blue-600"
-            icon="💼"
-          />
-
-          <SubjectCard
-            label={t("specialization.technology")}
-            position="arc-center"
-            delay={0.5}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "technology"}
-            color="from-blue-400 to-blue-500"
-            icon="💻"
-          />
-
-          <SubjectCard
-            label={t("specialization.mathematics")}
-            position="arc-right-center"
-            delay={0.6}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "mathematics"}
-            color="from-blue-600 to-blue-700"
-            icon="🔢"
-          />
-
-          <SubjectCard
-            label={t("specialization.science")}
-            position="arc-right"
-            delay={0.7}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "science"}
-            color="from-blue-500 to-blue-600"
-            icon="🔬"
-          />
-
-          <SubjectCard
-            label={t("specialization.languages")}
-            position="arc-far-right"
-            delay={0.8}
-            onHover={setHoveredCard}
-            isHovered={hoveredCard === "languages"}
-            color="from-blue-600 to-blue-700"
-            icon="🌐"
-          />
-        </div>
-
-        {/* Mobile layout with enhanced cards */}
-        <div className="sm:hidden">
-          {/* Mobile Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex justify-center mb-12"
-          >
-            <div>
-              <img
-                src="/images/logo-black.png"
-                alt="AIDAKI Logo"
-                className="w-24 h-24"
-              />
-            </div>
-          </motion.div>
-
-          {/* Mobile Connector Lines */}
-          <MobileConnectorLines />
-
-          {/* Mobile Cards Grid */}
-          <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto relative z-10">
-            <MobileCard
+          {/* Mobile Modules Grid Responsive */}
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 max-w-sm mx-auto">
+            <SimpleMobileCard
               label={t("specialization.literature")}
-              icon="📚"
-              color="from-blue-400 to-blue-500"
+              color="from-emerald-500 to-emerald-600"
               delay={0.2}
+              onCardClick={handleCardClick}
             />
-            <MobileCard
-              label={t("specialization.management")}
-              icon="💼"
-              color="from-blue-500 to-blue-600"
-              delay={0.3}
-            />
-            <MobileCard
-              label={t("specialization.technology")}
-              icon="💻"
-              color="from-blue-400 to-blue-500"
-              delay={0.4}
-            />
-            <MobileCard
+            <SimpleMobileCard
               label={t("specialization.mathematics")}
-              icon="🔢"
-              color="from-blue-600 to-blue-700"
-              delay={0.5}
+              color="from-emerald-600 to-emerald-700"
+              delay={0.3}
+              onCardClick={handleCardClick}
             />
-            <MobileCard
-              label={t("specialization.science")}
-              icon="🔬"
-              color="from-blue-500 to-blue-600"
-              delay={0.6}
+            <SimpleMobileCard
+              label={t("specialization.technology")}
+              color="from-emerald-700 to-emerald-800"
+              delay={0.4}
+              onCardClick={handleCardClick}
             />
-            <MobileCard
+            <SimpleMobileCard
               label={t("specialization.languages")}
-              icon="🌐"
-              color="from-blue-600 to-blue-700"
-              delay={0.7}
+              color="from-green-500 to-green-600"
+              delay={0.5}
+              onCardClick={handleCardClick}
             />
-          </div>
+            <SimpleMobileCard
+              label={t("specialization.science")}
+              color="from-green-600 to-green-700"
+              delay={0.6}
+              onCardClick={handleCardClick}
+            />
+            <SimpleMobileCard
+              label={t("specialization.management")}
+              color="from-green-700 to-green-800"
+              delay={0.7}
+              onCardClick={handleCardClick}
+            />
         </div>
       </div>
 
+        {/* STYLES CSS POUR ANIMATIONS AVANCÉES */}
       <style jsx>{`
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
+            0%, 100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+          
+          @keyframes glow {
+            0%, 100% {
+              opacity: 0.5;
           }
           50% {
-            transform: translateY(-15px) rotate(5deg);
+              opacity: 0.8;
+            }
           }
-        }
-        @keyframes dash {
-          0% {
-            stroke-dashoffset: 100;
+          
+          @keyframes pulse-slow {
+            0%, 100% {
+              opacity: 0.7;
+            }
+            50% {
+              opacity: 0.3;
+            }
+          }
+
+          @keyframes fade-in {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
           }
           100% {
-            stroke-dashoffset: 0;
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
+
+          .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
         }
       `}</style>
+
+        {/* MODAL OVERLAY ULTRA PROFESSIONNEL AVEC BACKGROUND BLANC FLOU - RESPONSIVE */}
+        {expandedCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-gradient-to-br from-white/80 via-gray-50/70 to-white/90 backdrop-blur-xl z-50 flex items-center justify-center p-2 sm:p-4 md:p-6"
+            onClick={handleCloseExpansion}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+              className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto shadow-2xl border border-gray-200/50 relative mx-2 sm:mx-0"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* BACKGROUND PATTERN BLANC NET */}
+              <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-white/20 to-gray-100/30" />
+                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-gray-200/20 to-transparent rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-gray-200/20 to-transparent rounded-full blur-3xl" />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-white/10 to-gray-100/10 rounded-full blur-3xl" />
+              </div>
+
+              {/* HEADER MODAL RESPONSIVE AVEC POSITIONS INVERSÉES */}
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4 sm:gap-0">
+                <div className="flex items-center gap-4 sm:gap-6 order-2 sm:order-1">
+                  <div className="relative">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-xl border border-emerald-200/50">
+                      <img
+                        src="/images/robot_study.png"
+                        alt="Robot Study"
+                        className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
+                      />
+                    </div>
+                    <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full animate-pulse shadow-lg" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent font-poppins">
+                      {expandedCard}
+                    </h3>
+                    <p className="text-sm sm:text-base text-emerald-600 font-medium font-poppins">{tSpecialization("programDetails")}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleCloseExpansion}
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 hover:bg-gray-200 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl border border-gray-200 self-end sm:self-auto order-1 sm:order-2"
+                >
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* CONTENU MODAL RESPONSIVE AVEC ROBOT WRITING */}
+              <div className="relative z-10 space-y-4 sm:space-y-6">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-xl border border-emerald-200/50">
+                    <img
+                      src="/images/robot_writing.png"
+                      alt="Robot Writing"
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-lg"
+                    />
+                  </div>
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 font-poppins">{tSpecialization("includedSubjects")}</h4>
+                  <div className="flex-1 h-px bg-gradient-to-r from-emerald-300 to-green-300" />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {getModuleDetailsForCard(expandedCard).map((subject, index) => (
+                    <div
+                      key={index}
+                      className="group bg-gradient-to-r from-white to-emerald-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-emerald-200/50 hover:shadow-lg transition-all duration-300 hover:border-emerald-300/70 opacity-0 animate-fade-in"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="font-bold text-gray-800 text-sm sm:text-base mb-1 font-poppins">
+                            {locale === 'ar' ? subject.arabic : subject.french}
+                          </div>
+                          <div className="text-emerald-600 text-xs sm:text-sm font-medium font-poppins">
+                            {locale === 'ar' ? subject.french : subject.arabic}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-2 sm:mt-3 flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full animate-pulse" />
+                        <span className="text-xs text-emerald-600 font-medium font-poppins">{tSpecialization("subjectAvailable")}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* FOOTER MODAL RESPONSIVE */}
+              <div className="relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-emerald-200/50">
+                <div className="flex justify-center items-center">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-emerald-400 to-green-500 rounded-md sm:rounded-lg flex items-center justify-center shadow-lg border border-emerald-200/50">
+                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm sm:text-base text-emerald-700 font-semibold font-poppins">
+                      {tSpecialization("totalSubjects").replace("{count}", getModuleDetailsForCard(expandedCard).length)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
     </section>
   );
 };
 
-// Connector Lines Component for Desktop
-const ConnectorLines = () => (
-  <div className="absolute inset-0 z-0">
-    <svg className="w-full h-full" viewBox="0 0 800 400">
-      {/* Animated dashed lines connecting cards */}
-      <motion.path
-        d="M 80 240 Q 150 180 250 100"
-        stroke="url(#gradient1)"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="5,10"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.4 }}
-        transition={{ duration: 2, delay: 1.5, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-
-      <motion.path
-        d="M 130 140 Q 200 90 300 80"
-        stroke="url(#gradient2)"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="3,8"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.3 }}
-        transition={{ duration: 2.2, delay: 1.7, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-
-      <motion.path
-        d="M 300 80 Q 400 85 500 90"
-        stroke="url(#gradient3)"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="4,12"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.35 }}
-        transition={{ duration: 2.4, delay: 1.9, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-
-      <motion.path
-        d="M 500 90 Q 600 120 680 140"
-        stroke="url(#gradient4)"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="6,10"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.3 }}
-        transition={{ duration: 2.6, delay: 2.1, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-
-      <motion.path
-        d="M 680 140 Q 740 180 780 240"
-        stroke="url(#gradient5)"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="5,8"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.4 }}
-        transition={{ duration: 2.8, delay: 2.3, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-
-      {/* Gradients for the lines */}
-      <defs>
-        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.3" />
-        </linearGradient>
-        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.3" />
-        </linearGradient>
-        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#059669" stopOpacity="0.4" />
-        </linearGradient>
-        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#059669" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#10B981" stopOpacity="0.5" />
-        </linearGradient>
-        <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#2563EB" stopOpacity="0.6" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
-
-// Mobile Connector Lines Component
-const MobileConnectorLines = () => (
-  <div className="absolute inset-0 z-0">
-    <svg className="w-full h-full max-w-sm mx-auto" viewBox="0 0 300 400">
-      {/* Subtle grid-like connections */}
-      <motion.line
-        x1="75" y1="100" x2="225" y2="100"
-        stroke="url(#mobileGradient1)"
-        strokeWidth="1"
-        strokeDasharray="3,6"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.25 }}
-        transition={{ duration: 1.5, delay: 0.8 }}
-        viewport={{ once: true }}
-      />
-
-      <motion.line
-        x1="75" y1="200" x2="225" y2="200"
-        stroke="url(#mobileGradient2)"
-        strokeWidth="1"
-        strokeDasharray="4,8"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.3 }}
-        transition={{ duration: 1.7, delay: 1.0 }}
-        viewport={{ once: true }}
-      />
-
-      <motion.line
-        x1="75" y1="300" x2="225" y2="300"
-        stroke="url(#mobileGradient3)"
-        strokeWidth="1"
-        strokeDasharray="3,6"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.25 }}
-        transition={{ duration: 1.9, delay: 1.2 }}
-        viewport={{ once: true }}
-      />
-
-      <motion.line
-        x1="150" y1="50" x2="150" y2="350"
-        stroke="url(#mobileGradient4)"
-        strokeWidth="1"
-        strokeDasharray="5,10"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 0.2 }}
-        transition={{ duration: 2.1, delay: 1.4 }}
-        viewport={{ once: true }}
-      />
-
-      <defs>
-        <linearGradient id="mobileGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.3" />
-        </linearGradient>
-        <linearGradient id="mobileGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#059669" stopOpacity="0.4" />
-        </linearGradient>
-        <linearGradient id="mobileGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#059669" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#2563EB" stopOpacity="0.3" />
-        </linearGradient>
-        <linearGradient id="mobileGradient4" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.2" />
-          <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#059669" stopOpacity="0.2" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-);
-
-// Enhanced Subject Card Component for Desktop Arc Layout
-const SubjectCard = ({
+// REVOLUTIONARY MODULE CARD - DESIGN COMPLÈTEMENT INNOVANT AVEC MODAL
+const RevolutionaryModuleCard = ({
   label,
-  position,
+  gradient,
   delay,
-  onHover,
-  isHovered,
   icon,
-  color,
+  pattern,
+  onCardClick,
 }) => {
-  const getPositionStyles = () => {
-    // Perfect arc with mathematical precision - 6 cards evenly distributed on 180° semicircle
-    // Responsive positioning for different screen sizes
-    const positions = {
-      "arc-left": "left-[8%] sm:left-[10%] md:left-[8%] lg:left-[8%] top-[60%] -translate-x-1/2 -translate-y-1/2", // 180° (leftmost)
-      "arc-left-center":
-        "left-[16%] sm:left-[18%] md:left-[16%] lg:left-[16%] top-[30%] -translate-x-1/2 -translate-y-1/2", // 144°
-      "arc-center": "left-[36%] sm:left-[38%] md:left-[36%] lg:left-[36%] top-[15%] -translate-x-1/2 -translate-y-1/2", // 90° (top)
-      "arc-right-center":
-        "right-[30%] sm:right-[32%] md:right-[30%] lg:right-[30%] top-[15%] translate-x-1/2 -translate-y-1/2", // 36°
-      "arc-right": "right-[8%] sm:right-[10%] md:right-[8%] lg:right-[8%] top-[30%] translate-x-1/2 -translate-y-1/2", // 0° (rightmost)
-      "arc-far-right": "right-[2%] sm:right-[4%] md:right-[2%] lg:right-[2%] top-[60%] translate-x-1/2 -translate-y-1/2", // Extended position
+  const getPatternSVG = () => {
+    const patterns = {
+      geometric: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <polygon points="50,10 90,90 10,90" fill="currentColor" />
+          <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
+        </svg>
+      ),
+      circuit: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="1" />
+          <circle cx="30" cy="30" r="3" fill="currentColor" />
+          <circle cx="70" cy="70" r="3" fill="currentColor" />
+          <path d="M30,30 L70,70" stroke="currentColor" strokeWidth="1" />
+        </svg>
+      ),
+      waves: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <path d="M0,50 Q25,20 50,50 T100,50" stroke="currentColor" strokeWidth="2" fill="none" />
+          <path d="M0,60 Q25,30 50,60 T100,60" stroke="currentColor" strokeWidth="1" fill="none" />
+        </svg>
+      ),
+      molecular: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <circle cx="30" cy="30" r="8" fill="currentColor" />
+          <circle cx="70" cy="30" r="8" fill="currentColor" />
+          <circle cx="50" cy="70" r="8" fill="currentColor" />
+          <line x1="30" y1="30" x2="70" y2="30" stroke="currentColor" strokeWidth="2" />
+          <line x1="30" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
+          <line x1="70" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+      texture: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <rect x="10" y="10" width="20" height="20" fill="currentColor" />
+          <rect x="40" y="40" width="20" height="20" fill="currentColor" />
+          <rect x="70" y="70" width="20" height="20" fill="currentColor" />
+        </svg>
+      ),
+      network: (
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+          <circle cx="25" cy="25" r="5" fill="currentColor" />
+          <circle cx="75" cy="25" r="5" fill="currentColor" />
+          <circle cx="25" cy="75" r="5" fill="currentColor" />
+          <circle cx="75" cy="75" r="5" fill="currentColor" />
+          <circle cx="50" cy="50" r="5" fill="currentColor" />
+          <line x1="25" y1="25" x2="75" y2="25" stroke="currentColor" strokeWidth="1" />
+          <line x1="25" y1="25" x2="25" y2="75" stroke="currentColor" strokeWidth="1" />
+          <line x1="75" y1="25" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
+          <line x1="25" y1="75" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
+          <line x1="25" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+          <line x1="75" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+          <line x1="25" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+          <line x1="75" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+        </svg>
+      ),
     };
-    return positions[position] || "";
+    return patterns[pattern] || patterns.geometric;
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-      whileHover={{ scale: 1.05, y: -3 }}
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      whileHover={{
+        scale: 1.08,
+        y: -8,
+        rotateX: 5,
+        rotateY: 5,
+        transition: { duration: 0.4, type: "spring", stiffness: 300 }
+      }}
       transition={{
-        duration: 0.6,
+        duration: 0.8,
         delay,
-        hover: { duration: 0.3, type: "spring", stiffness: 300 },
+        type: "spring",
+        stiffness: 150,
+        damping: 20,
       }}
       viewport={{ once: true }}
-      className={`absolute ${getPositionStyles()} z-10`}
-      onMouseEnter={() => onHover(label)}
-      onMouseLeave={() => onHover(null)}
+      className="group cursor-pointer"
+      onClick={() => onCardClick(label)}
     >
-      <div
-        className={`bg-gradient-to-br ${color} p-3 sm:p-4 md:p-4 lg:p-5 rounded-xl sm:rounded-2xl shadow-xl text-white cursor-pointer group transition-all duration-300 hover:shadow-2xl border-2 border-white/20`}
-      >
-        <div className="text-center flex flex-col items-center justify-center">
-          <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center w-full">
+      <div className="relative">
+        {/* AURA DYNAMIQUE */}
+        <div className={`absolute inset-0 bg-gradient-to-r ${gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
+
+        {/* CARD PRINCIPALE - DESIGN RÉVOLUTIONNAIRE */}
+        <div className={`relative bg-gradient-to-br ${gradient} rounded-2xl p-5 shadow-xl group-hover:shadow-2xl transition-all duration-400 min-h-[120px] flex flex-col justify-between border border-white/30 backdrop-blur-sm overflow-hidden`}>
+
+          {/* PATTERN SVG BACKGROUND */}
+          {getPatternSVG()}
+
+          {/* CONTENU PRINCIPAL */}
+          <div className="flex items-center justify-between mb-3 relative z-10">
+            {/* Icône */}
+            <div className="text-3xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
             {icon}
+            </div>
+
+            {/* Flèche */}
+            <div className="w-8 h-8 bg-white/25 rounded-full flex items-center justify-center group-hover:bg-white/40 group-hover:scale-110 transition-all duration-300">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
           </div>
-          <div className="font-bold text-xs sm:text-sm md:text-sm lg:text-base leading-normal w-[80px] sm:w-[90px] md:w-[100px] lg:w-[120px]">
+
+          {/* TITRE */}
+          <div className="relative z-10">
+            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-white/90 transition-colors duration-300">
             {label}
+            </h3>
           </div>
+
+          {/* ÉLÉMENTS DÉCORATIFS DYNAMIQUES */}
+          <div className="absolute top-3 right-3 w-2 h-2 bg-white/40 rounded-full animate-pulse" />
+          <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
+          <div className="absolute top-1/2 left-2 w-1 h-1 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+
+          {/* EFFET DE PROFONDEUR AVANCÉ */}
+          <div className="absolute inset-0 rounded-2xl opacity-30" style={{
+            background: `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 30%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.1) 100%)`
+          }} />
+
+          {/* BORDURE DYNAMIQUE */}
+          <div className="absolute inset-0 rounded-2xl border-2 border-white/25 group-hover:border-white/50 transition-colors duration-400" />
+
+          {/* EFFET DE LUMIÈRE AU HOVER */}
+          <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
         </div>
+
       </div>
     </motion.div>
   );
 };
 
-// Enhanced Mobile Card Component
-const MobileCard = ({ label, icon, color, delay }) => (
+// FONCTION HELPER POUR LES DÉTAILS DU MODAL - DONNÉES COMPLÈTES
+const getModuleDetailsForCard = (label) => {
+  switch (label) {
+    // Mathématiques
+    case 'شعبة رياضيات':
+    case 'Mathématiques':
+    case 'Mathématiques':
+      return [
+        { arabic: 'الرياضيات', french: 'Mathématiques' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
+        { arabic: 'العلوم الطبيعية', french: 'Sciences naturelles' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'الفلسفة', french: 'Philosophie' }
+      ];
+
+    // Sciences expérimentales
+    case 'شعبة علوم تجريبية':
+    case 'Sciences expérimentales':
+    case 'Sciences expérimentales':
+      return [
+        { arabic: 'علوم الطبيعة', french: 'Sciences naturelles' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
+        { arabic: 'الرياضيات', french: 'Mathématiques' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'الفلسفة', french: 'Philosophie' }
+      ];
+
+    // Techniques mathématiques
+    case 'شعبة تقني رياضي':
+    case 'Techniques mathématiques':
+    case 'Technologie':
+      return [
+        { arabic: 'الرياضيات', french: 'Mathématiques' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
+        { arabic: 'الهندسة المدنية', french: 'Génie civil' },
+        { arabic: 'الهندسة الكهربائية', french: 'Génie électrique' },
+        { arabic: 'هندسة ميكانيكية', french: 'Génie mécanique' },
+        { arabic: 'هندسة الطرائق', french: 'Génie des procédés' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'الفلسفة', french: 'Philosophie' }
+      ];
+
+    // Gestion et économie
+    case 'شعبة تسيير واقتصاد':
+    case 'Gestion et économie':
+    case 'Gestion et Économie':
+      return [
+        { arabic: 'التسيير المحاسبي', french: 'Gestion comptable' },
+        { arabic: 'الرياضيات', french: 'Mathématiques' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'اقتصاد ومناجمنت', french: 'Économie et management' },
+        { arabic: 'القانون', french: 'Droit' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'الفلسفة', french: 'Philosophie' }
+      ];
+
+    // Lettres et philosophie
+    case 'شعبة آداب و فلسفة':
+    case 'Lettres et philosophie':
+    case 'Littérature et Philosophie':
+      return [
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'الفلسفة', french: 'Philosophie' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'الرياضيات', french: 'Mathématiques' }
+      ];
+
+    // Langues étrangères
+    case 'شعبة لغات أجنبية':
+    case 'Langues étrangères':
+    case 'Langues Étrangères':
+      return [
+        { arabic: 'اللغة العربية', french: 'Langue arabe' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
+        { arabic: 'اللغة الإسبانية', french: 'Langue espagnole' },
+        { arabic: 'اللغة الألمانية', french: 'Langue allemande' },
+        { arabic: 'اللغة الإيطالية', french: 'Langue italienne' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
+        { arabic: 'الفلسفة', french: 'Philosophie' },
+        { arabic: 'الرياضيات', french: 'Mathématiques' }
+      ];
+
+    default:
+      return [];
+  }
+};
+
+// SIMPLE MOBILE CARD - SANS ICÔNES NI POURCENTAGES AVEC MODAL
+const SimpleMobileCard = ({
+  label,
+  color,
+  delay,
+  onCardClick,
+}) => {
+  return (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    whileTap={{ scale: 0.95 }}
-    transition={{ duration: 0.5, delay }}
+      whileTap={{ scale: 0.98 }}
+      transition={{
+        duration: 0.6,
+        delay,
+        ease: "easeOut"
+      }}
     viewport={{ once: true }}
-    className="cursor-pointer group"
-  >
-    <div
-      className={`bg-gradient-to-br ${color} p-4 rounded-2xl shadow-lg text-white group-hover:shadow-xl transition-all duration-300 border-2 border-white/20`}
+      className="group cursor-pointer"
+      onClick={() => onCardClick(label)}
     >
-      <div className="text-center">
-        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
-          {icon}
+      <div className="relative">
+        {/* Background Glow */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${color} rounded-xl blur-lg opacity-0 group-hover:opacity-15 transition-opacity duration-300`} />
+
+        {/* Main Card */}
+        <div className={`relative bg-gradient-to-br ${color} rounded-xl p-6 shadow-lg group-hover:shadow-xl transition-all duration-300 border border-white/20 backdrop-blur-sm`}>
+
+          {/* Content */}
+          <div className="flex items-center justify-between">
+            {/* Text Content */}
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-white group-hover:text-emerald-100 transition-colors duration-300">
+                {label}
+              </h3>
+            </div>
+
+            {/* Arrow */}
+            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
         </div>
-        <div className="font-bold text-sm leading-normal">{label}</div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-white/30 rounded-full" />
+          <div className="absolute bottom-3 left-3 w-1 h-1 bg-white/20 rounded-full" />
       </div>
     </div>
   </motion.div>
 );
+};
 
 export default FeaturesHomePageCourses;

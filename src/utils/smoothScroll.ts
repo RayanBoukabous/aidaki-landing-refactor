@@ -72,3 +72,4 @@ export const smoothScrollToTop = () => {
 
     requestAnimationFrame(animation);
 };
+

@@ -674,7 +674,11 @@
       "completedCourses": "الدورات المكتملة",
       "enroll": "التسجيل",
       "continue": "متابعة",
-      "completed": "مكتمل"
+      "completed": "مكتمل",
+      "includedSubjects": "المواد المشمولة",
+      "programDetails": "البرنامج التفصيلي للمواد",
+      "subjectAvailable": "المادة متاحة",
+      "totalSubjects": "المجموع: {count} مادة"
     },
     "naturalScience": "العلوم الطبيعية",
     "physicalScience": "العلوم الفيزيائية",

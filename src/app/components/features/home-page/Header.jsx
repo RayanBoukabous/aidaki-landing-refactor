@@ -21,16 +21,16 @@ const FeaturesHomePageHeader = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center min-h-[calc(100vh-6rem)] sm:min-h-[calc(100vh-8rem)]">
           {/* Content Section */}
           <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 order-2 lg:order-1 text-center lg:text-left">
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-gray-900">
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900 font-poppins bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent">
               {t('title')}
             </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-poppins">
               {t('description')}
             </p>
             <div className="flex justify-center lg:justify-start pt-2 sm:pt-4">
               <a
                 href="/demo"
-                className="primary-bg-gradient hover:scale-105 active:scale-95 transition-all duration-300 ease-out text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium shadow-lg hover:shadow-xl"
+                className="primary-bg-gradient hover:scale-105 active:scale-95 transition-all duration-300 ease-out text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium shadow-lg hover:shadow-xl font-poppins"
               >
                 {t('cta')}
               </a>

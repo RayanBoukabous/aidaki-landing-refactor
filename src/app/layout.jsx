@@ -1,8 +1,14 @@
-import { Inter, Cairo } from 'next/font/google'
+import { Poppins, Cairo } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
-const cairo = Cairo({ 
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
+})
+
+const cairo = Cairo({
   subsets: ['arabic', 'latin'],
   variable: '--font-cairo',
   display: 'swap',
@@ -11,7 +17,7 @@ const cairo = Cairo({
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${cairo.variable} font-cairo rtl`}>
+      <body className={`${poppins.variable} ${cairo.variable} font-poppins antialiased`}>
         {children}
       </body>
     </html>

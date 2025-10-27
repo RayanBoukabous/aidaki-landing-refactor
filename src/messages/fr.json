@@ -1061,7 +1061,11 @@
       "completedCourses": "Cours terminés",
       "enroll": "S'inscrire",
       "continue": "Continuer",
-      "completed": "Terminé"
+      "completed": "Terminé",
+      "includedSubjects": "Matières incluses",
+      "programDetails": "Programme détaillé des matières",
+      "subjectAvailable": "Matière disponible",
+      "totalSubjects": "Total: {count} matières"
     },
     "naturalScience": "Sciences naturelles",
     "physicalScience": "Sciences physiques",

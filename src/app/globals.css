@@ -11,15 +11,39 @@
   --secondary-green: #d1fae5;
 }
 
-/* Font family variables */
-.font-inter {
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
+/* UNIFIED FONT SYSTEM - POPPINS COOL & PRO */
+.font-poppins {
+  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .font-cairo {
-  font-family: var(--font-cairo), "Times New Roman", serif;
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif;
 }
+
+/* DEFAULT FONT FOR ALL ELEMENTS - POPPINS */
+body, html {
+  font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ARABIC TEXT USES CAIRO */
+[lang="ar"], .arabic-text {
+  font-family: var(--font-cairo), "Times New Roman", Georgia, serif;
+}
+
+/* UNIFIED TYPOGRAPHY SCALE */
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1.6; }
+.text-6xl { font-size: 3.75rem; line-height: 1.6; }
+.text-7xl { font-size: 4.5rem; line-height: 1.6; }
 
 body {
   background: var(--background);
@@ -99,13 +123,39 @@ body.ltr {
     border-inline-end-width: 1px;
   }
 
-  /* Button styles with RTL support */
+  /* UNIFIED TYPOGRAPHY CLASSES - POPPINS COOL & PRO */
+  .font-unified {
+    font-family: var(--font-poppins), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .font-arabic {
+    font-family: var(--font-cairo), "Times New Roman", Georgia, serif;
+  }
+
+  /* UNIFIED HEADING STYLES - POPPINS */
+  .heading-primary {
+    @apply font-unified font-bold text-gray-900 leading-tight;
+  }
+  
+  .heading-secondary {
+    @apply font-unified font-semibold text-gray-800 leading-relaxed;
+  }
+  
+  .text-body {
+    @apply font-unified text-gray-600 leading-relaxed;
+  }
+  
+  .text-arabic {
+    @apply font-arabic text-gray-700 leading-relaxed;
+  }
+
+  /* Button styles with RTL support - POPPINS */
   .btn-primary {
-    @apply bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-green-500 hover:bg-green-600 text-white font-unified font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply bg-green-100 hover:bg-green-200 text-green-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-green-100 hover:bg-green-200 text-green-700 font-unified font-medium py-2 px-4 rounded-lg transition-colors duration-200;
   }
 
   .card {

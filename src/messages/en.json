@@ -1232,7 +1232,11 @@
       "completedCourses": "Completed courses",
       "enroll": "Enroll",
       "continue": "Continue",
-      "completed": "Completed"
+      "completed": "Completed",
+      "includedSubjects": "Included subjects",
+      "programDetails": "Detailed program of subjects",
+      "subjectAvailable": "Subject available",
+      "totalSubjects": "Total: {count} subjects"
     },
     "naturalScience": "Natural sciences",
     "physicalScience": "Physical sciences",

@@ -94,17 +94,29 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Main Home Page Components - Following the exact structure from the original index.vue */}
+      {/* Main Home Page Components - Optimized Logical Order */}
       <FeaturesHomePageHeader />
 
-      {/* Add ProfAvatars component under the Hero section */}
-      <ProfAvatars />
-      <VideoDemos />
+      {/* PHASE 2: EDUCATION - Present platform value */}
       <FeaturesHomePageFeatures />
-      <AppDownloadSection />
+      
+      {/* PHASE 3: DEMONSTRATION - Show content quality */}
+      <VideoDemos />
+      
+      {/* PHASE 4: COURSES - Show available courses */}
       <FeaturesHomePageCourses />
+      
+      {/* PHASE 5: CREDIBILITY - Establish trust with professors */}
+      <ProfAvatars />
+      
+      {/* PHASE 6: CONVERSION - Pricing and action */}
       <FeaturesHomePagePricingHeader />
       <FeaturesHomePagePricing />
+      
+      {/* PHASE 7: ACTION - Download app */}
+      <AppDownloadSection />
+      
+      {/* PHASE 8: CONTACT - Physical store */}
       <VisualsPointsOfSale />
 
       {/* Add Footer */}

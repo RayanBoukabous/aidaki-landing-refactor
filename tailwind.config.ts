@@ -19,8 +19,10 @@ const config: Config = {
                 secondary: 'var(--secondary-green)',
             },
             fontFamily: {
-                inter: ['var(--font-inter)', 'sans-serif'],
-                cairo: ['var(--font-cairo)', 'serif'],
+                'sans': ['var(--font-poppins)', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                'serif': ['var(--font-cairo)', '"Times New Roman"', 'Georgia', 'serif'],
+                'poppins': ['var(--font-poppins)', 'sans-serif'],
+                'cairo': ['var(--font-cairo)', 'serif'],
             },
             animation: {
                 'bounce-gentle': 'bounce-gentle 2s infinite',

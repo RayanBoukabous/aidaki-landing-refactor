@@ -116,7 +116,7 @@ const FeaturesHomePageFeatures = () => {
   return (
     <section className="relative text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden">
       <div className="flex justify-center items-center">
-        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4 font-bold font-poppins bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent">
           {t("features.featureSectionTitle")}
         </h3>
       </div>
@@ -130,7 +130,7 @@ const FeaturesHomePageFeatures = () => {
         className="max-w-4xl mx-auto text-center mb-20 px-4 relative z-10"
       >
         <div className="">
-          <p className="text-gray-700 text-center leading-relaxed text-xl mb-6 font-medium">
+          <p className="text-gray-700 text-center leading-relaxed text-xl mb-6 font-medium font-poppins">
             {t("features.header.description")}
           </p>
         </div>
@@ -146,9 +146,9 @@ const FeaturesHomePageFeatures = () => {
             className="flex justify-center mb-8"
           >
             <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full shadow-lg">
-              <span className="text-2xl font-bold">{currentIndex + 1}</span>
-              <span className="mx-3 text-green-200">/</span>
-              <span className="text-lg">{features.length}</span>
+              <span className="text-2xl font-bold font-poppins">{currentIndex + 1}</span>
+              <span className="mx-3 text-green-200 font-poppins">/</span>
+              <span className="text-lg font-poppins">{features.length}</span>
             </div>
           </motion.div>
 
@@ -200,8 +200,8 @@ const FeaturesHomePageFeatures = () => {
                   whileTap={{ scale: 0.8 }}
                   onClick={() => setCurrentIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                      ? "bg-green-500 shadow-md scale-125"
-                      : "bg-gray-300 hover:bg-green-300"
+                    ? "bg-green-500 shadow-md scale-125"
+                    : "bg-gray-300 hover:bg-green-300"
                     }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

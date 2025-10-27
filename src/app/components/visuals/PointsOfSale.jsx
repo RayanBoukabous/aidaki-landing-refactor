@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { MapPin, ExternalLink, Star, Users, Clock, Shield, Award } from "lucide-react";
 
 const VisualsPointsOfSale = () => {
   const t = useTranslations("pointsOfSale");
@@ -13,119 +14,190 @@ const VisualsPointsOfSale = () => {
   return (
     <section
       id="points-of-sale"
-      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-green-50 via-white to-blue-50"
+      className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-emerald-50/30"
     >
-      {/* Wavy separator at top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="w-full h-16 md:h-24"
-        >
-          <path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-            fill="#ffffff"
-            fillOpacity="1"
-          />
-        </svg>
+      {/* ULTRA PROFESSIONAL BACKGROUND PATTERN */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Enhanced Image Section */}
+
+        {/* ULTRA PROFESSIONAL HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg mb-6">
+            <MapPin className="w-4 h-4" />
+            <span>NOS POINTS DE VENTE</span>
+            <Star className="w-4 h-4" />
+          </div>
+
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6">
+            {t("title")}
+          </h2>
+
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            {t("description")}
+          </p>
+
+          {/* DECORATIVE ELEMENTS */}
+          <div className="flex justify-center items-center gap-4 mt-8">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <div className="w-8 h-px bg-gradient-to-r from-transparent via-green-500 to-transparent" />
+            <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
+          </div>
+        </motion.div>
+
+        {/* ULTRA PROFESSIONAL CONTENT GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* ULTRA PROFESSIONAL IMAGE SECTION */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="w-full lg:w-1/2 flex justify-center"
+            className="relative"
           >
-            <div className="relative">
-              {/* Decorative background circle */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-200 to-blue-200 rounded-full transform scale-110 opacity-20"></div>
+            {/* BACKGROUND GLOW EFFECT */}
+            <div className="absolute -inset-8 bg-gradient-to-br from-emerald-400 to-green-600 rounded-3xl blur-2xl opacity-20" />
 
-              <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-green-100">
-                <div className="w-96 h-72 overflow-hidden rounded-2xl">
-                  <img
-                    src="/images/pointsOfSale.png"
-                    alt={t("imageAlt")}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
+            {/* MAIN IMAGE CONTAINER */}
+            <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100/50 backdrop-blur-sm">
 
-                {/* Floating badge */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                  Find Us! 📍
-                </div>
+              {/* IMAGE WITH ENHANCED STYLING */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <img
+                  src="/images/pointsOfSale.png"
+                  alt={t("imageAlt")}
+                  className="w-full h-80 object-cover object-center transition-transform duration-700 hover:scale-105"
+                />
+
+                {/* GRADIENT OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-500/20 to-transparent" />
+              </div>
+
+              {/* FLOATING STATS CARDS */}
+              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-xl font-bold shadow-xl flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                <span>📍 Techno Store</span>
+              </div>
+
+              <div className="absolute -bottom-6 -left-6 bg-white text-emerald-600 px-4 py-2 rounded-xl font-bold shadow-xl border border-emerald-200 flex items-center gap-2">
+                <Users className="w-4 h-4" />
+                <span>+1000 Clients</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Enhanced Text and Buttons Section */}
+          {/* ULTRA PROFESSIONAL INFO SECTION */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="w-full lg:w-1/2 text-center lg:text-right"
+            className="space-y-8"
           >
-            {/* Header with enhanced styling */}
-            <div className="mb-12">
-              <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-full mx-auto lg:ml-auto lg:mr-0 mb-6"></div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 rtl:text-right text-green-600 ">
-                {t("title")}
-              </h2>
+            {/* TECHNOSTORE FEATURES GRID */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800">Horaires Techno</h3>
+                </div>
+                <p className="text-sm text-gray-600">Ouvert 7j/7 pour votre confort</p>
+              </div>
 
-              <p className="mb-8 rtl:text-right text-lg md:text-xl text-gray-700 leading-relaxed font-medium max-w-2xl mx-auto lg:ml-auto lg:mr-0">
-                {t("description")}
-              </p>
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800">Garantie Techno</h3>
+                </div>
+                <p className="text-sm text-gray-600">Produits certifiés et testés</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <Award className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800">Expertise Techno</h3>
+                </div>
+                <p className="text-sm text-gray-600">Conseils spécialisés</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <Users className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800">Service Techno</h3>
+                </div>
+                <p className="text-sm text-gray-600">Support personnalisé</p>
+              </div>
             </div>
 
-            {/* Enhanced Location Buttons */}
-            <div className="space-y-4 max-w-md mx-auto lg:mr-0 lg:ml-auto mb-8">
-              {locations.map((location, index) => (
-                <a
-                  target="_blank"
-                  href="https://technostationery.com/nos-points-de-vente"
-                  className="w-80 inline-flex justify-center gap-2 items-center bg-gradient-to-r  from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-2xl py-4 px-6 text-white text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-green-200 group"
-                >
-                  <span>{location}</span>
-                  <svg
-                    className={`w-5 h-5  transition-transform duration-300 ${
-                      hoveredLocation === index ? "translate-x-1" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              ))}
-            </div>
-
-            {/* Enhanced More Button */}
+            {/* ULTRA PROFESSIONAL LOCATION BUTTON */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="flex justify-center lg:justify-end"
+            >
+              <a
+                target="_blank"
+                href="https://technostationery.com/nos-points-de-vente"
+                className="group block"
+              >
+                <div className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 rounded-2xl p-6 text-white transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <MapPin className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold mb-1">Visitez Techno Store</h3>
+                        <p className="text-emerald-100">Notre magasin spécialisé près de chez vous</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium">Voir la carte</span>
+                      <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </motion.div>
+
+            {/* ADDITIONAL INFO BUTTON */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="flex justify-center lg:justify-start"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white/80 backdrop-blur-sm border-2 border-green-200 hover:border-green-300 rounded-full px-8 py-3 text-green-700 hover:text-green-800 font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group"
+                className="bg-white border-2 border-emerald-200 hover:border-emerald-300 rounded-xl px-8 py-4 text-emerald-700 hover:text-emerald-800 font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 group"
               >
-                {t("more")}
+                <span>{t("more")}</span>
                 <svg
-                  className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300"
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -134,7 +206,7 @@ const VisualsPointsOfSale = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
               </motion.button>
@@ -143,29 +215,94 @@ const VisualsPointsOfSale = () => {
         </div>
       </div>
 
+      {/* ULTRA PROFESSIONAL STYLES */}
       <style jsx>{`
+        /* ULTRA PROFESSIONAL ANIMATIONS */
         @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+          50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { 
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
           }
-          50% {
-            transform: translateY(-20px) rotate(10deg);
+          50% { 
+            transform: scale(1.05);
+            box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
           }
         }
-
-        /* Ensure RTL text alignment works properly */
-        [dir="rtl"] .rtl\\:text-right {
-          text-align: right;
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
         }
-
-        /* Ensure RTL margin adjustments */
-        [dir="rtl"] .lg\\:mr-0 {
-          margin-right: 0;
+        
+        .animate-glow {
+          animation: glow 2s ease-in-out infinite;
         }
-
-        [dir="rtl"] .lg\\:ml-auto {
-          margin-left: auto;
+        
+        .animate-shimmer {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+          background-size: 200% 100%;
+          animation: shimmer 2s infinite;
+        }
+        
+        .animate-pulse-glow {
+          animation: pulse-glow 2s infinite;
+        }
+        
+        /* PREMIUM CARD EFFECTS */
+        .premium-card {
+          background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .premium-card:hover {
+          background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* GRADIENT TEXT EFFECT */
+        .gradient-text {
+          background: linear-gradient(135deg, #1f2937, #10b981, #059669);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        /* PREMIUM BUTTON EFFECTS */
+        .premium-button {
+          background: linear-gradient(135deg, #10b981, #059669);
+          box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .premium-button:hover {
+          background: linear-gradient(135deg, #059669, #047857);
+          box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+          transform: translateY(-2px);
+        }
+        
+        /* RESPONSIVE ENHANCEMENTS */
+        @media (max-width: 768px) {
+          .premium-card:hover {
+            transform: translateY(-4px) scale(1.01);
+          }
         }
       `}</style>
     </section>

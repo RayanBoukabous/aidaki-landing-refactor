@@ -80,14 +80,14 @@ export default function EnhancedPricingComponent() {
         else imageUrl = '';
       }
 
-      // Corriger les traductions pour être cohérentes en français
+      // Utiliser les traductions selon la langue
       let subtitle = '';
       if (plan.billingCycle === 'Monthly') {
-        subtitle = 'Abonnement mensuel';
+        subtitle = t('pricing.monthlySubscription');
       } else if (plan.billingCycle === 'Yearly') {
-        subtitle = 'Abonnement annuel';
+        subtitle = t('pricing.yearlySubscription');
       } else {
-        subtitle = '72 heures';
+        subtitle = t('pricing.weeklySubscription');
       }
 
       // Gérer la devise selon la langue
@@ -142,10 +142,10 @@ export default function EnhancedPricingComponent() {
     <div className={`grid gap-6 items-stretch ${plans.length === 1 ? "grid-cols-1 max-w-md mx-auto" : "grid-cols-1 md:grid-cols-3 lg:grid-cols-5"}`}>
       {plans.map((plan, index) => {
         const colors = getColorClasses(plan.color);
-    const isProcessing = processingPlanId === plan.planId;
+        const isProcessing = processingPlanId === plan.planId;
         const isFreemium = plan.name.toLowerCase().includes('freemium');
 
-      return (
+        return (
           <div key={plan.id} className="relative group perspective-1000 flex flex-col">
             {/* Effet de glow au survol */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
@@ -187,12 +187,12 @@ export default function EnhancedPricingComponent() {
 
                     {/* Overlay de qualité premium */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-2xl"></div>
-              </div>
+                  </div>
 
                   {/* Effet de particules flottantes uniquement en vert */}
                   <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-400 rounded-full animate-particle-float"></div>
                   <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-green-300 rounded-full animate-particle-float" style={{ animationDelay: '1s' }}></div>
-          </div>
+                </div>
               </div>
 
               {/* Titre du plan avec typographie premium */}
@@ -216,30 +216,30 @@ export default function EnhancedPricingComponent() {
 
                       {/* Effet de brillance au survol */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
-            </div>
-          </div>
+                    </div>
+                  </div>
+                </div>
               )}
 
               {/* Prix avec design premium - Taille uniforme et gradient vert */}
               <div className="mb-6">
                 <div className="text-2xl font-black mb-2 group-hover:text-green-600 transition-colors duration-300 gradient-text-green">
                   {plan.price}
-        </div>
+                </div>
                 {!isFreemium && (
                   <div className="text-xs text-gray-500 font-medium">
-                    Paiement sécurisé
+                    {t('pricing.securePayment')}
                   </div>
                 )}
                 {isFreemium && (
                   <div className="text-xs text-green-600 font-medium">
-                    Aucune carte requise
+                    {t('pricing.noCardRequired')}
                   </div>
                 )}
               </div>
 
               {/* Bouton d'abonnement premium - uniquement vert */}
-          <button onClick={(e) => handleSubscribe(plan.planId, e)} disabled={isProcessing || paymentLoading}
+              <button onClick={(e) => handleSubscribe(plan.planId, e)} disabled={isProcessing || paymentLoading}
                 className="relative inline-block w-full px-6 py-3 font-bold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center overflow-hidden group/btn bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 transform hover:scale-105 hover:shadow-xl mt-auto">
 
                 {/* Effet de brillance sur le bouton */}
@@ -254,11 +254,11 @@ export default function EnhancedPricingComponent() {
                     </>
                   ) : (
                     <>
-                      {isFreemium ? '🎁 Commencer gratuitement' : '✨ S\'abonner maintenant'}
+                      {isFreemium ? t('plans.freemium.startFree') : t('pricing.subscribe')}
                     </>
                   )}
                 </span>
-          </button>
+              </button>
 
               {/* Effet de bordure animée */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"

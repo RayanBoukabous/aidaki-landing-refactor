@@ -329,10 +329,10 @@ const FeaturesHomePageCourses = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="font-bold text-gray-800 text-sm sm:text-base mb-1 font-cairo" lang="ar">
-                            {locale === 'ar' ? subject.arabic : subject.french}
+                            {locale === 'ar' ? subject.arabic : locale === 'en' ? subject.english : subject.french}
                           </div>
                           <div className="text-emerald-600 text-xs sm:text-sm font-medium font-cairo" lang="ar">
-                            {locale === 'ar' ? subject.french : subject.arabic}
+                            {locale === 'ar' ? subject.french : locale === 'en' ? subject.french : subject.arabic}
                           </div>
                         </div>
                       </div>
@@ -511,94 +511,94 @@ const getModuleDetailsForCard = (label) => {
     // Mathématiques
     case 'شعبة رياضيات':
     case 'Mathématiques':
-    case 'Mathématiques':
+    case 'Mathematics':
       return [
-        { arabic: 'الرياضيات', french: 'Mathématiques' },
-        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
-        { arabic: 'العلوم الطبيعية', french: 'Sciences naturelles' },
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'الفلسفة', french: 'Philosophie' }
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques', english: 'Physical sciences' },
+        { arabic: 'العلوم الطبيعية', french: 'Sciences naturelles', english: 'Natural sciences' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
       ];
 
     // Sciences expérimentales
     case 'شعبة علوم تجريبية':
     case 'Sciences expérimentales':
-    case 'Sciences expérimentales':
+    case 'Experimental Sciences':
       return [
-        { arabic: 'علوم الطبيعة', french: 'Sciences naturelles' },
-        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
-        { arabic: 'الرياضيات', french: 'Mathématiques' },
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'الفلسفة', french: 'Philosophie' }
+        { arabic: 'علوم الطبيعة', french: 'Sciences naturelles', english: 'Natural sciences' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques', english: 'Physical sciences' },
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
       ];
 
     // Techniques mathématiques
     case 'شعبة تقني رياضي':
     case 'Techniques mathématiques':
-    case 'Technologie':
+    case 'Technology':
       return [
-        { arabic: 'الرياضيات', french: 'Mathématiques' },
-        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques' },
-        { arabic: 'الهندسة المدنية', french: 'Génie civil' },
-        { arabic: 'الهندسة الكهربائية', french: 'Génie électrique' },
-        { arabic: 'هندسة ميكانيكية', french: 'Génie mécanique' },
-        { arabic: 'هندسة الطرائق', french: 'Génie des procédés' },
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'الفلسفة', french: 'Philosophie' }
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques', english: 'Physical sciences' },
+        { arabic: 'الهندسة المدنية', french: 'Génie civil', english: 'Civil engineering' },
+        { arabic: 'الهندسة الكهربائية', french: 'Génie électrique', english: 'Electrical engineering' },
+        { arabic: 'هندسة ميكانيكية', french: 'Génie mécanique', english: 'Mechanical engineering' },
+        { arabic: 'هندسة الطرائق', french: 'Génie des procédés', english: 'Process engineering' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
       ];
 
     // Gestion et économie
     case 'شعبة تسيير واقتصاد':
     case 'Gestion et économie':
-    case 'Gestion et Économie':
+    case 'Management and Economics':
       return [
-        { arabic: 'التسيير المحاسبي', french: 'Gestion comptable' },
-        { arabic: 'الرياضيات', french: 'Mathématiques' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'اقتصاد ومناجمنت', french: 'Économie et management' },
-        { arabic: 'القانون', french: 'Droit' },
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'الفلسفة', french: 'Philosophie' }
+        { arabic: 'التسيير المحاسبي', french: 'Gestion comptable', english: 'Accounting management' },
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'اقتصاد ومناجمنت', french: 'Économie et management', english: 'Economics and management' },
+        { arabic: 'القانون', french: 'Droit', english: 'Law' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
       ];
 
     // Lettres et philosophie
     case 'شعبة آداب و فلسفة':
     case 'Lettres et philosophie':
-    case 'Littérature et Philosophie':
+    case 'Literature and Philosophy':
       return [
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'الفلسفة', french: 'Philosophie' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'الرياضيات', french: 'Mathématiques' }
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' }
       ];
 
     // Langues étrangères
     case 'شعبة لغات أجنبية':
     case 'Langues étrangères':
-    case 'Langues Étrangères':
+    case 'Foreign Languages':
       return [
-        { arabic: 'اللغة العربية', french: 'Langue arabe' },
-        { arabic: 'اللغة الفرنسية', french: 'Langue française' },
-        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise' },
-        { arabic: 'اللغة الإسبانية', french: 'Langue espagnole' },
-        { arabic: 'اللغة الألمانية', french: 'Langue allemande' },
-        { arabic: 'اللغة الإيطالية', french: 'Langue italienne' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie' },
-        { arabic: 'الفلسفة', french: 'Philosophie' },
-        { arabic: 'الرياضيات', french: 'Mathématiques' }
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'اللغة الإسبانية', french: 'Langue espagnole', english: 'Spanish language' },
+        { arabic: 'اللغة الألمانية', french: 'Langue allemande', english: 'German language' },
+        { arabic: 'اللغة الإيطالية', french: 'Langue italienne', english: 'Italian language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' },
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' }
       ];
 
     default:

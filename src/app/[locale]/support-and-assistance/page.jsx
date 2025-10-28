@@ -5,15 +5,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "../../../navigation";
 import VisualsTopbar from "../../components/visuals/VisualsTopbar";
 import CountDown from "../../components/visuals/CountDown";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Footer from "../../components/Footer";
 import ComplaintForm from "../../components/ComplaintForm";
+import ReportForm from "../../components/ReportForm";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function SupportAndAssistancePage() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showComplaintForm, setShowComplaintForm] = useState(false);
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [showThankYouModal, setShowThankYouModal] = useState(false);
+  const [thankYouType, setThankYouType] = useState('');
 
   useEffect(() => {
     // Check if user has a token (equivalent to authStore.isLoggedIn from original)
@@ -24,6 +30,29 @@ export default function SupportAndAssistancePage() {
       setIsAuthenticated(true);
       router.push("/dashboard");
     }
+
+    // Écouter les événements de fermeture des modals
+    const handleCloseComplaintModal = () => setShowComplaintForm(false);
+    const handleCloseReportModal = () => setShowReportForm(false);
+    const handleShowThankYouModal = (event) => {
+      setThankYouType(event.detail.type);
+      setShowThankYouModal(true);
+
+      // Fermer automatiquement après 20 secondes
+      setTimeout(() => {
+        setShowThankYouModal(false);
+      }, 20000);
+    };
+
+    window.addEventListener('closeComplaintModal', handleCloseComplaintModal);
+    window.addEventListener('closeReportModal', handleCloseReportModal);
+    window.addEventListener('showThankYouModal', handleShowThankYouModal);
+
+    return () => {
+      window.removeEventListener('closeComplaintModal', handleCloseComplaintModal);
+      window.removeEventListener('closeReportModal', handleCloseReportModal);
+      window.removeEventListener('showThankYouModal', handleShowThankYouModal);
+    };
   }, [router]);
 
   return (
@@ -108,9 +137,8 @@ export default function SupportAndAssistancePage() {
             </button>
 
             {/* Signalement Link */}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSca86sbSNqt49c09RcB10G4UjZ8YVZG-fdVeAi_4Qx1XtpNkw/viewform"
-              target="_blank"
+            <button
+              onClick={() => setShowReportForm(true)}
               className="group bg-gradient-to-br from-orange-500 to-yellow-500 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
             >
               <div className="flex justify-center mb-4">
@@ -137,7 +165,7 @@ export default function SupportAndAssistancePage() {
               <p className="text-white text-opacity-90">
                 {t("support.report_description")}
               </p>
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -165,6 +193,89 @@ export default function SupportAndAssistancePage() {
           </div>
         </div>
       )}
+
+      {/* Report Form Modal */}
+      {showReportForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-800">
+                {t("reportForm.title")}
+              </h2>
+              <button
+                onClick={() => setShowReportForm(false)}
+                className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="p-6">
+              <ReportForm />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Thank You Modal */}
+      <AnimatePresence>
+        {showThankYouModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 z-[70] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl relative"
+              dir={locale === "ar" ? "rtl" : "ltr"}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowThankYouModal(false)}
+                className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
+              >
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Thank You Icon */}
+              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+
+              {/* Thank You Message */}
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {thankYouType === 'complaint' ? t("thankYou.complaintTitle") : t("thankYou.reportTitle")}
+              </h3>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                {thankYouType === 'complaint' ? t("thankYou.complaintMessage") : t("thankYou.reportMessage")}
+              </p>
+
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <motion.div
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 20, ease: "linear" }}
+                />
+              </div>
+
+              <p className="text-sm text-gray-500">
+                {t("thankYou.autoCloseMessage")}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Bottom wavy separator */}
       <div className="wavy-separator-bottom">

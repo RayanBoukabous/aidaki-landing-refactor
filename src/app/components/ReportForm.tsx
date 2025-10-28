@@ -4,58 +4,44 @@ import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface ComplaintFormData {
+interface ReportFormData {
   name: string;
   email: string;
   phone: string;
-  category: string;
-  subcategory: string;
-  message: string;
+  errorType: string;
+  subject: string;
+  description: string;
 }
 
-const ComplaintForm = () => {
-  const t = useTranslations("complaintForm");
+const ReportForm = () => {
+  const t = useTranslations("reportForm");
   const locale = useLocale();
   const isRTL = locale === "ar";
 
-  const [formData, setFormData] = useState<ComplaintFormData>({
+  const [formData, setFormData] = useState<ReportFormData>({
     name: "",
     email: "",
     phone: "",
-    category: "",
-    subcategory: "",
-    message: "",
+    errorType: "",
+    subject: "",
+    description: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-  const [errors, setErrors] = useState<Partial<ComplaintFormData>>({});
+  const [errors, setErrors] = useState<Partial<ReportFormData>>({});
 
-  const categories = {
-    technical: {
-      label: t("categories.technical.label"),
-      subcategories: [
-        t("categories.technical.subcategories.login"),
-        t("categories.technical.subcategories.chatbot"),
-        t("categories.technical.subcategories.videos"),
-        t("categories.technical.subcategories.quiz"),
-        t("categories.technical.subcategories.other"),
-      ],
-    },
-    content: {
-      label: t("categories.content.label"),
-      subcategories: [
-        t("categories.content.subcategories.math_errors"),
-        t("categories.content.subcategories.ai_explanations"),
-        t("categories.content.subcategories.missing_courses"),
-        t("categories.content.subcategories.curriculum"),
-        t("categories.content.subcategories.other"),
-      ],
-    },
-  };
+  const errorTypes = [
+    t("errorTypes.dateError"),
+    t("errorTypes.pedagogicalContent"),
+    t("errorTypes.chatbotResponse"),
+    t("errorTypes.aiAnalysis"),
+    t("errorTypes.avatarVideo"),
+    t("errorTypes.other"),
+  ];
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<ComplaintFormData> = {};
+    const newErrors: Partial<ReportFormData> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = t("validation.nameRequired");
@@ -67,18 +53,18 @@ const ComplaintForm = () => {
       newErrors.email = t("validation.emailInvalid");
     }
 
-    if (!formData.category) {
-      newErrors.category = t("validation.categoryRequired");
+    if (!formData.errorType) {
+      newErrors.errorType = t("validation.errorTypeRequired");
     }
 
-    if (!formData.subcategory) {
-      newErrors.subcategory = t("validation.subcategoryRequired");
+    if (!formData.subject.trim()) {
+      newErrors.subject = t("validation.subjectRequired");
     }
 
-    if (!formData.message.trim()) {
-      newErrors.message = t("validation.messageRequired");
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = t("validation.messageTooShort");
+    if (!formData.description.trim()) {
+      newErrors.description = t("validation.descriptionRequired");
+    } else if (formData.description.trim().length < 10) {
+      newErrors.description = t("validation.descriptionTooShort");
     }
 
     setErrors(newErrors);
@@ -101,13 +87,13 @@ const ComplaintForm = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        type: formData.subcategory, // Utiliser la sous-catégorie comme type
-        details: `${categories[formData.category as keyof typeof categories]?.label || formData.category} - ${formData.subcategory}`,
-        description: formData.message,
+        type: formData.errorType,
+        details: formData.subject,
+        description: formData.description,
       };
 
       // Envoyer les données à l'API
-      const response = await fetch("https://aidaki.ai/api/mail/technical-feedback", {
+      const response = await fetch("https://aidaki.ai/api/mail/complaint-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,19 +110,19 @@ const ComplaintForm = () => {
         name: "",
         email: "",
         phone: "",
-        category: "",
-        subcategory: "",
-        message: "",
+        errorType: "",
+        subject: "",
+        description: "",
       });
       
       // Fermer immédiatement le modal de formulaire et afficher le modal de remerciement
-      const closeEvent = new CustomEvent('closeComplaintModal');
+      const closeEvent = new CustomEvent('closeReportModal');
       window.dispatchEvent(closeEvent);
       
       // Afficher le modal de remerciement
       setTimeout(() => {
         const thankYouEvent = new CustomEvent('showThankYouModal', { 
-          detail: { type: 'complaint' } 
+          detail: { type: 'report' } 
         });
         window.dispatchEvent(thankYouEvent);
       }, 300);
@@ -148,16 +134,11 @@ const ComplaintForm = () => {
     }
   };
 
-  const handleInputChange = (field: keyof ComplaintFormData, value: string) => {
+  const handleInputChange = (field: keyof ReportFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
     }
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setFormData(prev => ({ ...prev, category, subcategory: "" }));
-    setErrors(prev => ({ ...prev, category: undefined, subcategory: undefined }));
   };
 
   return (
@@ -170,7 +151,7 @@ const ComplaintForm = () => {
         dir={isRTL ? "rtl" : "ltr"}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-red-500 to-orange-500 p-8 text-center">
+        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 p-8 text-center">
           <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg
               className="w-8 h-8 text-white"
@@ -182,7 +163,7 @@ const ComplaintForm = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
               />
             </svg>
           </div>
@@ -206,7 +187,7 @@ const ComplaintForm = () => {
                 type="text"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 ${
+                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 ${
                   errors.name ? "border-red-500 bg-red-50" : "border-gray-300"
                 }`}
                 placeholder={t("placeholders.name")}
@@ -224,7 +205,7 @@ const ComplaintForm = () => {
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 ${
+                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 ${
                   errors.email ? "border-red-500 bg-red-50" : "border-gray-300"
                 }`}
                 placeholder={t("placeholders.email")}
@@ -243,115 +224,88 @@ const ComplaintForm = () => {
               type="tel"
               value={formData.phone}
               onChange={(e) => handleInputChange("phone", e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
               placeholder={t("placeholders.phone")}
             />
           </div>
 
-          {/* Category Selection */}
+          {/* Error Type Selection */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-3">
-              {t("fields.category")} *
+              {t("fields.errorType")} *
             </label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {Object.entries(categories).map(([key, category]) => (
+            <div className="space-y-2">
+              {errorTypes.map((errorType, index) => (
                 <motion.button
-                  key={key}
+                  key={index}
                   type="button"
-                  onClick={() => handleCategoryChange(key)}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 text-left ${
-                    formData.category === key
-                      ? "border-red-500 bg-red-50 text-red-700"
-                      : "border-gray-300 hover:border-red-300 hover:bg-gray-50"
+                  onClick={() => handleInputChange("errorType", errorType)}
+                  className={`w-full p-4 rounded-xl border-2 transition-all duration-300 text-left ${
+                    formData.errorType === errorType
+                      ? "border-orange-500 bg-orange-50 text-orange-700"
+                      : "border-gray-300 hover:border-orange-300 hover:bg-gray-50"
                   }`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                 >
                   <div className="flex items-center">
                     <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
-                      formData.category === key
-                        ? "border-red-500 bg-red-500"
+                      formData.errorType === errorType
+                        ? "border-orange-500 bg-orange-500"
                         : "border-gray-400"
                     }`}>
-                      {formData.category === key && (
+                      {formData.errorType === errorType && (
                         <div className="w-full h-full rounded-full bg-white scale-50"></div>
                       )}
                     </div>
-                    <span className="font-medium">{category.label}</span>
+                    <span className="font-medium">{errorType}</span>
                   </div>
                 </motion.button>
               ))}
             </div>
-            {errors.category && (
-              <p className="text-red-500 text-sm mt-1">{errors.category}</p>
+            {errors.errorType && (
+              <p className="text-red-500 text-sm mt-1">{errors.errorType}</p>
             )}
           </div>
 
-          {/* Subcategory Selection */}
-          {formData.category && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
-                {t("fields.subcategory")} *
-              </label>
-              <div className="space-y-2">
-                {categories[formData.category as keyof typeof categories]?.subcategories.map((subcategory, index) => (
-                  <motion.button
-                    key={index}
-                    type="button"
-                    onClick={() => handleInputChange("subcategory", subcategory)}
-                    className={`w-full p-3 rounded-xl border-2 transition-all duration-300 text-left ${
-                      formData.subcategory === subcategory
-                        ? "border-red-500 bg-red-50 text-red-700"
-                        : "border-gray-300 hover:border-red-300 hover:bg-gray-50"
-                    }`}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                  >
-                    <div className="flex items-center">
-                      <div className={`w-4 h-4 rounded-full border-2 mr-3 ${
-                        formData.subcategory === subcategory
-                          ? "border-red-500 bg-red-500"
-                          : "border-gray-400"
-                      }`}>
-                        {formData.subcategory === subcategory && (
-                          <div className="w-full h-full rounded-full bg-white scale-50"></div>
-                        )}
-                      </div>
-                      <span>{subcategory}</span>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-              {errors.subcategory && (
-                <p className="text-red-500 text-sm mt-1">{errors.subcategory}</p>
-              )}
-            </motion.div>
-          )}
-
-          {/* Message */}
+          {/* Subject */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              {t("fields.message")} *
+              {t("fields.subject")} *
+            </label>
+            <input
+              type="text"
+              value={formData.subject}
+              onChange={(e) => handleInputChange("subject", e.target.value)}
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 ${
+                errors.subject ? "border-red-500 bg-red-50" : "border-gray-300"
+              }`}
+              placeholder={t("placeholders.subject")}
+            />
+            {errors.subject && (
+              <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+            )}
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              {t("fields.description")} *
             </label>
             <textarea
-              value={formData.message}
-              onChange={(e) => handleInputChange("message", e.target.value)}
+              value={formData.description}
+              onChange={(e) => handleInputChange("description", e.target.value)}
               rows={6}
-              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 resize-none ${
-                errors.message ? "border-red-500 bg-red-50" : "border-gray-300"
+              className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none ${
+                errors.description ? "border-red-500 bg-red-50" : "border-gray-300"
               }`}
-              placeholder={t("placeholders.message")}
+              placeholder={t("placeholders.description")}
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            {errors.description && (
+              <p className="text-red-500 text-sm mt-1">{errors.description}</p>
             )}
             <p className="text-gray-500 text-sm mt-1">
-              {t("messageHint")}
+              {t("descriptionHint")}
             </p>
           </div>
 
@@ -363,7 +317,7 @@ const ComplaintForm = () => {
               className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 ${
                 isSubmitting
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white shadow-lg hover:shadow-xl"
+                  : "bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white shadow-lg hover:shadow-xl"
               }`}
               whileHover={!isSubmitting ? { scale: 1.02 } : {}}
               whileTap={!isSubmitting ? { scale: 0.98 } : {}}
@@ -419,4 +373,4 @@ const ComplaintForm = () => {
   );
 };
 
-export default ComplaintForm;
+export default ReportForm;

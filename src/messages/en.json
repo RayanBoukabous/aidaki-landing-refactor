@@ -98,16 +98,16 @@
       "title": "Economics Professor"
     },
     "english": {
-      "title": "English Professor (Female)"
+      "title": "English Professor"
     },
     "geography": {
-      "title": "Geography Professor (Female)"
+      "title": "Geography Professor"
     },
     "german": {
-      "title": "German Professor (Female)"
+      "title": "German Professor"
     },
     "gp": {
-      "title": "Process Engineering Professor (Female)"
+      "title": "Process Engineering Professor"
     },
     "philo": {
       "title": "Philosophy Professor"
@@ -217,7 +217,11 @@
     "chooseplan": "Choose This Plan",
     "monthlySubscription": "Monthly",
     "yearlySubscription": "Annual",
-    "weeklySubscription": "72 hours"
+    "weeklySubscription": "72 hours",
+    "subscription": "Subscription",
+    "payment": "Payment",
+    "securePayment": "Secure payment",
+    "noCardRequired": "No card required"
   },
   "appDownload": {
     "badge": "Mobile App Available",
@@ -358,8 +362,60 @@
     "messageHint": "Please describe your problem in detail to help us resolve it quickly",
     "submit": "Submit Complaint",
     "submitting": "Submitting...",
-    "successMessage": "Your complaint has been submitted successfully! We'll get back to you as soon as possible.",
+    "successTitle": "Complaint submitted successfully!",
+    "successMessage": "The AIDAKI team has received your complaint and will respond to you as soon as possible. Thank you for your trust!",
+    "autoCloseMessage": "The window will close automatically in a few moments...",
     "errorMessage": "An error occurred while submitting. Please try again."
+  },
+  "thankYou": {
+    "complaintTitle": "Thank you!",
+    "complaintMessage": "Thank you for your trust! The AIDAKI team will take care of your complaint as soon as possible and we will work to resolve your problem as quickly as possible.",
+    "reportTitle": "Thank you for your collaboration!",
+    "reportMessage": "Thank you for helping us improve the content! The AIDAKI team will take care of your report and will work to correct the mentioned error as soon as possible.",
+    "autoCloseMessage": "The window will close automatically in 20 seconds..."
+  },
+  "reportForm": {
+    "title": "Error Report Form - AIDAKI",
+    "subtitle": "Help us improve educational content by reporting errors you find.",
+    "fields": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "errorType": "Error Type",
+      "subject": "Error Subject",
+      "description": "Detailed Error Description"
+    },
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "example@email.com",
+      "phone": "+213 123 456 789",
+      "subject": "Example: Mathematics Course - Chapter 3",
+      "description": "Explain the error in detail with subject and chapter..."
+    },
+    "errorTypes": {
+      "dateError": "Date errors (e.g., History courses)",
+      "pedagogicalContent": "Pedagogical content errors (lesson schema, summary, quiz, etc.)",
+      "chatbotResponse": "Incorrect AI chatbot response",
+      "aiAnalysis": "Inaccurate AI analysis (weak points/inappropriate material)",
+      "avatarVideo": "AI avatar video/explanation non-compliant",
+      "other": "Other"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Email address is not valid",
+      "errorTypeRequired": "Error type is required",
+      "subjectRequired": "Error subject is required",
+      "descriptionRequired": "Error description is required",
+      "descriptionTooShort": "Description is too short (minimum 10 characters)"
+    },
+    "descriptionHint": "Please describe the error in detail with subject and chapter to help us correct it",
+    "submit": "Submit Report",
+    "submitting": "Submitting...",
+    "successTitle": "Report submitted successfully!",
+    "successMessage": "The AIDAKI team has received your report and will work to correct the mentioned error. Thank you for helping us improve the content!",
+    "autoCloseMessage": "The window will close automatically in a few moments...",
+    "errorMessage": "An error occurred while submitting the report. Please try again."
   },
   "footer": {
     "brand": {
@@ -552,11 +608,14 @@
     "supportDescription": "Our team is here to help you choose the perfect plan for your success.",
     "freemium": {
       "name": "FREEMIUM",
-      "subtitle": "(72 hours)",
+      "subtitle": "72 hours",
       "price": "Free",
       "monthlyPrice": "Free",
       "annualPrice": "Free",
       "users": "Free",
+      "bestValue": "BEST VALUE",
+      "noCardRequired": "No card required",
+      "startFree": "🎁 Start for free",
       "firstLesson": "First complete lesson for baccalaureate students",
       "quickSummaries": "Summaries for quick review of the first course",
       "educationalVideos": "Educational videos with professor avatars (first course)",
@@ -595,10 +654,14 @@
     },
     "basicium": {
       "name": "BASICIUM",
-      "price": "1500 DA",
-      "monthlyPrice": "1500 DA",
+      "subtitle": "Monthly subscription",
+      "price": "1500.00 DA",
+      "monthlyPrice": "1500.00 DA",
       "annualPrice": "15000 DA",
-      "users": "1500 DA",
+      "users": "1500.00 DA",
+      "bestValue": "BEST VALUE",
+      "securePayment": "Secure payment",
+      "subscribeNow": "✨ Subscribe now",
       "completeCourses": "Complete courses for baccalaureate students",
       "quickSummaries": "Summaries for quick review",
       "educationalVideos": "Educational videos with professor avatars",
@@ -636,11 +699,14 @@
     },
     "airium": {
       "name": "AIRIUM",
-      "price": "2400 DA",
-      "monthlyPrice": "2400 DA",
+      "subtitle": "Monthly subscription",
+      "price": "2400.00 DA",
+      "monthlyPrice": "2400.00 DA",
       "annualPrice": "24000 DA",
-      "users": "2400 DA",
+      "users": "2400.00 DA",
       "popular": true,
+      "securePayment": "Secure payment",
+      "subscribeNow": "✨ Subscribe now",
       "completeCourses": "Complete courses for baccalaureate students",
       "quickSummaries": "Summaries for quick review",
       "educationalVideos": "Educational videos with professor avatars",
@@ -677,11 +743,14 @@
       ]
     },
     "airiumGold": {
-      "name": "AIRIUM Silver",
-      "price": "3200 DA",
-      "monthlyPrice": "3200 DA",
+      "name": "Airium Silver",
+      "subtitle": "Monthly subscription",
+      "price": "3200.00 DA",
+      "monthlyPrice": "3200.00 DA",
       "annualPrice": "32000 DA",
-      "users": "3200 DA",
+      "users": "3200.00 DA",
+      "securePayment": "Secure payment",
+      "subscribeNow": "✨ Subscribe now",
       "completeCourses": "Complete courses for baccalaureate students",
       "quickSummaries": "Summaries for quick review",
       "educationalVideos": "Educational videos with professor avatars",
@@ -718,11 +787,14 @@
       ]
     },
     "bacculum": {
-      "name": "BACCULUM",
-      "price": "22000 DA",
-      "monthlyPrice": "22000 DA",
+      "name": "BACCULIUM",
+      "subtitle": "Annual subscription",
+      "price": "22000.00 DA",
+      "monthlyPrice": "22000.00 DA",
       "annualPrice": "220000 DA",
-      "users": "22000 DA",
+      "users": "22000.00 DA",
+      "securePayment": "Secure payment",
+      "subscribeNow": "✨ Subscribe now",
       "completeCourses": "Complete courses for baccalaureate students",
       "quickSummaries": "Summaries for quick review",
       "educationalVideos": "Educational videos with professor avatars",
@@ -1364,6 +1436,14 @@
     "paragraph1": "We offer a comprehensive support and assistance system aimed at improving the student's learning experience. Students can ask questions to qualified teachers, allowing them to get immediate and clear answers to any confusion they might encounter in school subjects.",
     "paragraph2": "Additionally, we organize interactive sessions via the Zoom application, where students can join live classes with academic teachers. These sessions allow them to interact directly, ask questions and discuss complex topics in depth.",
     "paragraph3": "We believe that direct interaction with teachers contributes to improving understanding and strengthens students' confidence, helping them effectively achieve their academic goals."
+  },
+  "videoDemos": {
+    "cta": {
+      "title": "Start your adventure with AIDAKI!",
+      "description": "Join thousands of students who are transforming their learning",
+      "startNow": "Start now",
+      "previewCourses": "View course preview"
+    }
   },
   "home": {
     "hero": {

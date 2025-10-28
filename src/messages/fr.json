@@ -162,8 +162,6 @@
     "notifyMe": "Me Notifier",
     "learnMore": "En Savoir Plus"
   },
-  "monthlySubscription": "Abonnement mensuel",
-  "yearlySubscription": "Abonnement annuel",
   "appDownload": {
     "badge": "Application Mobile Disponible",
     "comingSoon": "Le téléchargement de l'application sera bientôt disponible",
@@ -365,12 +363,14 @@
     "supportDescription": "Notre équipe est là pour vous aider à choisir le plan parfait pour votre réussite.",
     "freemium": {
       "name": "FREEMIUM",
-      "subtitle": "(72 heures)",
+      "subtitle": "72 heures",
       "price": "Gratuit",
       "monthlyPrice": "Gratuit",
       "annualPrice": "Gratuit",
       "users": "Gratuit",
       "bestValue": "MEILLEUR RAPPORT",
+      "noCardRequired": "Aucune carte requise",
+      "startFree": "🎁 Commencer gratuitement",
       "firstLesson": "Première leçon complète pour les bacheliers",
       "quickSummaries": "Résumés pour une révision rapide du premier cours",
       "educationalVideos": "Vidéos éducatives avec des avatars de professeurs (premier cours)",
@@ -409,11 +409,14 @@
     },
     "basicium": {
       "name": "BASICIUM",
-      "price": "1500 DA",
-      "monthlyPrice": "1500 DA",
+      "subtitle": "Abonnement mensuel",
+      "price": "1500.00 DA",
+      "monthlyPrice": "1500.00 DA",
       "annualPrice": "15000 DA",
-      "users": "1500 DA",
+      "users": "1500.00 DA",
       "bestValue": "MEILLEUR RAPPORT",
+      "securePayment": "Paiement sécurisé",
+      "subscribeNow": "✨ S'abonner maintenant",
       "completeCourses": "Cours complets pour les bacheliers",
       "quickSummaries": "Résumés pour une révision rapide",
       "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
@@ -451,11 +454,14 @@
     },
     "airium": {
       "name": "AIRIUM",
-      "price": "2400 DA",
-      "monthlyPrice": "2400 DA",
+      "subtitle": "Abonnement mensuel",
+      "price": "2400.00 DA",
+      "monthlyPrice": "2400.00 DA",
       "annualPrice": "24000 DA",
-      "users": "2400 DA",
+      "users": "2400.00 DA",
       "popular": true,
+      "securePayment": "Paiement sécurisé",
+      "subscribeNow": "✨ S'abonner maintenant",
       "completeCourses": "Cours complets pour les bacheliers",
       "quickSummaries": "Résumés pour une révision rapide",
       "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
@@ -492,11 +498,14 @@
       ]
     },
     "airiumGold": {
-      "name": "AIRIUM Silver",
-      "price": "3200 DA",
-      "monthlyPrice": "3200 DA",
+      "name": "Airium Silver",
+      "subtitle": "Abonnement mensuel",
+      "price": "3200.00 DA",
+      "monthlyPrice": "3200.00 DA",
       "annualPrice": "32000 DA",
-      "users": "3200 DA",
+      "users": "3200.00 DA",
+      "securePayment": "Paiement sécurisé",
+      "subscribeNow": "✨ S'abonner maintenant",
       "completeCourses": "Cours complets pour les bacheliers",
       "quickSummaries": "Résumés pour une révision rapide",
       "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
@@ -533,11 +542,14 @@
       ]
     },
     "bacculum": {
-      "name": "BACCULUM",
-      "price": "22000 DA",
-      "monthlyPrice": "22000 DA",
+      "name": "BACCULIUM",
+      "subtitle": "Abonnement annuel",
+      "price": "22000.00 DA",
+      "monthlyPrice": "22000.00 DA",
       "annualPrice": "220000 DA",
-      "users": "22000 DA",
+      "users": "22000.00 DA",
+      "securePayment": "Paiement sécurisé",
+      "subscribeNow": "✨ S'abonner maintenant",
       "completeCourses": "Cours complets pour les bacheliers",
       "quickSummaries": "Résumés pour une révision rapide",
       "educationalVideos": "Vidéos éducatives avec des avatars de professeurs",
@@ -588,7 +600,12 @@
     "monthlySubscription": "Mensuel",
     "yearlySubscription": "Annuel",
     "weeklySubscription": "72 heures",
-    "processing": "Traitement..."
+    "processing": "Traitement...",
+    "subscription": "Abonnement",
+    "payment": "Paiement",
+    "securePayment": "Paiement sécurisé",
+    "noCardRequired": "Aucune carte requise",
+    "chooseplan": "Choisir ce plan"
   },
   "billing": {
     "title": "Historique de facturation",
@@ -1192,6 +1209,14 @@
     "complaint_description": "Déposez une réclamation officielle concernant un service ou une situation",
     "report_title": "Signalement",
     "report_description": "Signalez un problème, un incident ou une situation préoccupante"
+  },
+  "videoDemos": {
+    "cta": {
+      "title": "Commence ton aventure avec AIDAKI !",
+      "description": "Rejoins des milliers d'étudiants qui transforment leur apprentissage",
+      "startNow": "Commencer maintenant",
+      "previewCourses": "Voir un aperçu des cours"
+    }
   },
   "home": {
     "hero": {
@@ -1923,26 +1948,6 @@
     "manageAccount": "Gérer le compte",
     "lastUpdated": "Dernière mise à jour le {date}"
   },
-  "specializations": {
-    "chooseSpecialization": "Choisissez votre filière",
-    "selectSpecializationDescription": "Sélectionnez la filière qui vous intéresse le plus pour {year}",
-    "changeYear": "Changer année",
-    "modules": "Modules",
-    "yearNotSpecified": "Année non spécifiée",
-    "moduleCount": "{count} modules",
-    "studyTime": "~12h d'étude",
-    "specialization": "Filière",
-    "select": "Sélectionner",
-    "backToYears": "Retour aux années d'étude",
-    "availableSpecializations": "Filières disponibles",
-    "chooseDescription": "Choisissez la filière qui correspond à vos intérêts et objectifs d'apprentissage pour l'année {year}.",
-    "loadingError": "Une erreur est survenue lors du chargement des filières.",
-    "updateError": "Erreur lors de la mise à jour de votre filière.",
-    "resetYearError": "Erreur lors de la réinitialisation de l'année d'étude.",
-    "loading": "Chargement des filières...",
-    "noSpecializationsTitle": "Aucune filière disponible",
-    "noSpecializationsDescription": "Les filières pour votre année d'étude seront bientôt disponibles."
-  },
   "specializationDetail": {
     "exploreSubject": "Explorer la matière",
     "notFound": "Filière introuvable",
@@ -2264,8 +2269,60 @@
     "messageHint": "Veuillez décrire votre problème en détail pour nous aider à le résoudre rapidement",
     "submit": "Envoyer la réclamation",
     "submitting": "Envoi en cours...",
-    "successMessage": "Votre réclamation a été envoyée avec succès ! Nous vous répondrons dans les plus brefs délais.",
+    "successTitle": "Réclamation envoyée avec succès !",
+    "successMessage": "L'équipe AIDAKI a bien reçu votre réclamation et vous répondra dans les plus brefs délais. Merci pour votre confiance !",
+    "autoCloseMessage": "La fenêtre se fermera automatiquement dans quelques instants...",
     "errorMessage": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
+  },
+  "thankYou": {
+    "complaintTitle": "Merci !",
+    "complaintMessage": "Merci pour votre confiance ! L'équipe AIDAKI va prendre en charge votre réclamation dans les plus brefs délais et nous travaillerons à résoudre votre problème le plus rapidement possible.",
+    "reportTitle": "Merci pour votre collaboration !",
+    "reportMessage": "Merci de nous aider à améliorer le contenu ! L'équipe AIDAKI va prendre en charge votre rapport et travaillera à corriger l'erreur mentionnée dans les plus brefs délais.",
+    "autoCloseMessage": "La fenêtre se fermera automatiquement dans 20 secondes..."
+  },
+  "reportForm": {
+    "title": "Formulaire de Signalement d'Erreurs - AIDAKI",
+    "subtitle": "Aidez-nous à améliorer le contenu éducatif en signalant les erreurs que vous trouvez.",
+    "fields": {
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "phone": "Numéro de téléphone",
+      "errorType": "Type d'erreur",
+      "subject": "Sujet de l'erreur",
+      "description": "Description détaillée de l'erreur"
+    },
+    "placeholders": {
+      "name": "Entrez votre nom complet",
+      "email": "example@email.com",
+      "phone": "+213 123 456 789",
+      "subject": "Exemple: Cours de Mathématiques - Chapitre 3",
+      "description": "Expliquez l'erreur en détail avec la matière et le chapitre..."
+    },
+    "errorTypes": {
+      "dateError": "Erreur dans les dates (ex : cours d'Histoire)",
+      "pedagogicalContent": "Erreur de contenu pédagogique (schéma de la leçon, résumé, quiz, etc.)",
+      "chatbotResponse": "Réponse incorrecte du chatbot IA",
+      "aiAnalysis": "Analyse inexacte par l'IA (points faibles/matériel non adapté)",
+      "avatarVideo": "Vidéo / explication de l'avatar IA non conforme",
+      "other": "Autre"
+    },
+    "validation": {
+      "nameRequired": "Le nom est requis",
+      "emailRequired": "L'adresse e-mail est requise",
+      "emailInvalid": "L'adresse e-mail n'est pas valide",
+      "errorTypeRequired": "Le type d'erreur est requis",
+      "subjectRequired": "Le sujet de l'erreur est requis",
+      "descriptionRequired": "La description de l'erreur est requise",
+      "descriptionTooShort": "La description est trop courte (minimum 10 caractères)"
+    },
+    "descriptionHint": "Veuillez décrire l'erreur en détail avec la matière et le chapitre pour nous aider à la corriger",
+    "submit": "Envoyer le rapport",
+    "submitting": "Envoi en cours...",
+    "successTitle": "Rapport envoyé avec succès !",
+    "successMessage": "L'équipe AIDAKI a bien reçu votre rapport et travaillera à corriger l'erreur mentionnée. Merci de nous aider à améliorer le contenu !",
+    "autoCloseMessage": "La fenêtre se fermera automatiquement dans quelques instants...",
+    "errorMessage": "Une erreur s'est produite lors de l'envoi du rapport. Veuillez réessayer."
   },
   "footer": {
     "brand": {
@@ -2307,19 +2364,6 @@
     },
     "copyright": "Tous droits réservés.",
     "backToTop": "Retour en haut"
-  },
-  "pricing": {
-    "title": "Nos Tarifs",
-    "subscribe": "S'abonner",
-    "description": "Choisissez le plan qui vous convient le mieux",
-    "monthly": "MENSUEL",
-    "annual": "ANNUEL (12 MOIS)",
-    "offers": "Offres",
-    "details": "Détails",
-    "freePlan": "Plan Gratuit",
-    "popular": "POPULAIRE",
-    "features": "Fonctionnalités:",
-    "chooseplan": "Choisir ce plan"
   },
   "notifications": {
     "achievement": {

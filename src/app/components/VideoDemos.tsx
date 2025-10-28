@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const VideoShowcase = () => {
   const t = useTranslations("videoSubjects");
   const tVideos = useTranslations("videoShowcase");
+  const tCTA = useTranslations("videoDemos.cta");
   const locale = useLocale();
   const direction = getDirection(locale);
   const isRTL = direction === "rtl";
@@ -368,10 +369,10 @@ const VideoShowcase = () => {
           <div className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl">
             <div className="max-w-2xl mx-auto">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                Commence ton aventure avec AIDAKI !
+                {tCTA('title')}
               </h3>
               <p className="text-emerald-100 text-lg mb-6">
-                Rejoins des milliers d'étudiants qui transforment leur apprentissage
+                {tCTA('description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
@@ -380,7 +381,7 @@ const VideoShowcase = () => {
                   rel="noopener noreferrer"
                   className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
                 >
-                  Commencer maintenant
+                  {tCTA('startNow')}
                 </a>
                 <button 
                   onClick={() => {
@@ -391,7 +392,7 @@ const VideoShowcase = () => {
                   }}
                   className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-emerald-600 transition-all duration-300 hover:scale-105"
                 >
-                  Voir un aperçu des cours
+                  {tCTA('previewCourses')}
                 </button>
               </div>
             </div>

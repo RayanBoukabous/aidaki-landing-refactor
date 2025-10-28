@@ -30,6 +30,9 @@ import Footer from "../components/Footer";
 // Import BackToTop component
 import BackToTop from "../components/BackToTop";
 
+// Import Chatbot component
+import Chatbot from "../components/Chatbot";
+
 export default function HomePage() {
   const router = useRouter();
   const t = useTranslations();
@@ -127,6 +130,9 @@ export default function HomePage() {
 
       {/* Back to Top Button */}
       <BackToTop />
+
+      {/* Chatbot */}
+      <Chatbot />
 
       {/* Dropdown backdrop */}
       {isDropdownOpen && (

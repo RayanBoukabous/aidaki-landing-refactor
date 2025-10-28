@@ -1,0 +1,42 @@
+/* Animations personnalisées pour le chatbot AIDAKI */
+
+@keyframes gentle-shake {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  10% { transform: translateX(-3px) translateY(-1px) rotate(-2deg); }
+  20% { transform: translateX(3px) translateY(1px) rotate(2deg); }
+  30% { transform: translateX(-2px) translateY(-1px) rotate(-1deg); }
+  40% { transform: translateX(2px) translateY(1px) rotate(1deg); }
+  50% { transform: translateX(0) translateY(0) rotate(0deg); }
+}
+
+@keyframes subtle-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes badge-pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+/* Classes d'animation pour le chatbot */
+.chatbot-attention {
+  animation: gentle-shake 0.6s ease-in-out;
+}
+
+.chatbot-gentle-shake {
+  animation: gentle-shake 0.5s ease-in-out;
+}
+
+.chatbot-subtle-bounce {
+  animation: subtle-bounce 3s ease-in-out infinite;
+}
+
+.chatbot-badge-pop {
+  animation: badge-pop 0.4s ease-in-out;
+}
+
+/* Animation de survol améliorée */
+.chatbot-hover-effect:hover {
+  animation: gentle-shake 0.3s ease-in-out;
+}

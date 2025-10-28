@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const FeaturesHomePageCourses = () => {
   const t = useTranslations("courses");
-  const tSpecialization = useTranslations("courses.specialization");
+  const tModal = useTranslations("courses.modal");
   const locale = useLocale();
   const [hoveredCard, setHoveredCard] = useState(null);
   const [expandedCard, setExpandedCard] = useState(null);
@@ -52,7 +52,7 @@ const FeaturesHomePageCourses = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center" lang="ar"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center" lang="ar"
           >
             {t("title")}
           </motion.h2>
@@ -217,39 +217,13 @@ const FeaturesHomePageCourses = () => {
           </div>
         </div>
 
-        {/* STYLES CSS POUR ANIMATIONS AVANCÉES */}
+        {/* STYLES CSS OPTIMISÉS POUR PERFORMANCE */}
         <style jsx>{`
-        @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-10px);
-            }
-          }
-          
-          @keyframes glow {
-            0%, 100% {
-              opacity: 0.5;
-          }
-          50% {
-              opacity: 0.8;
-            }
-          }
-          
-          @keyframes pulse-slow {
-            0%, 100% {
-              opacity: 0.7;
-            }
-            50% {
-              opacity: 0.3;
-            }
-          }
-
+          /* Animations optimisées - réduites pour performance */
           @keyframes fade-in {
             0% {
               opacity: 0;
-              transform: translateY(10px);
+              transform: translateY(5px);
           }
           100% {
               opacity: 1;
@@ -258,34 +232,45 @@ const FeaturesHomePageCourses = () => {
           }
 
           .animate-fade-in {
-            animation: fade-in 0.5s ease-out forwards;
+            animation: fade-in 0.3s ease-out forwards;
+          }
+
+          /* Optimisations GPU */
+          .will-change-transform {
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+          }
+
+          /* Réduction des repaints */
+          .contain-layout {
+            contain: layout style paint;
         }
       `}</style>
 
-        {/* MODAL OVERLAY ULTRA PROFESSIONNEL AVEC BACKGROUND BLANC FLOU - RESPONSIVE */}
+        {/* MODAL OVERLAY OPTIMISÉE POUR PERFORMANCE */}
         {expandedCard && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-gradient-to-br from-white/80 via-gray-50/70 to-white/90 backdrop-blur-xl z-50 flex items-center justify-center p-2 sm:p-4 md:p-6"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-white/95 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 md:p-6"
             onClick={handleCloseExpansion}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl w-full max-h-[90vh] sm:max-h-[85vh] overflow-y-auto shadow-2xl border border-gray-200/50 relative mx-2 sm:mx-0"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* BACKGROUND PATTERN BLANC NET */}
+              {/* BACKGROUND PATTERN SIMPLIFIÉ */}
               <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-white/20 to-gray-100/30" />
-                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-gray-200/20 to-transparent rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-gray-200/20 to-transparent rounded-full blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-white/10 to-gray-100/10 rounded-full blur-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50/20 via-white/10 to-gray-100/20" />
+                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-gray-200/10 to-transparent rounded-full blur-2xl" />
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-gray-200/10 to-transparent rounded-full blur-2xl" />
               </div>
 
               {/* HEADER MODAL RESPONSIVE AVEC POSITIONS INVERSÉES */}
@@ -305,7 +290,7 @@ const FeaturesHomePageCourses = () => {
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent font-cairo" lang="ar">
                       {expandedCard}
                     </h3>
-                    <p className="text-sm sm:text-base text-emerald-600 font-medium font-cairo" lang="ar">{tSpecialization("programDetails")}</p>
+                    <p className="text-sm sm:text-base text-emerald-600 font-medium font-cairo" lang="ar">{tModal("programDetails")}</p>
                   </div>
                 </div>
                 <button
@@ -328,16 +313,18 @@ const FeaturesHomePageCourses = () => {
                       className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-lg"
                     />
                   </div>
-                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 font-cairo" lang="ar">{tSpecialization("includedSubjects")}</h4>
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 font-cairo" lang="ar">{tModal("includedSubjects")}</h4>
                   <div className="flex-1 h-px bg-gradient-to-r from-emerald-300 to-green-300" />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {getModuleDetailsForCard(expandedCard).map((subject, index) => (
-                    <div
+                    <motion.div
                       key={index}
-                      className="group bg-gradient-to-r from-white to-emerald-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-emerald-200/50 hover:shadow-lg transition-all duration-300 hover:border-emerald-300/70 opacity-0 animate-fade-in"
-                      style={{ animationDelay: `${index * 100}ms` }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                      className="group bg-gradient-to-r from-white to-emerald-50 rounded-xl sm:rounded-2xl p-4 sm:p-5 border border-emerald-200/50 hover:shadow-lg transition-all duration-200 hover:border-emerald-300/70"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
@@ -350,27 +337,24 @@ const FeaturesHomePageCourses = () => {
                         </div>
                       </div>
                       <div className="mt-2 sm:mt-3 flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full animate-pulse" />
-                        <span className="text-xs text-emerald-600 font-medium font-cairo" lang="ar">{tSpecialization("subjectAvailable")}</span>
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full" />
+                        <span className="text-xs text-emerald-600 font-medium font-cairo" lang="ar">{tModal("subjectAvailable")}</span>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* FOOTER MODAL RESPONSIVE */}
+              {/* FOOTER MODAL RESPONSIVE - CLOSE BUTTON */}
               <div className="relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-emerald-200/50">
-                <div className="flex justify-center items-center">
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-emerald-400 to-green-500 rounded-md sm:rounded-lg flex items-center justify-center shadow-lg border border-emerald-200/50">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm sm:text-base text-emerald-700 font-semibold font-cairo" lang="ar">
-                      {tSpecialization("totalSubjects").replace("{count}", getModuleDetailsForCard(expandedCard).length)}
-                    </span>
-                  </div>
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleCloseExpansion}
+                    className="bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-cairo"
+                    lang="ar"
+                  >
+                    {tModal("close")}
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -381,7 +365,65 @@ const FeaturesHomePageCourses = () => {
   );
 };
 
-// REVOLUTIONARY MODULE CARD - DESIGN COMPLÈTEMENT INNOVANT AVEC MODAL
+// PATTERNS SVG MÉMORISÉS POUR OPTIMISATION PERFORMANCE
+const PATTERN_SVGS = {
+  geometric: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <polygon points="50,10 90,90 10,90" fill="currentColor" />
+      <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  ),
+  circuit: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="1" />
+      <circle cx="30" cy="30" r="3" fill="currentColor" />
+      <circle cx="70" cy="70" r="3" fill="currentColor" />
+      <path d="M30,30 L70,70" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  ),
+  waves: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <path d="M0,50 Q25,20 50,50 T100,50" stroke="currentColor" strokeWidth="2" fill="none" />
+      <path d="M0,60 Q25,30 50,60 T100,60" stroke="currentColor" strokeWidth="1" fill="none" />
+    </svg>
+  ),
+  molecular: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <circle cx="30" cy="30" r="8" fill="currentColor" />
+      <circle cx="70" cy="30" r="8" fill="currentColor" />
+      <circle cx="50" cy="70" r="8" fill="currentColor" />
+      <line x1="30" y1="30" x2="70" y2="30" stroke="currentColor" strokeWidth="2" />
+      <line x1="30" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
+      <line x1="70" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  texture: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <rect x="10" y="10" width="20" height="20" fill="currentColor" />
+      <rect x="40" y="40" width="20" height="20" fill="currentColor" />
+      <rect x="70" y="70" width="20" height="20" fill="currentColor" />
+    </svg>
+  ),
+  network: (
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+      <circle cx="25" cy="25" r="5" fill="currentColor" />
+      <circle cx="75" cy="25" r="5" fill="currentColor" />
+      <circle cx="25" cy="75" r="5" fill="currentColor" />
+      <circle cx="75" cy="75" r="5" fill="currentColor" />
+      <circle cx="50" cy="50" r="5" fill="currentColor" />
+      <line x1="25" y1="25" x2="75" y2="25" stroke="currentColor" strokeWidth="1" />
+      <line x1="25" y1="25" x2="25" y2="75" stroke="currentColor" strokeWidth="1" />
+      <line x1="75" y1="25" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
+      <line x1="25" y1="75" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
+      <line x1="25" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+      <line x1="75" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+      <line x1="25" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+      <line x1="75" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  ),
+};
+
+// REVOLUTIONARY MODULE CARD - OPTIMISÉ POUR PERFORMANCE
 const RevolutionaryModuleCard = ({
   label,
   gradient,
@@ -390,107 +432,45 @@ const RevolutionaryModuleCard = ({
   pattern,
   onCardClick,
 }) => {
-  const getPatternSVG = () => {
-    const patterns = {
-      geometric: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <polygon points="50,10 90,90 10,90" fill="currentColor" />
-          <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="1" />
-        </svg>
-      ),
-      circuit: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="1" />
-          <circle cx="30" cy="30" r="3" fill="currentColor" />
-          <circle cx="70" cy="70" r="3" fill="currentColor" />
-          <path d="M30,30 L70,70" stroke="currentColor" strokeWidth="1" />
-        </svg>
-      ),
-      waves: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <path d="M0,50 Q25,20 50,50 T100,50" stroke="currentColor" strokeWidth="2" fill="none" />
-          <path d="M0,60 Q25,30 50,60 T100,60" stroke="currentColor" strokeWidth="1" fill="none" />
-        </svg>
-      ),
-      molecular: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <circle cx="30" cy="30" r="8" fill="currentColor" />
-          <circle cx="70" cy="30" r="8" fill="currentColor" />
-          <circle cx="50" cy="70" r="8" fill="currentColor" />
-          <line x1="30" y1="30" x2="70" y2="30" stroke="currentColor" strokeWidth="2" />
-          <line x1="30" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
-          <line x1="70" y1="30" x2="50" y2="70" stroke="currentColor" strokeWidth="2" />
-        </svg>
-      ),
-      texture: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <rect x="10" y="10" width="20" height="20" fill="currentColor" />
-          <rect x="40" y="40" width="20" height="20" fill="currentColor" />
-          <rect x="70" y="70" width="20" height="20" fill="currentColor" />
-        </svg>
-      ),
-      network: (
-        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-          <circle cx="25" cy="25" r="5" fill="currentColor" />
-          <circle cx="75" cy="25" r="5" fill="currentColor" />
-          <circle cx="25" cy="75" r="5" fill="currentColor" />
-          <circle cx="75" cy="75" r="5" fill="currentColor" />
-          <circle cx="50" cy="50" r="5" fill="currentColor" />
-          <line x1="25" y1="25" x2="75" y2="25" stroke="currentColor" strokeWidth="1" />
-          <line x1="25" y1="25" x2="25" y2="75" stroke="currentColor" strokeWidth="1" />
-          <line x1="75" y1="25" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
-          <line x1="25" y1="75" x2="75" y2="75" stroke="currentColor" strokeWidth="1" />
-          <line x1="25" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
-          <line x1="75" y1="25" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
-          <line x1="25" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
-          <line x1="75" y1="75" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
-        </svg>
-      ),
-    };
-    return patterns[pattern] || patterns.geometric;
-  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       whileHover={{
-        scale: 1.08,
-        y: -8,
-        rotateX: 5,
-        rotateY: 5,
-        transition: { duration: 0.4, type: "spring", stiffness: 300 }
+        scale: 1.05,
+        y: -4,
+        transition: { duration: 0.2, ease: "easeOut" }
       }}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay,
-        type: "spring",
-        stiffness: 150,
-        damping: 20,
+        ease: "easeOut",
       }}
       viewport={{ once: true }}
-      className="group cursor-pointer"
+      className="group cursor-pointer will-change-transform"
       onClick={() => onCardClick(label)}
+      style={{ contain: "layout style paint" }}
     >
       <div className="relative">
-        {/* AURA DYNAMIQUE */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
+        {/* AURA DYNAMIQUE - OPTIMISÉE */}
+        <div className={`absolute inset-0 bg-gradient-to-r ${gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
 
         {/* CARD PRINCIPALE - DESIGN RÉVOLUTIONNAIRE */}
-        <div className={`relative bg-gradient-to-br ${gradient} rounded-2xl p-5 shadow-xl group-hover:shadow-2xl transition-all duration-400 min-h-[120px] flex flex-col justify-between border border-white/30 backdrop-blur-sm overflow-hidden`}>
+        <div className={`relative bg-gradient-to-br ${gradient} rounded-2xl p-5 shadow-xl group-hover:shadow-2xl transition-all duration-300 min-h-[120px] flex flex-col justify-between border border-white/30 backdrop-blur-sm overflow-hidden`}>
 
-          {/* PATTERN SVG BACKGROUND */}
-          {getPatternSVG()}
+          {/* PATTERN SVG BACKGROUND - OPTIMISÉ */}
+          {PATTERN_SVGS[pattern] || PATTERN_SVGS.geometric}
 
           {/* CONTENU PRINCIPAL */}
           <div className="flex items-center justify-between mb-3 relative z-10">
             {/* Icône */}
-            <div className="text-3xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-300">
+            <div className="text-3xl group-hover:scale-110 transition-transform duration-200">
               {icon}
             </div>
 
             {/* Flèche */}
-            <div className="w-8 h-8 bg-white/25 rounded-full flex items-center justify-center group-hover:bg-white/40 group-hover:scale-110 transition-all duration-300">
+            <div className="w-8 h-8 bg-white/25 rounded-full flex items-center justify-center group-hover:bg-white/40 transition-colors duration-200">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -499,15 +479,14 @@ const RevolutionaryModuleCard = ({
 
           {/* TITRE */}
           <div className="relative z-10">
-            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-white/90 transition-colors duration-300 text-center font-cairo" lang="ar">
+            <h3 className="text-lg font-bold text-white leading-tight group-hover:text-white/90 transition-colors duration-200 text-center font-cairo" lang="ar">
               {label}
             </h3>
           </div>
 
-          {/* ÉLÉMENTS DÉCORATIFS DYNAMIQUES */}
-          <div className="absolute top-3 right-3 w-2 h-2 bg-white/40 rounded-full animate-pulse" />
-          <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }} />
-          <div className="absolute top-1/2 left-2 w-1 h-1 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }} />
+          {/* ÉLÉMENTS DÉCORATIFS RÉDUITS */}
+          <div className="absolute top-3 right-3 w-2 h-2 bg-white/40 rounded-full" />
+          <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-white/30 rounded-full" />
 
           {/* EFFET DE PROFONDEUR AVANCÉ */}
           <div className="absolute inset-0 rounded-2xl opacity-30" style={{
@@ -627,7 +606,7 @@ const getModuleDetailsForCard = (label) => {
   }
 };
 
-// SIMPLE MOBILE CARD - SANS ICÔNES NI POURCENTAGES AVEC MODAL
+// SIMPLE MOBILE CARD - OPTIMISÉE POUR PERFORMANCE
 const SimpleMobileCard = ({
   label,
   color,
@@ -636,43 +615,44 @@ const SimpleMobileCard = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileTap={{ scale: 0.98 }}
       transition={{
-        duration: 0.6,
+        duration: 0.4,
         delay,
         ease: "easeOut"
       }}
       viewport={{ once: true }}
-      className="group cursor-pointer"
+      className="group cursor-pointer will-change-transform"
       onClick={() => onCardClick(label)}
+      style={{ contain: "layout style paint" }}
     >
       <div className="relative">
-        {/* Background Glow */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${color} rounded-xl blur-lg opacity-0 group-hover:opacity-15 transition-opacity duration-300`} />
+        {/* Background Glow - Réduit */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${color} rounded-xl blur-md opacity-0 group-hover:opacity-10 transition-opacity duration-200`} />
 
         {/* Main Card */}
-        <div className={`relative bg-gradient-to-br ${color} rounded-xl p-6 shadow-lg group-hover:shadow-xl transition-all duration-300 border border-white/20 backdrop-blur-sm`}>
+        <div className={`relative bg-gradient-to-br ${color} rounded-xl p-6 shadow-lg group-hover:shadow-xl transition-all duration-200 border border-white/20 backdrop-blur-sm`}>
 
           {/* Content */}
           <div className="flex items-center justify-between">
             {/* Text Content */}
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-white group-hover:text-emerald-100 transition-colors duration-300 text-center font-cairo" lang="ar">
+              <h3 className="text-lg font-bold text-white group-hover:text-emerald-100 transition-colors duration-200 text-center font-cairo" lang="ar">
                 {label}
               </h3>
             </div>
 
             {/* Arrow */}
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-200">
               <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
           </div>
 
-          {/* Decorative Elements */}
+          {/* Decorative Elements - Réduits */}
           <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-white/30 rounded-full" />
           <div className="absolute bottom-3 left-3 w-1 h-1 bg-white/20 rounded-full" />
         </div>

@@ -282,7 +282,20 @@ const ProfAvatars = () => {
           animation: float 4s ease-in-out infinite;
         }
       `}</style>
-      <div className="max-w-8xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8 xl:px-10">
+      
+       {/* SECTION TITLE - CENTRÉ AVEC DESCRIPTION ET MARGIN AUGMENTÉE */}
+       <div className="max-w-8xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8 xl:px-10 mb-16 sm:mb-20 md:mb-24">
+         <div className="flex flex-col items-center">
+           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent mb-4 font-cairo text-center" lang="ar">
+             {t("sectionTitle")}
+           </h2>
+           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl leading-relaxed font-cairo mb-12 text-center" lang="ar">
+             {t("sectionDescription")}
+           </p>
+         </div>
+       </div>
+      
+      <div className="max-w-8xl mx-auto px-4 sm:px-4 md:px-6 lg:px-8 xl:px-10 mt-12">
         {/* Professors Grid */}
         <div
           className="flex justify-center items-center gap-4 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8 2xl:gap-10 md:-translate-y-8 lg:-translate-y-12 xl:-translate-y-16 2xl:-translate-y-20"
@@ -309,12 +322,12 @@ const ProfAvatars = () => {
           {visibleProfessors.map((prof) => (
             <div
               key={prof.id}
-              className={`group cursor-pointer transition-all duration-500 transform hover:scale-105 active:scale-95 relative touch-manipulation ${
+              className={`group cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 relative touch-manipulation ${
                 isHighlighted(prof.id) ? "scale-105 z-10" : ""
               } ${
                 (hoveredProfId !== null || selectedProfId !== null) &&
                 !isHighlighted(prof.id)
-                  ? "opacity-40 scale-95"
+                  ? "opacity-70 scale-95"
                   : "opacity-100"
               }`}
               onClick={() => handleProfClick(prof.id)}
@@ -323,10 +336,13 @@ const ProfAvatars = () => {
               onTouchStart={() => handleMouseEnter(prof.id)}
               onTouchEnd={handleMouseLeave}
             >
-              {/* Glowing border effect */}
+              {/* Glowing border effect - VERT ÉLÉGANT */}
               {isHighlighted(prof.id) && (
-                <div className="absolute -inset-2 sm:-inset-2 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-blue-400 to-green-400 blur-sm opacity-75 animate-pulse"></div>
+                <div className="absolute -inset-1 sm:-inset-1 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-emerald-400 to-green-500 blur-sm opacity-70"></div>
               )}
+              
+              {/* Hover glow effect - VERT SUBTIL */}
+              <div className="absolute -inset-0.5 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-emerald-400/15 to-green-500/15 opacity-0 group-hover:opacity-60 transition-opacity duration-300 blur-sm"></div>
 
               {/* Avatar Card */}
               <div
@@ -347,23 +363,17 @@ const ProfAvatars = () => {
                     loading="lazy"
                   />
 
-                  {/* Overlay glow effect */}
+                  {/* Overlay glow effect - VERT COHÉRENT */}
                   {isHighlighted(prof.id) && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-green-400/20"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-green-500/20"></div>
                   )}
 
-                  {/* Play icon overlay */}
-                  <div
-                    className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-                      isHighlighted(prof.id)
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100"
-                    }`}
-                  >
-                    <div className="w-16 h-16 xs:w-16 xs:h-16 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 2xl:w-24 2xl:h-24 bg-white/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm hover:scale-110 transition-transform duration-300">
+                  {/* Play icon overlay - PLUS PETIT ET DISCRET */}
+                  <div className="absolute top-4 right-4 flex items-center justify-center">
+                    <div className="w-10 h-10 xs:w-10 xs:h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 bg-white/95 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm hover:scale-110 transition-all duration-300 border border-white/70">
                       <svg
-                        className={`w-8 h-8 xs:w-8 xs:h-8 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-9 lg:h-9 xl:w-10 xl:h-10 2xl:w-12 2xl:h-12 text-gray-800 ${
-                          isRTL ? "mr-1 sm:mr-1" : "ml-1 sm:ml-1"
+                        className={`w-5 h-5 xs:w-5 xs:h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 text-emerald-600 ${
+                          isRTL ? "mr-0.5 sm:mr-0.5" : "ml-0.5 sm:ml-0.5"
                         }`}
                         fill="currentColor"
                         viewBox="0 0 24 24"
@@ -400,27 +410,27 @@ const ProfAvatars = () => {
                     </div>
                   )}
 
-                  {/* Professor Info Overlay */}
+                  {/* Professor Info Overlay - HAUTEUR FIXE ET UNIFORME */}
                   <div
-                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 xs:p-4 sm:p-4 lg:p-5 xl:p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ${
+                    className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-emerald-900 via-emerald-800/95 to-emerald-700/50 p-3 xs:p-3 sm:p-3 lg:p-4 xl:p-5 text-white h-20 xs:h-20 sm:h-20 md:h-22 lg:h-24 xl:h-26 flex flex-col justify-end ${
                       isRTL ? "text-right" : "text-left"
                     }`}
                   >
-                    <h3 className="text-base xs:text-base sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold mb-2 sm:mb-2 leading-normal">
+                    {/* Nom du professeur - TAILLE UNIFORME */}
+                    <h3 className="text-sm xs:text-sm sm:text-sm md:text-base lg:text-base xl:text-lg font-bold mb-1 leading-tight text-white drop-shadow-sm line-clamp-1">
                       {prof.name}
                     </h3>
-                    <p className="text-sm sm:text-sm md:text-base lg:text-lg opacity-90 mb-1 sm:mb-1 leading-normal">
-                      {prof.subject}
-                    </p>
-                    <p className="text-xs sm:text-xs md:text-sm lg:text-base opacity-70 leading-normal">
-                      {prof.title}
+                    
+                    {/* Niveau d'enseignement - COMPACT ET UNIFORME */}
+                    <p className="text-xs sm:text-xs md:text-sm lg:text-sm opacity-95 leading-tight line-clamp-1 text-white/90 drop-shadow-sm">
+                      {t("level")}
                     </p>
                   </div>
                 </div>
 
-                {/* Bottom accent line */}
+                {/* Bottom accent line - VERT COHÉRENT */}
                 {isHighlighted(prof.id) && (
-                  <div className="absolute bottom-0 left-0 right-0 h-1 sm:h-1 bg-gradient-to-r from-green-400 to-blue-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 sm:h-1 bg-gradient-to-r from-emerald-500 to-green-500"></div>
                 )}
               </div>
             </div>

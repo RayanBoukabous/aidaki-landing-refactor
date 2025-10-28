@@ -67,6 +67,10 @@
     }
   },
   "profAvatars": {
+    "sectionTitle": "Nos Professeurs Experts",
+    "sectionDescription": "Découvrez notre équipe de professeurs spécialisés qui offrent un enseignement de qualité dans toutes les matières",
+    "expertIndicator": "Expert en la matière",
+    "level": "Niveau Terminale",
     "maths": {
       "title": "Professeur de mathématiques"
     },
@@ -170,7 +174,7 @@
     },
     "description": "Emportez votre parcours d'apprentissage avec vous. Téléchargez l'application mobile AIDAKI et accédez à vos cours, suivez vos progrès et continuez d'apprendre n'importe quand, n'importe où.",
     "features": {
-      "feature1": "Accès aux cours hors ligne",
+      "feature1": "Notifications intelligentes",
       "feature2": "Synchronisation des progrès en temps réel",
       "feature3": "Assistant IA interactif",
       "feature4": "Notifications push pour les rappels"
@@ -1054,7 +1058,9 @@
       "mathematics": "Mathématiques",
       "technology": "Technologie",
       "management": "Gestion et Économie",
-      "languages": "Langues Étrangères",
+      "languages": "Langues Étrangères"
+    },
+    "modal": {
       "title": "Mes cours",
       "allCourses": "Tous les cours",
       "enrolledCourses": "Cours suivis",
@@ -1065,7 +1071,7 @@
       "includedSubjects": "Matières incluses",
       "programDetails": "Programme détaillé des matières",
       "subjectAvailable": "Matière disponible",
-      "totalSubjects": "Total: {count} matières"
+      "close": "Fermer"
     },
     "naturalScience": "Sciences naturelles",
     "physicalScience": "Sciences physiques",
@@ -1134,8 +1140,12 @@
   },
   "pointsOfSale": {
     "title": "Points de Vente",
+    "badge": "NOS POINTS DE VENTE",
     "imageAlt": "Personne tenant une carte",
     "description": "Vous pouvez trouver nos cartes rechargeables aux emplacements suivants :",
+    "visitStore": "Visitez Techno Store",
+    "storeDescription": "Notre magasin spécialisé près de chez vous",
+    "viewMap": "Voir la carte",
     "locations": [
       "Techno",
       "Emplacement 1",

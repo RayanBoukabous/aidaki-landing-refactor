@@ -151,7 +151,7 @@ export default function VisualsTopbar() {
 
   return (
     <>
-      <nav className="w-full border-b top-0 z-50 transition-all duration-500 bg-white">
+      <nav className="w-full border-b top-0 z-[100] transition-all duration-500 bg-white">
         {/* Decorative top border */}
         <div className="h-1 bg-gradient-to-r from-green-300 via-green-300 to-green-300"></div>
 
@@ -250,7 +250,7 @@ export default function VisualsTopbar() {
                       {/* Dropdown Menu */}
                       {aboutDropdownOpen && (
                         <div
-                          className={`absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 ${
+                          className={`absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[110] ${
                             isRTL ? "right-0" : "left-0"
                           }`}
                           onMouseEnter={() => setAboutDropdownOpen(true)}
@@ -368,7 +368,7 @@ export default function VisualsTopbar() {
 
       {/* Enhanced Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${
+        className={`fixed inset-0 z-[90] md:hidden transition-all duration-500 ${
           mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >

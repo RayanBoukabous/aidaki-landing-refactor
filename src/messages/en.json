@@ -72,6 +72,10 @@
     "duration": "1 min"
   },
   "profAvatars": {
+    "sectionTitle": "Our Expert Professors",
+    "sectionDescription": "Discover our team of specialized professors who offer quality education in all subjects",
+    "expertIndicator": "Subject Expert",
+    "level": "High School Level",
     "french": {
       "title": "French"
     },
@@ -225,7 +229,7 @@
     },
     "description": "Take your learning journey with you. Download the AIDAKI mobile app and access your courses, track progress, and continue learning anytime, anywhere.",
     "features": {
-      "feature1": "Offline course access",
+      "feature1": "Smart notifications",
       "feature2": "Real-time progress sync",
       "feature3": "Interactive AI assistant",
       "feature4": "Push notifications for reminders"
@@ -1226,7 +1230,9 @@
       "mathematics": "Mathematics",
       "technology": "Technology",
       "management": "Management and Economics",
-      "languages": "Foreign Languages",
+      "languages": "Foreign Languages"
+    },
+    "modal": {
       "title": "My courses",
       "allCourses": "All courses",
       "enrolledCourses": "Enrolled courses",
@@ -1237,7 +1243,7 @@
       "includedSubjects": "Included subjects",
       "programDetails": "Detailed program of subjects",
       "subjectAvailable": "Subject available",
-      "totalSubjects": "Total: {count} subjects"
+      "close": "Close"
     },
     "naturalScience": "Natural sciences",
     "physicalScience": "Physical sciences",
@@ -1306,8 +1312,12 @@
   },
   "pointsOfSale": {
     "title": "Points of Sale",
+    "badge": "OUR POINTS OF SALE",
     "imageAlt": "Person holding a card",
     "description": "You can find our reloadable cards at the following locations:",
+    "visitStore": "Visit Techno Store",
+    "storeDescription": "Our specialized store near you",
+    "viewMap": "View map",
     "locations": [
       "Techno",
       "Location 1",

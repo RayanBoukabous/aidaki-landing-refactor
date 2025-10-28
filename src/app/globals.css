@@ -487,3 +487,114 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
+
+/* OPTIMISATIONS PERFORMANCE POUR CARTES SPÉCIALITÉS */
+.will-change-transform {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.contain-layout {
+  contain: layout style paint;
+}
+
+/* Animations optimisées pour les cartes */
+.card-hover-optimized {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card-hover-optimized:hover {
+  transform: translate3d(0, -4px, 0) scale(1.02);
+}
+
+/* Réduction des animations sur mobile */
+@media (prefers-reduced-motion: reduce) {
+  .will-change-transform,
+  .card-hover-optimized {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Optimisation GPU pour les modales */
+.modal-optimized {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Réduction des effets de flou sur les appareils moins puissants */
+@media (max-width: 768px) {
+  .backdrop-blur-xl {
+    backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Classes pour limiter le nombre de lignes de texte */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Classes spéciales pour les cartes de professeurs */
+.professor-name {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.professor-subject {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-break: break-word;
+}
+
+/* Responsive text sizing pour les cartes */
+@media (max-width: 640px) {
+  .professor-name {
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Hauteurs fixes pour les sections vertes uniformes */
+.h-20 {
+  height: 5rem; /* 80px */
+}
+
+.h-22 {
+  height: 5.5rem; /* 88px */
+}
+
+.h-24 {
+  height: 6rem; /* 96px */
+}
+
+.h-26 {
+  height: 6.5rem; /* 104px */
+}

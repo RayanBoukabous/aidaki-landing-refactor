@@ -116,7 +116,7 @@ const FeaturesHomePageFeatures = () => {
   return (
     <section className="relative text-center py-12 sm:py-16 md:py-24 bg-gradient-to-br from-green-50 via-white to-blue-50 overflow-hidden">
       <div className="flex justify-center items-center">
-        <h3 className="text-2xl sm:text-3xl md:text-4xl text-center mx-auto mb-8 sm:mb-12 px-4 font-bold font-cairo bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent" lang="ar">
+        <h3 className="text-4xl sm:text-5xl md:text-6xl text-center mx-auto mb-8 sm:mb-12 px-4 font-bold font-cairo bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent" lang="ar">
           {t("features.featureSectionTitle")}
         </h3>
       </div>

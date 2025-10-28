@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { MapPin, ExternalLink, Star, Users, Clock, Shield, Award } from "lucide-react";
+import { MapPin, ExternalLink, Star, Users } from "lucide-react";
 
 const VisualsPointsOfSale = () => {
   const t = useTranslations("pointsOfSale");
@@ -35,7 +35,7 @@ const VisualsPointsOfSale = () => {
         >
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg mb-6">
             <MapPin className="w-4 h-4" />
-            <span>NOS POINTS DE VENTE</span>
+            <span>{t("badge")}</span>
             <Star className="w-4 h-4" />
           </div>
 
@@ -43,7 +43,7 @@ const VisualsPointsOfSale = () => {
             {t("title")}
           </h2>
 
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo" lang="ar">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo text-center" lang="ar">
             {t("description")}
           </p>
 
@@ -88,12 +88,7 @@ const VisualsPointsOfSale = () => {
               {/* FLOATING STATS CARDS */}
               <div className="absolute -top-6 -right-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-xl font-bold shadow-xl flex items-center gap-2 text-center">
                 <MapPin className="w-4 h-4" />
-                <span>📍 Techno Store</span>
-              </div>
-
-              <div className="absolute -bottom-6 -left-6 bg-white text-emerald-600 px-4 py-2 rounded-xl font-bold shadow-xl border border-emerald-200 flex items-center gap-2 text-center">
-                <Users className="w-4 h-4" />
-                <span>+1000 Clients</span>
+                <span>{t("locations.0")}</span>
               </div>
             </div>
           </motion.div>
@@ -107,48 +102,6 @@ const VisualsPointsOfSale = () => {
             className="space-y-8"
           >
 
-            {/* TECHNOSTORE FEATURES GRID */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-gray-800 text-center">Horaires Techno</h3>
-                </div>
-                <p className="text-sm text-gray-600 text-center">Ouvert 7j/7 pour votre confort</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-gray-800 text-center">Garantie Techno</h3>
-                </div>
-                <p className="text-sm text-gray-600 text-center">Produits certifiés et testés</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <Award className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-gray-800 text-center">Expertise Techno</h3>
-                </div>
-                <p className="text-sm text-gray-600 text-center">Conseils spécialisés</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border border-emerald-200/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-gray-800 text-center">Service Techno</h3>
-                </div>
-                <p className="text-sm text-gray-600 text-center">Support personnalisé</p>
-              </div>
-            </div>
 
             {/* ULTRA PROFESSIONAL LOCATION BUTTON */}
             <motion.div
@@ -169,12 +122,12 @@ const VisualsPointsOfSale = () => {
                         <MapPin className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold mb-1 text-center">Visitez Techno Store</h3>
-                        <p className="text-emerald-100 text-center">Notre magasin spécialisé près de chez vous</p>
+                        <h3 className="text-xl font-bold mb-1 text-center">{t("visitStore")}</h3>
+                        <p className="text-emerald-100 text-center">{t("storeDescription")}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-center">Voir la carte</span>
+                      <span className="text-sm font-medium text-center">{t("viewMap")}</span>
                       <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>

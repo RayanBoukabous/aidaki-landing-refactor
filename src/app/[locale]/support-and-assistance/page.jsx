@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 // Import the VisualsTopbar for non-authenticated users
 import { useRouter } from "../../../navigation";
 import VisualsTopbar from "../../components/visuals/VisualsTopbar";
-import CountDown from "../../components/visuals/CountDown";
 import { useTranslations, useLocale } from "next-intl";
 import Footer from "../../components/Footer";
 import ComplaintForm from "../../components/ComplaintForm";
@@ -16,8 +15,7 @@ export default function SupportAndAssistancePage() {
   const locale = useLocale();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showComplaintForm, setShowComplaintForm] = useState(false);
-  const [showReportForm, setShowReportForm] = useState(false);
+  const [activeModal, setActiveModal] = useState(null); // 'complaint', 'report', ou null
   const [showThankYouModal, setShowThankYouModal] = useState(false);
   const [thankYouType, setThankYouType] = useState('');
 
@@ -32,8 +30,7 @@ export default function SupportAndAssistancePage() {
     }
 
     // Écouter les événements de fermeture des modals
-    const handleCloseComplaintModal = () => setShowComplaintForm(false);
-    const handleCloseReportModal = () => setShowReportForm(false);
+    const handleCloseModal = () => setActiveModal(null);
     const handleShowThankYouModal = (event) => {
       setThankYouType(event.detail.type);
       setShowThankYouModal(true);
@@ -44,13 +41,11 @@ export default function SupportAndAssistancePage() {
       }, 20000);
     };
 
-    window.addEventListener('closeComplaintModal', handleCloseComplaintModal);
-    window.addEventListener('closeReportModal', handleCloseReportModal);
+    window.addEventListener('closeModal', handleCloseModal);
     window.addEventListener('showThankYouModal', handleShowThankYouModal);
 
     return () => {
-      window.removeEventListener('closeComplaintModal', handleCloseComplaintModal);
-      window.removeEventListener('closeReportModal', handleCloseReportModal);
+      window.removeEventListener('closeModal', handleCloseModal);
       window.removeEventListener('showThankYouModal', handleShowThankYouModal);
     };
   }, [router]);
@@ -59,7 +54,6 @@ export default function SupportAndAssistancePage() {
     <div className="relative overflow-hidden">
       {/* Always show VisualsTopbar like other pages */}
       <div>
-        <CountDown />
         <VisualsTopbar />
       </div>
 
@@ -105,7 +99,7 @@ export default function SupportAndAssistancePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Réclamation Link */}
             <button
-              onClick={() => setShowComplaintForm(true)}
+              onClick={() => setActiveModal('complaint')}
               className="group bg-gradient-to-br from-red-500 to-orange-500 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
             >
               <div className="flex justify-center mb-4">
@@ -136,7 +130,7 @@ export default function SupportAndAssistancePage() {
 
             {/* Signalement Link */}
             <button
-              onClick={() => setShowReportForm(true)}
+              onClick={() => setActiveModal('report')}
               className="group bg-gradient-to-br from-orange-500 to-yellow-500 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
             >
               <div className="flex justify-center mb-4">
@@ -168,16 +162,17 @@ export default function SupportAndAssistancePage() {
         </div>
       </section>
 
-      {/* Complaint Form Modal */}
-      {showComplaintForm && (
+
+      {/* Dynamic Modal */}
+      {activeModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
               <h2 className="text-2xl font-bold text-gray-800">
-                {t("complaintForm.title")}
+                {activeModal === 'complaint' ? t("complaintForm.title") : t("reportForm.title")}
               </h2>
               <button
-                onClick={() => setShowComplaintForm(false)}
+                onClick={() => setActiveModal(null)}
                 className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
               >
                 <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,37 +181,11 @@ export default function SupportAndAssistancePage() {
               </button>
             </div>
             <div className="p-6">
-              <ComplaintForm />
+              {activeModal === 'complaint' ? <ComplaintForm /> : <ReportForm />}
             </div>
           </div>
         </div>
       )}
-
-      {/* Report Form Modal */}
-      {showReportForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-800">
-                {t("reportForm.title")}
-              </h2>
-              <button
-                onClick={() => setShowReportForm(false)}
-                className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200"
-              >
-                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div className="p-6">
-              <ReportForm />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Thank You Modal */}
       <AnimatePresence>
         {showThankYouModal && (
           <motion.div

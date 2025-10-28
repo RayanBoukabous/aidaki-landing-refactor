@@ -86,20 +86,6 @@
       "title": "مادة الفلسفة"
     }
   },
-  "ComingSoon": {
-    "title": "قريباً",
-    "description": "نحن نعمل بجد لنقدم لك شيئاً مذهلاً. ترقب الإطلاق!",
-    "centerText": "منصتنا التعليمية المدعومة بالذكاء الاصطناعي ستكون قريباً في متناولكم!",
-    "days": "أيام",
-    "hours": "ساعات",
-    "minutes": "دقائق",
-    "seconds": "ثواني",
-    "launchDate": "تاريخ الإطلاق",
-    "october1st": "15 أكتوبر 2025",
-    "getReady": "استعد لتجربة تعليمية مذهلة!",
-    "notifyMe": "أعلمني",
-    "learnMore": "اعرف المزيد"
-  },
   "monthlySubscription": "اشتراك شهري",
   "yearlySubscription": "اشتراك سنوي",
   "notifications": {

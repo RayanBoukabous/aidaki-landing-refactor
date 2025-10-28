@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { getDirection } from "../../../i18n";
 import { smoothScrollTo } from "../../../utils/smoothScroll";
 
@@ -16,8 +17,107 @@ export default function VisualsTopbar() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
   const [currentLocale, setCurrentLocale] = useState(locale as string);
+  const [mounted, setMounted] = useState(false);
 
+  // Handle mounting
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // ULTRA ROBUST FALLBACK - Create dropdown directly in DOM
+  useEffect(() => {
+    if (aboutDropdownOpen && mounted) {
+      // Calculate position immediately to avoid flash
+      const button = document.querySelector('[data-dropdown-trigger]') as HTMLElement;
+      if (!button) return;
+
+      const rect = button.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      
+      const calculatedTop = rect.bottom + scrollTop + 8;
+      const calculatedLeft = rect.left + scrollLeft;
+
+      // Remove any existing dropdown
+      const existingDropdown = document.getElementById('ultra-robust-dropdown');
+      if (existingDropdown) {
+        existingDropdown.remove();
+      }
+
+      // Create dropdown element
+      const dropdown = document.createElement('div');
+      dropdown.id = 'ultra-robust-dropdown';
+      dropdown.className = 'ultra-robust-dropdown';
+      dropdown.style.cssText = `
+        position: fixed !important;
+        z-index: 2147483647 !important;
+        top: ${calculatedTop}px !important;
+        left: ${calculatedLeft}px !important;
+        width: 288px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(16px) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        padding: 16px !important;
+        pointer-events: auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        transition: all 0.3s ease !important;
+      `;
+
+      // Add dropdown content
+      dropdown.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <a href="/${locale}/about" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">À Propos de Nous</a>
+          <a href="/${locale}/about#vision" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">Notre vision</a>
+          <a href="/${locale}/about#new-approach" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">Une Nouvelle Approche Pédagogique</a>
+          <a href="/${locale}/about#avatar-technology" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">L'impact des avatars</a>
+        </div>
+      `;
+
+      // Add event listeners
+      dropdown.addEventListener('mouseenter', () => setAboutDropdownOpen(true));
+      dropdown.addEventListener('mouseleave', () => setAboutDropdownOpen(false));
+
+      // Add click handlers for links
+      dropdown.addEventListener('click', (e) => {
+        const target = e.target as HTMLAnchorElement;
+        if (target.tagName === 'A') {
+          e.preventDefault();
+          setAboutDropdownOpen(false);
+          const href = target.getAttribute('href');
+          if (href) {
+            if (href.includes('#')) {
+              router.push(`/${locale}/about`);
+              setTimeout(() => {
+                const hash = href.split('#')[1];
+                const element = document.getElementById(hash);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 300);
+            } else {
+              router.push(href);
+            }
+          }
+        }
+      });
+
+      // Append to body
+      document.body.appendChild(dropdown);
+
+      return () => {
+        const existingDropdown = document.getElementById('ultra-robust-dropdown');
+        if (existingDropdown) {
+          existingDropdown.remove();
+        }
+      };
+    }
+  }, [aboutDropdownOpen, mounted, locale, router]);
 
   // Navigation routes with the new structure
   const mainRoutes = [
@@ -151,60 +251,116 @@ export default function VisualsTopbar() {
 
   return (
     <>
-      <nav className="w-full border-b top-0 z-[100] transition-all duration-500 bg-white">
-        {/* Decorative top border */}
-        <div className="h-1 bg-gradient-to-r from-green-300 via-green-300 to-green-300"></div>
+      <nav className="w-full border-b top-0 z-[100] transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl hover:shadow-3xl transition-all duration-500 animate-pulse-slow nav-container">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-green-500/20 animate-gradient-x"></div>
+        
+        {/* Enhanced background pattern with animations */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-green-300 rounded-full mix-blend-overlay filter blur-xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-16 h-16 sm:w-24 sm:h-24 bg-green-200 rounded-full mix-blend-overlay filter blur-xl animate-float-delayed"></div>
+          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-green-400 rounded-full mix-blend-overlay filter blur-2xl animate-pulse-gentle"></div>
+        </div>
+
+        {/* Animated dots pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-4 right-8 w-2 h-2 bg-green-200 rounded-full animate-twinkle"></div>
+          <div className="absolute bottom-6 left-12 w-1 h-1 bg-green-300 rounded-full animate-twinkle-delayed"></div>
+          <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-green-100 rounded-full animate-twinkle-slow"></div>
+        </div>
 
         <div
-          className={`mx-auto relative px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center ${
+          className={`mx-auto relative px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center z-10 ${
             isRTL ? "flex-row-reverse" : ""
           }`}
         >
-          {/* Logo */}
+          {/* Logo - Ultra Sophisticated Design */}
           <Link href={`/${locale}/`} className="group relative">
-            <div className="absolute inset-0 bg-green-200/30 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {/* Animated background glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-md border border-white/30 group-hover:border-white/50 shadow-2xl group-hover:shadow-3xl animate-pulse-gentle"></div>
+            
+            {/* Main logo container with advanced glassmorphism */}
+            <div className="relative w-16 sm:w-18 md:w-20 h-16 sm:h-18 md:h-20 bg-gradient-to-br from-white via-white/95 to-white/90 rounded-full flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-xl group-hover:shadow-2xl border border-white/40 group-hover:border-white/60 backdrop-blur-sm overflow-hidden">
+              
+              {/* Inner glow effect */}
+              <div className="absolute inset-1 bg-gradient-to-tr from-green-400/20 via-transparent to-green-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Animated border ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-green-400/50 via-white/30 to-green-600/50 opacity-0 group-hover:opacity-100 transition-all duration-500 animate-spin-slow"></div>
+              
+              {/* Logo image with sophisticated effects */}
+              <div className="relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110">
             <img
               src="/images/logo-black.png"
-              className="w-10 sm:w-12 md:w-16 h-auto relative z-10 transition-transform duration-300 group-hover:scale-110"
-              alt="Logo"
-            />
+                  className="w-12 sm:w-14 md:w-16 h-auto filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
+                  alt="AIDAKI Logo"
+                />
+                
+                {/* Subtle inner shadow for depth */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              
+              {/* Floating particles effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-2 right-2 w-1 h-1 bg-green-400 rounded-full animate-twinkle"></div>
+                <div className="absolute bottom-3 left-3 w-0.5 h-0.5 bg-white rounded-full animate-twinkle-delayed"></div>
+                <div className="absolute top-1/2 left-1 w-0.5 h-0.5 bg-green-300 rounded-full animate-twinkle-slow"></div>
+              </div>
+            </div>
+            
+            {/* Outer ring animation */}
+            <div className="absolute inset-0 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125 animate-pulse-slow"></div>
           </Link>
 
           {/* Mobile Right Side - Language Selector + Menu Button */}
-          <div className="md:hidden flex items-center gap-2 sm:gap-3">
+          <div className="lg:hidden flex items-center gap-2 sm:gap-3">
             {/* Mobile Language Selector - Always Visible */}
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Ultra Sophisticated */}
             <button
-              className={`bg-green-700 z-50 p-2 sm:p-3 rounded-xl focus:outline-none transition-all duration-300 ${
+              className={`group relative z-50 p-3 sm:p-4 rounded-xl focus:outline-none transition-all duration-500 ${
                 mobileMenuOpen
-                  ? "bg-white/20 backdrop-blur-sm scale-110"
-                  : "hover:bg-green-400/30"
+                  ? "bg-white/25 backdrop-blur-md scale-110 shadow-2xl border border-white/40"
+                  : "bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 hover:border-white/30 shadow-lg hover:shadow-xl"
               }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              <div className="relative w-6 h-6">
+              {/* Animated background glow */}
+              <div className={`absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/5 rounded-xl opacity-0 transition-all duration-500 ${
+                mobileMenuOpen ? "opacity-100" : "group-hover:opacity-100"
+              }`}></div>
+              
+              {/* Hamburger lines with enhanced effects */}
+              <div className="relative w-6 h-6 z-10">
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    mobileMenuOpen ? "top-3 rotate-45" : "top-1"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
+                    mobileMenuOpen ? "top-3 rotate-45 scale-110" : "top-1 group-hover:scale-105"
                   }`}
                 ></span>
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    mobileMenuOpen ? "opacity-0" : "top-3"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
+                    mobileMenuOpen ? "opacity-0 scale-0" : "top-3 group-hover:scale-105"
                   }`}
                 ></span>
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    mobileMenuOpen ? "top-3 -rotate-45" : "top-5"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
+                    mobileMenuOpen ? "top-3 -rotate-45 scale-110" : "top-5 group-hover:scale-105"
                   }`}
                 ></span>
+              </div>
+              
+              {/* Floating particles effect */}
+              <div className={`absolute inset-0 opacity-0 transition-opacity duration-500 ${
+                mobileMenuOpen ? "opacity-100" : "group-hover:opacity-100"
+              }`}>
+                <div className="absolute top-1 right-1 w-1 h-1 bg-green-300 rounded-full animate-twinkle"></div>
+                <div className="absolute bottom-2 left-2 w-0.5 h-0.5 bg-white rounded-full animate-twinkle-delayed"></div>
               </div>
             </button>
 
             <select
-              className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
+              className="bg-white/20 cursor-pointer rounded-xl px-4 py-3 text-sm font-semibold outline-none hover:bg-white/30 transition-all duration-300 appearance-none pr-8 border border-white/30 min-w-[60px] text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm language-selector"
               value={currentLocale}
               onChange={(e) => setLocale(e.target.value)}
             >
@@ -215,14 +371,15 @@ export default function VisualsTopbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center flex-1">
-            <ul className="flex items-center gap-1">
+          <div className="hidden lg:flex items-center justify-center flex-1">
+             <ul className="flex items-center gap-4">
               {mainRoutes.map((route, index) => (
                 <li key={route.name} className="relative">
                   {route.hasDropdown ? (
-                    <div className="relative">
+                    <div className="relative dropdown-container">
                       <button
-                        className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-green-600 transition-colors duration-300 rounded-lg flex items-center gap-1"
+                        data-dropdown-trigger
+                        className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
                         onClick={(e) => {
                           e.stopPropagation();
                           setAboutDropdownOpen(!aboutDropdownOpen);
@@ -231,7 +388,7 @@ export default function VisualsTopbar() {
                       >
                         {t(route.name)}
                         <svg
-                          className={`w-4 h-4 transition-transform duration-200 ${
+                          className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-200 ${
                             aboutDropdownOpen ? "rotate-180" : ""
                           }`}
                           fill="none"
@@ -247,59 +404,12 @@ export default function VisualsTopbar() {
                         </svg>
                       </button>
 
-                      {/* Dropdown Menu */}
-                      {aboutDropdownOpen && (
-                        <div
-                          className={`absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[110] ${
-                            isRTL ? "right-0" : "left-0"
-                          }`}
-                          onMouseEnter={() => setAboutDropdownOpen(true)}
-                          onMouseLeave={() => setAboutDropdownOpen(false)}
-                        >
-                          {route.dropdownItems?.map((item) => (
-                            <Link
-                              key={item.name}
-                              href={`/${locale}${item.link}`}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 transition-colors duration-200"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setAboutDropdownOpen(false);
-                                
-                                // If it's a hash link, navigate to about page first then scroll
-                                if (item.link.includes('#')) {
-                                  const hash = item.link.split('#')[1];
-                                  // Navigate to about page first
-                                  router.push(`/${locale}/about`);
-                                  // Wait for page to load, then scroll to the section
-                                  setTimeout(() => {
-                                    // Try multiple times to ensure the element exists
-                                    const scrollToSection = () => {
-                                      const element = document.getElementById(hash);
-                                      if (element) {
-                                        smoothScrollTo(`#${hash}`);
-                                      } else {
-                                        // If element not found, try again after 200ms
-                                        setTimeout(scrollToSection, 200);
-                                      }
-                                    };
-                                    scrollToSection();
-                                  }, 300);
-                                } else {
-                                  // Regular navigation
-                                  router.push(`/${locale}${item.link}`);
-                                }
-                              }}
-                            >
-                              {t(item.name)}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+                      {/* Dropdown Menu - ULTRA ROBUST METHOD (DOM Manipulation) */}
                     </div>
                   ) : (
                     <Link
                       href={`/${locale}${route.link}`}
-                      className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-green-600 transition-colors duration-300 rounded-lg"
+                      className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
                       onClick={(e) => {
                         // If it's a hash link, use smooth scroll
                         if (route.link.includes('#')) {
@@ -316,9 +426,13 @@ export default function VisualsTopbar() {
                 </li>
               ))}
             </ul>
+          </div>
 
+          {/* Desktop Right Side */}
+           <div className="hidden lg:flex items-center gap-4">
+            {/* Language Selector */}
             <select
-              className="bg-green-50 cursor-pointer rounded-lg px-2 py-3 text-xs font-medium outline-none hover:bg-green-100 transition-all duration-300 appearance-none pr-6 border border-green-200 min-w-[50px]"
+              className="bg-white/20 cursor-pointer rounded-xl px-4 py-3 text-sm font-semibold outline-none hover:bg-white/30 transition-all duration-300 appearance-none pr-8 border border-white/30 min-w-[60px] text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm language-selector"
               value={currentLocale}
               onChange={(e) => setLocale(e.target.value)}
             >
@@ -326,10 +440,7 @@ export default function VisualsTopbar() {
               <option value="en">EN</option>
               <option value="fr">FR</option>
             </select>
-          </div>
 
-          {/* Desktop Right Side */}
-          <div className="hidden md:flex items-center gap-4">
             {/* Social Icons */}
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-2">
               {socialLinks.map((social, index) => (
@@ -338,12 +449,12 @@ export default function VisualsTopbar() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative p-2 rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="group relative p-3 rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-110 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl social-icon"
                   aria-label={social.label}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <svg
-                    className="w-5 h-5 text-gray-600 hover:text-green-600 transition-colors duration-300"
+                    className="w-5 h-5 text-white hover:text-green-200 transition-colors duration-300"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -358,7 +469,7 @@ export default function VisualsTopbar() {
             <a
               href="https://elearning.aidaki.ai/login"
               target="_blank"
-              className="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="px-6 py-3 bg-gradient-to-r from-white/20 to-white/10 text-white font-semibold rounded-xl hover:from-white/30 hover:to-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-white/30 backdrop-blur-sm shadow-lg hover:shadow-2xl login-button"
             >
               {t(loginRoute.name)}
             </a>
@@ -366,88 +477,113 @@ export default function VisualsTopbar() {
         </div>
       </nav>
 
-      {/* Enhanced Mobile Menu Overlay */}
+      {/* Professional Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[90] md:hidden transition-all duration-500 ${
+        className={`fixed inset-0 z-[90] lg:hidden transition-all duration-300 ${
           mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        {/* Backdrop */}
+        {/* Clean Backdrop */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br from-black/90 via-green-800/60 to-green-800/60 backdrop-blur-lg transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 ${
             mobileMenuOpen ? "opacity-100" : "opacity-0"
           }`}
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={() => {
+            setMobileMenuOpen(false);
+            setMobileAboutDropdownOpen(false);
+          }}
         ></div>
 
-        {/* Menu Content */}
+        {/* Professional Menu Content with Green Gradient */}
         <div
-          className={`relative h-full flex flex-col justify-center items-center transform transition-all duration-500 ${
+          className={`relative h-full flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto ${
             mobileMenuOpen
-              ? "translate-y-0 scale-100"
-              : "-translate-y-10 scale-95"
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-10 opacity-0"
           }`}
         >
-          {/* Decorative elements */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-green-300 to-green-300 rounded-full opacity-20 animate-pulse"></div>
-          <div
-            className="absolute bottom-32 right-16 w-40 h-40 bg-gradient-to-r from-green-300 to-teal-300 rounded-full opacity-20 animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
-
-          {/* Navigation Links */}
-          <ul className="flex flex-col items-center gap-4 sm:gap-6 text-lg sm:text-xl mb-6 sm:mb-8 px-4">
-            {mainRoutes.map((route, index) => (
-              <li
-                key={route.name}
-                className={`transform transition-all duration-500 ${
-                  mobileMenuOpen
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-10 opacity-0"
-                }`}
-                style={{ transitionDelay: `${index * 100 + 200}ms` }}
+          {/* Clean Header */}
+          <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-4 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+                  <img
+                    src="/images/logo-black.png"
+                    className="w-6 h-6 filter brightness-0 invert"
+                    alt="AIDAKI Logo"
+                  />
+                </div>
+                <span className="text-xl font-bold text-white">AIDAKI</span>
+              </div>
+              
+              {/* Close Button */}
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileAboutDropdownOpen(false);
+                }}
+                className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30"
               >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Navigation with Green Gradient Background */}
+          <div className="w-full bg-gradient-to-br from-green-600 via-green-700 to-green-800 flex-1 px-4 py-6 min-h-0">
+            <nav className="space-y-2">
+              {mainRoutes.map((route, index) => (
+                <div key={route.name} className="mb-3">
                 {route.hasDropdown ? (
-                  <div className="text-center">
-                    <Link
-                      className="font-semibold text-white hover:text-green-200 transition-colors duration-300 px-6 py-3 block"
-                      href={`/${locale}${route.link}`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {t(route.name)}
-                    </Link>
-                    {/* Mobile dropdown items */}
-                    <div className="mt-2 space-y-2">
+                    <div>
+                      <button
+                        className="w-full flex items-center justify-between px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                        onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
+                      >
+                        <span>{t(route.name)}</span>
+                        <svg
+                          className={`w-5 h-5 transition-transform duration-200 ${
+                            mobileAboutDropdownOpen ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      {/* Dropdown items */}
+                      <div className={`ml-4 mt-2 space-y-1 transition-all duration-300 ${
+                        mobileAboutDropdownOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
+                      }`}>
                       {route.dropdownItems?.map((item) => (
                         <Link
                           key={item.name}
-                          className="text-green-200 hover:text-white transition-colors duration-300 px-4 py-2 text-base block"
                           href={`/${locale}${item.link}`}
+                            className="block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
                           onClick={(e) => {
                             e.preventDefault();
                             setMobileMenuOpen(false);
+                              setMobileAboutDropdownOpen(false);
                             
-                            // If it's a hash link, navigate to about page first then scroll
                             if (item.link.includes('#')) {
-                              const hash = item.link.split('#')[1];
-                              // Navigate to about page first
                               router.push(`/${locale}/about`);
-                              // Wait for page to load, then scroll to the section
                               setTimeout(() => {
-                                // Try multiple times to ensure the element exists
-                                const scrollToSection = () => {
+                                  const hash = item.link.split('#')[1];
                                   const element = document.getElementById(hash);
                                   if (element) {
-                                    smoothScrollTo(`#${hash}`);
-                                  } else {
-                                    // If element not found, try again after 200ms
-                                    setTimeout(scrollToSection, 200);
+                                    element.scrollIntoView({ behavior: 'smooth' });
                                   }
-                                };
-                                scrollToSection();
                               }, 300);
                             } else {
-                              // Regular navigation
                               router.push(`/${locale}${item.link}`);
                             }
                           }}
@@ -459,53 +595,41 @@ export default function VisualsTopbar() {
                   </div>
                 ) : (
                   <Link
-                    className="font-semibold text-white hover:text-green-200 transition-colors duration-300 px-6 py-3"
                     href={`/${locale}${route.link}`}
+                      className="block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t(route.name)}
                   </Link>
                 )}
-              </li>
-            ))}
-          </ul>
+                </div>
+              ))}
+            </nav>
 
-          {/* Login CTA for Mobile */}
-          <div
-            className={`mb-8 transform transition-all duration-500 ${
-              mobileMenuOpen
-                ? "translate-x-0 opacity-100"
-                : "translate-x-10 opacity-0"
-            }`}
-            style={{ transitionDelay: "600ms" }}
-          >
-            <Link
-              className="font-bold text-green-900 bg-gradient-to-r from-green-300 to-green-400 hover:from-green-200 hover:to-green-300 transition-all duration-300 px-8 py-4 rounded-2xl hover:scale-110"
-              href={`/${locale}${loginRoute.link}`}
-              onClick={() => setMobileMenuOpen(false)}
+            {/* Login Button */}
+            <div className="mt-8 pt-6 border-t border-white/20">
+              <a
+                href="https://elearning.aidaki.ai/login"
+                target="_blank"
+                className="block w-full bg-white/20 hover:bg-white/30 text-white font-semibold text-center py-4 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/30"
             >
               {t(loginRoute.name)}
-            </Link>
+              </a>
           </div>
 
-          {/* Social Icons for Mobile */}
-          <div
-            className={`flex items-center gap-8 mb-8 transform transition-all duration-500 ${
-              mobileMenuOpen ? "scale-100 opacity-100" : "scale-75 opacity-0"
-            }`}
-            style={{ transitionDelay: "700ms" }}
-          >
-            {socialLinks.map((social, index) => (
+            {/* Social Links */}
+            <div className="mt-6 flex justify-center gap-4">
+              {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-4 bg-green-400/20 backdrop-blur-sm rounded-2xl hover:bg-green-300/35 transition-all duration-300 hover:scale-110 hover:rotate-6"
+                  className="w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30"
                 aria-label={social.label}
               >
                 <svg
-                  className="w-6 h-6 text-white group-hover:text-green-200 transition-colors duration-300"
+                    className="w-5 h-5 text-white hover:text-green-200"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -513,6 +637,7 @@ export default function VisualsTopbar() {
                 </svg>
               </a>
             ))}
+            </div>
           </div>
         </div>
       </div>
@@ -530,6 +655,312 @@ export default function VisualsTopbar() {
         select {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        /* Animations from CountDown component */
+        @keyframes gradient-x {
+          0%, 100% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        @keyframes float-delayed {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+
+        @keyframes pulse-gentle {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scale(1.1);
+          }
+        }
+
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.2);
+          }
+        }
+
+        @keyframes twinkle-delayed {
+          0%, 100% {
+            opacity: 0.1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scale(1.1);
+          }
+        }
+
+        @keyframes twinkle-slow {
+          0%, 100% {
+            opacity: 0.2;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.3);
+          }
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+          }
+        }
+
+        .animate-gradient-x {
+          animation: gradient-x 3s ease-in-out infinite;
+        }
+
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+          animation: float-delayed 5s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        .animate-pulse-gentle {
+          animation: pulse-gentle 3s ease-in-out infinite;
+        }
+
+        .animate-twinkle {
+          animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .animate-twinkle-delayed {
+          animation: twinkle-delayed 2.5s ease-in-out infinite;
+          animation-delay: 0.5s;
+        }
+
+        .animate-twinkle-slow {
+          animation: twinkle-slow 3s ease-in-out infinite;
+          animation-delay: 1.5s;
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 2s ease-in-out infinite;
+        }
+
+        /* Sophisticated hover effects */
+        @keyframes shimmer {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+          }
+        }
+
+        @keyframes bounce-subtle {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-2px);
+          }
+        }
+
+        .nav-link {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .nav-link::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+          left: 100%;
+        }
+
+        .nav-link:hover {
+          animation: glow 1.5s ease-in-out infinite;
+        }
+
+        .social-icon:hover {
+          animation: bounce-subtle 0.6s ease-in-out;
+        }
+
+        .language-selector:hover {
+          animation: glow 1s ease-in-out infinite;
+        }
+
+        .login-button:hover {
+          animation: shimmer 1.5s ease-in-out infinite;
+          background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+          background-size: 200% 200%;
+        }
+
+        /* Z-index fixes and improvements */
+        .dropdown-menu {
+          z-index: 999999 !important;
+          position: absolute !important;
+          top: 100% !important;
+          left: 0 !important;
+          margin-top: 0.75rem;
+          transform: translateY(0);
+          will-change: transform, opacity;
+          isolation: isolate;
+        }
+
+        /* Ensure dropdown doesn't affect navbar height */
+        .dropdown-container {
+          position: relative;
+          display: inline-block;
+        }
+
+        /* Prevent layout shift when dropdown opens */
+        .nav-container {
+          position: relative;
+          z-index: 100;
+        }
+
+        /* Enhanced glassmorphism effect */
+        .glass-effect {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Improved hover states */
+        .nav-link:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon:hover {
+          transform: translateY(-3px) scale(1.1);
+        }
+
+        .language-selector:hover {
+          transform: translateY(-2px);
+        }
+
+        .login-button:hover {
+          transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Advanced logo animations */
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes pulse-gentle {
+          0%, 100% {
+            opacity: 0.8;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.02);
+          }
+        }
+
+        @keyframes glow-pulse {
+          0%, 100% {
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(16, 185, 129, 0.3);
+          }
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+
+        .animate-pulse-gentle {
+          animation: pulse-gentle 3s ease-in-out infinite;
+        }
+
+        .animate-glow-pulse {
+          animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        /* Logo hover effects */
+        .logo-container:hover {
+          animation: glow-pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Enhanced glassmorphism for logo */
+        .logo-glass {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Force dropdown above all elements */
+        .dropdown-menu {
+          position: absolute !important;
+          z-index: 999999 !important;
+          isolation: isolate !important;
+          transform: translate3d(0, 0, 0) !important;
+          backface-visibility: hidden !important;
+          -webkit-backface-visibility: hidden !important;
+        }
+
+        /* Ensure no stacking context issues */
+        .dropdown-menu * {
+          z-index: inherit !important;
         }
       `}</style>
     </>

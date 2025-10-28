@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import VisualsTopbar from "../../components/visuals/VisualsTopbar";
 import Footer from "../../components/Footer";
-import CountDown from "../../components/visuals/CountDown";
 
 export default function AboutUsPage() {
   const t = useTranslations("aboutUs");
@@ -23,7 +22,6 @@ export default function AboutUsPage() {
   return (
     <div className="relative overflow-hidden">
       {/* Add VisualsTopbar for non-authenticated users */}
-      <CountDown />
       <VisualsTopbar />
 
       {/* Hero Section - Updated with introduction text and image layout */}

@@ -8,7 +8,6 @@ import { getDirection } from "../../i18n";
 
 // Import the VisualsTopbar for non-authenticated users
 import VisualsTopbar from "../components/visuals/VisualsTopbar";
-import CountDown from "../components/visuals/CountDown";
 // Import all the converted home page components
 import FeaturesHomePageHeader from "../components/features/home-page/Header";
 import FeaturesHomePageFeatures from "../components/features/home-page/Features";
@@ -65,9 +64,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Show VisualsTopbar and CountDown */}
+      {/* Show VisualsTopbar */}
       <div>
-        <CountDown />
         <VisualsTopbar />
       </div>
 

@@ -14,7 +14,6 @@ import {
   Headphones,
 } from "lucide-react";
 import VisualsTopbar from "../../components/visuals/VisualsTopbar";
-import Countdown from "../../components/visuals/CountDown";
 import Footer from "../../components/Footer";
 
 export default function FAQPage() {
@@ -86,7 +85,6 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50">
-      <Countdown></Countdown>
       <VisualsTopbar></VisualsTopbar>
       {/* Header */}
       <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-16">

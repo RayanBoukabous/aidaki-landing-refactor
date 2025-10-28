@@ -265,6 +265,7 @@ const ProfAvatars = () => {
 
   return (
     <div
+      id="expert-professors"
       className="relative w-full py-8 sm:py-6 md:py-8 lg:py-12 xl:py-16 2xl:py-20"
       dir={direction}
     >

@@ -4,7 +4,6 @@ import { useTranslations, useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
 import VisualsTopbar from '../../components/visuals/VisualsTopbar'
 import Footer from '../../components/Footer'
-import CountDown from '../../components/visuals/CountDown'
 import { Star, BookOpen, TrendingUp, Microscope, Calendar, Sparkles } from 'lucide-react'
 
 
@@ -20,7 +19,6 @@ export default function NewsPage() {
     `}>
       {/* NAVBAR FIRST - HIGHEST PRIORITY */}
       <div className="relative z-50">
-        <CountDown />
         <VisualsTopbar />
       </div>
 

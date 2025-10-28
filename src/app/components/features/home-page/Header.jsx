@@ -7,6 +7,18 @@ const FeaturesHomePageHeader = () => {
   const locale = useLocale()
   const isArabic = locale === 'ar'
 
+  // Fonction pour scroller vers la section des professeurs experts
+  const scrollToExpertProfessors = () => {
+    const element = document.getElementById('expert-professors')
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      })
+    }
+  }
+
   return (
     <div className="relative min-h-screen mt-5 w-full overflow-hidden bg-white">
       {/* Background Pattern with overlay for better text readability */}
@@ -22,20 +34,20 @@ const FeaturesHomePageHeader = () => {
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center min-h-[calc(100vh-6rem)] sm:min-h-[calc(100vh-8rem)]">
           {/* Content Section */}
-          <div className={`flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 order-2 lg:order-1 ${isArabic ? 'text-right' : 'text-left'}`}>
+          <div className={`flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 order-2 lg:order-1 text-center lg:text-left ${isArabic ? 'lg:text-right' : 'lg:text-left'}`}>
             <h1 className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-900 bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent ${isArabic ? 'font-cairo' : 'font-poppins'}`} lang={locale}>
               {t('title')}
             </h1>
             <p className={`text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto ${isArabic ? 'font-cairo' : 'font-poppins'}`} lang={locale}>
               {t('description')}
             </p>
-            <div className={`flex ${isArabic ? 'justify-end' : 'justify-start'} pt-2 sm:pt-4`}>
-              <a
-                href="/demo"
-                className={`primary-bg-gradient hover:scale-105 active:scale-95 transition-all duration-300 ease-out text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium shadow-lg hover:shadow-xl ${isArabic ? 'font-cairo' : 'font-poppins'}`}
+            <div className={`flex justify-center lg:justify-start pt-2 sm:pt-4 ${isArabic ? 'lg:justify-end' : 'lg:justify-start'}`}>
+              <button
+                onClick={scrollToExpertProfessors}
+                className={`primary-bg-gradient hover:scale-105 active:scale-95 transition-all duration-300 ease-out text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-medium shadow-lg hover:shadow-xl cursor-pointer ${isArabic ? 'font-cairo' : 'font-poppins'}`}
               >
                 {t('cta')}
-              </a>
+              </button>
             </div>
           </div>
 

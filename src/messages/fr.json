@@ -148,20 +148,6 @@
       "title": "Matière Philosophie"
     }
   },
-  "ComingSoon": {
-    "title": "Bientôt Disponible",
-    "description": "Nous travaillons dur pour vous apporter quelque chose d'incroyable. Restez à l'écoute pour le lancement!",
-    "centerText": "Notre plateforme éducative alimentée par l'intelligence artificielle sera bientôt à votre portée !",
-    "days": "Jours",
-    "hours": "Heures",
-    "minutes": "Minutes",
-    "seconds": "Secondes",
-    "launchDate": "Date de Lancement",
-    "october1st": "15 Octobre 2025",
-    "getReady": "Préparez-vous pour une expérience d'apprentissage incroyable!",
-    "notifyMe": "Me Notifier",
-    "learnMore": "En Savoir Plus"
-  },
   "appDownload": {
     "badge": "Application Mobile Disponible",
     "comingSoon": "Le téléchargement de l'application sera bientôt disponible",

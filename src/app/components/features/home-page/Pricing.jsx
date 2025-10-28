@@ -40,7 +40,85 @@ export default function EnhancedPricingComponent() {
     return colorMap[planTier] || 'slate';
   };
 
+  const getHardcodedFeatures = (planName) => {
+    const name = planName?.toLowerCase() || '';
+
+    // Fonctionnalités traduites selon la langue
+    const features = {
+      fullLessons: t('pricing.hardcodedFeatures.freemium.fullLessons.text'),
+      summaries: t('pricing.hardcodedFeatures.freemium.summaries.text'),
+      audioLessons: t('pricing.hardcodedFeatures.freemium.audioLessons.text'),
+      parentInterface: t('pricing.hardcodedFeatures.freemium.parentInterface.text'),
+      educationalVideos: t('pricing.hardcodedFeatures.freemium.educationalVideos.text'),
+      smartDashboard: t('pricing.hardcodedFeatures.freemium.smartDashboard.text'),
+      interactiveTests: t('pricing.hardcodedFeatures.freemium.interactiveTests.text'),
+      virtualAssistant: t('pricing.hardcodedFeatures.freemium.virtualAssistant.text')
+    };
+
+    // Ordre fixe des fonctionnalités pour tous les plans
+    const allFeatures = [
+      { key: 'fullLessons', text: features.fullLessons },
+      { key: 'summaries', text: features.summaries },
+      { key: 'audioLessons', text: features.audioLessons },
+      { key: 'parentInterface', text: features.parentInterface },
+      { key: 'educationalVideos', text: features.educationalVideos },
+      { key: 'smartDashboard', text: features.smartDashboard },
+      { key: 'interactiveTests', text: features.interactiveTests },
+      { key: 'virtualAssistant', text: features.virtualAssistant }
+    ];
+
+    // Fonctionnalités hardcodées pour Freemium
+    if (name.includes('freemium')) {
+      return allFeatures.map(feature => ({
+        text: feature.key === 'virtualAssistant' ? 'Chatbot (limité 10 questions)' : feature.text,
+        included: true
+      }));
+    }
+
+    // Fonctionnalités hardcodées pour Basicium
+    if (name.includes('basic')) {
+      return allFeatures.map(feature => ({
+        text: feature.key === 'virtualAssistant' ? 'Chatbot' : feature.text,
+        included: feature.key !== 'virtualAssistant'
+      }));
+    }
+
+    // Fonctionnalités hardcodées pour Airium
+    if (name.includes('airium') && !name.includes('silver')) {
+      return allFeatures.map(feature => ({
+        text: feature.key === 'virtualAssistant' ? 'Chatbot' : feature.text,
+        included: true
+      }));
+    }
+
+    // Fonctionnalités hardcodées pour Airium Silver
+    if (name.includes('silver')) {
+      return allFeatures.map(feature => ({
+        text: feature.key === 'virtualAssistant' ? 'Chatbot (PLUS)' : feature.text,
+        included: true
+      }));
+    }
+
+    // Fonctionnalités hardcodées pour Bacculium
+    if (name.includes('bacculum') || name.includes('bacculium')) {
+      return allFeatures.map(feature => ({
+        text: feature.key === 'virtualAssistant' ? 'Chatbot (illimité)' : feature.text,
+        included: true
+      }));
+    }
+
+    // Pour les autres plans, retourner un tableau vide pour l'instant
+    return [];
+  };
+
   const extractFeatures = (plan) => {
+    // Prioriser les fonctionnalités hardcodées
+    const hardcodedFeatures = getHardcodedFeatures(plan.name);
+    if (hardcodedFeatures.length > 0) {
+      return hardcodedFeatures;
+    }
+
+    // Fallback sur les fonctionnalités de l'API
     if (plan.details && plan.details.features && Array.isArray(plan.details.features)) {
       return plan.details.features.map(feature => ({ included: true, text: feature }));
     }

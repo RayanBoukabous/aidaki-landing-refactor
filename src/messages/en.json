@@ -204,6 +204,102 @@
   },
   "pricing": {
     "title": "Our Pricing",
+    "hardcodedFeatures": {
+      "freemium": {
+        "fullLessons": {
+          "text": "Complete courses for baccalaureate students",
+          "included": true
+        },
+        "summaries": {
+          "text": "Summaries",
+          "included": true
+        },
+        "audioLessons": {
+          "text": "Voice courses",
+          "included": true
+        },
+        "parentInterface": {
+          "text": "Parental access",
+          "included": true
+        },
+        "educationalVideos": {
+          "text": "Videos with avatar",
+          "included": true
+        },
+        "smartDashboard": {
+          "text": "Dashboard",
+          "included": true
+        },
+        "virtualAssistant": {
+          "text": "Chatbot (limited 10 questions)",
+          "included": true
+        },
+        "interactiveTests": {
+          "text": "Quiz",
+          "included": true
+        }
+      },
+      "basicium": {
+        "fullLessons": "Complete lessons for Baccalaureate students",
+        "summaries": "Detailed summaries",
+        "audioLessons": "HD audio lessons",
+        "parentInterface": "Advanced parents interface",
+        "educationalVideos": "Educational videos with teacher avatars",
+        "smartDashboard": "Smart control panel (Dashboard)",
+        "virtualAssistant": "Virtual assistant (Chatbot) (50 questions)",
+        "interactiveTests": "Interactive tests (Quiz)",
+        "progressTracking": "Progress tracking",
+        "certificates": "Success certificates"
+      },
+      "airium": {
+        "fullLessons": "All national program lessons",
+        "summaries": "Interactive summaries",
+        "audioLessons": "Premium audio lessons",
+        "parentInterface": "Complete parents interface",
+        "educationalVideos": "Educational videos with teacher avatars",
+        "smartDashboard": "Smart control panel (Dashboard)",
+        "virtualAssistant": "Virtual assistant (Chatbot) (100 questions)",
+        "interactiveTests": "Interactive tests (Quiz)",
+        "progressTracking": "Advanced progress tracking",
+        "certificates": "Success certificates",
+        "personalizedLearning": "Personalized learning",
+        "offlineAccess": "Offline access"
+      },
+      "airiumSilver": {
+        "fullLessons": "All national program lessons",
+        "summaries": "Premium interactive summaries",
+        "audioLessons": "Premium audio lessons",
+        "parentInterface": "Complete parents interface",
+        "educationalVideos": "Educational videos with teacher avatars",
+        "smartDashboard": "Smart control panel (Dashboard)",
+        "virtualAssistant": "Virtual assistant (Chatbot) (200 questions)",
+        "interactiveTests": "Interactive tests (Quiz)",
+        "progressTracking": "Advanced progress tracking",
+        "certificates": "Success certificates",
+        "personalizedLearning": "Personalized learning",
+        "offlineAccess": "Offline access",
+        "prioritySupport": "Priority support",
+        "advancedAnalytics": "Advanced analytics"
+      },
+      "bacculium": {
+        "fullLessons": "All national program lessons",
+        "summaries": "Premium interactive summaries",
+        "audioLessons": "Premium audio lessons",
+        "parentInterface": "Complete parents interface",
+        "educationalVideos": "Educational videos with teacher avatars",
+        "smartDashboard": "Smart control panel (Dashboard)",
+        "virtualAssistant": "Virtual assistant (Chatbot) (Unlimited)",
+        "interactiveTests": "Interactive tests (Quiz)",
+        "progressTracking": "Advanced progress tracking",
+        "certificates": "Success certificates",
+        "personalizedLearning": "Personalized learning",
+        "offlineAccess": "Offline access",
+        "prioritySupport": "Priority support",
+        "advancedAnalytics": "Advanced analytics",
+        "examSimulation": "Exam simulation",
+        "tutoringSessions": "Tutoring sessions"
+      }
+    },
     "description": "Choose the plan that suits you best",
     "monthly": "MONTHLY",
     "annual": "ANNUAL (12 MONTHS)",

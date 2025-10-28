@@ -30,8 +30,71 @@ const Chatbot = () => {
   const [currentLanguage, setCurrentLanguage] = useState<'fr' | 'ar' | 'en'>('fr');
   const [isAnimating, setIsAnimating] = useState(false);
   const [isBadgeAnimating, setIsBadgeAnimating] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Fonction pour détecter si on est sur mobile
+  const detectMobile = useCallback(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isSmallScreen = window.innerWidth <= 768;
+    
+    return isMobileDevice || (isTouchDevice && isSmallScreen);
+  }, []);
+
+  // Fonction pour gérer le clavier virtuel
+  const handleViewportChange = useCallback(() => {
+    if (!isMobile) return;
+
+    const visualViewport = (window as any).visualViewport;
+    if (visualViewport) {
+      const currentHeight = visualViewport.height;
+      const windowHeight = window.innerHeight;
+      const heightDifference = windowHeight - currentHeight;
+      
+      // Si la différence est significative (> 150px), le clavier est probablement ouvert
+      const keyboardOpen = heightDifference > 150;
+      setIsKeyboardOpen(keyboardOpen);
+      setViewportHeight(currentHeight);
+      
+      // Ajuster la position du chatbot si le clavier est ouvert
+      if (keyboardOpen && chatContainerRef.current) {
+        const chatContainer = chatContainerRef.current;
+        const maxTop = currentHeight - 400; // Hauteur du chatbot
+        const newTop = Math.max(10, maxTop);
+        chatContainer.style.transform = `translateY(${newTop}px)`;
+        chatContainer.style.transition = 'transform 0.3s ease-in-out';
+      } else if (chatContainerRef.current) {
+        chatContainerRef.current.style.transform = 'translateY(0)';
+      }
+    } else {
+      // Fallback pour les navigateurs sans Visual Viewport API
+      const currentHeight = window.innerHeight;
+      const initialHeight = viewportHeight || currentHeight;
+      const heightDifference = initialHeight - currentHeight;
+      
+      if (heightDifference > 150) {
+        setIsKeyboardOpen(true);
+        if (chatContainerRef.current) {
+          const chatContainer = chatContainerRef.current;
+          const maxTop = currentHeight - 400;
+          const newTop = Math.max(10, maxTop);
+          chatContainer.style.transform = `translateY(${newTop}px)`;
+          chatContainer.style.transition = 'transform 0.3s ease-in-out';
+        }
+      } else {
+        setIsKeyboardOpen(false);
+        if (chatContainerRef.current) {
+          chatContainerRef.current.style.transform = 'translateY(0)';
+        }
+      }
+    }
+  }, [isMobile, viewportHeight]);
 
   // Fonction pour détecter la langue du texte
   const detectLanguage = (text: string): 'fr' | 'ar' | 'en' => {
@@ -67,6 +130,82 @@ const Chatbot = () => {
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  // Initialisation de la détection mobile
+  useEffect(() => {
+    const mobile = detectMobile();
+    setIsMobile(mobile);
+    setViewportHeight(window.innerHeight);
+  }, [detectMobile]);
+
+  // Fonction pour gérer les changements d'orientation
+  const handleOrientationChange = useCallback(() => {
+    if (isMobile) {
+      setTimeout(() => {
+        setViewportHeight(window.innerHeight);
+        handleViewportChange();
+      }, 500);
+    }
+  }, [isMobile, handleViewportChange]);
+
+  // Gestion du focus sur l'input pour mobile
+  const handleInputFocus = useCallback(() => {
+    if (isMobile) {
+      // Petit délai pour laisser le clavier s'ouvrir
+      setTimeout(() => {
+        handleViewportChange();
+        scrollToBottom();
+      }, 300);
+      
+      // Scroll supplémentaire pour s'assurer que l'input est visible
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+      }, 500);
+    }
+  }, [isMobile, handleViewportChange, scrollToBottom]);
+
+  const handleInputBlur = useCallback(() => {
+    if (isMobile) {
+      // Délai pour laisser le clavier se fermer
+      setTimeout(() => {
+        handleViewportChange();
+      }, 300);
+    }
+  }, [isMobile, handleViewportChange]);
+
+  // Gestion des événements de viewport pour le clavier virtuel
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const visualViewport = (window as any).visualViewport;
+    
+    if (visualViewport) {
+      visualViewport.addEventListener('resize', handleViewportChange);
+      visualViewport.addEventListener('scroll', handleViewportChange);
+    } else {
+      // Fallback pour les navigateurs sans Visual Viewport API
+      window.addEventListener('resize', handleViewportChange);
+    }
+
+    // Gestion des changements d'orientation
+    window.addEventListener('orientationchange', handleOrientationChange);
+
+    return () => {
+      if (visualViewport) {
+        visualViewport.removeEventListener('resize', handleViewportChange);
+        visualViewport.removeEventListener('scroll', handleViewportChange);
+      } else {
+        window.removeEventListener('resize', handleViewportChange);
+      }
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, [isMobile, handleViewportChange, handleOrientationChange]);
 
   useEffect(() => {
     scrollToBottom();
@@ -272,7 +411,16 @@ const Chatbot = () => {
 
       {/* Interface du chatbot */}
       {isOpen && (
-        <div className="fixed bottom-4 left-2 right-2 sm:bottom-6 sm:left-6 sm:right-auto z-50 mb-4">
+        <div 
+          ref={chatContainerRef}
+          className={`fixed bottom-4 left-2 right-2 sm:bottom-6 sm:left-6 sm:right-auto z-50 mb-4 chatbot-container ${
+            isMobile ? 'chatbot-mobile-fix' : ''
+          }`}
+          style={{
+            transform: isMobile && isKeyboardOpen ? 'translateY(-50px)' : 'translateY(0)',
+            transition: 'transform 0.3s ease-in-out'
+          }}
+        >
           <div className={`bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
             isMinimized ? "w-full sm:w-80 h-16" : "w-full sm:w-96 h-[400px] sm:h-[500px]"
           }`}>
@@ -318,7 +466,7 @@ const Chatbot = () => {
             {/* Zone des messages */}
             {!isMinimized && (
               <>
-                <div className="flex-1 p-4 overflow-y-auto h-[260px] sm:h-[360px] space-y-4">
+                <div className="flex-1 p-4 overflow-y-auto h-[260px] sm:h-[360px] space-y-4 chatbot-messages">
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -399,12 +547,17 @@ const Chatbot = () => {
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
+                      onFocus={handleInputFocus}
+                      onBlur={handleInputBlur}
                       placeholder={currentLanguage === 'ar' ? "اكتب رسالتك..." : currentLanguage === 'en' ? "Type your message..." : "Tapez votre message..."}
-                      className="flex-1 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent chatbot-input"
                       style={{
                         direction: getTextDirection(currentLanguage),
                         textAlign: currentLanguage === 'ar' ? 'right' : 'left',
-                        fontFamily: currentLanguage === 'ar' ? 'Arial, sans-serif' : 'inherit'
+                        fontFamily: currentLanguage === 'ar' ? 'Arial, sans-serif' : 'inherit',
+                        fontSize: '16px', // Minimum 16px pour éviter le zoom iOS
+                        WebkitAppearance: 'none', // Éviter les styles par défaut iOS
+                        borderRadius: '12px' // Forcer le border-radius
                       }}
                       disabled={isLoading}
                     />

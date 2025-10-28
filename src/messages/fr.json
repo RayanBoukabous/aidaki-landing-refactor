@@ -588,6 +588,102 @@
   },
   "pricing": {
     "title": "Nos Tarifs",
+    "hardcodedFeatures": {
+      "freemium": {
+        "fullLessons": {
+          "text": "Cours complets pour les bacheliers",
+          "included": true
+        },
+        "summaries": {
+          "text": "Résumés",
+          "included": true
+        },
+        "audioLessons": {
+          "text": "Cours avec voix",
+          "included": true
+        },
+        "parentInterface": {
+          "text": "Accès parental",
+          "included": true
+        },
+        "educationalVideos": {
+          "text": "Vidéos avec avatar",
+          "included": true
+        },
+        "smartDashboard": {
+          "text": "Tableau de bord",
+          "included": true
+        },
+        "virtualAssistant": {
+          "text": "Chatbot (limité 10 questions)",
+          "included": true
+        },
+        "interactiveTests": {
+          "text": "Quiz",
+          "included": true
+        }
+      },
+      "basicium": {
+        "fullLessons": "Leçons complètes pour étudiants du Baccalauréat",
+        "summaries": "Résumés détaillés",
+        "audioLessons": "Leçons audio HD",
+        "parentInterface": "Interface parents avancée",
+        "educationalVideos": "Vidéos éducatives avec avatars d'enseignants",
+        "smartDashboard": "Tableau de bord intelligent (Dashboard)",
+        "virtualAssistant": "Assistant virtuel (Chatbot) (50 questions)",
+        "interactiveTests": "Tests interactifs (Quiz)",
+        "progressTracking": "Suivi de progression",
+        "certificates": "Certificats de réussite"
+      },
+      "airium": {
+        "fullLessons": "Toutes les leçons du programme national",
+        "summaries": "Résumés interactifs",
+        "audioLessons": "Leçons audio premium",
+        "parentInterface": "Interface parents complète",
+        "educationalVideos": "Vidéos éducatives avec avatars d'enseignants",
+        "smartDashboard": "Tableau de bord intelligent (Dashboard)",
+        "virtualAssistant": "Assistant virtuel (Chatbot) (100 questions)",
+        "interactiveTests": "Tests interactifs (Quiz)",
+        "progressTracking": "Suivi de progression avancé",
+        "certificates": "Certificats de réussite",
+        "personalizedLearning": "Apprentissage personnalisé",
+        "offlineAccess": "Accès hors ligne"
+      },
+      "airiumSilver": {
+        "fullLessons": "Toutes les leçons du programme national",
+        "summaries": "Résumés interactifs premium",
+        "audioLessons": "Leçons audio premium",
+        "parentInterface": "Interface parents complète",
+        "educationalVideos": "Vidéos éducatives avec avatars d'enseignants",
+        "smartDashboard": "Tableau de bord intelligent (Dashboard)",
+        "virtualAssistant": "Assistant virtuel (Chatbot) (200 questions)",
+        "interactiveTests": "Tests interactifs (Quiz)",
+        "progressTracking": "Suivi de progression avancé",
+        "certificates": "Certificats de réussite",
+        "personalizedLearning": "Apprentissage personnalisé",
+        "offlineAccess": "Accès hors ligne",
+        "prioritySupport": "Support prioritaire",
+        "advancedAnalytics": "Analyses avancées"
+      },
+      "bacculium": {
+        "fullLessons": "Toutes les leçons du programme national",
+        "summaries": "Résumés interactifs premium",
+        "audioLessons": "Leçons audio premium",
+        "parentInterface": "Interface parents complète",
+        "educationalVideos": "Vidéos éducatives avec avatars d'enseignants",
+        "smartDashboard": "Tableau de bord intelligent (Dashboard)",
+        "virtualAssistant": "Assistant virtuel (Chatbot) (Illimité)",
+        "interactiveTests": "Tests interactifs (Quiz)",
+        "progressTracking": "Suivi de progression avancé",
+        "certificates": "Certificats de réussite",
+        "personalizedLearning": "Apprentissage personnalisé",
+        "offlineAccess": "Accès hors ligne",
+        "prioritySupport": "Support prioritaire",
+        "advancedAnalytics": "Analyses avancées",
+        "examSimulation": "Simulation d'examens",
+        "tutoringSessions": "Séances de tutorat"
+      }
+    },
     "subscribe": "S'abonner",
     "description": "Choisissez le plan qui vous convient le mieux",
     "monthly": "MENSUEL",

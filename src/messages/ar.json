@@ -142,6 +142,102 @@
   },
   "pricing": {
     "title": "أسعارنا",
+    "hardcodedFeatures": {
+      "freemium": {
+        "fullLessons": {
+          "text": "دروس كاملة للبكالوريا",
+          "included": true
+        },
+        "summaries": {
+          "text": "ملخصات",
+          "included": true
+        },
+        "audioLessons": {
+          "text": "دروس صوتية",
+          "included": true
+        },
+        "parentInterface": {
+          "text": "الوصول الأبوي",
+          "included": true
+        },
+        "educationalVideos": {
+          "text": "فيديوهات مع آفاتار",
+          "included": true
+        },
+        "smartDashboard": {
+          "text": "لوحة التحكم",
+          "included": true
+        },
+        "virtualAssistant": {
+          "text": "روبوت محادثة (محدود 10 أسئلة)",
+          "included": true
+        },
+        "interactiveTests": {
+          "text": "اختبارات",
+          "included": true
+        }
+      },
+      "basicium": {
+        "fullLessons": "دروس كاملة لطلاب البكالوريا",
+        "summaries": "ملخصات مفصلة",
+        "audioLessons": "دروس صوتية عالية الجودة",
+        "parentInterface": "واجهة أولياء متقدمة",
+        "educationalVideos": "فيديوهات تعليمية بآفاتارات الأساتذة",
+        "smartDashboard": "لوحة تحكم ذكية (Dashboard)",
+        "virtualAssistant": "مساعد افتراضي (Chatbot) (50 سؤال)",
+        "interactiveTests": "اختبارات تفاعلية (Quiz)",
+        "progressTracking": "تتبع التقدم",
+        "certificates": "شهادات النجاح"
+      },
+      "airium": {
+        "fullLessons": "جميع دروس البرنامج الوطني",
+        "summaries": "ملخصات تفاعلية",
+        "audioLessons": "دروس صوتية مميزة",
+        "parentInterface": "واجهة أولياء شاملة",
+        "educationalVideos": "فيديوهات تعليمية بآفاتارات الأساتذة",
+        "smartDashboard": "لوحة تحكم ذكية (Dashboard)",
+        "virtualAssistant": "مساعد افتراضي (Chatbot) (100 سؤال)",
+        "interactiveTests": "اختبارات تفاعلية (Quiz)",
+        "progressTracking": "تتبع تقدم متقدم",
+        "certificates": "شهادات النجاح",
+        "personalizedLearning": "تعلم مخصص",
+        "offlineAccess": "وصول بدون إنترنت"
+      },
+      "airiumSilver": {
+        "fullLessons": "جميع دروس البرنامج الوطني",
+        "summaries": "ملخصات تفاعلية مميزة",
+        "audioLessons": "دروس صوتية مميزة",
+        "parentInterface": "واجهة أولياء شاملة",
+        "educationalVideos": "فيديوهات تعليمية بآفاتارات الأساتذة",
+        "smartDashboard": "لوحة تحكم ذكية (Dashboard)",
+        "virtualAssistant": "مساعد افتراضي (Chatbot) (200 سؤال)",
+        "interactiveTests": "اختبارات تفاعلية (Quiz)",
+        "progressTracking": "تتبع تقدم متقدم",
+        "certificates": "شهادات النجاح",
+        "personalizedLearning": "تعلم مخصص",
+        "offlineAccess": "وصول بدون إنترنت",
+        "prioritySupport": "دعم أولوي",
+        "advancedAnalytics": "تحليلات متقدمة"
+      },
+      "bacculium": {
+        "fullLessons": "جميع دروس البرنامج الوطني",
+        "summaries": "ملخصات تفاعلية مميزة",
+        "audioLessons": "دروس صوتية مميزة",
+        "parentInterface": "واجهة أولياء شاملة",
+        "educationalVideos": "فيديوهات تعليمية بآفاتارات الأساتذة",
+        "smartDashboard": "لوحة تحكم ذكية (Dashboard)",
+        "virtualAssistant": "مساعد افتراضي (Chatbot) (غير محدود)",
+        "interactiveTests": "اختبارات تفاعلية (Quiz)",
+        "progressTracking": "تتبع تقدم متقدم",
+        "certificates": "شهادات النجاح",
+        "personalizedLearning": "تعلم مخصص",
+        "offlineAccess": "وصول بدون إنترنت",
+        "prioritySupport": "دعم أولوي",
+        "advancedAnalytics": "تحليلات متقدمة",
+        "examSimulation": "محاكاة الامتحانات",
+        "tutoringSessions": "جلسات الدروس الخصوصية"
+      }
+    },
     "subscribe": "اشترك",
     "processing": "جاري المعالجة...",
     "description": "اختر الخطة التي تناسبك أكثر",

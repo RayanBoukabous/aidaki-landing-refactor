@@ -40,3 +40,116 @@
 .chatbot-hover-effect:hover {
   animation: gentle-shake 0.3s ease-in-out;
 }
+
+/* Corrections spécifiques pour mobile */
+@media (max-width: 768px) {
+  /* Éviter le zoom sur iOS */
+  .chatbot-input {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+  }
+  
+  /* Améliorer l'expérience tactile */
+  .chatbot-input:focus {
+    -webkit-user-select: text;
+    -webkit-touch-callout: default;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Optimiser les transitions pour mobile */
+  .chatbot-container {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Améliorer la zone de scroll des messages */
+  .chatbot-messages {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Éviter les problèmes de viewport sur mobile */
+  .chatbot-mobile-fix {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+}
+
+/* Support pour les navigateurs avec Visual Viewport API */
+@supports (height: 100vh) {
+  .chatbot-viewport-aware {
+    height: calc(100vh - env(keyboard-inset-height, 0px));
+    max-height: calc(100vh - env(keyboard-inset-height, 0px));
+  }
+}
+
+/* Fallback pour les navigateurs sans Visual Viewport API */
+@supports not (height: 100vh) {
+  .chatbot-fallback {
+    height: 100vh;
+    max-height: 100vh;
+  }
+}
+
+/* Corrections spécifiques pour iOS */
+@supports (-webkit-touch-callout: none) {
+  .chatbot-input {
+    -webkit-appearance: none;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    font-size: 16px !important;
+    -webkit-user-select: text;
+    -webkit-touch-callout: default;
+  }
+  
+  .chatbot-container {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Corrections spécifiques pour Android */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {
+  .chatbot-input {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+  }
+  
+  .chatbot-messages {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Gestion des très petits écrans */
+@media (max-width: 320px) {
+  .chatbot-container {
+    left: 4px !important;
+    right: 4px !important;
+    bottom: 4px !important;
+  }
+  
+  .chatbot-input {
+    font-size: 16px !important;
+    padding: 8px 12px !important;
+  }
+}
+
+/* Gestion des écrans en mode paysage */
+@media (max-height: 500px) and (orientation: landscape) {
+  .chatbot-container {
+    height: calc(100vh - 20px) !important;
+    max-height: calc(100vh - 20px) !important;
+  }
+  
+  .chatbot-messages {
+    height: calc(100vh - 140px) !important;
+    max-height: calc(100vh - 140px) !important;
+  }
+}

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { chatbotDataFr } from "../../../data/chatbotDataFr";
+import { chatbotDataEn } from "../../../data/chatbotDataEn";
+import { chatbotDataAr } from "../../../data/chatbotDataAr";
 
 // Fonction pour détecter la langue du message
 function detectLanguage(message: string): 'fr' | 'ar' | 'en' {
@@ -17,26 +18,15 @@ function detectLanguage(message: string): 'fr' | 'ar' | 'en' {
     return 'fr';
 }
 
-// Fonction pour lire le fichier de données du chatbot selon la langue
-function readChatbotData(language: 'fr' | 'ar' | 'en') {
-    try {
-        let fileName: string;
-        switch (language) {
-            case 'ar':
-                fileName = 'chatbot-data-ar.txt';
-                break;
-            case 'en':
-                fileName = 'chatbot-data-en.txt';
-                break;
-            default:
-                fileName = 'chatbot-data.txt';
-        }
-        const filePath = path.join(process.cwd(), "src", "data", fileName);
-        const data = fs.readFileSync(filePath, "utf-8");
-        return data;
-    } catch (error) {
-        console.error(`Error reading file ${language === 'ar' ? 'chatbot-data-ar.txt' : language === 'en' ? 'chatbot-data-en.txt' : 'chatbot-data.txt'}:`, error);
-        return null;
+// Fonction pour obtenir les données du chatbot selon la langue
+function getChatbotData(language: 'fr' | 'ar' | 'en'): string {
+    switch (language) {
+        case 'ar':
+            return chatbotDataAr;
+        case 'en':
+            return chatbotDataEn;
+        default:
+            return chatbotDataFr;
     }
 }
 
@@ -140,32 +130,11 @@ export async function POST(request: NextRequest) {
         // Détecter la langue du message
         const language = detectLanguage(message);
 
-        // Lire les données du chatbot selon la langue détectée
-        const chatbotData = readChatbotData(language);
-
-        if (!chatbotData) {
-            let errorMessage: string;
-            switch (language) {
-                case 'ar':
-                    errorMessage = "عذراً، لا يمكنني الوصول إلى بياناتي في الوقت الحالي.";
-                    break;
-                case 'en':
-                    errorMessage = "Sorry, I can't access my data at the moment.";
-                    break;
-                default:
-                    errorMessage = "Désolé, je ne peux pas accéder à mes données pour le moment.";
-            }
-            return NextResponse.json(
-                { response: errorMessage },
-                { status: 200 }
-            );
-        }
+        // Obtenir les données du chatbot selon la langue détectée
+        const chatbotData = getChatbotData(language);
 
         // Générer une réponse
         const response = findResponse(message, chatbotData);
-
-        // Simuler un délai de traitement (optionnel)
-        await new Promise(resolve => setTimeout(resolve, 500));
 
         return NextResponse.json(
             { response, language },

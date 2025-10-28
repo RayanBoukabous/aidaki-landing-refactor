@@ -82,7 +82,7 @@ const FeaturesHomePageCourses = () => {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] 2xl:w-[32rem] 2xl:h-[32rem]">
                   <img
                     src="/images/module_avatar.png"
                     alt="AIDAKI Robot"

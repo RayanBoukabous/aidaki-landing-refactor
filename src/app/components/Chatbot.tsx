@@ -253,13 +253,13 @@ const Chatbot = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none" />
           
           {/* Bouton principal avec shake */}
-          <div className={`relative w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group-hover:scale-105 group-active:scale-95 chatbot-subtle-bounce ${isAnimating ? 'chatbot-attention' : ''}`}>
+          <div className={`relative w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-r from-emerald-500 to-green-600 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center group-hover:scale-105 group-active:scale-95 chatbot-subtle-bounce ${isAnimating ? 'chatbot-attention' : ''}`}>
             <Image
               src="/images/chatbot_img.png"
               alt="Assistant AIDAKI"
-              width={40}
-              height={40}
-              className="object-contain"
+              width={80}
+              height={80}
+              className="object-contain lg:w-20 lg:h-20"
             />
           </div>
           
@@ -272,9 +272,9 @@ const Chatbot = () => {
 
       {/* Interface du chatbot */}
       {isOpen && (
-        <div className="fixed bottom-6 left-6 z-50 mb-4">
+        <div className="fixed bottom-4 left-2 right-2 sm:bottom-6 sm:left-6 sm:right-auto z-50 mb-4">
           <div className={`bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
-            isMinimized ? "w-80 h-16" : "w-96 h-[500px]"
+            isMinimized ? "w-full sm:w-80 h-16" : "w-full sm:w-96 h-[400px] sm:h-[500px]"
           }`}>
             
             {/* Header du chatbot */}
@@ -318,7 +318,7 @@ const Chatbot = () => {
             {/* Zone des messages */}
             {!isMinimized && (
               <>
-                <div className="flex-1 p-4 overflow-y-auto h-[360px] space-y-4">
+                <div className="flex-1 p-4 overflow-y-auto h-[260px] sm:h-[360px] space-y-4">
                   {messages.map((message) => (
                     <div
                       key={message.id}

@@ -238,27 +238,6 @@ export default function EnhancedPricingComponent() {
                 )}
               </div>
 
-              {/* Bouton d'abonnement premium - uniquement vert */}
-              <button onClick={(e) => handleSubscribe(plan.planId, e)} disabled={isProcessing || paymentLoading}
-                className="relative inline-block w-full px-6 py-3 font-bold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center overflow-hidden group/btn bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700 transform hover:scale-105 hover:shadow-xl mt-auto">
-
-                {/* Effet de brillance sur le bouton */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-out"></div>
-
-                {/* Contenu du bouton */}
-                <span className="relative z-10">
-                  {isProcessing ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin inline" />
-                      {t("pricing.processing") || "Traitement..."}
-                    </>
-                  ) : (
-                    <>
-                      {isFreemium ? t('plans.freemium.startFree') : t('pricing.subscribe')}
-                    </>
-                  )}
-                </span>
-              </button>
 
               {/* Effet de bordure animée */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -312,12 +291,6 @@ export default function EnhancedPricingComponent() {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="p-3 mt-auto">
-              <button onClick={(e) => handleSubscribe(plan.planId, e)} disabled={isProcessing || paymentLoading}
-                className="inline-block w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors text-center disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
-                {isProcessing ? (<><Loader2 className="w-5 h-5 mr-2 animate-spin" />{t("pricing.processing") || "Traitement..."}</>) : (t("pricing.subscribe") || "S'abonner")}
-              </button>
             </div>
           </div>
         );

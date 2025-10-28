@@ -28,7 +28,7 @@ export default function SupportAndAssistancePage() {
       .find((c) => c.trim().startsWith("token="));
     if (token) {
       setIsAuthenticated(true);
-      router.push("/dashboard");
+      // Don't redirect to dashboard - let users access support page even when logged in
     }
 
     // Écouter les événements de fermeture des modals
@@ -57,13 +57,11 @@ export default function SupportAndAssistancePage() {
 
   return (
     <div className="relative overflow-hidden">
-      {/* Show VisualsTopbar for non-authenticated users */}
-      {!isAuthenticated && (
-        <div>
-          <CountDown />
-          <VisualsTopbar />
-        </div>
-      )}
+      {/* Always show VisualsTopbar like other pages */}
+      <div>
+        <CountDown />
+        <VisualsTopbar />
+      </div>
 
       {/* Main content section */}
       <section className="relative py-16 md:py-24 bg-green-50">

@@ -31,7 +31,7 @@ function readChatbotData(language: 'fr' | 'ar' | 'en') {
             default:
                 fileName = 'chatbot-data.txt';
         }
-        const filePath = path.join(process.cwd(), "public", fileName);
+        const filePath = path.join(process.cwd(), "src", "data", fileName);
         const data = fs.readFileSync(filePath, "utf-8");
         return data;
     } catch (error) {

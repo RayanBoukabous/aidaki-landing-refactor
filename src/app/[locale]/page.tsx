@@ -100,29 +100,31 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Main Home Page Components - Optimized Logical Order */}
+      {/* Main Home Page Components - Original Order */}
       <FeaturesHomePageHeader />
 
-      {/* PHASE 2: EDUCATION - Present platform value */}
-      <FeaturesHomePageFeatures />
-      
-      {/* PHASE 3: DEMONSTRATION - Show content quality */}
-      <VideoDemos />
-      
-      {/* PHASE 4: COURSES - Show available courses */}
-      <FeaturesHomePageCourses />
-      
-      {/* PHASE 5: CREDIBILITY - Establish trust with professors */}
+      {/* ProfAvatars */}
       <ProfAvatars />
       
-      {/* PHASE 6: CONVERSION - Pricing and action */}
-      <FeaturesHomePagePricingHeader />
-      <FeaturesHomePagePricing />
+      {/* VideoDemos */}
+      <VideoDemos />
       
-      {/* PHASE 7: ACTION - Download app */}
+      {/* FeaturesHomePageFeatures */}
+      <FeaturesHomePageFeatures />
+      
+      {/* AppDownloadSection */}
       <AppDownloadSection />
       
-      {/* PHASE 8: CONTACT - Physical store */}
+      {/* FeaturesHomePageCourses */}
+      <FeaturesHomePageCourses />
+      
+      {/* FeaturesHomePagePricingHeader */}
+      <FeaturesHomePagePricingHeader />
+      
+      {/* FeaturesHomePagePricing */}
+      <FeaturesHomePagePricing />
+      
+      {/* VisualsPointsOfSale */}
       <VisualsPointsOfSale />
 
       {/* Add Footer */}

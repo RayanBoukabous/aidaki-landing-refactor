@@ -358,7 +358,7 @@ const VideoShowcase = () => {
               ))}
             </div>
 
-        {/* CALL TO ACTION SECTION */}
+        {/* CALL TO ACTION SECTION WITH ANIMATIONS */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -366,36 +366,193 @@ const VideoShowcase = () => {
           viewport={{ once: true }}
           className="text-center mt-16 sm:mt-20"
         >
-          <div className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl">
-            <div className="max-w-2xl mx-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          {/* ANIMATED BACKGROUND CONTAINER */}
+          <div className="relative bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden">
+            
+            {/* FLOATING PARTICLES ANIMATION */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-white/20 rounded-full"
+                  animate={{
+                    x: [0, 100, 0],
+                    y: [0, -50, 0],
+                    opacity: [0.2, 0.8, 0.2],
+                    scale: [0.5, 1.2, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + i * 0.5,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${30 + i * 10}%`
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* PULSING GLOW EFFECT */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 rounded-3xl opacity-0"
+              animate={{
+                opacity: [0, 0.3, 0],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+
+            {/* MAIN CONTENT */}
+            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center justify-center">
+              
+              {/* ANIMATED TITLE */}
+              <motion.h3 
+                className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center"
+                animate={{
+                  textShadow: [
+                    "0 0 0px rgba(255,255,255,0)",
+                    "0 0 20px rgba(255,255,255,0.5)",
+                    "0 0 0px rgba(255,255,255,0)"
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
                 {tCTA('title')}
-              </h3>
-              <p className="text-emerald-100 text-lg mb-6">
+              </motion.h3>
+
+              {/* ANIMATED DESCRIPTION */}
+              <motion.p 
+                className="text-emerald-100 text-lg mb-6 text-center"
+                animate={{
+                  opacity: [0.8, 1, 0.8]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
                 {tCTA('description')}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+              </motion.p>
+
+              {/* ANIMATED BUTTONS CONTAINER */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                
+                {/* START NOW BUTTON WITH SPECIAL ANIMATIONS */}
+                <motion.a 
                   href="https://elearning.aidaki.ai/en/login" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
+                  className="relative bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg text-center overflow-hidden group"
+                  whileHover={{ 
+                    scale: 1.1,
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 10px 20px rgba(0,0,0,0.1)",
+                      "0 15px 30px rgba(0,0,0,0.2)",
+                      "0 10px 20px rgba(0,0,0,0.1)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
                 >
-                  {tCTA('startNow')}
-                </a>
-                <button 
+                  {/* SHIMMER EFFECT */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    animate={{
+                      x: ["-100%", "100%"]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1
+                    }}
+                  />
+                  
+                  {/* PULSING DOT */}
+                  <motion.div
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [1, 0.5, 1]
+                    }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  <span className="relative z-10">{tCTA('startNow')}</span>
+                </motion.a>
+
+                {/* PREVIEW BUTTON WITH SUBTLE ANIMATION */}
+                <motion.button 
                   onClick={() => {
                     const element = document.getElementById('video-demos');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white hover:text-emerald-600 transition-all duration-300 hover:scale-105"
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg text-center relative overflow-hidden group"
+                  whileHover={{ 
+                    scale: 1.05,
+                    backgroundColor: "rgba(255,255,255,0.1)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  animate={{
+                    borderColor: [
+                      "rgba(255,255,255,1)",
+                      "rgba(255,255,255,0.7)",
+                      "rgba(255,255,255,1)"
+                    ]
+                  }}
+                  transition={{
+                    borderColor: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
                 >
-                  {tCTA('previewCourses')}
-                </button>
+                  <span className="relative z-10">{tCTA('previewCourses')}</span>
+                </motion.button>
               </div>
             </div>
+
+            {/* BOTTOM GLOW EFFECT */}
+            <motion.div
+              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white/30 rounded-full"
+              animate={{
+                scaleX: [0.5, 1, 0.5],
+                opacity: [0.3, 0.8, 0.3]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
           </div>
         </motion.div>
                     </div>

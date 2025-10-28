@@ -98,3 +98,4 @@ i'm studying: Well done 👏 even your accent is impeccable 💎|Nothing to corr
 start studying: Well done 🎯 You master the accent and motivation 💪|Perfect writing, it's a no-mistake 👏|Nothing to correct, we start strong 🚀|You're ready to succeed, spelling included 😎
 start studying: Perfect! And you wrote "start studying" correctly 😎 Well done!|Zero mistakes and 100% motivation 💪 We love it!|You even put the accent, perfect! 👏 Now, place for action 🚀|Nothing to correct, just to shine 🌟 Come on, let's study together 📚
 `;
+

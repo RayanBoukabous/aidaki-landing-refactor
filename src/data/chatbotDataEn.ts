@@ -1,5 +1,6 @@
 // Données du chatbot en anglais
-export const chatbotDataEn = `AIDAKI - Optimized Chatbot FAQ File 🤖📚
+export const chatbotDataEn = `
+AIDAKI - Optimized Chatbot FAQ File 🤖📚
 
 # KEYWORDS AND RESPONSES FOR API
 
@@ -95,4 +96,5 @@ help me study: Perfect! No mistakes, it's 20/20 🏆|I love when it's well writt
 i want to study: Perfect! And without mistakes 😍|Well done, you write as well as you study 👏|No correction to do, you're ready to shine 💫|Motivation and perfect spelling, winning combo 😎
 i'm studying: Well done 👏 even your accent is impeccable 💎|Nothing to correct, everything is perfect 🤓|Perfect writing, motivation at the top 🔥|Excellent, you study without mistakes 😎
 start studying: Well done 🎯 You master the accent and motivation 💪|Perfect writing, it's a no-mistake 👏|Nothing to correct, we start strong 🚀|You're ready to succeed, spelling included 😎
-start studying: Perfect! And you wrote "start studying" correctly 😎 Well done!|Zero mistakes and 100% motivation 💪 We love it!|You even put the accent, perfect! 👏 Now, place for action 🚀|Nothing to correct, just to shine 🌟 Come on, let's study together 📚`;
+start studying: Perfect! And you wrote "start studying" correctly 😎 Well done!|Zero mistakes and 100% motivation 💪 We love it!|You even put the accent, perfect! 👏 Now, place for action 🚀|Nothing to correct, just to shine 🌟 Come on, let's study together 📚
+`;

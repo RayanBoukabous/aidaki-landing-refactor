@@ -20,11 +20,44 @@ export default function VisualsTopbar() {
   const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
   const [currentLocale, setCurrentLocale] = useState(locale as string);
   const [mounted, setMounted] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<{days:number;hours:number;minutes:number;seconds:number}>({days:0,hours:0,minutes:0,seconds:0});
 
   // Handle mounting
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Countdown banner persistence
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const dismissed = localStorage.getItem('aidaki-countdown-dismissed') === '1';
+    setBannerDismissed(dismissed);
+  }, []);
+
+  // Countdown to 10 Nov 2025 00:00:00
+  useEffect(() => {
+    const target = new Date(2025, 10, 10, 0, 0, 0).getTime();
+    const tick = () => {
+      const now = Date.now();
+      const diff = Math.max(target - now, 0);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const dismissBanner = () => {
+    setBannerDismissed(true);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('aidaki-countdown-dismissed', '1');
+    }
+  };
 
   // ULTRA ROBUST FALLBACK - Create dropdown directly in DOM
   useEffect(() => {
@@ -69,13 +102,13 @@ export default function VisualsTopbar() {
         transition: all 0.3s ease !important;
       `;
 
-      // Add dropdown content
+      // Add dropdown content (localized)
       dropdown.innerHTML = `
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <a href="/${locale}/about" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">À Propos de Nous</a>
-          <a href="/${locale}/about#vision" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">Notre vision</a>
-          <a href="/${locale}/about#new-approach" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">Une Nouvelle Approche Pédagogique</a>
-          <a href="/${locale}/about#avatar-technology" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">L'impact des avatars</a>
+          <a href="/${locale}/about" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.title')}</a>
+          <a href="/${locale}/about#vision" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.ourVision')}</a>
+          <a href="/${locale}/about#new-approach" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.newEducationalApproach')}</a>
+          <a href="/${locale}/about#avatar-technology" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.effectOfAvatars')}</a>
         </div>
       `;
 
@@ -251,6 +284,49 @@ export default function VisualsTopbar() {
 
   return (
     <>
+      {/* Countdown Banner */}
+        <div className="w-full relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 text-white border-2 border-green-400/50 shadow-2xl" style={{fontFamily:"Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"}}>
+          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_15%_0%,rgba(255,255,255,0.45),transparent_35%),radial-gradient(circle_at_85%_120%,rgba(255,255,255,0.35),transparent_45%)]"></div>
+          <div className={`container relative z-10 mx-auto px-4 py-3 md:py-4 flex items-center justify-between gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <div className="flex items-center gap-3 text-base md:text-lg font-semibold tracking-tight">
+              <span className="text-xl md:text-2xl">🎓</span>
+              <div className="flex items-center flex-wrap gap-2 sm:gap-3">
+                <span className="whitespace-pre px-3 py-1 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 shadow-lg">
+                  {isRTL
+                    ? 'جاهز للنجاح في البكالوريا؟ '
+                    : currentLocale === 'fr'
+                      ? 'Prêt à réussir au baccalauréat ? '
+                      : 'Ready to succeed in the baccalaureate? '}
+                </span>
+                <span className="px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 shadow-lg">
+                  {isRTL
+                    ? 'نصل قريبًا'
+                    : currentLocale === 'fr'
+                      ? "On arrive bientôt"
+                      : "We're coming soon"}
+                </span>
+                <span className="hidden sm:inline px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 shadow-lg">
+                  {isRTL
+                    ? '10 نوفمبر 2025'
+                    : currentLocale === 'fr'
+                      ? '10 novembre 2025'
+                      : 'Nov 10, 2025'}
+                </span>
+                <span className="text-xl md:text-2xl">🚀</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 md:gap-3 font-mono">
+              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.days).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'يوم' : currentLocale === 'fr' ? 'J' : 'D'}</span></span>
+              <span className="opacity-70">:</span>
+              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.hours).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'سا' : currentLocale === 'fr' ? 'H' : 'H'}</span></span>
+              <span className="opacity-70">:</span>
+              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.minutes).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'د' : currentLocale === 'fr' ? 'M' : 'M'}</span></span>
+              <span className="opacity-70">:</span>
+              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.seconds).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'ث' : currentLocale === 'fr' ? 'S' : 'S'}</span></span>
+            </div>
+          </div>
+        </div>
+      
       <nav className="w-full border-b top-0 z-[100] transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl hover:shadow-3xl transition-all duration-500 animate-pulse-slow nav-container">
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-green-500/20 animate-gradient-x"></div>
@@ -415,7 +491,21 @@ export default function VisualsTopbar() {
                         if (route.link.includes('#')) {
                           e.preventDefault();
                           const hash = route.link.split('#')[1];
-                          smoothScrollTo(`#${hash}`);
+                          const onHome = typeof window !== 'undefined' && (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`);
+                          const performScroll = () => smoothScrollTo(`#${hash}`, 80, 600, 0.25);
+                          if (!onHome) {
+                            router.push(`/${locale}/`);
+                            const startedAt = Date.now();
+                            const checkInterval = setInterval(() => {
+                              const el = document.querySelector(`#${hash}`);
+                              if (el || Date.now() - startedAt > 2000) {
+                                clearInterval(checkInterval);
+                                performScroll();
+                              }
+                            }, 100);
+                          } else {
+                            performScroll();
+                          }
                         }
                         // For regular links, let the default behavior handle it
                       }}
@@ -476,6 +566,10 @@ export default function VisualsTopbar() {
           </div>
         </div>
       </nav>
+
+      <style jsx>{`
+        .time-box{background:linear-gradient(180deg,rgba(255,255,255,0.2),rgba(255,255,255,0.08));border:1px solid rgba(255,255,255,0.25)}
+      `}</style>
 
       {/* Professional Mobile Menu Overlay */}
       <div
@@ -597,7 +691,28 @@ export default function VisualsTopbar() {
                   <Link
                     href={`/${locale}${route.link}`}
                       className="block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      setMobileMenuOpen(false);
+                      if (route.link.includes('#')) {
+                        e.preventDefault();
+                        const hash = route.link.split('#')[1];
+                        const onHome = typeof window !== 'undefined' && (window.location.pathname === `/${locale}` || window.location.pathname === `/${locale}/`);
+                        const performScroll = () => smoothScrollTo(`#${hash}`, 80, 600, 0.25);
+                        if (!onHome) {
+                          router.push(`/${locale}/`);
+                          const startedAt = Date.now();
+                          const checkInterval = setInterval(() => {
+                            const el = document.querySelector(`#${hash}`);
+                            if (el || Date.now() - startedAt > 2000) {
+                              clearInterval(checkInterval);
+                              performScroll();
+                            }
+                          }, 100);
+                        } else {
+                          performScroll();
+                        }
+                      }
+                    }}
                   >
                     {t(route.name)}
                   </Link>

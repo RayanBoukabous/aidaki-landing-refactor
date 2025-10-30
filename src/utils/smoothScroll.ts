@@ -3,7 +3,12 @@
  * Provides a more controlled and pleasant scrolling experience
  */
 
-export const smoothScrollTo = (elementId: string, offset: number = 80) => {
+export const smoothScrollTo = (
+    elementId: string,
+    offset: number = 80,
+    maxDurationMs: number = 700,
+    speedFactor: number = 0.35
+) => {
     const element = document.querySelector(elementId);
     if (!element) return;
 
@@ -18,7 +23,7 @@ export const smoothScrollTo = (elementId: string, offset: number = 80) => {
 
     const startPosition = window.pageYOffset;
     const distance = offsetPosition - startPosition;
-    const duration = Math.min(Math.abs(distance) * 0.6, 1000); // Max 1s duration, slower multiplier
+    const duration = Math.min(Math.abs(distance) * speedFactor, maxDurationMs);
     let startTime: number | null = null;
 
     const animation = (currentTime: number) => {

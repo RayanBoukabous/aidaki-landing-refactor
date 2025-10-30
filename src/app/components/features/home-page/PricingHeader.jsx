@@ -77,7 +77,7 @@ const FeaturesHomePagePricingHeader = () => {
                     controls
                     autoPlay
                   >
-                    <source src="https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/Chatbot/chatbot+arab.mp4" type="video/mp4" />
+                    <source src="https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/chatbot_landing.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>}
 

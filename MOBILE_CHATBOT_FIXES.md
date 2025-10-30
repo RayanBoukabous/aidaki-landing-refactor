@@ -120,3 +120,4 @@ Les corrections sont automatiquement actives et ne nécessitent aucune configura
 ---
 
 *Solution développée par un expert mobile avec 95-98% de taux de réussite sur tous les appareils mobiles.*
+

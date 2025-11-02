@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -20,19 +20,13 @@ export default function VisualsTopbar() {
   const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
   const [currentLocale, setCurrentLocale] = useState(locale as string);
   const [mounted, setMounted] = useState(false);
-  const [bannerDismissed, setBannerDismissed] = useState(false);
   const [timeLeft, setTimeLeft] = useState<{days:number;hours:number;minutes:number;seconds:number}>({days:0,hours:0,minutes:0,seconds:0});
+  const [dropdownPosition, setDropdownPosition] = useState<{top: number; left: number} | null>(null);
+  const dropdownTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Handle mounting
   useEffect(() => {
     setMounted(true);
-  }, []);
-
-  // Countdown banner persistence
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const dismissed = localStorage.getItem('aidaki-countdown-dismissed') === '1';
-    setBannerDismissed(dismissed);
   }, []);
 
   // Countdown to 10 Nov 2025 00:00:00
@@ -52,108 +46,57 @@ export default function VisualsTopbar() {
     return () => clearInterval(id);
   }, []);
 
-  const dismissBanner = () => {
-    setBannerDismissed(true);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('aidaki-countdown-dismissed', '1');
-    }
-  };
-
-  // ULTRA ROBUST FALLBACK - Create dropdown directly in DOM
+  // Calculate dropdown position using React refs (secure method)
   useEffect(() => {
-    if (aboutDropdownOpen && mounted) {
-      // Calculate position immediately to avoid flash
-      const button = document.querySelector('[data-dropdown-trigger]') as HTMLElement;
-      if (!button) return;
+    if (!aboutDropdownOpen || !mounted || !dropdownTriggerRef.current) {
+      setDropdownPosition(null);
+      return;
+    }
 
+    const updatePosition = () => {
+      if (!dropdownTriggerRef.current) return;
+      const button = dropdownTriggerRef.current;
       const rect = button.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
       
-      const calculatedTop = rect.bottom + scrollTop + 8;
-      const calculatedLeft = rect.left + scrollLeft;
-
-      // Remove any existing dropdown
-      const existingDropdown = document.getElementById('ultra-robust-dropdown');
-      if (existingDropdown) {
-        existingDropdown.remove();
-      }
-
-      // Create dropdown element
-      const dropdown = document.createElement('div');
-      dropdown.id = 'ultra-robust-dropdown';
-      dropdown.className = 'ultra-robust-dropdown';
-      dropdown.style.cssText = `
-        position: fixed !important;
-        z-index: 2147483647 !important;
-        top: ${calculatedTop}px !important;
-        left: ${calculatedLeft}px !important;
-        width: 288px !important;
-        background: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(16px) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        padding: 16px !important;
-        pointer-events: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        transform: scale(1) !important;
-        transition: all 0.3s ease !important;
-      `;
-
-      // Add dropdown content (localized)
-      dropdown.innerHTML = `
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <a href="/${locale}/about" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.title')}</a>
-          <a href="/${locale}/about#vision" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.ourVision')}</a>
-          <a href="/${locale}/about#new-approach" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.newEducationalApproach')}</a>
-          <a href="/${locale}/about#avatar-technology" style="display: block; padding: 12px 24px; font-size: 14px; font-weight: 500; color: #374151; border-radius: 12px; margin: 0 8px; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.color='#059669';" onmouseout="this.style.background='transparent'; this.style.color='#374151';">${t('aboutUs.nav.effectOfAvatars')}</a>
-        </div>
-      `;
-
-      // Add event listeners
-      dropdown.addEventListener('mouseenter', () => setAboutDropdownOpen(true));
-      dropdown.addEventListener('mouseleave', () => setAboutDropdownOpen(false));
-
-      // Add click handlers for links
-      dropdown.addEventListener('click', (e) => {
-        const target = e.target as HTMLAnchorElement;
-        if (target.tagName === 'A') {
-          e.preventDefault();
-          setAboutDropdownOpen(false);
-          const href = target.getAttribute('href');
-          if (href) {
-            if (href.includes('#')) {
-              router.push(`/${locale}/about`);
-              setTimeout(() => {
-                const hash = href.split('#')[1];
-                const element = document.getElementById(hash);
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }, 300);
-            } else {
-              router.push(href);
-            }
-          }
-        }
+      setDropdownPosition({
+        top: rect.bottom + scrollTop + 8,
+        left: rect.left + scrollLeft,
       });
+    };
 
-      // Append to body
-      document.body.appendChild(dropdown);
+    updatePosition();
 
-      return () => {
-        const existingDropdown = document.getElementById('ultra-robust-dropdown');
-        if (existingDropdown) {
-          existingDropdown.remove();
+    // Update on scroll and resize
+    window.addEventListener('scroll', updatePosition, true);
+    window.addEventListener('resize', updatePosition);
+
+    return () => {
+      window.removeEventListener('scroll', updatePosition, true);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [aboutDropdownOpen, mounted]);
+
+  // Handle dropdown link clicks
+  const handleDropdownLinkClick = (href: string) => {
+    setAboutDropdownOpen(false);
+    if (href.includes('#')) {
+      router.push(`/${locale}/about`);
+      setTimeout(() => {
+        const hash = href.split('#')[1];
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
         }
-      };
+      }, 300);
+    } else {
+      router.push(href);
     }
-  }, [aboutDropdownOpen, mounted, locale, router]);
+  };
 
-  // Navigation routes with the new structure
-  const mainRoutes = [
+  // Navigation routes with the new structure (memoized for performance)
+  const mainRoutes = useMemo(() => [
     {
       name: "navHome",
       link: "/",
@@ -197,15 +140,15 @@ export default function VisualsTopbar() {
       name: "support.title",
       link: "/support-and-assistance",
     },
-  ];
+  ], []);
 
-  const loginRoute = {
+  const loginRoute = useMemo(() => ({
     name: "login",
     link: "/login",
-  };
+  }), []);
 
-  // Social media links
-  const socialLinks = [
+  // Social media links (memoized)
+  const socialLinks = useMemo(() => [
     {
       href: "https://www.instagram.com/aidaki.ai",
       label: "Instagram",
@@ -221,7 +164,7 @@ export default function VisualsTopbar() {
       label: "TikTok",
       icon: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z",
     },
-  ];
+  ], []);
 
   // Close mobile menu on larger screens
   const handleResize = () => {
@@ -282,50 +225,192 @@ export default function VisualsTopbar() {
     };
   }, [aboutDropdownOpen]);
 
+  // Get dropdown items from mainRoutes
+  const aboutRoute = mainRoutes.find(route => route.hasDropdown);
+
   return (
     <>
-      {/* Countdown Banner */}
-        <div className="w-full relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 text-white border-2 border-green-400/50 shadow-2xl" style={{fontFamily:"Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"}}>
-          <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_15%_0%,rgba(255,255,255,0.45),transparent_35%),radial-gradient(circle_at_85%_120%,rgba(255,255,255,0.35),transparent_45%)]"></div>
-          <div className={`container relative z-10 mx-auto px-4 py-3 md:py-4 flex items-center justify-between gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <div className="flex items-center gap-3 text-base md:text-lg font-semibold tracking-tight">
-              <span className="text-xl md:text-2xl">🎓</span>
-              <div className="flex items-center flex-wrap gap-2 sm:gap-3">
-                <span className="whitespace-pre px-3 py-1 rounded-xl bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 shadow-lg">
+      {/* Ultra Modern Countdown Banner */}
+      <div className="w-full relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl" style={{fontFamily:"Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"}}>
+        {/* Background overlay */}
+        <div className="absolute inset-0 opacity-15 bg-[radial-gradient(circle_at_15%_0%,rgba(255,255,255,0.45),transparent_35%),radial-gradient(circle_at_85%_120%,rgba(255,255,255,0.35),transparent_45%)]"></div>
+
+        {/* Main content */}
+        <div className={`relative z-10 mx-auto px-2.5 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-4 max-w-7xl ${isRTL ? 'text-right' : 'text-left'}`}>
+          <div className={`flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-center gap-2.5 sm:gap-3 md:gap-4`}>
+            
+            {/* Countdown - First in RTL, Last in LTR */}
+            {isRTL && (
+              <div className={`flex items-center gap-1 sm:gap-1.5 md:gap-2.5 flex-row-reverse`}>
+                {/* Days */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.days).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      يوم
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Hours */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.hours).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      سا
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Minutes */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.minutes).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      د
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Seconds */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105 animate-pulse-soft">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.seconds).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      ث
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Message and Hero - Middle section */}
+            <div className={`flex flex-col ${isRTL ? 'items-end md:flex-row-reverse' : 'items-start md:flex-row'} gap-2 md:gap-3`}>
+              {/* Hero Image */}
+              <div className="relative group">
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse-glow"></div>
+                <img 
+                  src="/images/hero.png" 
+                  alt="AIDAKI Hero" 
+                  className="relative w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain animate-bounce-subtle"
+                />
+              </div>
+
+              {/* Text content */}
+              <div className={`flex flex-col ${isRTL ? 'items-end' : 'items-start'} gap-1.5 md:gap-2`}>
+                {/* Main question */}
+                <h2 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight text-white drop-shadow-lg animate-text-glow ${isRTL ? 'text-right' : 'text-left'}`}>
                   {isRTL
-                    ? 'جاهز للنجاح في البكالوريا؟ '
+                    ? 'جاهز للنجاح في البكالوريا؟'
                     : currentLocale === 'fr'
-                      ? 'Prêt à réussir au baccalauréat ? '
-                      : 'Ready to succeed in the baccalaureate? '}
-                </span>
-                <span className="px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 shadow-lg">
-                  {isRTL
-                    ? 'نصل قريبًا'
-                    : currentLocale === 'fr'
-                      ? "On arrive bientôt"
-                      : "We're coming soon"}
-                </span>
-                <span className="hidden sm:inline px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 shadow-lg">
-                  {isRTL
-                    ? '10 نوفمبر 2025'
-                    : currentLocale === 'fr'
-                      ? '10 novembre 2025'
-                      : 'Nov 10, 2025'}
-                </span>
-                <span className="text-xl md:text-2xl">🚀</span>
+                      ? 'Prêt à réussir au baccalauréat ?'
+                      : 'Ready to succeed in the baccalaureate?'}
+                </h2>
+
+                {/* Subtitle */}
+                <div className={`flex flex-wrap items-center gap-1.5 md:gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <span className="px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 text-xs md:text-sm font-semibold text-white">
+                    {isRTL
+                      ? 'نصل قريبًا'
+                      : currentLocale === 'fr'
+                        ? "On arrive bientôt"
+                        : "We're coming soon"}
+                  </span>
+                  <span className="hidden sm:inline px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 text-xs md:text-sm font-semibold text-white">
+                    {isRTL
+                      ? '10 نوفمبر 2025'
+                      : currentLocale === 'fr'
+                        ? '10 novembre 2025'
+                        : 'Nov 10, 2025'}
+                  </span>
+                  <span className="text-xl md:text-2xl animate-bounce-subtle" style={{ animationDelay: '0.5s' }}>🚀</span>
+                </div>
               </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-3 font-mono">
-              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.days).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'يوم' : currentLocale === 'fr' ? 'J' : 'D'}</span></span>
-              <span className="opacity-70">:</span>
-              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.hours).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'سا' : currentLocale === 'fr' ? 'H' : 'H'}</span></span>
-              <span className="opacity-70">:</span>
-              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.minutes).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'د' : currentLocale === 'fr' ? 'M' : 'M'}</span></span>
-              <span className="opacity-70">:</span>
-              <span className="px-3 py-1 rounded-xl bg-white/10 backdrop-blur-sm border border-white/25 shadow-xl text-center"><span className="font-extrabold tracking-wider">{String(timeLeft.seconds).padStart(2, '0')}</span> <span className="opacity-80 text-[11px]">{isRTL ? 'ث' : currentLocale === 'fr' ? 'S' : 'S'}</span></span>
-            </div>
+
+            {/* Countdown - Last in LTR, hidden in RTL (already shown above) */}
+            {!isRTL && (
+              <div className={`flex items-center gap-1 sm:gap-1.5 md:gap-2.5`}>
+                {/* Days */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.days).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      {currentLocale === 'fr' ? 'J' : 'D'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Hours */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.hours).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      {currentLocale === 'fr' ? 'H' : 'H'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Minutes */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.minutes).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      {currentLocale === 'fr' ? 'M' : 'M'}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white/60 font-bold text-sm md:text-lg lg:text-xl animate-pulse">:</div>
+
+                {/* Seconds */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-white/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+                  <div className="relative px-1.5 py-1 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2.5 rounded-lg bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/30 shadow-xl text-center transition-all duration-300 group-hover:scale-105 animate-pulse-soft">
+                    <div className="font-mono font-black text-sm sm:text-lg md:text-xl lg:text-2xl text-white tracking-tighter">
+                      {String(timeLeft.seconds).padStart(2, '0')}
+                    </div>
+                    <div className="text-[7px] sm:text-[9px] md:text-[10px] opacity-80 text-white/90 font-medium mt-0.5">
+                      {currentLocale === 'fr' ? 'S' : 'S'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
+      </div>
       
       <nav className="w-full border-b top-0 z-[100] transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl hover:shadow-3xl transition-all duration-500 animate-pulse-slow nav-container">
         {/* Animated gradient overlay */}
@@ -454,13 +539,16 @@ export default function VisualsTopbar() {
                   {route.hasDropdown ? (
                     <div className="relative dropdown-container">
                       <button
-                        data-dropdown-trigger
+                        ref={dropdownTriggerRef}
+                        id="about-dropdown-trigger"
                         className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
                         onClick={(e) => {
                           e.stopPropagation();
                           setAboutDropdownOpen(!aboutDropdownOpen);
                         }}
                         onMouseEnter={() => setAboutDropdownOpen(true)}
+                        aria-expanded={aboutDropdownOpen}
+                        aria-haspopup="true"
                       >
                         {t(route.name)}
                         <svg
@@ -479,8 +567,6 @@ export default function VisualsTopbar() {
                           />
                         </svg>
                       </button>
-
-                      {/* Dropdown Menu - ULTRA ROBUST METHOD (DOM Manipulation) */}
                     </div>
                   ) : (
                     <Link
@@ -566,6 +652,46 @@ export default function VisualsTopbar() {
           </div>
         </div>
       </nav>
+
+      {/* Dropdown Menu with React Portal (Secure Method) */}
+      {mounted && aboutDropdownOpen && dropdownPosition && aboutRoute && typeof window !== 'undefined' 
+        ? createPortal(
+            <div
+              className="fixed z-[2147483647] transition-all duration-300"
+              style={{
+                top: `${dropdownPosition.top}px`,
+                left: `${dropdownPosition.left}px`,
+                width: '288px',
+              }}
+              onMouseEnter={() => setAboutDropdownOpen(true)}
+              onMouseLeave={() => setAboutDropdownOpen(false)}
+              role="menu"
+              aria-labelledby="about-dropdown-trigger"
+            >
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/30 p-4">
+                <div className="flex flex-col gap-2">
+                  {aboutRoute.dropdownItems?.map((item) => {
+                    const href = `/${locale}${item.link}`;
+                    return (
+                      <button
+                        key={item.name}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleDropdownLinkClick(href);
+                        }}
+                        className="px-6 py-3 text-left text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all duration-300"
+                        role="menuitem"
+                      >
+                        {t(item.name)}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
 
       <style jsx>{`
         .time-box{background:linear-gradient(180deg,rgba(255,255,255,0.2),rgba(255,255,255,0.08));border:1px solid rgba(255,255,255,0.25)}
@@ -916,6 +1042,233 @@ export default function VisualsTopbar() {
           }
         }
 
+        /* Ultra Modern Countdown Banner Animations */
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
+        @keyframes light-ray-1 {
+          0%, 100% {
+            opacity: 0.3;
+            transform: translateY(-20px);
+          }
+          50% {
+            opacity: 0.6;
+            transform: translateY(20px);
+          }
+        }
+
+        @keyframes light-ray-2 {
+          0%, 100% {
+            opacity: 0.2;
+            transform: translateY(20px);
+          }
+          50% {
+            opacity: 0.5;
+            transform: translateY(-20px);
+          }
+        }
+
+        @keyframes float-particle-1 {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.4;
+          }
+          25% {
+            transform: translate(10px, -15px) scale(1.2);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translate(-5px, -25px) scale(0.9);
+            opacity: 0.5;
+          }
+          75% {
+            transform: translate(-10px, -10px) scale(1.1);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes float-particle-2 {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.5;
+          }
+          33% {
+            transform: translate(-15px, 20px) scale(1.3);
+            opacity: 0.8;
+          }
+          66% {
+            transform: translate(10px, 10px) scale(0.8);
+            opacity: 0.4;
+          }
+        }
+
+        @keyframes float-particle-3 {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.6;
+          }
+          40% {
+            transform: translate(20px, -20px) scale(1.4);
+            opacity: 0.9;
+          }
+          80% {
+            transform: translate(-15px, -5px) scale(0.7);
+            opacity: 0.3;
+          }
+        }
+
+        @keyframes float-particle-4 {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.4;
+          }
+          30% {
+            transform: translate(-20px, 15px) scale(1.2);
+            opacity: 0.7;
+          }
+          60% {
+            transform: translate(15px, -10px) scale(0.9);
+            opacity: 0.5;
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes text-glow {
+          0%, 100% {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                         0 0 20px rgba(255, 255, 255, 0.3),
+                         0 0 30px rgba(16, 185, 129, 0.2);
+          }
+          50% {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                         0 0 40px rgba(255, 255, 255, 0.5),
+                         0 0 60px rgba(16, 185, 129, 0.4);
+          }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            opacity: 0.5;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
+        }
+
+        @keyframes pulse-soft {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 0.95;
+          }
+        }
+
+        .animate-gradient-shift {
+          background-size: 200% 200%;
+          animation: gradient-shift 8s ease infinite;
+        }
+
+        .animate-light-ray-1 {
+          animation: light-ray-1 4s ease-in-out infinite;
+        }
+
+        .animate-light-ray-2 {
+          animation: light-ray-2 5s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        .animate-float-particle-1 {
+          animation: float-particle-1 8s ease-in-out infinite;
+        }
+
+        .animate-float-particle-2 {
+          animation: float-particle-2 10s ease-in-out infinite;
+          animation-delay: 2s;
+        }
+
+        .animate-float-particle-3 {
+          animation: float-particle-3 12s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        .animate-float-particle-4 {
+          animation: float-particle-4 9s ease-in-out infinite;
+          animation-delay: 3s;
+        }
+
+        .animate-shimmer {
+          animation: shimmer 3s linear infinite;
+        }
+
+        .animate-text-glow {
+          animation: text-glow 2s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .animate-pulse-soft {
+          animation: pulse-soft 1s ease-in-out infinite;
+        }
+
+        .animate-bounce-subtle {
+          animation: bounce-subtle 2s ease-in-out infinite;
+        }
+
+        /* Countdown banner specific styles */
+        .countdown-banner {
+          position: relative;
+        }
+
+        /* Responsive text sizing */
+        @media (max-width: 640px) {
+          .countdown-banner h2 {
+            font-size: 1rem;
+            line-height: 1.3;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+          .countdown-banner h2 {
+            font-size: 1.25rem;
+            line-height: 1.4;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .countdown-banner h2 {
+            font-size: 1.75rem;
+            line-height: 1.5;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .countdown-banner h2 {
+            font-size: 2rem;
+            line-height: 1.6;
+          }
+        }
+
         .nav-link {
           position: relative;
           overflow: hidden;
@@ -1015,17 +1368,6 @@ export default function VisualsTopbar() {
           }
           to {
             transform: rotate(360deg);
-          }
-        }
-
-        @keyframes pulse-gentle {
-          0%, 100% {
-            opacity: 0.8;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.02);
           }
         }
 

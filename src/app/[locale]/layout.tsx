@@ -1,9 +1,13 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Poppins, Cairo } from 'next/font/google';
+import Script from 'next/script';
 import '../globals.css';
 import { Locale, getDirection } from '../../i18n';
 import DirectionManager from '../../components/DirectionManager';
+
+// ID Google Tag Manager
+const GTM_ID = 'GTM-WGM222ZH';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -53,11 +57,37 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={direction}>
+      <head>
+        {/* Google Tag Manager - Script dans le head */}
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${
           isArabic ? cairo.variable + ' font-cairo' : poppins.variable + ' font-poppins'
         } ${direction === 'rtl' ? 'rtl' : 'ltr'}`}
       >
+        {/* Google Tag Manager - Noscript juste après l'ouverture du body */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        
         <DirectionManager />
         <NextIntlClientProvider messages={messages}>
           {children}

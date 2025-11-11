@@ -33,7 +33,7 @@ export const LanguageUtils = {
     getWelcomeMessage: (language: 'fr' | 'ar' | 'en') => {
         switch (language) {
             case 'ar':
-                return "مرحباً! أنا مساعد أيداكي. كيف يمكنني مساعدتك اليوم؟";
+                return "مرحباً! أنا مساعد الذكي. كيف يمكنني مساعدتك اليوم؟";
             case 'en':
                 return "Hello! I'm the AIDAKI assistant. How can I help you today?";
             default:

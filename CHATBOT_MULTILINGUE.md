@@ -80,8 +80,8 @@ Bot: "Bonjour ! AIDAKI est une plateforme éducative moderne..."
 
 ### Conversation Arabe
 ```
-المستخدم: "مرحبا، ما هو أيداكي؟"
-البوت: "مرحباً! أيداكي منصة تعليمية حديثة..."
+المستخدم: "مرحبا، ما هو الذكي؟"
+البوت: "مرحباً! الذكي منصة تعليمية حديثة..."
 ```
 
 ### Conversation Anglaise
@@ -96,7 +96,7 @@ Utilisateur: "Bonjour"
 Bot: "Bonjour ! Je suis l'assistant AIDAKI..."
 
 Utilisateur: "مرحبا" 
-Bot: "مرحباً! أنا مساعد أيداكي..."
+Bot: "مرحباً! أنا مساعد الذكي..."
 
 Utilisateur: "Hello"
 Bot: "Hello! I'm the AIDAKI assistant..."

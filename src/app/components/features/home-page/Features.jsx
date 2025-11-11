@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -50,40 +50,64 @@ const FeaturesHomePageFeatures = () => {
     };
   }, []);
 
-  // All features data
-  const features = [
-    {
-      title: t("features.feature5.title"),
-      description: t("features.feature5.description"),
-      image: "4.png",
-    },
-    {
-      title: t("features.feature1.title"),
-      description: t("features.feature1.description"),
-      image: "2.png",
-    },
-    {
-      title: t("features.feature4.title"),
-      description: t("features.feature4.description"),
-      image: "1.png",
-    },
-    {
-      title: t("features.feature2.title"),
-      description: t("features.feature2.description"),
-      image: "5.png",
-    },
-    {
-      title: t("features.feature3.title"),
-      description: t("features.feature3.description"),
-      image: "6.png",
-    },
+  // All features data with locale-specific ordering
+  const features = useMemo(() => {
+    const baseFeatures = [
+      {
+        key: "feature5",
+        title: t("features.feature5.title"),
+        description: t("features.feature5.description"),
+        image: "4.png",
+      },
+      {
+        key: "feature1",
+        title: t("features.feature1.title"),
+        description: t("features.feature1.description"),
+        image: "2.png",
+      },
+      {
+        key: "feature4",
+        title: t("features.feature4.title"),
+        description: t("features.feature4.description"),
+        image: "1.png",
+      },
+      {
+        key: "feature2",
+        title: t("features.feature2.title"),
+        description: t("features.feature2.description"),
+        image: "5.png",
+      },
+      {
+        key: "feature3",
+        title: t("features.feature3.title"),
+        description: t("features.feature3.description"),
+        image: "6.png",
+      },
+      {
+        key: "feature6",
+        title: t("features.feature6.title"),
+        description: t("features.feature6.description"),
+        image: "7.png",
+      },
+    ];
 
-    {
-      title: t("features.feature6.title"),
-      description: t("features.feature6.description"),
-      image: "7.png",
-    },
-  ];
+    if (!isRTL) {
+      return baseFeatures;
+    }
+
+    const arabicOrder = [
+      "feature3", // الدروس كاملة مع الشرح
+      "feature2", // ملخصات مكتوبة
+      "feature1", // فيديوهات تلخيصية
+      "feature5", // نظام دردشة تفاعلي
+      "feature4", // نظام اختبارات
+      "feature6", // لوحة تحكم مع حالة التقدم
+    ];
+
+    return arabicOrder
+      .map((key) => baseFeatures.find((feature) => feature.key === key))
+      .filter(Boolean);
+  }, [t, isRTL]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % features.length);

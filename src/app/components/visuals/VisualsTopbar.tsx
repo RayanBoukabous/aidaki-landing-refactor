@@ -21,7 +21,7 @@ export default function VisualsTopbar() {
   const [currentLocale, setCurrentLocale] = useState(locale as string);
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<{days:number;hours:number;minutes:number;seconds:number}>({days:0,hours:0,minutes:0,seconds:0});
-  const [dropdownPosition, setDropdownPosition] = useState<{top: number; left: number} | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left?: number; right?: number } | null>(null);
   const dropdownTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Handle mounting
@@ -59,11 +59,23 @@ export default function VisualsTopbar() {
       const rect = button.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-      
-      setDropdownPosition({
-        top: rect.bottom + scrollTop + 8,
-        left: rect.left + scrollLeft,
-      });
+
+      const top = rect.bottom + scrollTop + 8;
+
+      if (isRTL) {
+        const viewportWidth =
+          window.innerWidth || document.documentElement.clientWidth;
+        const right = viewportWidth - rect.right - scrollLeft;
+        setDropdownPosition({
+          top,
+          right: Math.max(right, 0),
+        });
+      } else {
+        setDropdownPosition({
+          top,
+          left: rect.left + scrollLeft,
+        });
+      }
     };
 
     updatePosition();
@@ -76,7 +88,7 @@ export default function VisualsTopbar() {
       window.removeEventListener('scroll', updatePosition, true);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [aboutDropdownOpen, mounted]);
+  }, [aboutDropdownOpen, mounted, isRTL]);
 
   // Handle dropdown link clicks
   const handleDropdownLinkClick = (href: string) => {
@@ -95,13 +107,14 @@ export default function VisualsTopbar() {
     }
   };
 
-  // Navigation routes with the new structure (memoized for performance)
-  const mainRoutes = useMemo(() => [
-    {
+  // Navigation routes - Define explicit order for LTR and RTL
+  const mainRoutes = useMemo(() => {
+    const homeRoute = {
       name: "navHome",
       link: "/",
-    },
-    {
+    };
+
+    const aboutRoute = {
       name: "aboutUs.nav.aboutUs",
       hasDropdown: true,
       link: "/about",
@@ -123,24 +136,50 @@ export default function VisualsTopbar() {
           link: "/about#avatar-technology",
         },
       ],
-    },
-    {
+    };
+
+    const pointsOfSaleRoute = {
       name: "pointsOfSale.title",
       link: "/#points-of-sale",
-    },
-    {
+    };
+
+    const newsRoute = {
       name: "educationResources.title",
       link: "/news",
-    },
-    {
+    };
+
+    const pricesRoute = {
       name: "navPrices",
       link: "/#prices",
-    },
-    {
+    };
+
+    const supportRoute = {
       name: "support.title",
       link: "/support-and-assistance",
-    },
-  ], []);
+    };
+
+    if (isRTL) {
+      // Arabic (RTL): display Support on the far right, Home on the far left
+      return [
+        supportRoute,
+        pricesRoute,
+        newsRoute,
+        pointsOfSaleRoute,
+        aboutRoute,
+        homeRoute,
+      ];
+    }
+
+    // LTR locales keep the standard left-to-right order
+    return [
+      homeRoute,
+      aboutRoute,
+      pointsOfSaleRoute,
+      newsRoute,
+      pricesRoute,
+      supportRoute,
+    ];
+  }, [isRTL, locale, t]);
 
   const loginRoute = useMemo(() => ({
     name: "login",
@@ -533,7 +572,7 @@ export default function VisualsTopbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-             <ul className="flex items-center gap-4">
+             <ul className="flex items-center gap-4" style={{ direction: 'ltr' }}>
               {mainRoutes.map((route, index) => (
                 <li key={route.name} className="relative">
                   {route.hasDropdown ? (
@@ -541,7 +580,7 @@ export default function VisualsTopbar() {
                       <button
                         ref={dropdownTriggerRef}
                         id="about-dropdown-trigger"
-                        className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
+                        className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "flex-row-reverse text-right" : ""}`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setAboutDropdownOpen(!aboutDropdownOpen);
@@ -571,7 +610,7 @@ export default function VisualsTopbar() {
                   ) : (
                     <Link
                       href={`/${locale}${route.link}`}
-                      className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
+                      className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "text-right" : ""}`}
                       onClick={(e) => {
                         // If it's a hash link, use smooth scroll
                         if (route.link.includes('#')) {
@@ -660,8 +699,13 @@ export default function VisualsTopbar() {
               className="fixed z-[2147483647] transition-all duration-300"
               style={{
                 top: `${dropdownPosition.top}px`,
-                left: `${dropdownPosition.left}px`,
                 width: '288px',
+                ...(dropdownPosition.left !== undefined
+                  ? { left: `${dropdownPosition.left}px` }
+                  : {}),
+                ...(dropdownPosition.right !== undefined
+                  ? { right: `${dropdownPosition.right}px` }
+                  : {}),
               }}
               onMouseEnter={() => setAboutDropdownOpen(true)}
               onMouseLeave={() => setAboutDropdownOpen(false)}
@@ -679,7 +723,7 @@ export default function VisualsTopbar() {
                           e.preventDefault();
                           handleDropdownLinkClick(href);
                         }}
-                        className="px-6 py-3 text-left text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all duration-300"
+                        className={`px-6 py-3 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all duration-300 ${isRTL ? "text-right" : "text-left"}`}
                         role="menuitem"
                       >
                         {t(item.name)}
@@ -699,7 +743,7 @@ export default function VisualsTopbar() {
 
       {/* Professional Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[90] lg:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-[200] lg:hidden transition-all duration-300 ${
           mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -724,9 +768,9 @@ export default function VisualsTopbar() {
         >
           {/* Clean Header */}
           <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-4 py-4">
-            <div className="flex items-center justify-between">
+            <div className={`flex items-center justify-between ${isRTL ? "flex-row-reverse" : ""}`}>
               {/* Logo */}
-              <div className="flex items-center gap-3">
+              <div className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
                 <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
                   <img
                     src="/images/logo-black.png"
@@ -760,7 +804,7 @@ export default function VisualsTopbar() {
                 {route.hasDropdown ? (
                     <div>
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                        className={`w-full flex items-center justify-between px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "flex-row-reverse" : ""}`}
                         onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
                       >
                         <span>{t(route.name)}</span>
@@ -781,14 +825,14 @@ export default function VisualsTopbar() {
                         </svg>
                       </button>
                       {/* Dropdown items */}
-                      <div className={`ml-4 mt-2 space-y-1 transition-all duration-300 ${
+                      <div className={`${isRTL ? "mr-4" : "ml-4"} mt-2 space-y-1 transition-all duration-300 ${
                         mobileAboutDropdownOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
                       }`}>
                       {route.dropdownItems?.map((item) => (
                         <Link
                           key={item.name}
                           href={`/${locale}${item.link}`}
-                            className="block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                            className={`block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
                           onClick={(e) => {
                             e.preventDefault();
                             setMobileMenuOpen(false);
@@ -816,7 +860,7 @@ export default function VisualsTopbar() {
                 ) : (
                   <Link
                     href={`/${locale}${route.link}`}
-                      className="block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                      className={`block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
                     onClick={(e) => {
                       setMobileMenuOpen(false);
                       if (route.link.includes('#')) {

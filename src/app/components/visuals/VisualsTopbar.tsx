@@ -29,9 +29,9 @@ export default function VisualsTopbar() {
     setMounted(true);
   }, []);
 
-  // Countdown to 10 Nov 2025 00:00:00
+  // Countdown to 1 Dec 2025 00:00:00
   useEffect(() => {
-    const target = new Date(2025, 10, 10, 0, 0, 0).getTime();
+    const target = new Date(2025, 11, 1, 0, 0, 0).getTime();
     const tick = () => {
       const now = Date.now();
       const diff = Math.max(target - now, 0);
@@ -375,10 +375,10 @@ export default function VisualsTopbar() {
                   </span>
                   <span className="hidden sm:inline px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 text-xs md:text-sm font-semibold text-white">
                     {isRTL
-                      ? '10 نوفمبر 2025'
+                      ? '1 ديسمبر 2025'
                       : currentLocale === 'fr'
-                        ? '10 novembre 2025'
-                        : 'Nov 10, 2025'}
+                        ? '1 décembre 2025'
+                        : 'Dec 1, 2025'}
                   </span>
                   <span className="text-xl md:text-2xl animate-bounce-subtle" style={{ animationDelay: '0.5s' }}>🚀</span>
                 </div>
@@ -760,21 +760,22 @@ export default function VisualsTopbar() {
 
         {/* Professional Menu Content with Green Gradient */}
         <div
-          className={`relative h-full flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto ${
+          className={`absolute ${isRTL ? "right-0" : "left-0"} top-0 h-full w-80 max-w-[85vw] flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto bg-gradient-to-br from-green-600 via-green-700 to-green-800 shadow-2xl ${
             mobileMenuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-10 opacity-0"
+              ? `${isRTL ? "translate-x-0" : "translate-x-0"} opacity-100`
+              : `${isRTL ? "translate-x-full" : "-translate-x-full"} opacity-0`
           }`}
+          dir={isRTL ? "rtl" : "ltr"}
         >
           {/* Clean Header */}
           <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-4 py-4">
             <div className={`flex items-center justify-between ${isRTL ? "flex-row-reverse" : ""}`}>
-              {/* Logo */}
+              {/* Logo - Same as desktop navbar */}
               <div className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border border-white/40">
                   <img
                     src="/images/logo-black.png"
-                    className="w-6 h-6 filter brightness-0 invert"
+                    className="w-12 h-auto"
                     alt="AIDAKI Logo"
                   />
                 </div>
@@ -787,7 +788,7 @@ export default function VisualsTopbar() {
                   setMobileMenuOpen(false);
                   setMobileAboutDropdownOpen(false);
                 }}
-                className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30"
+                className={`w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30 ${isRTL ? "mr-auto" : "ml-auto"}`}
               >
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -797,17 +798,19 @@ export default function VisualsTopbar() {
           </div>
 
           {/* Navigation with Green Gradient Background */}
-          <div className="w-full bg-gradient-to-br from-green-600 via-green-700 to-green-800 flex-1 px-4 py-6 min-h-0">
-            <nav className="space-y-2">
+          <div className="w-full flex-1 px-4 py-6 min-h-0">
+            <nav className={`space-y-2 ${isRTL ? "text-right" : "text-left"}`}>
               {mainRoutes.map((route, index) => (
                 <div key={route.name} className="mb-3">
                 {route.hasDropdown ? (
                     <div>
                       <button
-                        className={`w-full flex items-center justify-between px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "flex-row-reverse" : ""}`}
+                        className={`w-full flex items-center px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${
+                          isRTL ? "flex-row-reverse justify-start gap-3" : "justify-between"
+                        }`}
                         onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
                       >
-                        <span>{t(route.name)}</span>
+                        <span className={isRTL ? "text-right flex-1" : ""}>{t(route.name)}</span>
                         <svg
                           className={`w-5 h-5 transition-transform duration-200 ${
                             mobileAboutDropdownOpen ? "rotate-180" : ""
@@ -903,7 +906,7 @@ export default function VisualsTopbar() {
           </div>
 
             {/* Social Links */}
-            <div className="mt-6 flex justify-center gap-4">
+            <div className={`mt-6 flex ${isRTL ? "justify-start" : "justify-center"} gap-4`}>
               {socialLinks.map((social) => (
               <a
                 key={social.label}

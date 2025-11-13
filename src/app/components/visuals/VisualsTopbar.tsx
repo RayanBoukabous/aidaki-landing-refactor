@@ -21,7 +21,7 @@ export default function VisualsTopbar() {
   const [currentLocale, setCurrentLocale] = useState(locale as string);
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<{days:number;hours:number;minutes:number;seconds:number}>({days:0,hours:0,minutes:0,seconds:0});
-  const [dropdownPosition, setDropdownPosition] = useState<{top: number; left: number} | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left?: number; right?: number } | null>(null);
   const dropdownTriggerRef = useRef<HTMLButtonElement>(null);
 
   // Handle mounting
@@ -29,9 +29,9 @@ export default function VisualsTopbar() {
     setMounted(true);
   }, []);
 
-  // Countdown to 10 Nov 2025 00:00:00
+  // Countdown to 1 Dec 2025 00:00:00
   useEffect(() => {
-    const target = new Date(2025, 10, 10, 0, 0, 0).getTime();
+    const target = new Date(2025, 11, 1, 0, 0, 0).getTime();
     const tick = () => {
       const now = Date.now();
       const diff = Math.max(target - now, 0);
@@ -59,11 +59,23 @@ export default function VisualsTopbar() {
       const rect = button.getBoundingClientRect();
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-      
-      setDropdownPosition({
-        top: rect.bottom + scrollTop + 8,
-        left: rect.left + scrollLeft,
-      });
+
+      const top = rect.bottom + scrollTop + 8;
+
+      if (isRTL) {
+        const viewportWidth =
+          window.innerWidth || document.documentElement.clientWidth;
+        const right = viewportWidth - rect.right - scrollLeft;
+        setDropdownPosition({
+          top,
+          right: Math.max(right, 0),
+        });
+      } else {
+        setDropdownPosition({
+          top,
+          left: rect.left + scrollLeft,
+        });
+      }
     };
 
     updatePosition();
@@ -76,7 +88,7 @@ export default function VisualsTopbar() {
       window.removeEventListener('scroll', updatePosition, true);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [aboutDropdownOpen, mounted]);
+  }, [aboutDropdownOpen, mounted, isRTL]);
 
   // Handle dropdown link clicks
   const handleDropdownLinkClick = (href: string) => {
@@ -95,13 +107,14 @@ export default function VisualsTopbar() {
     }
   };
 
-  // Navigation routes with the new structure (memoized for performance)
-  const mainRoutes = useMemo(() => [
-    {
+  // Navigation routes - Define explicit order for LTR and RTL
+  const mainRoutes = useMemo(() => {
+    const homeRoute = {
       name: "navHome",
       link: "/",
-    },
-    {
+    };
+
+    const aboutRoute = {
       name: "aboutUs.nav.aboutUs",
       hasDropdown: true,
       link: "/about",
@@ -123,24 +136,50 @@ export default function VisualsTopbar() {
           link: "/about#avatar-technology",
         },
       ],
-    },
-    {
+    };
+
+    const pointsOfSaleRoute = {
       name: "pointsOfSale.title",
       link: "/#points-of-sale",
-    },
-    {
+    };
+
+    const newsRoute = {
       name: "educationResources.title",
       link: "/news",
-    },
-    {
+    };
+
+    const pricesRoute = {
       name: "navPrices",
       link: "/#prices",
-    },
-    {
+    };
+
+    const supportRoute = {
       name: "support.title",
       link: "/support-and-assistance",
-    },
-  ], []);
+    };
+
+    if (isRTL) {
+      // Arabic (RTL): display Support on the far right, Home on the far left
+      return [
+        supportRoute,
+        pricesRoute,
+        newsRoute,
+        pointsOfSaleRoute,
+        aboutRoute,
+        homeRoute,
+      ];
+    }
+
+    // LTR locales keep the standard left-to-right order
+    return [
+      homeRoute,
+      aboutRoute,
+      pointsOfSaleRoute,
+      newsRoute,
+      pricesRoute,
+      supportRoute,
+    ];
+  }, [isRTL, locale, t]);
 
   const loginRoute = useMemo(() => ({
     name: "login",
@@ -336,10 +375,10 @@ export default function VisualsTopbar() {
                   </span>
                   <span className="hidden sm:inline px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 text-xs md:text-sm font-semibold text-white">
                     {isRTL
-                      ? '10 نوفمبر 2025'
+                      ? '1 ديسمبر 2025'
                       : currentLocale === 'fr'
-                        ? '10 novembre 2025'
-                        : 'Nov 10, 2025'}
+                        ? '1 décembre 2025'
+                        : 'Dec 1, 2025'}
                   </span>
                   <span className="text-xl md:text-2xl animate-bounce-subtle" style={{ animationDelay: '0.5s' }}>🚀</span>
                 </div>
@@ -533,7 +572,7 @@ export default function VisualsTopbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-             <ul className="flex items-center gap-4">
+             <ul className="flex items-center gap-4" style={{ direction: 'ltr' }}>
               {mainRoutes.map((route, index) => (
                 <li key={route.name} className="relative">
                   {route.hasDropdown ? (
@@ -541,7 +580,7 @@ export default function VisualsTopbar() {
                       <button
                         ref={dropdownTriggerRef}
                         id="about-dropdown-trigger"
-                        className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
+                        className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "flex-row-reverse text-right" : ""}`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setAboutDropdownOpen(!aboutDropdownOpen);
@@ -571,7 +610,7 @@ export default function VisualsTopbar() {
                   ) : (
                     <Link
                       href={`/${locale}${route.link}`}
-                      className="px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link"
+                      className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "text-right" : ""}`}
                       onClick={(e) => {
                         // If it's a hash link, use smooth scroll
                         if (route.link.includes('#')) {
@@ -660,8 +699,13 @@ export default function VisualsTopbar() {
               className="fixed z-[2147483647] transition-all duration-300"
               style={{
                 top: `${dropdownPosition.top}px`,
-                left: `${dropdownPosition.left}px`,
                 width: '288px',
+                ...(dropdownPosition.left !== undefined
+                  ? { left: `${dropdownPosition.left}px` }
+                  : {}),
+                ...(dropdownPosition.right !== undefined
+                  ? { right: `${dropdownPosition.right}px` }
+                  : {}),
               }}
               onMouseEnter={() => setAboutDropdownOpen(true)}
               onMouseLeave={() => setAboutDropdownOpen(false)}
@@ -679,7 +723,7 @@ export default function VisualsTopbar() {
                           e.preventDefault();
                           handleDropdownLinkClick(href);
                         }}
-                        className="px-6 py-3 text-left text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all duration-300"
+                        className={`px-6 py-3 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-xl transition-all duration-300 ${isRTL ? "text-right" : "text-left"}`}
                         role="menuitem"
                       >
                         {t(item.name)}
@@ -699,7 +743,7 @@ export default function VisualsTopbar() {
 
       {/* Professional Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[90] lg:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-[200] lg:hidden transition-all duration-300 ${
           mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
@@ -716,21 +760,22 @@ export default function VisualsTopbar() {
 
         {/* Professional Menu Content with Green Gradient */}
         <div
-          className={`relative h-full flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto ${
+          className={`absolute ${isRTL ? "right-0" : "left-0"} top-0 h-full w-80 max-w-[85vw] flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto bg-gradient-to-br from-green-600 via-green-700 to-green-800 shadow-2xl ${
             mobileMenuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-10 opacity-0"
+              ? `${isRTL ? "translate-x-0" : "translate-x-0"} opacity-100`
+              : `${isRTL ? "translate-x-full" : "-translate-x-full"} opacity-0`
           }`}
+          dir={isRTL ? "rtl" : "ltr"}
         >
           {/* Clean Header */}
           <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-4 py-4">
-            <div className="flex items-center justify-between">
-              {/* Logo */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+            <div className={`flex items-center justify-between ${isRTL ? "flex-row-reverse" : ""}`}>
+              {/* Logo - Same as desktop navbar */}
+              <div className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border border-white/40">
                   <img
                     src="/images/logo-black.png"
-                    className="w-6 h-6 filter brightness-0 invert"
+                    className="w-12 h-auto"
                     alt="AIDAKI Logo"
                   />
                 </div>
@@ -743,7 +788,7 @@ export default function VisualsTopbar() {
                   setMobileMenuOpen(false);
                   setMobileAboutDropdownOpen(false);
                 }}
-                className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30"
+                className={`w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30 ${isRTL ? "mr-auto" : "ml-auto"}`}
               >
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -753,17 +798,19 @@ export default function VisualsTopbar() {
           </div>
 
           {/* Navigation with Green Gradient Background */}
-          <div className="w-full bg-gradient-to-br from-green-600 via-green-700 to-green-800 flex-1 px-4 py-6 min-h-0">
-            <nav className="space-y-2">
+          <div className="w-full flex-1 px-4 py-6 min-h-0">
+            <nav className={`space-y-2 ${isRTL ? "text-right" : "text-left"}`}>
               {mainRoutes.map((route, index) => (
                 <div key={route.name} className="mb-3">
                 {route.hasDropdown ? (
                     <div>
                       <button
-                        className="w-full flex items-center justify-between px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                        className={`w-full flex items-center px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${
+                          isRTL ? "flex-row-reverse justify-start gap-3" : "justify-between"
+                        }`}
                         onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
                       >
-                        <span>{t(route.name)}</span>
+                        <span className={isRTL ? "text-right flex-1" : ""}>{t(route.name)}</span>
                         <svg
                           className={`w-5 h-5 transition-transform duration-200 ${
                             mobileAboutDropdownOpen ? "rotate-180" : ""
@@ -781,14 +828,14 @@ export default function VisualsTopbar() {
                         </svg>
                       </button>
                       {/* Dropdown items */}
-                      <div className={`ml-4 mt-2 space-y-1 transition-all duration-300 ${
+                      <div className={`${isRTL ? "mr-4" : "ml-4"} mt-2 space-y-1 transition-all duration-300 ${
                         mobileAboutDropdownOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
                       }`}>
                       {route.dropdownItems?.map((item) => (
                         <Link
                           key={item.name}
                           href={`/${locale}${item.link}`}
-                            className="block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                            className={`block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
                           onClick={(e) => {
                             e.preventDefault();
                             setMobileMenuOpen(false);
@@ -816,7 +863,7 @@ export default function VisualsTopbar() {
                 ) : (
                   <Link
                     href={`/${locale}${route.link}`}
-                      className="block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm"
+                      className={`block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
                     onClick={(e) => {
                       setMobileMenuOpen(false);
                       if (route.link.includes('#')) {
@@ -859,7 +906,7 @@ export default function VisualsTopbar() {
           </div>
 
             {/* Social Links */}
-            <div className="mt-6 flex justify-center gap-4">
+            <div className={`mt-6 flex ${isRTL ? "justify-start" : "justify-center"} gap-4`}>
               {socialLinks.map((social) => (
               <a
                 key={social.label}

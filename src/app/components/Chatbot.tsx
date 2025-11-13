@@ -248,7 +248,7 @@ const Chatbot = () => {
       let welcomeMessage: string;
       switch (detectedLanguage) {
         case 'ar':
-          welcomeMessage = "مرحباً! أنا مساعد أيداكي. كيف يمكنني مساعدتك اليوم؟";
+          welcomeMessage = "مرحباً! أنا مساعد الذكي. كيف يمكنني مساعدتك اليوم؟";
           break;
         case 'en':
           welcomeMessage = "Hello! I'm the AIDAKI assistant. How can I help you today?";
@@ -362,7 +362,7 @@ const Chatbot = () => {
   // Vider la conversation
   const clearConversation = useCallback(() => {
     const welcomeMessage = currentLanguage === 'ar' 
-      ? "مرحباً! أنا مساعد أيداكي. كيف يمكنني مساعدتك اليوم؟"
+      ? "مرحباً! أنا مساعد الذكي. كيف يمكنني مساعدتك اليوم؟"
       : currentLanguage === 'en'
       ? "Hello! I'm the AIDAKI assistant. How can I help you today?"
       : "Bonjour ! Je suis l'assistant AIDAKI. Comment puis-je vous aider aujourd'hui ?";

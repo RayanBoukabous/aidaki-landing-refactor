@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const titles = {
     en: 'AIDAKI - Learning Platform for Students',
     fr: "AIDAKI - Plateforme d'apprentissage pour élèves",
-    ar: 'أيداكي - منصة التعلم للطلاب',
+    ar: 'الذكي - منصة التعلم للطلاب',
   };
 
   const descriptions = {

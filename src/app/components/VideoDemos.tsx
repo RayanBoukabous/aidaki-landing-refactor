@@ -1,123 +1,133 @@
-"use client";
+'use client';
 
-import { Play, X, Sparkles, Zap } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { useTranslations, useLocale } from "next-intl";
-import { getDirection } from "@/i18n";
-import { motion, AnimatePresence } from "framer-motion";
+import { Play, X, Sparkles, Zap } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { getDirection } from '@/i18n';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const VideoShowcase = () => {
-  const t = useTranslations("videoSubjects");
-  const tVideos = useTranslations("videoShowcase");
-  const tCTA = useTranslations("videoDemos.cta");
+  const t = useTranslations('videoSubjects');
+  const tVideos = useTranslations('videoShowcase');
+  const tCTA = useTranslations('videoDemos.cta');
   const locale = useLocale();
   const direction = getDirection(locale);
-  const isRTL = direction === "rtl";
+  const isRTL = direction === 'rtl';
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [hoveredVideo, setHoveredVideo] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollContainerRef = useRef(null);
+  const platformUrl = process.env.NEXT_PUBLIC_PLATFORM_URL;
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const videos = [
     {
       id: 1,
-      key: "compta",
-      thumbnail: "/images/compta-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+Comptabilite..mp4",
-      gradient: "from-emerald-400 via-green-500 to-teal-600",
-      accentColor: "emerald",
-      icon: "📊",
-      pattern: "dots"
+      key: 'compta',
+      thumbnail: '/images/compta-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+Comptabilite..mp4',
+      gradient: 'from-emerald-400 via-green-500 to-teal-600',
+      accentColor: 'emerald',
+      icon: '📊',
+      pattern: 'dots',
     },
     {
       id: 2,
-      key: "droit",
-      thumbnail: "/images/law-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+droit.mp4",
-      gradient: "from-teal-500 via-emerald-600 to-green-700",
-      accentColor: "teal",
-      icon: "⚖️",
-      pattern: "lines"
+      key: 'droit',
+      thumbnail: '/images/law-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+droit.mp4',
+      gradient: 'from-teal-500 via-emerald-600 to-green-700',
+      accentColor: 'teal',
+      icon: '⚖️',
+      pattern: 'lines',
     },
     {
       id: 3,
-      key: "economy",
-      thumbnail: "/images/eco-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+economie.mp4",
-      gradient: "from-green-500 via-emerald-600 to-teal-700",
-      accentColor: "green",
-      icon: "💰",
-      pattern: "waves"
+      key: 'economy',
+      thumbnail: '/images/eco-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+economie.mp4',
+      gradient: 'from-green-500 via-emerald-600 to-teal-700',
+      accentColor: 'green',
+      icon: '💰',
+      pattern: 'waves',
     },
     {
       id: 4,
-      key: "french",
-      thumbnail: "/images/french-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+franc%CC%A7ais.mp4",
-      gradient: "from-emerald-600 via-green-600 to-cyan-600",
-      accentColor: "emerald",
-      icon: "📚",
-      pattern: "circles"
+      key: 'french',
+      thumbnail: '/images/french-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+franc%CC%A7ais.mp4',
+      gradient: 'from-emerald-600 via-green-600 to-cyan-600',
+      accentColor: 'emerald',
+      icon: '📚',
+      pattern: 'circles',
     },
     {
       id: 5,
-      key: "gp",
-      thumbnail: "/images/gp-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+Genie+des+proceder.mp4",
-      gradient: "from-lime-500 via-green-600 to-emerald-700",
-      accentColor: "lime",
-      icon: "⚙️",
-      pattern: "hexagons"
+      key: 'gp',
+      thumbnail: '/images/gp-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+Genie+des+proceder.mp4',
+      gradient: 'from-lime-500 via-green-600 to-emerald-700',
+      accentColor: 'lime',
+      icon: '⚙️',
+      pattern: 'hexagons',
     },
     {
       id: 6,
-      key: "geography",
-      thumbnail: "/images/geo-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+geographie.mp4",
-      gradient: "from-green-500 via-teal-600 to-emerald-700",
-      accentColor: "green",
-      icon: "🌍",
-      pattern: "grid"
+      key: 'geography',
+      thumbnail: '/images/geo-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+geographie.mp4',
+      gradient: 'from-green-500 via-teal-600 to-emerald-700',
+      accentColor: 'green',
+      icon: '🌍',
+      pattern: 'grid',
     },
     {
       id: 7,
-      key: "history",
-      thumbnail: "/images/history-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+histoir.mp4",
-      gradient: "from-emerald-600 via-green-700 to-teal-800",
-      accentColor: "emerald",
-      icon: "📜",
-      pattern: "diagonal"
+      key: 'history',
+      thumbnail: '/images/history-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+histoir.mp4',
+      gradient: 'from-emerald-600 via-green-700 to-teal-800',
+      accentColor: 'emerald',
+      icon: '📜',
+      pattern: 'diagonal',
     },
     {
-      id:8,
-      key:"english",
-      thumbnail: "/images/english-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+english.mp4",
-      gradient: "from-emerald-600 via-green-700 to-teal-800",
-      accentColor: "emerald",
-      icon: "🇬🇧",
-      pattern: "stars"
+      id: 8,
+      key: 'english',
+      thumbnail: '/images/english-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+english.mp4',
+      gradient: 'from-emerald-600 via-green-700 to-teal-800',
+      accentColor: 'emerald',
+      icon: '🇬🇧',
+      pattern: 'stars',
     },
     {
-      id:9,
-      key:"philo",
-      thumbnail: "/images/philo-thumbnail.png",
-      videoUrl: "https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+philo.mp4",
-      gradient: "from-emerald-600 via-green-700 to-teal-800",
-      accentColor: "emerald",
-      icon: "🤔",
-      pattern: "spiral"
-    }
+      id: 9,
+      key: 'philo',
+      thumbnail: '/images/philo-thumbnail.png',
+      videoUrl:
+        'https://aidaki-public-bucket.s3.us-east-1.amazonaws.com/1+minute+-+WEBSITE/1+minute+philo.mp4',
+      gradient: 'from-emerald-600 via-green-700 to-teal-800',
+      accentColor: 'emerald',
+      icon: '🤔',
+      pattern: 'spiral',
+    },
   ];
 
   const handleVideoClick = (video: any) => {
@@ -129,82 +139,189 @@ const VideoShowcase = () => {
   };
 
   // COMPOSANT CARTE ULTRA PROFESSIONNELLE
-  const UltraProVideoCard = ({ video, index, isMobile = false }: { video: any, index: number, isMobile?: boolean }) => {
+  const UltraProVideoCard = ({
+    video,
+    index,
+    isMobile = false,
+  }: {
+    video: any;
+    index: number;
+    isMobile?: boolean;
+  }) => {
     const [isHovered, setIsHovered] = useState(false);
-    
+
     const getPatternSVG = (pattern: string) => {
       switch (pattern) {
         case 'dots':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
               <defs>
-                <pattern id="dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <circle cx="5" cy="5" r="1" fill="currentColor" />
+                <pattern
+                  id='dots'
+                  x='0'
+                  y='0'
+                  width='10'
+                  height='10'
+                  patternUnits='userSpaceOnUse'
+                >
+                  <circle cx='5' cy='5' r='1' fill='currentColor' />
                 </pattern>
               </defs>
-              <rect width="100" height="100" fill="url(#dots)" />
+              <rect width='100' height='100' fill='url(#dots)' />
             </svg>
           );
         case 'lines':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
               <defs>
-                <pattern id="lines" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M0,10 L20,10" stroke="currentColor" strokeWidth="1" />
+                <pattern
+                  id='lines'
+                  x='0'
+                  y='0'
+                  width='20'
+                  height='20'
+                  patternUnits='userSpaceOnUse'
+                >
+                  <path
+                    d='M0,10 L20,10'
+                    stroke='currentColor'
+                    strokeWidth='1'
+                  />
                 </pattern>
               </defs>
-              <rect width="100" height="100" fill="url(#lines)" />
+              <rect width='100' height='100' fill='url(#lines)' />
             </svg>
           );
         case 'waves':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <path d="M0,50 Q25,25 50,50 T100,50" stroke="currentColor" strokeWidth="2" fill="none" />
-              <path d="M0,60 Q25,35 50,60 T100,60" stroke="currentColor" strokeWidth="2" fill="none" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <path
+                d='M0,50 Q25,25 50,50 T100,50'
+                stroke='currentColor'
+                strokeWidth='2'
+                fill='none'
+              />
+              <path
+                d='M0,60 Q25,35 50,60 T100,60'
+                stroke='currentColor'
+                strokeWidth='2'
+                fill='none'
+              />
             </svg>
           );
         case 'circles':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <circle cx="20" cy="20" r="8" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx="80" cy="80" r="8" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" strokeWidth="1" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <circle
+                cx='20'
+                cy='20'
+                r='8'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1'
+              />
+              <circle
+                cx='80'
+                cy='80'
+                r='8'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1'
+              />
+              <circle
+                cx='50'
+                cy='50'
+                r='12'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1'
+              />
             </svg>
           );
         case 'hexagons':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <polygon points="50,10 80,30 80,70 50,90 20,70 20,30" fill="none" stroke="currentColor" strokeWidth="1" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <polygon
+                points='50,10 80,30 80,70 50,90 20,70 20,30'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1'
+              />
             </svg>
           );
         case 'grid':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
               <defs>
-                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <pattern
+                  id='grid'
+                  width='10'
+                  height='10'
+                  patternUnits='userSpaceOnUse'
+                >
+                  <path
+                    d='M 10 0 L 0 0 0 10'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='0.5'
+                  />
                 </pattern>
               </defs>
-              <rect width="100" height="100" fill="url(#grid)" />
+              <rect width='100' height='100' fill='url(#grid)' />
             </svg>
           );
         case 'diagonal':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <path d="M0,0 L100,100" stroke="currentColor" strokeWidth="2" />
-              <path d="M0,100 L100,0" stroke="currentColor" strokeWidth="2" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <path d='M0,0 L100,100' stroke='currentColor' strokeWidth='2' />
+              <path d='M0,100 L100,0' stroke='currentColor' strokeWidth='2' />
             </svg>
           );
         case 'stars':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <polygon points="50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35" fill="currentColor" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <polygon
+                points='50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35'
+                fill='currentColor'
+              />
             </svg>
           );
         case 'spiral':
           return (
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100">
-              <path d="M50,50 Q50,25 75,25 Q100,25 100,50 Q100,75 75,75 Q50,75 50,50" stroke="currentColor" strokeWidth="2" fill="none" />
+            <svg
+              className='absolute inset-0 w-full h-full opacity-10'
+              viewBox='0 0 100 100'
+            >
+              <path
+                d='M50,50 Q50,25 75,25 Q100,25 100,50 Q100,75 75,75 Q50,75 50,50'
+                stroke='currentColor'
+                strokeWidth='2'
+                fill='none'
+              />
             </svg>
           );
         default:
@@ -221,95 +338,116 @@ const VideoShowcase = () => {
         transition={{
           duration: 0.6,
           delay: index * 0.1,
-          ease: "easeOut"
+          ease: 'easeOut',
         }}
         viewport={{ once: true }}
-        className="group cursor-pointer relative"
+        className='group cursor-pointer relative'
         onClick={() => handleVideoClick(video)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* BACKGROUND GLOW EFFECT */}
-        <div className={`absolute -inset-4 bg-gradient-to-br ${video.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`} />
-        
+        <div
+          className={`absolute -inset-4 bg-gradient-to-br ${video.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}
+        />
+
         {/* MAIN CARD CONTAINER */}
-        <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm">
-          
+        <div className='relative bg-white rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm'>
           {/* PATTERN OVERLAY */}
-          <div className="absolute inset-0 text-white">
+          <div className='absolute inset-0 text-white'>
             {getPatternSVG(video.pattern)}
           </div>
-          
+
           {/* GRADIENT OVERLAY */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${video.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-          
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${video.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
+          />
+
           {/* CONTENT CONTAINER */}
-          <div className="relative z-10 p-6">
-            
+          <div className='relative z-10 p-6'>
             {/* HEADER WITH ICON AND TITLE */}
-            <div className="flex items-center justify-center mb-4">
-              <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 bg-gradient-to-br ${video.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
-                  <span className="text-2xl">{video.icon}</span>
+            <div className='flex items-center justify-center mb-4'>
+              <div className='flex items-center gap-3'>
+                <div
+                  className={`w-12 h-12 bg-gradient-to-br ${video.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}
+                >
+                  <span className='text-2xl'>{video.icon}</span>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300 text-center font-cairo" lang="ar">
+                  <h3
+                    className='font-bold text-lg text-gray-800 group-hover:text-gray-900 transition-colors duration-300 text-center font-cairo'
+                    lang='ar'
+                  >
                     {t(`${video.key}.title`)}
                   </h3>
                 </div>
               </div>
             </div>
-            
+
             {/* THUMBNAIL CONTAINER */}
-            <div className="relative rounded-xl overflow-hidden mb-4 group-hover:rounded-2xl transition-all duration-500">
-              <div className="aspect-video bg-gray-900">
+            <div className='relative rounded-xl overflow-hidden mb-4 group-hover:rounded-2xl transition-all duration-500'>
+              <div className='aspect-video bg-gray-900'>
                 <img
                   src={video.thumbnail}
                   alt={t(`${video.key}.title`)}
-                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                  className='w-full h-full object-contain transition-transform duration-700 group-hover:scale-110'
                 />
               </div>
-              
+
               {/* PLAY BUTTON OVERLAY */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+              <div className='absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500'>
                 <motion.div
-                  animate={isHovered ? { scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] } : {}}
+                  animate={
+                    isHovered
+                      ? { scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] }
+                      : {}
+                  }
                   transition={{ duration: 0.6, repeat: Infinity }}
-                  className="w-20 h-20 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20"
+                  className='w-20 h-20 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20'
                 >
-                  <Play className="w-8 h-8 text-green-600 ml-1" fill="currentColor" />
+                  <Play
+                    className='w-8 h-8 text-green-600 ml-1'
+                    fill='currentColor'
+                  />
                 </motion.div>
               </div>
-              
+
               {/* GRADIENT OVERLAY ON THUMBNAIL */}
-              <div className={`absolute inset-0 bg-gradient-to-t ${video.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-t ${video.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
+              />
             </div>
-            
+
             {/* FOOTER WITH ACTION BUTTONS */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1">
-                  <Zap className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium text-gray-600">1 min</span>
+            <div className='flex items-center justify-between'>
+              <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-1'>
+                  <Zap className='w-4 h-4 text-green-500' />
+                  <span className='text-sm font-medium text-gray-600'>
+                    1 min
+                  </span>
                 </div>
-                <div className="w-1 h-1 bg-gray-300 rounded-full" />
-                <div className="flex items-center gap-1">
-                  <Sparkles className="w-4 h-4 text-purple-500" />
-                  <span className="text-sm font-medium text-gray-600">HD</span>
+                <div className='w-1 h-1 bg-gray-300 rounded-full' />
+                <div className='flex items-center gap-1'>
+                  <Sparkles className='w-4 h-4 text-purple-500' />
+                  <span className='text-sm font-medium text-gray-600'>HD</span>
                 </div>
               </div>
-              
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-4 h-4 text-white" fill="currentColor" />
+
+              <div className='flex items-center gap-2'>
+                <div className='w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300'>
+                  <Play className='w-4 h-4 text-white' fill='currentColor' />
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* BORDER GLOW EFFECT */}
-          <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${video.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} style={{ padding: '2px' }}>
-            <div className="w-full h-full bg-white rounded-2xl" />
+          <div
+            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${video.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
+            style={{ padding: '2px' }}
+          >
+            <div className='w-full h-full bg-white rounded-2xl' />
           </div>
         </div>
       </motion.div>
@@ -317,79 +455,87 @@ const VideoShowcase = () => {
   };
 
   return (
-    <div id="video-demos" className="relative w-full py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30" dir={direction}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        
+    <div
+      id='video-demos'
+      className='relative w-full py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50/30'
+      dir={direction}
+    >
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
         {/* ULTRA PROFESSIONAL HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
+          className='text-center mb-12 sm:mb-16'
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center" lang="ar">
-            {tVideos("sectionTitle")}
+          <h2
+            className='text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-6 font-cairo text-center'
+            lang='ar'
+          >
+            {tVideos('sectionTitle')}
           </h2>
-          
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo text-center" lang="ar">
-            {tVideos("sectionDescription")}
+
+          <p
+            className='text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-cairo text-center'
+            lang='ar'
+          >
+            {tVideos('sectionDescription')}
           </p>
-          
+
           {/* DECORATIVE ELEMENTS */}
-          <div className="flex justify-center items-center gap-4 mt-8">
-            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <div className="w-8 h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <div className="w-8 h-px bg-gradient-to-r from-transparent via-green-500 to-transparent" />
-            <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse" />
-        </div>
+          <div className='flex justify-center items-center gap-4 mt-8'>
+            <div className='w-2 h-2 bg-emerald-500 rounded-full animate-pulse' />
+            <div className='w-8 h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent' />
+            <div className='w-2 h-2 bg-green-500 rounded-full animate-pulse' />
+            <div className='w-8 h-px bg-gradient-to-r from-transparent via-green-500 to-transparent' />
+            <div className='w-2 h-2 bg-teal-500 rounded-full animate-pulse' />
+          </div>
         </motion.div>
-        
+
         {/* ULTRA PROFESSIONAL GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'>
           {videos.map((video, index) => (
             <UltraProVideoCard
-                  key={video.id}
+              key={video.id}
               video={video}
               index={index}
               isMobile={isMobile}
             />
-              ))}
-            </div>
+          ))}
+        </div>
 
         {/* CALL TO ACTION SECTION WITH ANIMATIONS */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="text-center mt-16 sm:mt-20"
+          className='text-center mt-16 sm:mt-20'
         >
           {/* ANIMATED BACKGROUND CONTAINER */}
-          <div className="relative bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden">
-            
+          <div className='relative bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 sm:p-12 shadow-2xl overflow-hidden'>
             {/* FLOATING PARTICLES ANIMATION */}
-            <div className="absolute inset-0 overflow-hidden">
+            <div className='absolute inset-0 overflow-hidden'>
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-white/20 rounded-full"
+                  className='absolute w-2 h-2 bg-white/20 rounded-full'
                   animate={{
                     x: [0, 100, 0],
                     y: [0, -50, 0],
                     opacity: [0.2, 0.8, 0.2],
-                    scale: [0.5, 1.2, 0.5]
+                    scale: [0.5, 1.2, 0.5],
                   }}
                   transition={{
                     duration: 3 + i * 0.5,
                     repeat: Infinity,
                     delay: i * 0.3,
-                    ease: "easeInOut"
+                    ease: 'easeInOut',
                   }}
                   style={{
                     left: `${20 + i * 15}%`,
-                    top: `${30 + i * 10}%`
+                    top: `${30 + i * 10}%`,
                   }}
                 />
               ))}
@@ -397,165 +543,165 @@ const VideoShowcase = () => {
 
             {/* PULSING GLOW EFFECT */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 rounded-3xl opacity-0"
+              className='absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-500 rounded-3xl opacity-0'
               animate={{
                 opacity: [0, 0.3, 0],
-                scale: [1, 1.05, 1]
+                scale: [1, 1.05, 1],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut',
               }}
             />
 
             {/* MAIN CONTENT */}
-            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center justify-center">
-              
+            <div className='relative z-10 max-w-2xl mx-auto flex flex-col items-center justify-center'>
               {/* ANIMATED TITLE */}
-              <motion.h3 
-                className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center"
+              <motion.h3
+                className='text-2xl sm:text-3xl font-bold text-white mb-4 text-center'
                 animate={{
                   textShadow: [
-                    "0 0 0px rgba(255,255,255,0)",
-                    "0 0 20px rgba(255,255,255,0.5)",
-                    "0 0 0px rgba(255,255,255,0)"
-                  ]
+                    '0 0 0px rgba(255,255,255,0)',
+                    '0 0 20px rgba(255,255,255,0.5)',
+                    '0 0 0px rgba(255,255,255,0)',
+                  ],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: 'easeInOut',
                 }}
               >
                 {tCTA('title')}
               </motion.h3>
 
               {/* ANIMATED DESCRIPTION */}
-              <motion.p 
-                className="text-emerald-100 text-lg mb-6 text-center"
+              <motion.p
+                className='text-emerald-100 text-lg mb-6 text-center'
                 animate={{
-                  opacity: [0.8, 1, 0.8]
+                  opacity: [0.8, 1, 0.8],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: 'easeInOut',
                 }}
               >
                 {tCTA('description')}
               </motion.p>
 
               {/* ANIMATED BUTTONS CONTAINER */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                
+              <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
                 {/* START NOW BUTTON WITH SPECIAL ANIMATIONS */}
-                <motion.a 
-                  href="https://elearning.aidaki.ai/en/login" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="relative bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg text-center overflow-hidden group"
-                  whileHover={{ 
+                <motion.a
+                  href={platformUrl}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='relative bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg text-center overflow-hidden group'
+                  whileHover={{
                     scale: 1.1,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
                   }}
                   whileTap={{ scale: 0.95 }}
                   animate={{
                     boxShadow: [
-                      "0 10px 20px rgba(0,0,0,0.1)",
-                      "0 15px 30px rgba(0,0,0,0.2)",
-                      "0 10px 20px rgba(0,0,0,0.1)"
-                    ]
+                      '0 10px 20px rgba(0,0,0,0.1)',
+                      '0 15px 30px rgba(0,0,0,0.2)',
+                      '0 10px 20px rgba(0,0,0,0.1)',
+                    ],
                   }}
                   transition={{
                     boxShadow: {
                       duration: 2,
                       repeat: Infinity,
-                      ease: "easeInOut"
-                    }
+                      ease: 'easeInOut',
+                    },
                   }}
                 >
                   {/* SHIMMER EFFECT */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    className='absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent'
                     animate={{
-                      x: ["-100%", "100%"]
+                      x: ['-100%', '100%'],
                     }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1
+                      ease: 'easeInOut',
+                      delay: 1,
                     }}
                   />
-                  
+
                   {/* PULSING DOT */}
                   <motion.div
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"
+                    className='absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full'
                     animate={{
                       scale: [1, 1.5, 1],
-                      opacity: [1, 0.5, 1]
+                      opacity: [1, 0.5, 1],
                     }}
                     transition={{
                       duration: 1,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: 'easeInOut',
                     }}
                   />
-                  
-                  <span className="relative z-10">{tCTA('startNow')}</span>
+
+                  <span className='relative z-10'>{tCTA('startNow')}</span>
                 </motion.a>
 
                 {/* PREVIEW BUTTON WITH SUBTLE ANIMATION */}
-                <motion.button 
+                <motion.button
                   onClick={() => {
                     const element = document.getElementById('video-demos');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg text-center relative overflow-hidden group"
-                  whileHover={{ 
+                  className='border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg text-center relative overflow-hidden group'
+                  whileHover={{
                     scale: 1.05,
-                    backgroundColor: "rgba(255,255,255,0.1)"
+                    backgroundColor: 'rgba(255,255,255,0.1)',
                   }}
                   whileTap={{ scale: 0.95 }}
                   animate={{
                     borderColor: [
-                      "rgba(255,255,255,1)",
-                      "rgba(255,255,255,0.7)",
-                      "rgba(255,255,255,1)"
-                    ]
+                      'rgba(255,255,255,1)',
+                      'rgba(255,255,255,0.7)',
+                      'rgba(255,255,255,1)',
+                    ],
                   }}
                   transition={{
                     borderColor: {
                       duration: 2,
                       repeat: Infinity,
-                      ease: "easeInOut"
-                    }
+                      ease: 'easeInOut',
+                    },
                   }}
                 >
-                  <span className="relative z-10">{tCTA('previewCourses')}</span>
+                  <span className='relative z-10'>
+                    {tCTA('previewCourses')}
+                  </span>
                 </motion.button>
               </div>
             </div>
 
             {/* BOTTOM GLOW EFFECT */}
             <motion.div
-              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white/30 rounded-full"
+              className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white/30 rounded-full'
               animate={{
                 scaleX: [0.5, 1, 0.5],
-                opacity: [0.3, 0.8, 0.3]
+                opacity: [0.3, 0.8, 0.3],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut',
               }}
             />
           </div>
         </motion.div>
-                    </div>
+      </div>
 
       {/* ULTRA PROFESSIONAL VIDEO MODAL */}
       <AnimatePresence>
@@ -565,83 +711,91 @@ const VideoShowcase = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-8"
+            className='fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-8'
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="w-full max-w-4xl max-h-[90vh] relative"
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className='w-full max-w-4xl max-h-[90vh] relative'
             >
-            {/* MODAL BACKGROUND WITH GRADIENT */}
-            <div className="bg-gradient-to-br from-white via-gray-50 to-emerald-50/50 rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50">
-              
-              {/* HEADER SIMPLIFIED */}
-              <div className="relative bg-gradient-to-r from-emerald-500 to-green-600 p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                      <span className="text-2xl">{selectedVideo.icon}</span>
+              {/* MODAL BACKGROUND WITH GRADIENT */}
+              <div className='bg-gradient-to-br from-white via-gray-50 to-emerald-50/50 rounded-3xl overflow-hidden shadow-2xl border border-gray-200/50'>
+                {/* HEADER SIMPLIFIED */}
+                <div className='relative bg-gradient-to-r from-emerald-500 to-green-600 p-6'>
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-center gap-4'>
+                      <div className='w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center'>
+                        <span className='text-2xl'>{selectedVideo.icon}</span>
+                      </div>
+                      <div>
+                        <h2
+                          className='text-2xl sm:text-3xl font-bold text-white font-cairo'
+                          lang='ar'
+                        >
+                          {t(`${selectedVideo.key}.title`)}
+                        </h2>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="text-2xl sm:text-3xl font-bold text-white font-cairo" lang="ar">
-                        {t(`${selectedVideo.key}.title`)}
-                      </h2>
-                    </div>
+
+                    {/* CLOSE BUTTON */}
+                    <button
+                      onClick={closeVideo}
+                      className='w-12 h-12 bg-white/20 hover:bg-white/30 rounded-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm'
+                      aria-label='Fermer la vidéo'
+                    >
+                      <X className='w-6 h-6' />
+                    </button>
                   </div>
-                  
-                  {/* CLOSE BUTTON */}
-                  <button
-                    onClick={closeVideo}
-                    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                    aria-label="Fermer la vidéo"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
                 </div>
-      </div>
 
-              {/* VIDEO PLAYER CONTAINER */}
-              <div className="relative">
-            <div className="aspect-video bg-black">
-              <video
-                className="w-full h-full"
-                controls
-                autoPlay
-                playsInline
-                preload="metadata"
-                key={selectedVideo.id}
-              >
-                <source src={selectedVideo.videoUrl} type="video/mp4" />
-                    Votre navigateur ne supporte pas la balise vidéo.
-              </video>
-            </div>
+                {/* VIDEO PLAYER CONTAINER */}
+                <div className='relative'>
+                  <div className='aspect-video bg-black'>
+                    <video
+                      className='w-full h-full'
+                      controls
+                      autoPlay
+                      playsInline
+                      preload='metadata'
+                      key={selectedVideo.id}
+                    >
+                      <source src={selectedVideo.videoUrl} type='video/mp4' />
+                      Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                  </div>
 
-                {/* GRADIENT OVERLAY ON VIDEO */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${selectedVideo.gradient} opacity-0 pointer-events-none`} />
-              </div>
+                  {/* GRADIENT OVERLAY ON VIDEO */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${selectedVideo.gradient} opacity-0 pointer-events-none`}
+                  />
+                </div>
 
-              {/* SIMPLIFIED VIDEO INFO */}
-              <div className="p-6 sm:p-8">
-                <div className="flex items-center justify-center">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <Zap className="w-5 h-5 text-green-500" />
-                      <span className="text-gray-600 font-medium">1 minute</span>
-                    </div>
-                    <div className="w-1 h-1 bg-gray-300 rounded-full" />
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-purple-500" />
-                      <span className="text-gray-600 font-medium">Qualité HD</span>
+                {/* SIMPLIFIED VIDEO INFO */}
+                <div className='p-6 sm:p-8'>
+                  <div className='flex items-center justify-center'>
+                    <div className='flex items-center gap-4'>
+                      <div className='flex items-center gap-2'>
+                        <Zap className='w-5 h-5 text-green-500' />
+                        <span className='text-gray-600 font-medium'>
+                          1 minute
+                        </span>
+                      </div>
+                      <div className='w-1 h-1 bg-gray-300 rounded-full' />
+                      <div className='flex items-center gap-2'>
+                        <Sparkles className='w-5 h-5 text-purple-500' />
+                        <span className='text-gray-600 font-medium'>
+                          Qualité HD
+                        </span>
+                      </div>
                     </div>
                   </div>
-            </div>
-          </div>
-        </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
       </AnimatePresence>
 
       {/* ULTRA PROFESSIONAL STYLES */}
@@ -649,65 +803,85 @@ const VideoShowcase = () => {
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
-        
+
         /* ULTRA PROFESSIONAL ANIMATIONS */
         @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
         }
-        
+
         @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.6); }
+          0%,
+          100% {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
+          }
         }
-        
+
         @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
         }
-        
+
         @keyframes pulse-glow {
-          0%, 100% { 
+          0%,
+          100% {
             transform: scale(1);
             box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
           }
-          50% { 
+          50% {
             transform: scale(1.05);
             box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
           }
         }
-        
+
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
-        
+
         .animate-glow {
           animation: glow 2s ease-in-out infinite;
         }
-        
+
         .animate-shimmer {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
           background-size: 200% 100%;
           animation: shimmer 2s infinite;
         }
-        
+
         .animate-pulse-glow {
           animation: pulse-glow 2s infinite;
         }
-        
+
         /* PREMIUM CARD EFFECTS */
         .premium-card {
           background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .premium-card:hover {
           background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
           transform: translateY(-8px) scale(1.02);
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        
+
         /* GRADIENT TEXT EFFECT */
         .gradient-text {
           background: linear-gradient(135deg, #1f2937, #10b981, #059669);
@@ -717,32 +891,44 @@ const VideoShowcase = () => {
           background-clip: text;
           animation: shimmer 3s ease-in-out infinite;
         }
-        
+
         /* PREMIUM BUTTON EFFECTS */
         .premium-button {
           background: linear-gradient(135deg, #10b981, #059669);
           box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
           transition: all 0.3s ease;
         }
-        
+
         .premium-button:hover {
           background: linear-gradient(135deg, #059669, #047857);
           box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
           transform: translateY(-2px);
         }
-        
+
         /* PATTERN OVERLAYS */
         .pattern-dots {
-          background-image: radial-gradient(circle, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+          background-image: radial-gradient(
+            circle,
+            rgba(16, 185, 129, 0.1) 1px,
+            transparent 1px
+          );
           background-size: 20px 20px;
         }
-        
+
         .pattern-lines {
-          background-image: linear-gradient(45deg, rgba(16, 185, 129, 0.1) 25%, transparent 25%), 
-                            linear-gradient(-45deg, rgba(16, 185, 129, 0.1) 25%, transparent 25%);
+          background-image: linear-gradient(
+              45deg,
+              rgba(16, 185, 129, 0.1) 25%,
+              transparent 25%
+            ),
+            linear-gradient(
+              -45deg,
+              rgba(16, 185, 129, 0.1) 25%,
+              transparent 25%
+            );
           background-size: 20px 20px;
         }
-        
+
         /* RESPONSIVE ENHANCEMENTS */
         @media (max-width: 768px) {
           .premium-card:hover {

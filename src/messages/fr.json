@@ -121,31 +121,31 @@
   },
   "videoSubjects": {
     "compta": {
-      "title": "Matière Comptabilité"
+      "title": "Comptabilité"
     },
     "droit": {
-      "title": "Matière Droit"
+      "title": "Droit"
     },
     "economy": {
-      "title": "Matière Économie"
+      "title": "Économie"
     },
     "french": {
       "title": "Français"
     },
     "gp": {
-      "title": "Matière Génie des Procédés"
+      "title": "Génie des Procédés"
     },
     "geography": {
-      "title": "Matière Géographie"
+      "title": "Géographie"
     },
     "history": {
       "title": "Histoire"
     },
     "english": {
-      "title": "Matière Anglais"
+      "title": "Anglais"
     },
     "philo": {
-      "title": "Matière Philosophie"
+      "title": "Philosophie"
     }
   },
   "appDownload": {
@@ -1157,7 +1157,8 @@
       "mathematics": "Mathématiques",
       "technology": "Technologie",
       "management": "Gestion et Économie",
-      "languages": "Langues Étrangères"
+      "languages": "Langues Étrangères",
+      "mathTechnical": "Math Technique"
     },
     "modal": {
       "title": "Mes cours",
@@ -1210,6 +1211,9 @@
     },
     "languages": {
       "name": "Langues Étrangères"
+    },
+    "mathTechnical": {
+      "name": "Math Technique"
     }
   },
   "pricingHeader": {

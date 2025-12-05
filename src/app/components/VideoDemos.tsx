@@ -1,7 +1,7 @@
 "use client";
 
-import { Play, X, Sparkles, Zap } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { Play, X, Sparkles, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { getDirection } from "@/i18n";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,10 +17,22 @@ const VideoShowcase = () => {
   const [hoveredVideo, setHoveredVideo] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollContainerRef = useRef(null);
+  
+  // Slide state for mobile
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsToShow, setItemsToShow] = useState(1);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      // On mobile, show 1 item at a time
+      if (width < 768) {
+        setItemsToShow(1);
+      }
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -128,6 +140,97 @@ const VideoShowcase = () => {
     setSelectedVideo(null);
   };
 
+  // Slide navigation functions for mobile
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = videos.length - itemsToShow;
+      return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+    });
+  }, [itemsToShow]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) => {
+      const maxIndex = videos.length - itemsToShow;
+      return prevIndex <= 0 ? maxIndex : prevIndex - 1;
+    });
+  }, [itemsToShow]);
+
+  // Start autoplay
+  const startAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) {
+      clearInterval(autoPlayRef.current);
+    }
+    if (isAutoPlaying && !isPaused && isMobile) {
+      autoPlayRef.current = setInterval(() => {
+        nextSlide();
+      }, 4000);
+    }
+  }, [isAutoPlaying, isPaused, nextSlide, isMobile]);
+
+  // Stop autoplay
+  const stopAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) {
+      clearInterval(autoPlayRef.current);
+      autoPlayRef.current = null;
+    }
+  }, []);
+
+  // Initialize autoplay on mobile
+  useEffect(() => {
+    if (isMobile) {
+      startAutoPlay();
+    } else {
+      stopAutoPlay();
+    }
+    return () => stopAutoPlay();
+  }, [startAutoPlay, stopAutoPlay, isMobile]);
+
+  // Reset current index when items to show changes
+  useEffect(() => {
+    if (currentIndex >= videos.length - itemsToShow + 1) {
+      setCurrentIndex(Math.max(0, videos.length - itemsToShow));
+    }
+  }, [itemsToShow, currentIndex, videos.length]);
+
+  // Note: We removed hover pause to prevent conflicts with video card hovers
+  // Autoplay will continue running, users can manually navigate with arrows
+
+  const handleManualNavigation = (direction: "next" | "prev") => {
+    if (!isMobile) return;
+    setIsPaused(true);
+    stopAutoPlay();
+
+    if (direction === "next") {
+      nextSlide();
+    } else {
+      prevSlide();
+    }
+
+    setTimeout(() => {
+      setIsPaused(false);
+      startAutoPlay();
+    }, 8000);
+  };
+
+  const goToSlide = (slideIndex: number) => {
+    if (!isMobile) return;
+    setIsPaused(true);
+    stopAutoPlay();
+    setCurrentIndex(slideIndex * itemsToShow);
+
+    setTimeout(() => {
+      setIsPaused(false);
+      startAutoPlay();
+    }, 8000);
+  };
+
+  const visibleVideos = isMobile 
+    ? videos.slice(currentIndex, currentIndex + itemsToShow)
+    : videos;
+
+  const totalPages = Math.ceil(videos.length / itemsToShow);
+  const currentPage = Math.floor(currentIndex / itemsToShow);
+
   // COMPOSANT CARTE ULTRA PROFESSIONNELLE
   const UltraProVideoCard = ({ video, index, isMobile = false }: { video: any, index: number, isMobile?: boolean }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -214,16 +317,16 @@ const VideoShowcase = () => {
 
     return (
       <motion.div
-        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        whileHover={{ scale: 1.05, y: -10 }}
+        initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+        whileInView={isMobile ? {} : { opacity: 1, y: 0, scale: 1 }}
+        whileHover={isMobile ? {} : { scale: 1.05, y: -10 }}
         whileTap={{ scale: 0.95 }}
-        transition={{
+        transition={isMobile ? {} : {
           duration: 0.6,
           delay: index * 0.1,
           ease: "easeOut"
         }}
-        viewport={{ once: true }}
+        viewport={isMobile ? undefined : { once: true }}
         className="group cursor-pointer relative"
         onClick={() => handleVideoClick(video)}
         onMouseEnter={() => setIsHovered(true)}
@@ -346,17 +449,101 @@ const VideoShowcase = () => {
         </div>
         </motion.div>
         
-        {/* ULTRA PROFESSIONAL GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {videos.map((video, index) => (
-            <UltraProVideoCard
-                  key={video.id}
-              video={video}
-              index={index}
-              isMobile={isMobile}
-            />
+        {/* ULTRA PROFESSIONAL GRID / SLIDE */}
+        {isMobile ? (
+          // Mobile: Slide view
+          <div className="flex justify-center items-center gap-4">
+            {/* Previous Arrow */}
+            {videos.length > itemsToShow && (
+              <div className="flex items-center">
+                <button
+                  onClick={() => handleManualNavigation("prev")}
+                  className="w-12 h-12 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group touch-manipulation border border-gray-200 hover:border-gray-300 active:scale-95"
+                  aria-label={isRTL ? "السابق" : "Previous"}
+                >
+                  {isRTL ? (
+                    <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors" />
+                  ) : (
+                    <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors" />
+                  )}
+                </button>
+              </div>
+            )}
+
+            {/* Video Cards Container */}
+            <div className="flex-1 max-w-md">
+              {visibleVideos.map((video, index) => (
+                <div key={video.id} className="w-full">
+                  <UltraProVideoCard
+                    video={video}
+                    index={currentIndex + index}
+                    isMobile={isMobile}
+                  />
+                </div>
               ))}
             </div>
+
+            {/* Next Arrow */}
+            {videos.length > itemsToShow && (
+              <div className="flex items-center">
+                <button
+                  onClick={() => handleManualNavigation("next")}
+                  className="w-12 h-12 rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center group touch-manipulation border border-gray-200 hover:border-gray-300 active:scale-95"
+                  aria-label={isRTL ? "التالي" : "Next"}
+                >
+                  {isRTL ? (
+                    <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors" />
+                  ) : (
+                    <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors" />
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          // Tablet & Desktop: Grid view
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {videos.map((video, index) => (
+              <UltraProVideoCard
+                key={video.id}
+                video={video}
+                index={index}
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Progress bar and Pagination Dots - Only on mobile */}
+        {isMobile && videos.length > itemsToShow && (
+          <>
+            {/* Progress bar */}
+            <div className="flex justify-center mt-6">
+              <div className="w-48 bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-green-500 h-full rounded-full transition-all duration-500"
+                  style={{ width: `${((currentPage + 1) / totalPages) * 100}%` }}
+                ></div>
+              </div>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center mt-5 gap-2">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 touch-manipulation hover:scale-125 ${
+                    currentPage === index
+                      ? "bg-green-500 scale-125"
+                      : "bg-gray-300 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
         {/* CALL TO ACTION SECTION WITH ANIMATIONS */}
         <motion.div

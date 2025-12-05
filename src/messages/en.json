@@ -121,31 +121,31 @@
   },
   "videoSubjects": {
     "compta": {
-      "title": "Accounting Subject"
+      "title": "Accounting"
     },
     "droit": {
-      "title": "Law Subject"
+      "title": "Law"
     },
     "economy": {
-      "title": "Economics Subject"
+      "title": "Economics"
     },
     "french": {
       "title": "French"
     },
     "gp": {
-      "title": "Process Engineering Subject"
+      "title": "Process Engineering"
     },
     "geography": {
-      "title": "Geography Subject"
+      "title": "Geography"
     },
     "history": {
       "title": "History"
     },
     "english": {
-      "title": "English Subject"
+      "title": "English"
     },
     "philo": {
-      "title": "Philosophy Subject"
+      "title": "Philosophy"
     }
   },
   "monthlySubscription": "Monthly",
@@ -1384,7 +1384,8 @@
       "mathematics": "Mathematics",
       "technology": "Technology",
       "management": "Management and Economics",
-      "languages": "Foreign Languages"
+      "languages": "Foreign Languages",
+      "mathTechnical": "Math-Technical"
     },
     "modal": {
       "title": "My courses",
@@ -1437,6 +1438,9 @@
     },
     "languages": {
       "name": "Foreign Languages"
+    },
+    "mathTechnical": {
+      "name": "Math-Technical"
     }
   },
   "pricingHeader": {

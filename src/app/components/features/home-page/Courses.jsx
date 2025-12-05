@@ -105,20 +105,12 @@ const FeaturesHomePageCourses = () => {
                   pattern="geometric"
                   onCardClick={handleCardClick}
                 />
-                <RevolutionaryModuleCard
-                  label={t("specialization.technology")}
-                  gradient="from-green-600 via-emerald-600 to-green-800"
-                  delay={0.4}
-                  icon="💻"
-                  pattern="circuit"
-                  onCardClick={handleCardClick}
-                />
 
                 {/* Ligne 2 */}
                 <RevolutionaryModuleCard
                   label={t("specialization.languages")}
                   gradient="from-teal-500 via-green-500 to-emerald-600"
-                  delay={0.5}
+                  delay={0.4}
                   icon="🌐"
                   pattern="waves"
                   onCardClick={handleCardClick}
@@ -126,7 +118,7 @@ const FeaturesHomePageCourses = () => {
                 <RevolutionaryModuleCard
                   label={t("specialization.science")}
                   gradient="from-green-700 via-teal-700 to-emerald-800"
-                  delay={0.6}
+                  delay={0.5}
                   icon="🔬"
                   pattern="molecular"
                   onCardClick={handleCardClick}
@@ -136,7 +128,7 @@ const FeaturesHomePageCourses = () => {
                 <RevolutionaryModuleCard
                   label={t("specialization.literature")}
                   gradient="from-lime-600 via-green-500 to-emerald-600"
-                  delay={0.7}
+                  delay={0.6}
                   icon="📚"
                   pattern="texture"
                   onCardClick={handleCardClick}
@@ -144,9 +136,19 @@ const FeaturesHomePageCourses = () => {
                 <RevolutionaryModuleCard
                   label={t("specialization.management")}
                   gradient="from-emerald-600 via-green-500 to-teal-600"
-                  delay={0.8}
+                  delay={0.7}
                   icon="💼"
                   pattern="network"
+                  onCardClick={handleCardClick}
+                />
+
+                {/* Ligne 4 - Math Technique */}
+                <RevolutionaryModuleCard
+                  label={t("specialization.mathTechnical")}
+                  gradient="from-green-700 via-teal-700 to-emerald-800"
+                  delay={0.8}
+                  icon="🔬"
+                  pattern="geometric"
                   onCardClick={handleCardClick}
                 />
               </div>
@@ -191,25 +193,25 @@ const FeaturesHomePageCourses = () => {
               onCardClick={handleCardClick}
             />
             <SimpleMobileCard
-              label={t("specialization.technology")}
-              color="from-emerald-700 to-emerald-800"
-              delay={0.4}
-              onCardClick={handleCardClick}
-            />
-            <SimpleMobileCard
               label={t("specialization.languages")}
               color="from-green-500 to-green-600"
-              delay={0.5}
+              delay={0.4}
               onCardClick={handleCardClick}
             />
             <SimpleMobileCard
               label={t("specialization.science")}
               color="from-green-600 to-green-700"
-              delay={0.6}
+              delay={0.5}
               onCardClick={handleCardClick}
             />
             <SimpleMobileCard
               label={t("specialization.management")}
+              color="from-green-700 to-green-800"
+              delay={0.6}
+              onCardClick={handleCardClick}
+            />
+            <SimpleMobileCard
+              label={t("specialization.mathTechnical")}
               color="from-green-700 to-green-800"
               delay={0.7}
               onCardClick={handleCardClick}
@@ -514,12 +516,13 @@ const getModuleDetailsForCard = (label) => {
     case 'Mathematics':
       return [
         { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
-        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques', english: 'Physical sciences' },
-        { arabic: 'العلوم الطبيعية', french: 'Sciences naturelles', english: 'Natural sciences' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'اقتصاد ومناجمنت', french: 'Économie et management', english: 'Economics and management' },
+        { arabic: 'التسيير المحاسبي', french: 'Gestion comptable', english: 'Accounting management' },
+        { arabic: 'القانون', french: 'Droit', english: 'Law' },
         { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
         { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
         { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
-        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
         { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
       ];
 
@@ -540,7 +543,7 @@ const getModuleDetailsForCard = (label) => {
 
     // Techniques mathématiques
     case 'شعبة تقني رياضي':
-    case 'Techniques mathématiques':
+    case 'Technologie':
     case 'Technology':
       return [
         { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
@@ -548,6 +551,21 @@ const getModuleDetailsForCard = (label) => {
         { arabic: 'الهندسة المدنية', french: 'Génie civil', english: 'Civil engineering' },
         { arabic: 'الهندسة الكهربائية', french: 'Génie électrique', english: 'Electrical engineering' },
         { arabic: 'هندسة ميكانيكية', french: 'Génie mécanique', english: 'Mechanical engineering' },
+        { arabic: 'هندسة الطرائق', french: 'Génie des procédés', english: 'Process engineering' },
+        { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
+        { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
+        { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
+        { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
+        { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' }
+      ];
+
+    // Math technique (nouvelle spécialité)
+    case 'شعبة رياضيات تقنية':
+    case 'Math Technique':
+    case 'Math-Technical':
+      return [
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'العلوم الفيزيائية', french: 'Sciences physiques', english: 'Physical sciences' },
         { arabic: 'هندسة الطرائق', french: 'Génie des procédés', english: 'Process engineering' },
         { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
         { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
@@ -574,7 +592,7 @@ const getModuleDetailsForCard = (label) => {
 
     // Lettres et philosophie
     case 'شعبة آداب و فلسفة':
-    case 'Lettres et philosophie':
+    case 'Littérature et Philosophie':
     case 'Literature and Philosophy':
       return [
         { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
@@ -582,20 +600,20 @@ const getModuleDetailsForCard = (label) => {
         { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
         { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
         { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
-        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' }
+        { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' },
+        { arabic: 'اقتصاد ومناجمنت', french: 'Économie et management', english: 'Economics and management' }
       ];
 
     // Langues étrangères
     case 'شعبة لغات أجنبية':
-    case 'Langues étrangères':
+    case 'Langues Étrangères':
     case 'Foreign Languages':
       return [
         { arabic: 'اللغة العربية', french: 'Langue arabe', english: 'Arabic language' },
         { arabic: 'اللغة الفرنسية', french: 'Langue française', english: 'French language' },
         { arabic: 'اللغة الإنجليزية', french: 'Langue anglaise', english: 'English language' },
-        { arabic: 'اللغة الإسبانية', french: 'Langue espagnole', english: 'Spanish language' },
+        { arabic: 'اللغة الاسبانية', french: 'Langue espagnole', english: 'Spanish language' },
         { arabic: 'اللغة الألمانية', french: 'Langue allemande', english: 'German language' },
-        { arabic: 'اللغة الإيطالية', french: 'Langue italienne', english: 'Italian language' },
         { arabic: 'التاريخ والجغرافيا', french: 'Histoire et géographie', english: 'History and geography' },
         { arabic: 'الفلسفة', french: 'Philosophie', english: 'Philosophy' },
         { arabic: 'الرياضيات', french: 'Mathématiques', english: 'Mathematics' }

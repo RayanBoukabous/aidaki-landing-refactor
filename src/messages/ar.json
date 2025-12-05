@@ -59,31 +59,31 @@
   },
   "videoSubjects": {
     "compta": {
-      "title": "مادة المحاسبة"
+      "title": "المحاسبة"
     },
     "droit": {
-      "title": "مادة القانون"
+      "title": "القانون"
     },
     "economy": {
-      "title": "مادة الاقتصاد"
+      "title": "الاقتصاد"
     },
     "french": {
       "title": "الفرنسية"
     },
     "gp": {
-      "title": "مادة هندسة الطرائق"
+      "title": "هندسة الطرائق"
     },
     "geography": {
-      "title": "مادة الجغرافيا"
+      "title": "الجغرافيا"
     },
     "history": {
       "title": "التاريخ"
     },
     "english": {
-      "title": "مادة اللغة الإنجليزية"
+      "title": "اللغة الإنجليزية"
     },
     "philo": {
-      "title": "مادة الفلسفة"
+      "title": "الفلسفة"
     }
   },
   "monthlySubscription": "اشتراك شهري",
@@ -756,6 +756,7 @@
       "technology": "شعبة تقني رياضي",
       "management": "شعبة تسيير واقتصاد",
       "languages": "شعبة لغات أجنبية",
+      "mathTechnical": "شعبة رياضيات تقنية",
       "law": "شعبة القانون والعلوم السياسية",
       "engineering": "شعبة الهندسة والتقنيات"
     },
@@ -810,6 +811,9 @@
     },
     "languages": {
       "name": "شعبة لغات أجنبية"
+    },
+    "mathTechnical": {
+      "name": "شعبة رياضيات تقنية"
     }
   },
   "pricingHeader": {

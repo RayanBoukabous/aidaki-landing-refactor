@@ -1337,7 +1337,6 @@
       "home": "Home",
       "courses": "Courses",
       "pricing": "Pricing",
-      "about": "About Us",
       "news": "News",
       "support": "Support & Assistance",
       "contact": "Contact Us",
@@ -1477,7 +1476,11 @@
     "visitStore": "Visit Techno Store",
     "storeDescription": "Our specialized store near you",
     "viewMap": "View map",
-    "locations": ["Techno", "Location 1", "Location 2"],
+    "locations": [
+      "Techno",
+      "Location 1",
+      "Location 2"
+    ],
     "more": "More"
   },
   "emailPlaceholder": "Enter your email",

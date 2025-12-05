@@ -798,7 +798,7 @@ const VideoShowcase = () => {
               <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
                 {/* START NOW BUTTON WITH SPECIAL ANIMATIONS */}
                 <motion.a
-                  href='https://elearning.aidaki.ai/en/login'
+                  href={platformUrl}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='relative bg-white text-emerald-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg text-center overflow-hidden group'

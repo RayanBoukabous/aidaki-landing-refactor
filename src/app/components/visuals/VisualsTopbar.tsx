@@ -29,9 +29,9 @@ export default function VisualsTopbar() {
     setMounted(true);
   }, []);
 
-  // Countdown to 10 Dec 2025 00:00:00
+  // Countdown to 15 Dec 2025 00:00:00
   useEffect(() => {
-    const target = new Date(2025, 11, 10, 0, 0, 0).getTime();
+    const target = new Date(2025, 11, 15, 0, 0, 0).getTime();
     const tick = () => {
       const now = Date.now();
       const diff = Math.max(target - now, 0);
@@ -375,10 +375,10 @@ export default function VisualsTopbar() {
                   </span>
                   <span className="hidden sm:inline px-2 py-1 md:px-3 md:py-1.5 rounded-lg bg-white/15 hover:bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 text-xs md:text-sm font-semibold text-white">
                     {isRTL
-                      ? '10 ديسمبر 2025'
+                      ? '15 ديسمبر 2025'
                       : currentLocale === 'fr'
-                        ? '10 décembre 2025'
-                        : 'Dec 10, 2025'}
+                        ? '15 décembre 2025'
+                        : 'Dec 15, 2025'}
                   </span>
                   <span className="text-xl md:text-2xl animate-bounce-subtle" style={{ animationDelay: '0.5s' }}>🚀</span>
                 </div>

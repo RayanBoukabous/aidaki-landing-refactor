@@ -46,6 +46,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   return {
     title: titles[locale],
     description: descriptions[locale],
+    openGraph: {
+      title: titles[locale],
+      description: descriptions[locale],
+      siteName: 'AIDAKI',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[locale],
+      description: descriptions[locale],
+    },
   };
 }
 

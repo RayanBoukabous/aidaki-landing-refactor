@@ -391,7 +391,7 @@ export default function VisualsTopbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4">
-             <ul className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-4 flex-wrap justify-center" style={{ direction: 'ltr' }}>
+             <ul className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-4 flex-wrap justify-center" style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
               {mainRoutes.map((route, index) => (
                 <li key={route.name} className="relative">
                   {route.hasDropdown ? (

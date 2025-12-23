@@ -159,14 +159,14 @@ export default function VisualsTopbar() {
     };
 
     if (isRTL) {
-      // Arabic (RTL): display Support on the far right, Home on the far left
+      // Arabic (RTL): Home (الرئيسية) should be first (appears on the right in RTL)
       return [
-        supportRoute,
-        pricesRoute,
-        newsRoute,
-        pointsOfSaleRoute,
-        aboutRoute,
         homeRoute,
+        aboutRoute,
+        pointsOfSaleRoute,
+        newsRoute,
+        pricesRoute,
+        supportRoute,
       ];
     }
 
@@ -271,36 +271,36 @@ export default function VisualsTopbar() {
     <>
 
       
-      <nav className="w-full border-b top-0 z-[100] transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl hover:shadow-3xl transition-all duration-500 animate-pulse-slow nav-container">
+      <nav className="w-full border-b top-0 z-[100] transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-green-800 border-2 border-green-400/50 shadow-2xl hover:shadow-3xl animate-pulse-slow nav-container">
         {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 via-transparent to-green-500/20 animate-gradient-x"></div>
         
-        {/* Enhanced background pattern with animations */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-24 h-24 sm:w-32 sm:h-32 bg-green-300 rounded-full mix-blend-overlay filter blur-xl animate-float"></div>
-          <div className="absolute bottom-0 right-1/4 w-16 h-16 sm:w-24 sm:h-24 bg-green-200 rounded-full mix-blend-overlay filter blur-xl animate-float-delayed"></div>
-          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-green-400 rounded-full mix-blend-overlay filter blur-2xl animate-pulse-gentle"></div>
+        {/* Enhanced background pattern with animations - Optimized for performance */}
+        <div className="absolute inset-0 opacity-20 will-change-transform">
+          <div className="absolute top-0 left-1/4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 bg-green-300 rounded-full mix-blend-overlay filter blur-xl animate-float"></div>
+          <div className="absolute bottom-0 right-1/4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 bg-green-200 rounded-full mix-blend-overlay filter blur-xl animate-float-delayed"></div>
+          <div className="absolute top-1/2 left-1/2 w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 xl:w-22 xl:h-22 bg-green-400 rounded-full mix-blend-overlay filter blur-2xl animate-pulse-gentle"></div>
         </div>
 
-        {/* Animated dots pattern */}
-        <div className="absolute inset-0 opacity-10">
+        {/* Animated dots pattern - Reduced on mobile for performance */}
+        <div className="absolute inset-0 opacity-10 hidden sm:block">
           <div className="absolute top-4 right-8 w-2 h-2 bg-green-200 rounded-full animate-twinkle"></div>
           <div className="absolute bottom-6 left-12 w-1 h-1 bg-green-300 rounded-full animate-twinkle-delayed"></div>
           <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-green-100 rounded-full animate-twinkle-slow"></div>
         </div>
 
         <div
-          className={`mx-auto relative px-3 sm:px-4 py-2 sm:py-3 flex justify-between items-center z-10 ${
+          className={`mx-auto relative px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 lg:py-3.5 flex justify-between items-center z-10 max-w-[1920px] ${
             isRTL ? "flex-row-reverse" : ""
           }`}
         >
           {/* Logo - Ultra Sophisticated Design */}
-          <Link href={`/${locale}/`} className="group relative">
+          <Link href={`/${locale}/`} className="group relative flex-shrink-0">
             {/* Animated background glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-md border border-white/30 group-hover:border-white/50 shadow-2xl group-hover:shadow-3xl animate-pulse-gentle"></div>
             
             {/* Main logo container with advanced glassmorphism */}
-            <div className="relative w-16 sm:w-18 md:w-20 h-16 sm:h-18 md:h-20 bg-gradient-to-br from-white via-white/95 to-white/90 rounded-full flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-xl group-hover:shadow-2xl border border-white/40 group-hover:border-white/60 backdrop-blur-sm overflow-hidden">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[4.5rem] lg:h-[4.5rem] xl:w-20 xl:h-20 bg-gradient-to-br from-white via-white/95 to-white/90 rounded-full flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-xl group-hover:shadow-2xl border border-white/40 group-hover:border-white/60 backdrop-blur-sm overflow-hidden">
               
               {/* Inner glow effect */}
               <div className="absolute inset-1 bg-gradient-to-tr from-green-400/20 via-transparent to-green-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -312,7 +312,7 @@ export default function VisualsTopbar() {
               <div className="relative z-10 transition-all duration-500 group-hover:scale-105 group-hover:brightness-110">
             <img
               src="/images/logo-black.png"
-                  className="w-12 sm:w-14 md:w-16 h-auto filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
+                  className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 h-auto filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-500"
                   alt="AIDAKI Logo"
                 />
                 
@@ -332,40 +332,48 @@ export default function VisualsTopbar() {
             <div className="absolute inset-0 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-125 animate-pulse-slow"></div>
           </Link>
 
-          {/* Mobile Right Side - Language Selector + Menu Button */}
-          <div className="lg:hidden flex items-center gap-2 sm:gap-3">
-            {/* Mobile Language Selector - Always Visible */}
-
+          {/* Mobile Right Side - Language Selector removed to avoid duplication; only burger remains */}
+          <div className="lg:hidden flex items-center gap-2 sm:gap-2.5 md:gap-3">
             {/* Mobile Menu Button - Ultra Sophisticated */}
             <button
-              className={`group relative z-50 p-3 sm:p-4 rounded-xl focus:outline-none transition-all duration-500 ${
+              className={`group relative z-50 p-2.5 sm:p-3 md:p-3.5 rounded-lg sm:rounded-xl focus:outline-none transition-all duration-500 touch-manipulation flex items-center justify-center ${
                 mobileMenuOpen
                   ? "bg-white/25 backdrop-blur-md scale-110 shadow-2xl border border-white/40"
-                  : "bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 hover:border-white/30 shadow-lg hover:shadow-xl"
+                  : "bg-white/10 hover:bg-white/20 active:bg-white/25 backdrop-blur-sm border border-white/20 hover:border-white/30 shadow-lg hover:shadow-xl"
               }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               {/* Animated background glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/5 rounded-xl opacity-0 transition-all duration-500 ${
+              <div className={`absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/5 rounded-lg sm:rounded-xl opacity-0 transition-all duration-500 ${
                 mobileMenuOpen ? "opacity-100" : "group-hover:opacity-100"
               }`}></div>
               
-              {/* Hamburger lines with enhanced effects */}
-              <div className="relative w-6 h-6 z-10">
+              {/* Hamburger lines with enhanced effects - Properly centered */}
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 z-10">
+                {/* Top line */}
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
-                    mobileMenuOpen ? "top-3 rotate-45 scale-110" : "top-1 group-hover:scale-105"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg left-0 ${
+                    mobileMenuOpen 
+                      ? "top-1/2 -translate-y-1/2 rotate-45" 
+                      : "top-0.5 sm:top-1"
                   }`}
                 ></span>
+                {/* Middle line */}
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
-                    mobileMenuOpen ? "opacity-0 scale-0" : "top-3 group-hover:scale-105"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg left-0 ${
+                    mobileMenuOpen 
+                      ? "opacity-0 scale-0" 
+                      : "top-1/2 -translate-y-1/2"
                   }`}
                 ></span>
+                {/* Bottom line */}
                 <span
-                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg ${
-                    mobileMenuOpen ? "top-3 -rotate-45 scale-110" : "top-5 group-hover:scale-105"
+                  className={`absolute block w-full h-0.5 bg-white rounded-full transition-all duration-500 shadow-lg left-0 ${
+                    mobileMenuOpen 
+                      ? "top-1/2 -translate-y-1/2 -rotate-45" 
+                      : "bottom-0.5 sm:bottom-1"
                   }`}
                 ></span>
               </div>
@@ -379,20 +387,11 @@ export default function VisualsTopbar() {
               </div>
             </button>
 
-            <select
-              className="bg-white/20 cursor-pointer rounded-xl px-4 py-3 text-sm font-semibold outline-none hover:bg-white/30 transition-all duration-300 appearance-none pr-8 border border-white/30 min-w-[60px] text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm language-selector"
-              value={currentLocale}
-              onChange={(e) => setLocale(e.target.value)}
-            >
-              <option value="ar">AR</option>
-              <option value="en">EN</option>
-              <option value="fr">FR</option>
-            </select>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center flex-1">
-             <ul className="flex items-center gap-4" style={{ direction: 'ltr' }}>
+          <div className="hidden lg:flex items-center justify-center flex-1 px-2 xl:px-4">
+             <ul className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-4 flex-wrap justify-center" style={{ direction: 'ltr' }}>
               {mainRoutes.map((route, index) => (
                 <li key={route.name} className="relative">
                   {route.hasDropdown ? (
@@ -400,7 +399,7 @@ export default function VisualsTopbar() {
                       <button
                         ref={dropdownTriggerRef}
                         id="about-dropdown-trigger"
-                        className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl flex items-center gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "flex-row-reverse text-right" : ""}`}
+                        className={`px-3 lg:px-3.5 xl:px-4 py-2 lg:py-2.5 xl:py-2.5 2xl:py-3 text-xs lg:text-xs xl:text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-lg lg:rounded-xl flex items-center gap-1.5 lg:gap-2 relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link whitespace-nowrap ${isRTL ? "flex-row-reverse text-right" : ""}`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setAboutDropdownOpen(!aboutDropdownOpen);
@@ -411,7 +410,7 @@ export default function VisualsTopbar() {
                       >
                         {t(route.name)}
                         <svg
-                          className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform duration-200 ${
+                          className={`w-3 h-3 lg:w-3.5 lg:h-3.5 xl:w-4 xl:h-4 transition-transform duration-200 flex-shrink-0 ${
                             aboutDropdownOpen ? "rotate-180" : ""
                           }`}
                           fill="none"
@@ -430,7 +429,7 @@ export default function VisualsTopbar() {
                   ) : (
                     <Link
                       href={`/${locale}${route.link}`}
-                      className={`px-4 py-3 text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link ${isRTL ? "text-right" : ""}`}
+                      className={`px-3 lg:px-3.5 xl:px-4 py-2 lg:py-2.5 xl:py-2.5 2xl:py-3 text-xs lg:text-xs xl:text-sm font-semibold text-white hover:text-green-200 transition-all duration-300 rounded-lg lg:rounded-xl relative group bg-white/5 hover:bg-white/15 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl hover:scale-105 nav-link whitespace-nowrap ${isRTL ? "text-right" : ""}`}
                       onClick={(e) => {
                         // If it's a hash link, use smooth scroll
                         if (route.link.includes('#')) {
@@ -464,10 +463,10 @@ export default function VisualsTopbar() {
           </div>
 
           {/* Desktop Right Side */}
-           <div className="hidden lg:flex items-center gap-4">
+           <div className="hidden lg:flex items-center gap-2 lg:gap-2.5 xl:gap-3 2xl:gap-4 flex-shrink-0">
             {/* Language Selector */}
             <select
-              className="bg-white/20 cursor-pointer rounded-xl px-4 py-3 text-sm font-semibold outline-none hover:bg-white/30 transition-all duration-300 appearance-none pr-8 border border-white/30 min-w-[60px] text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm language-selector"
+              className="bg-white/20 cursor-pointer rounded-lg lg:rounded-xl px-3 lg:px-3.5 xl:px-4 py-2 lg:py-2.5 xl:py-2.5 2xl:py-3 text-xs lg:text-xs xl:text-sm font-semibold outline-none hover:bg-white/30 transition-all duration-300 appearance-none pr-6 lg:pr-7 xl:pr-7 2xl:pr-8 border border-white/30 min-w-[52px] lg:min-w-[55px] xl:min-w-[55px] 2xl:min-w-[60px] text-white shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm language-selector"
               value={currentLocale}
               onChange={(e) => setLocale(e.target.value)}
             >
@@ -477,25 +476,25 @@ export default function VisualsTopbar() {
             </select>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-2">
+            <div className="flex items-center gap-1.5 lg:gap-2 bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl xl:rounded-2xl px-2 lg:px-2.5 xl:px-3 2xl:px-4 py-1.5 lg:py-2">
               {socialLinks.map((social, index) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative p-3 rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-110 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl social-icon"
+                  className="group relative p-2 lg:p-2.5 xl:p-2.5 2xl:p-3 rounded-lg lg:rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-110 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 shadow-lg hover:shadow-xl social-icon"
                   aria-label={social.label}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <svg
-                    className="w-5 h-5 text-white hover:text-green-200 transition-colors duration-300"
+                    className="w-4 h-4 lg:w-4.5 lg:h-4.5 xl:w-5 xl:h-5 text-white hover:text-green-200 transition-colors duration-300"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path d={social.icon} />
                   </svg>
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-cyan-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-cyan-400 rounded-lg lg:rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </a>
               ))}
             </div>
@@ -504,7 +503,7 @@ export default function VisualsTopbar() {
             <a
               href="https://elearning.aidaki.ai/login"
               target="_blank"
-              className="px-6 py-3 bg-gradient-to-r from-white/20 to-white/10 text-white font-semibold rounded-xl hover:from-white/30 hover:to-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-white/30 backdrop-blur-sm shadow-lg hover:shadow-2xl login-button"
+              className="px-4 lg:px-4.5 xl:px-5 2xl:px-6 py-2 lg:py-2.5 xl:py-2.5 2xl:py-3 bg-gradient-to-r from-white/20 to-white/10 text-white text-xs lg:text-xs xl:text-sm font-semibold rounded-lg lg:rounded-xl hover:from-white/30 hover:to-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl border border-white/30 backdrop-blur-sm shadow-lg hover:shadow-2xl login-button whitespace-nowrap"
             >
               {t(loginRoute.name)}
             </a>
@@ -580,7 +579,7 @@ export default function VisualsTopbar() {
 
         {/* Professional Menu Content with Green Gradient */}
         <div
-          className={`absolute ${isRTL ? "right-0" : "left-0"} top-0 h-full w-80 max-w-[85vw] flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto bg-gradient-to-br from-green-600 via-green-700 to-green-800 shadow-2xl ${
+          className={`absolute ${isRTL ? "right-0" : "left-0"} top-0 h-full w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] max-w-[90vw] sm:max-w-[85vw] flex flex-col justify-start items-stretch transform transition-all duration-300 overflow-y-auto bg-gradient-to-br from-green-600 via-green-700 to-green-800 shadow-2xl ${
             mobileMenuOpen
               ? `${isRTL ? "translate-x-0" : "translate-x-0"} opacity-100`
               : `${isRTL ? "translate-x-full" : "-translate-x-full"} opacity-0`
@@ -588,18 +587,18 @@ export default function VisualsTopbar() {
           dir={isRTL ? "rtl" : "ltr"}
         >
           {/* Clean Header */}
-          <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-4 py-4">
+          <div className="w-full bg-gradient-to-r from-green-600 to-green-700 backdrop-blur-md border-b border-green-500/30 px-3 sm:px-4 md:px-5 py-3 sm:py-3.5 md:py-4 flex-shrink-0">
             <div className={`flex items-center justify-between ${isRTL ? "flex-row-reverse" : ""}`}>
               {/* Logo - Same as desktop navbar */}
-              <div className={`flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
-                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg border border-white/40">
+              <div className={`flex items-center gap-2 sm:gap-2.5 md:gap-3 ${isRTL ? "flex-row-reverse" : ""}`}>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-lg border border-white/40 flex-shrink-0">
                   <img
                     src="/images/logo-black.png"
-                    className="w-12 h-auto"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 h-auto"
                     alt="AIDAKI Logo"
                   />
                 </div>
-                <span className="text-xl font-bold text-white">AIDAKI</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold text-white">AIDAKI</span>
               </div>
               
               {/* Close Button */}
@@ -608,9 +607,10 @@ export default function VisualsTopbar() {
                   setMobileMenuOpen(false);
                   setMobileAboutDropdownOpen(false);
                 }}
-                className={`w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30 ${isRTL ? "mr-auto" : "ml-auto"}`}
+                className={`w-9 h-9 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 active:bg-white/35 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30 touch-manipulation flex-shrink-0 ${isRTL ? "mr-auto" : "ml-auto"}`}
+                aria-label="Close menu"
               >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -618,44 +618,48 @@ export default function VisualsTopbar() {
           </div>
 
           {/* Navigation with Green Gradient Background */}
-          <div className="w-full flex-1 px-4 py-6 min-h-0">
-            <nav className={`space-y-2 ${isRTL ? "text-right" : "text-left"}`}>
+          <div className="w-full flex-1 px-3 sm:px-4 md:px-5 py-4 sm:py-5 md:py-6 min-h-0 overflow-y-auto">
+            <nav className={`space-y-1.5 sm:space-y-2 ${isRTL ? "text-right" : "text-left"}`}>
               {mainRoutes.map((route, index) => (
-                <div key={route.name} className="mb-3">
+                <div key={route.name} className="mb-2 sm:mb-2.5 md:mb-3">
                 {route.hasDropdown ? (
                     <div>
                       <button
-                        className={`w-full flex items-center px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${
-                          isRTL ? "flex-row-reverse justify-start gap-3" : "justify-between"
-                        }`}
+                        className="w-full flex items-center px-3 sm:px-3.5 md:px-4 py-2.5 sm:py-3 md:py-3.5 text-base sm:text-lg md:text-xl font-semibold text-white hover:text-green-200 active:text-green-300 hover:bg-white/10 active:bg-white/15 rounded-lg transition-all duration-200 backdrop-blur-sm touch-manipulation justify-between gap-2 sm:gap-2.5 md:gap-3"
                         onClick={() => setMobileAboutDropdownOpen(!mobileAboutDropdownOpen)}
+                        aria-expanded={mobileAboutDropdownOpen}
+                        aria-haspopup="true"
                       >
-                        <span className={isRTL ? "text-right flex-1" : ""}>{t(route.name)}</span>
+                        <span className={`${isRTL ? "text-right" : "text-left"} flex-1`}>{t(route.name)}</span>
                         <svg
-                          className={`w-5 h-5 transition-transform duration-200 ${
-                            mobileAboutDropdownOpen ? "rotate-180" : ""
+                          className={`w-4 h-4 sm:w-[18px] sm:h-[18px] md:w-5 md:h-5 transition-transform duration-300 flex-shrink-0 ${
+                            mobileAboutDropdownOpen
+                              ? (isRTL ? "-rotate-90" : "rotate-180")
+                              : "rotate-0"
                           }`}
                           fill="none"
                           stroke="currentColor"
+                          strokeWidth={2.5}
                           viewBox="0 0 24 24"
                         >
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
+                            d={isRTL ? "M15 19l-7-7 7-7" : "M19 9l-7 7-7-7"}
                           />
                         </svg>
                       </button>
                       {/* Dropdown items */}
-                      <div className={`${isRTL ? "mr-4" : "ml-4"} mt-2 space-y-1 transition-all duration-300 ${
-                        mobileAboutDropdownOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
+                      <div className={`${isRTL ? "mr-3 sm:mr-3.5 md:mr-4" : "ml-3 sm:ml-3.5 md:ml-4"} mt-1.5 sm:mt-2 space-y-1 transition-all duration-300 ease-in-out ${
+                        mobileAboutDropdownOpen 
+                          ? "opacity-100 max-h-[500px] visible" 
+                          : "opacity-0 max-h-0 invisible overflow-hidden"
                       }`}>
                       {route.dropdownItems?.map((item) => (
                         <Link
                           key={item.name}
                           href={`/${locale}${item.link}`}
-                            className={`block px-4 py-2 text-base text-green-100 hover:text-white hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
+                            className={`block px-3 sm:px-3.5 md:px-4 py-2 sm:py-2.5 text-sm sm:text-base md:text-lg text-green-100 hover:text-white active:text-white hover:bg-white/10 active:bg-white/15 rounded-lg transition-colors duration-200 backdrop-blur-sm touch-manipulation ${isRTL ? "text-right" : "text-left"}`}
                           onClick={(e) => {
                             e.preventDefault();
                             setMobileMenuOpen(false);
@@ -683,7 +687,7 @@ export default function VisualsTopbar() {
                 ) : (
                   <Link
                     href={`/${locale}${route.link}`}
-                      className={`block px-4 py-3 text-lg font-semibold text-white hover:text-green-200 hover:bg-white/10 rounded-lg transition-colors duration-200 backdrop-blur-sm ${isRTL ? "text-right" : "text-left"}`}
+                      className={`block px-3 sm:px-3.5 md:px-4 py-2.5 sm:py-3 md:py-3.5 text-base sm:text-lg md:text-xl font-semibold text-white hover:text-green-200 active:text-green-300 hover:bg-white/10 active:bg-white/15 rounded-lg transition-colors duration-200 backdrop-blur-sm touch-manipulation ${isRTL ? "text-right" : "text-left"}`}
                     onClick={(e) => {
                       setMobileMenuOpen(false);
                       if (route.link.includes('#')) {
@@ -715,36 +719,54 @@ export default function VisualsTopbar() {
             </nav>
 
             {/* Login Button */}
-            <div className="mt-8 pt-6 border-t border-white/20">
+            <div className="mt-6 sm:mt-7 md:mt-8 pt-4 sm:pt-5 md:pt-6 border-t border-white/20 space-y-4 sm:space-y-5">
+              {/* Mobile Language Selector placed near bottom */}
+              <div className="flex justify-center gap-2 sm:gap-2.5">
+                {["ar", "fr", "en"].map((lng) => (
+                  <button
+                    key={lng}
+                    onClick={() => setLocale(lng)}
+                    className={`px-4 py-2 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold border transition-all duration-200 shadow-lg backdrop-blur-sm ${
+                      currentLocale === lng
+                        ? "bg-white/30 text-emerald-900 border-white/60"
+                        : "bg-white/15 text-white border-white/30 hover:bg-white/25"
+                    }`}
+                  >
+                    {lng.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+
               <a
                 href="https://elearning.aidaki.ai/login"
                 target="_blank"
-                className="block w-full bg-white/20 hover:bg-white/30 text-white font-semibold text-center py-4 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/30"
+                className="block w-full bg-white/20 hover:bg-white/30 active:bg-white/35 text-white font-semibold text-center py-3 sm:py-3.5 md:py-4 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/30 touch-manipulation text-sm sm:text-base md:text-lg"
             >
               {t(loginRoute.name)}
               </a>
           </div>
 
             {/* Social Links */}
-            <div className={`mt-6 flex ${isRTL ? "justify-start" : "justify-center"} gap-4`}>
+            <div className="mt-5 sm:mt-6 flex justify-center gap-3 sm:gap-3.5 md:gap-4">
               {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30"
-                aria-label={social.label}
-              >
-                <svg
-                    className="w-5 h-5 text-white hover:text-green-200"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white/20 hover:bg-white/30 active:bg-white/35 backdrop-blur-sm rounded-full flex items-center justify-center transition-colors duration-200 border border-white/30 touch-manipulation"
+                  aria-label={social.label}
                 >
-                  <path d={social.icon} />
-                </svg>
-              </a>
-            ))}
+                  <svg
+                    className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-white hover:text-green-200"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    style={{ display: 'block' }}
+                  >
+                    <path d={social.icon} fill="currentColor" />
+                  </svg>
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -1107,8 +1129,15 @@ export default function VisualsTopbar() {
           position: relative;
         }
 
-        /* Responsive text sizing */
-        @media (max-width: 640px) {
+        /* Responsive text sizing - Ultra responsive breakpoints */
+        @media (max-width: 374px) {
+          .countdown-banner h2 {
+            font-size: 0.875rem;
+            line-height: 1.2;
+          }
+        }
+
+        @media (min-width: 375px) and (max-width: 640px) {
           .countdown-banner h2 {
             font-size: 1rem;
             line-height: 1.3;
@@ -1122,19 +1151,56 @@ export default function VisualsTopbar() {
           }
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 769px) and (max-width: 1023px) {
+          .countdown-banner h2 {
+            font-size: 1.5rem;
+            line-height: 1.45;
+          }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1279px) {
           .countdown-banner h2 {
             font-size: 1.75rem;
             line-height: 1.5;
           }
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1280px) {
           .countdown-banner h2 {
             font-size: 2rem;
             line-height: 1.6;
           }
         }
+
+        /* Ultra responsive navbar adjustments */
+        @media (max-width: 374px) {
+          .nav-container {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+          }
+        }
+
+        @media (min-width: 375px) and (max-width: 639px) {
+          .nav-container {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+          }
+        }
+
+        @media (min-width: 1280px) and (max-width: 1535px) {
+          .nav-container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+        }
+
+        @media (min-width: 1536px) {
+          .nav-container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+        }
+
 
         .nav-link {
           position: relative;
@@ -1223,9 +1289,20 @@ export default function VisualsTopbar() {
           transform: translateY(-2px) scale(1.05);
         }
 
-        /* Smooth transitions for all interactive elements */
-        * {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Smooth transitions for interactive elements only - optimized for performance */
+        .nav-link,
+        .social-icon,
+        .language-selector,
+        .login-button,
+        button,
+        a,
+        select {
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Advanced logo animations */
@@ -1270,6 +1347,55 @@ export default function VisualsTopbar() {
           backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.3);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Performance optimizations for mobile */
+        @media (max-width: 768px) {
+          /* Reduce animations on mobile for better performance */
+          .animate-float,
+          .animate-float-delayed,
+          .animate-pulse-gentle {
+            animation-duration: 6s;
+          }
+          
+          /* Reduce backdrop blur on mobile for performance */
+          .backdrop-blur-sm {
+            backdrop-filter: blur(4px);
+          }
+          
+          .backdrop-blur-md {
+            backdrop-filter: blur(6px);
+          }
+        }
+
+        /* Touch optimization */
+        @media (hover: none) and (pointer: coarse) {
+          /* Larger touch targets on mobile */
+          button,
+          a,
+          select {
+            min-height: 44px;
+            min-width: 44px;
+          }
+          
+          /* Remove hover effects on touch devices */
+          .nav-link:hover,
+          .social-icon:hover,
+          .language-selector:hover,
+          .login-button:hover {
+            transform: none;
+          }
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
         }
 
         /* Force dropdown above all elements */
